@@ -1,11 +1,13 @@
 FROM amazonlinux:2.0.20190823.1
 
-WORKDIR "/var/dokugaku-engineer-blog"
+WORKDIR /var/www
 
 # install package
 RUN yum update -y
 RUN amazon-linux-extras install -y php7.3
-RUN yum install -y git vim sudo php-mbstring php-xml php-zip
+RUN yum install -y git vim sudo procps
+## PHPとLaravelを動かせるように
+RUN yum install -y php-mbstring php-xml php-zip php-fpm
 
 # install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -13,7 +15,19 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');" && \
     mv composer.phar /usr/local/bin/composer
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # install laravel
 RUN composer global require laravel/installer
 ENV PATH $PATH:/root/.composer/vendor/bin
+
+# set php-fpm/www.conf
+RUN rm /etc/php-fpm.d/www.conf
+COPY php-fpm/www.conf /etc/php-fpm.d/www.conf
+
+# 9000番ポートを開放
+EXPOSE 9000
+
+# PHP-FPMをフォアグラウンドで実行
+ENTRYPOINT /usr/sbin/php-fpm -F
+# CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "8000"]
