@@ -1,3 +1,7 @@
+.DS_Store
+
+docker/db/db-variables.env
+
 src/node_modules
 src/public/hot
 src/public/storage

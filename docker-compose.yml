@@ -9,19 +9,17 @@ services:
       - "8080:80"
     volumes:
       - ./src:/var/www
-      - ./docker/web/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - app
 
   db:
-    image: mysql:8.0.17
+    build:
+      context: ./docker/db
+      dockerfile: Dockerfile
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_DATABASE: sample
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
+    env_file:
+      - ./docker/db/db-variables.env
 
   app:
     build:
