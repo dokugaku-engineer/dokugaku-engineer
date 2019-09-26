@@ -6,8 +6,9 @@ WORKDIR /var/www
 RUN yum update -y
 RUN amazon-linux-extras install -y php7.3
 RUN yum install -y git vim sudo procps
+RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 ## PHPとLaravelを動かせるように
-RUN yum install -y php-mbstring php-xml php-zip php-fpm
+RUN yum install -y php-mbstring php-xml php-zip php-fpm nodejs
 
 # install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -24,6 +25,9 @@ ENV PATH $PATH:/root/.composer/vendor/bin
 # set php-fpm/www.conf
 RUN rm /etc/php-fpm.d/www.conf
 COPY php-fpm/www.conf /etc/php-fpm.d/www.conf
+
+# set php.ini
+COPY php.ini /usr/local/etc/php/php.ini
 
 # 9000番ポートを開放
 EXPOSE 9000
