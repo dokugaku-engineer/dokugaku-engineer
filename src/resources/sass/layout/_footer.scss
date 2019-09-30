@@ -1,0 +1,11 @@
+.l-footer {
+  background: $bg-color-light;
+  padding: 10px 0;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .l-footer {
+    padding: 15px 0;
+  }
+}
