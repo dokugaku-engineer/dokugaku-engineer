@@ -1,0 +1,42 @@
+.p-blog-aside {
+  background-color: $bg-color-light;
+  float: none;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  font-size: $font-size-sm;
+  width: 100%;
+}
+
+.p-blog-aside__title {
+  background-color: $bg-color-secondary;
+  color: $text-color-light;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  padding: 7px 15px;
+}
+
+.p-blog-aside__writer {
+  padding: 18px 10px;
+  color: $text-color-sub2;
+}
+
+.p-blog-aside__writer-img {
+  border: solid 2px $bg-color-base;
+  border-radius: 50%;
+  float: left;
+  width: 30%;
+}
+
+.p-blog-aside__writer-profile {
+  float: right;
+  width: 67%;
+}
+
+.p-blog-aside__writer-name {
+  font-size: $font-size-sm;
+  font-weight: 700;
+}
+
+.p-blog-aside__writer-detail {
+  font-size: $font-size-xs;
+}

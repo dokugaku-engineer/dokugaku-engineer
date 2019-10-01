@@ -13,6 +13,8 @@
     <title>
         @yield('title')
     </title>
+
+    <script src="https://kit.fontawesome.com/381734123f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>

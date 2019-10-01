@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 Route::get('/blog', 'PostController@index');
 Route::get('/blog/{postSlug}', 'PostController@show');
-Route::get('/blog/{category}', 'CategoryController@show');
+Route::get('/blog/category/{category}', 'CategoryController@show');
