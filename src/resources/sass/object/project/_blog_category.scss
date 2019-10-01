@@ -1,0 +1,18 @@
+.p-blog-category {
+  border-bottom: solid 2px $text-color-base;
+  text-align: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .p-blog-category {
+    margin-bottom: 25px;
+  }
+}
+
+.p-blog-category__title {
+  font-size: $font-size-xxl;
+  font-weight: 700;
+  line-height: 1.68;
+  margin-bottom: 4px;
+}

@@ -16,4 +16,14 @@ class PostController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function show(string $postSlug)
+    {
+        $post = Post::where('slug', $postSlug)->first();
+
+        return view('posts.show', [
+            'post' => $post,
+            'category' => 'web'
+        ]);
+    }
 }

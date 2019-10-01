@@ -1,11 +1,10 @@
 .p-blog__content {
-  margin-top: 6vw;
   padding: 0 3vw;
 }
 
 @media screen and (min-width: 768px) {
   .p-blog__content {
-    margin: 60px auto 20px;
+    margin: 0 auto 20px;
     padding: 0 15px;
     max-width: 1230px;
   }

@@ -1,3 +1,28 @@
 .p-blog-breadcrumb {
+  color: $text-color-sub1;
   font-size: $font-size-sm;
+  font-weight: 700;
+  line-height: 22px;
+  margin: 15px 0 5px;
+
+  li {
+    display: inline-block;
+    margin-right: 2px;
+
+    a {
+      padding-right: 4px;
+    }
+
+    .fa-map-marker-alt {
+      color: $bg-color-primay;
+      padding-right: 4px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .p-blog-breadcrumb {
+    font-size: $font-size-base;
+    margin-bottom: 10px;
+  }
 }

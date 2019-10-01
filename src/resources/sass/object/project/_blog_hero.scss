@@ -2,7 +2,14 @@
   background-size: cover;
   background-position: center;
   display: block;
+  margin-bottom: 5vw;
   width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .p-blog-hero {
+    margin-bottom: 60px;
+  }
 }
 
 .p-blog-hero__cover {

@@ -9,8 +9,7 @@
         <div class="p-blog-hero__inner">
             <div class="p-blog-hero__category">
                 <a href="">学習方法</a>
-                <span>-</span>
-                <a href="">学習方法</a>
+                <span>&ensp;|&ensp;2019-09-22</span>
             </div>
             <div class="p-blog-hero__title">
                 head内に書くべきタグを総まとめ：SEO対策に有効なものは？
@@ -21,7 +20,9 @@
     </div>
 </div>
 <div class="p-blog__content clearfix">
-    @include('partials.blog_articles')
+    <main class="p-blog__main">
+        @include('partials.blog_articles')
+    </main>
     @include('partials.blog_sidebar')
 </div>
 
