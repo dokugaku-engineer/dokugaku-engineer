@@ -2,7 +2,7 @@
     <ol class="p-blog-breadcrumb">
         <li>
             <a href="">
-                <i class="fas fa-map-marker-alt fa-lg"></i>
+                <i class="fas fa-home-alt fa-lg"></i>
                 <span>ホーム</span>
             </a>
         </li>

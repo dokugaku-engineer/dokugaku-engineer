@@ -1,24 +1,21 @@
-.p-blog__content {
-  padding: 0 3vw;
-}
-
 @media screen and (min-width: 768px) {
   .p-blog__content {
     margin: 0 auto 20px;
-    padding: 0 15px;
     max-width: 1230px;
+    padding: 0 15px;
   }
 }
 
 .p-blog__main {
   float: none;
+  padding: 0 3vw;
   width: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .p-blog__main {
     float: left;
-    width: 65.5%;
+    width: 67%;
   }
 }
 
