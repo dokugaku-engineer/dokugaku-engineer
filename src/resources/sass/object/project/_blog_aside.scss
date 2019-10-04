@@ -1,5 +1,5 @@
 .p-blog-aside {
-  background-color: $bg-color-light;
+  background-color: $color-white1;
   float: none;
   margin-bottom: 30px;
   line-height: 1.6;
@@ -8,8 +8,8 @@
 }
 
 .p-blog-aside__title {
-  background-color: $bg-color-secondary;
-  color: $text-color-light;
+  background-color: $color-teal1;
+  color: $color-white1;
   font-size: $font-size-lg;
   font-weight: 700;
   padding: 7px 15px;
@@ -17,11 +17,11 @@
 
 .p-blog-aside__writer {
   padding: 18px 10px;
-  color: $text-color-sub2;
+  color: $color-gray3;
 }
 
 .p-blog-aside__writer-img {
-  border: solid 2px $bg-color-base;
+  border: solid 2px $color-white2;
   border-radius: 50%;
   float: left;
   width: 30%;

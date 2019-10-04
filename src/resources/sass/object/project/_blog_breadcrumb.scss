@@ -1,9 +1,9 @@
 .p-blog-breadcrumb {
-  color: $text-color-sub1;
+  color: $color-gray2;
   font-size: $font-size-sm;
   font-weight: 700;
   line-height: 22px;
-  margin: 15px 0 5px;
+  padding: 15px 3vw 10px;
 
   li {
     display: inline-block;
@@ -13,8 +13,8 @@
       padding-right: 4px;
     }
 
-    .fa-map-marker-alt {
-      color: $bg-color-primay;
+    .fa-home-alt {
+      color: $color-red1;
       padding-right: 4px;
     }
   }
@@ -24,5 +24,21 @@
   .p-blog-breadcrumb {
     font-size: $font-size-base;
     margin-bottom: 10px;
+  }
+}
+
+.p-blog-breadcrumb__wrap {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .p-blog-breadcrumb__wrap {
+    margin-left: 5px;
+    text-align: left;
+
+    .p-blog-breadcrumb {
+      margin-bottom: 0;
+      padding: 15px 0 10px;
+    }
   }
 }

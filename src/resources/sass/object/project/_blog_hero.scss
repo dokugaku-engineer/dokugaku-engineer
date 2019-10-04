@@ -30,7 +30,7 @@
   }
 }
 
-.p-blog-hero__category {
+.p-blog-hero__metadata {
   font-size: $font-size-xs;
   letter-spacing: 0.1em;
   padding: 70px 0 15px 0;
@@ -57,7 +57,7 @@
 }
 
 .p-blog-hero_btn {
-  background: $bg-color-primay;
+  background: $color-red1;
   display: block;
   font-size: $font-size-sm;
   font-weight: 600;

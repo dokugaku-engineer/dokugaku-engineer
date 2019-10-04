@@ -14,7 +14,7 @@
 }
 
 .p-blog-article-list__article {
-  background-color: $bg-color-light;
+  background-color: $color-white1;
   box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
   display: block;
   margin: 0 0 14px;
@@ -71,5 +71,5 @@
   font-size: $font-size-xs;
   margin-top: 5px;
   line-height: 1;
-  color: $text-color-sub1;
+  color: $color-gray2;
 }

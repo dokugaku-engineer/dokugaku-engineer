@@ -491,27 +491,24 @@ img {
   color: #9e9e9e;
 }
 
-.p-blog__content {
-  padding: 0 3vw;
-}
-
 @media screen and (min-width: 768px) {
   .p-blog__content {
     margin: 0 auto 20px;
-    padding: 0 15px;
     max-width: 1230px;
+    padding: 0 15px;
   }
 }
 
 .p-blog__main {
   float: none;
+  padding: 0 3vw;
   width: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .p-blog__main {
     float: left;
-    width: 65.5%;
+    width: 67%;
   }
 }
 
@@ -651,7 +648,7 @@ img {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 22px;
-  margin: 15px 0 5px;
+  padding: 15px 3vw 10px;
 }
 
 .p-blog-breadcrumb li {
@@ -663,7 +660,7 @@ img {
   padding-right: 4px;
 }
 
-.p-blog-breadcrumb li .fa-map-marker-alt {
+.p-blog-breadcrumb li .fa-home-alt {
   color: #ff5252;
   padding-right: 4px;
 }
@@ -672,6 +669,22 @@ img {
   .p-blog-breadcrumb {
     font-size: 1.6rem;
     margin-bottom: 10px;
+  }
+}
+
+.p-blog-breadcrumb__wrap {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .p-blog-breadcrumb__wrap {
+    margin-left: 5px;
+    text-align: left;
+  }
+
+  .p-blog-breadcrumb__wrap .p-blog-breadcrumb {
+    margin-bottom: 0;
+    padding: 15px 0 10px;
   }
 }
 
@@ -707,7 +720,7 @@ img {
   }
 }
 
-.p-blog-hero__category {
+.p-blog-hero__metadata {
   font-size: 1.2rem;
   letter-spacing: 0.1em;
   padding: 70px 0 15px 0;
@@ -766,7 +779,183 @@ img {
 .p-blog-category__title {
   font-size: 2.2rem;
   font-weight: 700;
-  line-height: 1.68;
   margin-bottom: 4px;
+}
+
+.p-post__main {
+  background: #fff;
+  float: none;
+  padding: 0 4vw;
+  margin-bottom: 6vw;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .p-post__main {
+    float: left;
+    margin-bottom: 1vw;
+    width: 67%;
+  }
+}
+
+.p-post__header {
+  line-height: 1.8;
+  padding: 20px 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .p-post__header {
+    padding: 46px 0 36px;
+  }
+}
+
+.p-post__metadata {
+  color: #9e9e9e;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.p-post__metadata time {
+  padding-left: 5px;
+}
+
+.p-post__metadata .fa-clock {
+  color: #26a69a;
+}
+
+@media screen and (min-width: 768px) {
+  .p-post__metadata {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+}
+
+.p-post__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  .p-post__title {
+    font-size: 2.8rem;
+  }
+}
+
+.p-post__hero {
+  margin-bottom: 30px;
+}
+
+.p-post__content {
+  padding-bottom: 1px;
+}
+
+.p-post__content p {
+  margin: 0 0 1.2em;
+  line-height: 1.9;
+}
+
+.p-post__content h2 {
+  background: #f5f5f5;
+  box-shadow: 0 0 3px #e0e0e0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 2.6em 0 1.2em;
+  padding: 12px;
+  position: relative;
+}
+
+.p-post__content h2:before {
+  background: #26a69a;
+  bottom: 0;
+  content: "";
+  left: 0;
+  min-height: 50px;
+  position: absolute;
+  top: 0;
+  width: 2px;
+  z-index: 100;
+}
+
+.p-post__content h3 {
+  font-size: 1.8rem;
+  padding-bottom: 5px;
+  border-bottom: 4px solid #e0e0e0;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 1.7em 0 1.2em;
+}
+
+.p-post__content h4 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 1.7em 0 1.2em;
+}
+
+@media screen and (min-width: 768px) {
+  .p-post__content p {
+    margin: 0 0 1.8em;
+  }
+
+  .p-post__content h2 {
+    font-size: 2.4rem;
+    margin: 2.6em -1em 1.2em;
+    padding: 14px 12px 14px 20px;
+  }
+
+  .p-post__content h2:before {
+    width: 5px;
+  }
+
+  .p-post__content h3 {
+    font-size: 2.2rem;
+    margin: 1.8em 0 1.2em;
+    padding-bottom: 0.1em;
+  }
+
+  .p-post__content h4 {
+    font-size: 1.8rem;
+    margin: 1.8em 0 1.2em;
+  }
+}
+
+.p-post__contents {
+  border-radius: 10px;
+  background: #e0f2f1;
+  color: #616161;
+  font-weight: 700;
+  max-width: 530px;
+  margin: 0 auto 30px;
+  padding: 10px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .p-post__contents {
+    padding: 20px;
+  }
+}
+
+.p-post__contents-header {
+  font-size: 1.8rem;
+  padding: 8px 0 8px;
+  text-align: center;
+}
+
+.p-post__contents-header .fa-th-list {
+  padding-right: 5px;
+}
+
+.p-post__contents-list {
+  font-size: 1.4rem;
+  list-style: decimal;
+  margin: 4px 20px 4px 40px;
+}
+
+.p-post__contents-list a {
+  display: block;
+  padding: 8px 0;
 }
 
