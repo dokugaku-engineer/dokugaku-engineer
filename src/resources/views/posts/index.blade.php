@@ -8,7 +8,7 @@
     <div class="p-blog-hero__cover">
         <div class="p-blog-hero__inner">
             <div class="p-blog-hero__metadata">
-                <a href="">学習方法</a>
+                <a href="">Twitter API</a>
                 <span>&ensp;|&ensp;2019-09-22</span>
             </div>
             <div class="p-blog-hero__title">
