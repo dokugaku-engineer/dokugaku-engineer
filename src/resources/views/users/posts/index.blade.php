@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
 @section('title', '独学エンジニア | 独学で自走できるエンジニアへ')
 

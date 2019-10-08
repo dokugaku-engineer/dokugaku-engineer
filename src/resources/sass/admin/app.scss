@@ -1,0 +1,30 @@
+@import "variable";
+
+body {
+  background-color: $color-white2;
+  color: $color-black;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "ヒラギノ角ゴ ProN W3", "Yu Gothic", YuGothic, Arial, Meiryo, sans-serif;
+  line-height: 1.5;
+}
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.wrapper {
+  align-items: stretch;
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  background: $color-gray3;
+  color: $color-white1;
+  transition: all 0.3s;
+  width: 250px;
+}
