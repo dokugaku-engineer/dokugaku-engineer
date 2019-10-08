@@ -23,7 +23,7 @@ Route::namespace('User')->group(function () {
     });
 });
 
-Route::namespace('Admin')->prefix('admin')->group(function () {
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', '/admin/posts');
     Route::resource('posts', 'PostController')->only([
         'index', 'create', 'store', 'edit', 'update', 'delete'

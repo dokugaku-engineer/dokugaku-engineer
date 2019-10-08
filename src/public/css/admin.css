@@ -1,9 +1,8 @@
-@import "variable";
+@charset "UTF-8";
 
 body {
-  color: $color-black;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-    "ヒラギノ角ゴ ProN W3", "Yu Gothic", YuGothic, Arial, Meiryo, sans-serif;
+  color: #212121;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "\30D2\30E9\30AE\30CE\89D2\30B4   ProN W3", "Yu Gothic", YuGothic, Arial, Meiryo, sans-serif;
   font-size: 13px;
   line-height: 1.5;
 }
@@ -44,7 +43,7 @@ h4 {
 
 .sidebar {
   background: #2f4050;
-  color: $color-white1;
+  color: #fff;
   transition: all 0.3s;
   min-height: 90vw;
   width: 220px;
@@ -57,22 +56,22 @@ h4 {
 
 .sidebar-nav {
   margin-left: 10px;
+}
 
-  li {
-    display: block;
-    width: 100%;
+.sidebar-nav li {
+  display: block;
+  width: 100%;
+}
 
-    a {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 14px 20px 14px 25px;
+.sidebar-nav li a {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 14px 20px 14px 25px;
+}
 
-      i {
-        margin-right: 6px;
-      }
-    }
-  }
+.sidebar-nav li a i {
+  margin-right: 6px;
 }
 
 .page-wrapper {
@@ -93,8 +92,8 @@ h4 {
 }
 
 .box-title {
-  background-color: $color-white1;
-  border-color: $color-gray1;
+  background-color: #fff;
+  border-color: #e0e0e0;
   border-style: solid solid none;
   border-width: 2px 0 0;
   margin-bottom: 0;
@@ -103,9 +102,10 @@ h4 {
 }
 
 .box-content {
-  background-color: $color-white1;
+  background-color: #fff;
   padding: 15px 20px 20px 20px;
-  border-color: $color-gray1;
+  border-color: #e0e0e0;
   border-style: solid solid none;
   border-width: 1px 0;
 }
+
