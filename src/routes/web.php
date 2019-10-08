@@ -24,11 +24,7 @@ Route::namespace('User')->group(function () {
 });
 
 Route::namespace('Admin')->prefix('admin')->group(function () {
-<<<<<<< HEAD
-    Route::redirect('/', '/posts');
-=======
     Route::redirect('/', '/admin/posts');
->>>>>>> Admin用にディレクトリ構造を変更
     Route::resource('posts', 'PostController')->only([
         'index', 'create', 'store', 'edit', 'update', 'delete'
     ]);
