@@ -15,6 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blog', 'PostController@index');
-Route::get('/blog/{postSlug}', 'PostController@show');
-Route::get('/blog/category/{category}', 'CategoryController@show');
+Route::namespace('User')->group(function () {
+    Route::prefix('blog')->group(function () {
+        Route::get('/', 'PostController@index');
+        Route::get('/{postSlug}', 'PostController@show');
+        Route::get('/categories/{category}', 'CategoryController@show');
+    });
+});
+
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::redirect('/', '/posts');
+    Route::resource('posts', 'PostController')->only([
+        'index', 'create', 'store', 'edit', 'update', 'delete'
+    ]);
+    Route::get('/posts/unpublish', 'PostContorller@unpublish');
+    Route::resource('categories', 'CategoryController')->only([
+        'index', 'create', 'store', 'edit', 'update'
+    ]);
+});

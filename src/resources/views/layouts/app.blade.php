@@ -8,7 +8,7 @@
 
     <meta name="twitter:card" content="summary_large_image">
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
 
     <title>
         @yield('title')

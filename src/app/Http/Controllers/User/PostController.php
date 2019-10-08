@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Post;
@@ -12,7 +12,7 @@ class PostController extends Controller
         # TODO: pagenation
         $posts = Post::orderBy('created_at', 'asc')->get();
 
-        return view('posts.index', [
+        return view('users.posts.index', [
             'posts' => $posts
         ]);
     }
@@ -21,7 +21,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $postSlug)->first();
 
-        return view('posts.show', [
+        return view('users.posts.show', [
             'post' => $post,
             'category' => 'web'
         ]);
