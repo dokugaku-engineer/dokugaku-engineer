@@ -8,7 +8,11 @@ class PostController extends Controller
 {
     public function index()
     {
+<<<<<<< HEAD
         return view('admin.tops.index');
+=======
+        return view('admin.posts.index');
+>>>>>>> Admin用にディレクトリ構造を変更
     }
 
     public function create()
