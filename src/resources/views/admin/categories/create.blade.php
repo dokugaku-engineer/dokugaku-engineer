@@ -17,6 +17,20 @@
             <div class="box-content">
                 <form action="{{ route('admin.categories.store') }}" method="POST">
                     @csrf
+
+                    @adminFormGroup('name')
+                    <label for="name">カテゴリー名</label>
+                    <input type="text" name="name" class="form-control" required>
+                    @error('name')
+                    @endFormGroup
+
+                    @adminFormGroup('slug')
+                    <label for="slug">URL名（スラッグ）</label>
+                    <input type="text" name="slug" class="form-control" required>
+                    @error('slug')
+                    @endFormGroup
+
+                    <button type="submit" class="w-full button button-primary">登録する</button>
                 </form>
             </div>
         </div>
