@@ -23,11 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->bootMacros();
-    }
-
-    public function bootMacros()
-    {
-        require base_path('resources/macros/blade.php');
+        //
     }
 }

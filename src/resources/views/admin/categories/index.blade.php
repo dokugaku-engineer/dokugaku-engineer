@@ -17,7 +17,7 @@
                         <h4>カテゴリー</h5>
                     </div>
                     <div class="col-sm-3">
-                        <button type="button" class="btn btn-primary btn-sm">新規作成</button>
+                        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-sm">新規作成</a>
                     </div>
                 </div>
             </div>
@@ -30,10 +30,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($categories as $category)
                         <tr>
-                            <td>プログラミング学習方法</td>
-                            <td><button type=" button" class="btn btn-outline-primary btn-xs">編集</button></td>
+                            <td>{{ $category->name }}</td>
+                            <td><a href="{{ route('admin.categories.edit', $category) }}"
+                                    class="btn btn-outline-primary btn-xs">編集</a></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
