@@ -27,13 +27,13 @@
 
             <ul class="nav sidebar-nav">
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.posts.index') }}">
                         <i class="fa fa-diamond"></i>
                         <span class="nav-label">ブログ記事</span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.categories.index') }}">
                         <i class="fa fa-diamond"></i>
                         <span class="nav-label">カテゴリー</span>
                     </a>

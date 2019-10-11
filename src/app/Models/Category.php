@@ -11,4 +11,9 @@ class Category extends Model
     protected $attributes = [
         'parent' => 0,
     ];
+
+    public function category_post()
+    {
+        return $this->hasOne('App\Models\CategoryPost');
+    }
 }

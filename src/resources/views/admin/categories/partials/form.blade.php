@@ -24,13 +24,14 @@
         <label for="parent">親カテゴリ</label>
         <select name="parent" class="custom-select @error('parent') is-invalid @enderror">
             <option value="0">親なし</option>
+            @if (isset($categories))
             @foreach($categories as $c)
-
             <option value="{{ $c->id }}" @if (old('parent', isset($category) ? (string)$category->parent :
                 '')===(string)$c->id) selected @endif>
                 {{ $c->name }}
             </option>
             @endforeach
+            @endif
         </select>
         @error('parent')
         <div class="invalid-feedback">{{ $errors->first('parent') }}</div>

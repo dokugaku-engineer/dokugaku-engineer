@@ -30,6 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if (isset($categories))
                         @foreach($categories as $category)
                         <tr>
                             <td>{{ $category->name }}</td>
@@ -37,6 +38,7 @@
                                     class="btn btn-outline-primary btn-xs">編集</a></td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
