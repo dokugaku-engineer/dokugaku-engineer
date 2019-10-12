@@ -29,6 +29,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
+        // TODO: 自分の $category->id は除外する
         $categories = Category::all();
         return view('admin.categories.edit', compact('category', 'categories'));
     }

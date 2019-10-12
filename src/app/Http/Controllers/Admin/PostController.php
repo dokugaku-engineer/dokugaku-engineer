@@ -7,13 +7,14 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Http\Requests\PostRequest;
 use App\Services\Admin\Post\CreatePost;
+use App\Services\Admin\Post\UpdatePost;
 
 class PostController extends Controller
 {
     public function index()
     {
         $posts = Post::all();
-        return view('admin.posts.index', compact($posts));
+        return view('admin.posts.index', compact('posts'));
     }
 
     public function create()
@@ -33,14 +34,23 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index');
     }
 
-    public function edit()
+    public function edit(Post $post)
     {
-        # code...
+        // TODO: 親記事のIDから自身のIDを抜く
+        $posts = Post::with('category_post')->get();
+        $categories = Category::all();
+        return view('admin.posts.edit')->with([
+            'post' => $post,
+            'posts' => $posts,
+            'categories' => $categories
+        ]);
     }
 
-    public function update()
+    public function update(PostRequest $request, Post $post)
     {
-        # code...
+        $validated = $request->validated();
+        app()->make(UpdatePost::class)->execute($validated, $post);
+        return redirect()->route('admin.posts.index');
     }
 
     public function delete()

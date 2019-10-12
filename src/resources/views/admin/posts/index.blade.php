@@ -38,9 +38,10 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>
-                            <td><button type=" button" class="btn btn-outline-primary btn-xs">編集</button></td>
-                            <td><button type="button" class="btn btn-outline-primary btn-xs">非公開</button></td>
-                            <td><button type="button" class="btn btn-outline-danger btn-xs">削除</button></td>
+                            <td><a href="{{ route('admin.posts.edit', $post) }}"
+                                    class="btn btn-outline-primary btn-xs">編集</a></td>
+                            <td><a href="" class="btn btn-outline-primary btn-xs">非公開</a></td>
+                            <td><a href="" class="btn btn-outline-danger btn-xs">削除</a></td>
                         </tr>
                         @endforeach
                         @endif

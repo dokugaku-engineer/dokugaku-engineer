@@ -26,8 +26,8 @@
             <option value="0">親なし</option>
             @if (isset($categories))
             @foreach($categories as $c)
-            <option value="{{ $c->id }}" @if (old('parent', isset($category) ? (string)$category->parent :
-                '')===(string)$c->id) selected @endif>
+            <option value="{{ $c->id }}" @if ((int)old('parent', isset($category) ? $category->parent :
+                '')===$c->id) selected @endif>
                 {{ $c->name }}
             </option>
             @endforeach

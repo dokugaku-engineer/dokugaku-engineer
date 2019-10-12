@@ -5,7 +5,7 @@
     <div class="form-group">
         <label for="posts[slug]">URL名（スラッグ）</label>
         <input type="text" name="posts[slug]" class="form-control @error('posts.slug') is-invalid @enderror"
-            value="{{ old('posts[slug]', (isset($post) ? $post->slug : '')) }}">
+            value="{{ old('posts.slug', (isset($post) ? $post->slug : '')) }}">
         @error('posts.slug')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -14,7 +14,7 @@
     <div class="form-group">
         <label for="posts[title]">タイトル</label>
         <input type="text" name="posts[title]" class="form-control @error('posts.title') is-invalid @enderror"
-            value="{{ old('title', (isset($post) ? $post->title : '')) }}" required>
+            value="{{ old('posts.title', (isset($post) ? $post->title : '')) }}" required>
         @error('posts.title')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -23,7 +23,7 @@
     <div class="form-group">
         <label for="posts[content]">本文</label>
         <textarea rows="20" name="posts[content]" class="form-control @error('posts.content') is-invalid @enderror"
-            value="{{ old('content', (isset($post) ? $post->content : '')) }}" required></textarea>
+            required>{{ old('posts.content', (isset($post) ? $post->content : '')) }}</textarea>
         @error('posts.content')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
@@ -35,8 +35,8 @@
             <option value="0">親なし</option>
             @if (isset($posts))
             @foreach($posts as $p)
-            <option value="{{ $p->id }}" @if (old('parent', isset($post) ? (string)$post->parent :
-                '')===(string)$p->id) selected @endif>
+            <option value="{{ $p->id }}" @if ((int)old('posts.parent', isset($post) ? $post->parent :
+                '')===$p->id) selected @endif>
                 {{ $p->id }}
             </option>
             @endforeach
@@ -53,7 +53,8 @@
             class="custom-select @error('category_posts.category_id') is-invalid @enderror">
             @if (isset($categories))
             @foreach($categories as $category)
-            <option value="{{ $category->id }}" @if (old('category')===(string)$category->id) selected @endif>
+            <option value="{{ $category->id }}" @if ((int)old('category_posts.category_id', isset($post->category_post)
+                ? $post->category_post->id : '')===$category->id) selected @endif>
                 {{ $category->name }}
             </option>
             @endforeach
