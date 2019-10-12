@@ -48,9 +48,9 @@
     </div>
 
     <div class="form-group">
-        <label for="category_post[category_id]">カテゴリ</label>
-        <select name="category_post[category_id]"
-            class="custom-select @error('category_post.category_id') is-invalid @enderror">
+        <label for="category_posts[category_id]">カテゴリ</label>
+        <select name="category_posts[category_id]"
+            class="custom-select @error('category_posts.category_id') is-invalid @enderror">
             @if (isset($categories))
             @foreach($categories as $category)
             <option value="{{ $category->id }}" @if (old('category')===(string)$category->id) selected @endif>
@@ -59,7 +59,7 @@
             @endforeach
             @endif
         </select>
-        @error('category_post.category_id')
+        @error('category_posts.category_id')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>

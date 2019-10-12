@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
-use App\Models\CategoryPost;
 use App\Http\Requests\PostRequest;
-use Illuminate\Http\Request;
+use App\Services\Admin\Post\CreatePost;
 
 class PostController extends Controller
 {
@@ -31,20 +29,7 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $validated = $request->validated();
-
-        DB::beginTransaction();
-
-        try {
-            $post = new Post($request->input('posts', []));
-            $post->save();
-            $post->category_post()->create($request->input('category_post', []));
-        } catch(Exception $e) {
-            DB::rollback();
-            return back()->withInput();
-        }
-
-        DB::commit();
-
+        app()->make(CreatePost::class)->execute($validated);
         return redirect()->route('admin.posts.index');
     }
 
@@ -59,12 +44,8 @@ class PostController extends Controller
     }
 
     public function delete()
-    {
-
-    }
+    { }
 
     public function unpublish()
-    {
-        
-    }
+    { }
 }
