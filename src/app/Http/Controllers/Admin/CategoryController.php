@@ -36,7 +36,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $validated = $request->validated();
-        $category->fill($request->all());
+        $category->fill($validated);
         $category->save();
         return redirect()->route('admin.categories.index');
     }
