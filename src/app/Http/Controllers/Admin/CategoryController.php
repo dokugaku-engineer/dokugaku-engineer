@@ -29,8 +29,10 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        // TODO: 自分の $category->id は除外する
-        $categories = Category::all();
+        // 全カテゴリーを取得する際に、親カテゴリーに自身が表示されないように除外する
+        $categories = Category::all()->reject(function ($item) use (&$category) {
+            return $item['id'] === $category->id;
+        });
         return view('admin.categories.edit', compact('category', 'categories'));
     }
 

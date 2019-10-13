@@ -36,8 +36,10 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        // TODO: 親記事のIDから自身のIDを抜く
-        $posts = Post::with('category_post')->get();
+        // Postを全記事取得する際に、親記事に自身が表示させないように除外する
+        $posts = Post::with('category_post')->get()->reject(function ($item) use (&$post) {
+            return $item['id'] === $post->id;
+        });
         $categories = Category::all();
         return view('admin.posts.edit')->with([
             'post' => $post,
