@@ -2,17 +2,17 @@
 
 docker/db/db-variables.env
 
-src/node_modules
-src/public/hot
-src/public/storage
-src/storage/*.key
-src/vendor
-src/.env
-src/.env.backup
-src/.phpunit.result.cache
-src/Homestead.json
-src/Homestead.yaml
-src/npm-debug.log
-src/yarn-error.log
+api/node_modules
+api/public/hot
+api/public/storage
+api/storage/*.key
+api/vendor
+api/.env
+api/.env.backup
+api/.phpunit.result.cache
+api/Homestead.json
+api/Homestead.yaml
+api/npm-debug.log
+api/yarn-error.log
 
 .vscode

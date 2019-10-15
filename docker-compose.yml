@@ -8,9 +8,9 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./src:/var/www
+      - ./api:/var/www
     depends_on:
-      - app
+      - api
 
   db:
     build:
@@ -21,13 +21,13 @@ services:
     env_file:
       - ./docker/db/db-variables.env
 
-  app:
+  api:
     build:
-      context: ./docker/app
+      context: ./docker/api
       dockerfile: Dockerfile
     ports:
       - "9000:9000"
     volumes:
-      - ./src:/var/www
+      - ./api:/var/www
     depends_on:
       - db
