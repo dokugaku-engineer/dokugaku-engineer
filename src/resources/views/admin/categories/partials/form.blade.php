@@ -3,19 +3,19 @@
     @method($method)
 
     <div class="form-group">
-        <label for="name">カテゴリー名</label>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-            value="{{ old('name', (isset($category) ? $category->name : '')) }}" required>
-        @error('name')
+        <label for="slug">URL名（スラッグ）</label>
+        <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror"
+            value="{{ old('slug', (isset($category) ? $category->slug : '')) }}" required>
+        @error('slug')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
 
     <div class="form-group">
-        <label for="slug">URL名（スラッグ）</label>
-        <input type="text" name="slug" class="form-control @error('slug') is-invalid @enderror"
-            value="{{ old('slug', (isset($category) ? $category->slug : '')) }}" required>
-        @error('slug')
+        <label for="name">カテゴリー名</label>
+        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+            value="{{ old('name', (isset($category) ? $category->name : '')) }}" required>
+        @error('name')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>

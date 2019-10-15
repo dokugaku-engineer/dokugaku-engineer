@@ -26,9 +26,10 @@ Route::namespace('User')->group(function () {
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::redirect('/', '/admin/posts');
     Route::resource('posts', 'PostController')->only([
-        'index', 'create', 'store', 'edit', 'update', 'delete'
+        'index', 'create', 'store', 'edit', 'update', 'destroy'
     ]);
-    Route::get('/posts/unpublish', 'PostContorller@unpublish');
+    Route::get('/posts/{post}/publish', 'PostController@publish')->name('posts.publish');
+    Route::get('/posts/{post}/unpublish', 'PostController@unpublish')->name('posts.unpublish');
     Route::resource('categories', 'CategoryController')->only([
         'index', 'create', 'store', 'edit', 'update'
     ]);

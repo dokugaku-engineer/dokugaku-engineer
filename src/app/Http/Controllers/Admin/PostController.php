@@ -55,9 +55,21 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index');
     }
 
-    public function delete()
-    { }
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('admin.posts.index');
+    }
 
-    public function unpublish()
-    { }
+    public function publish(Post $post)
+    {
+        $post->publish();
+        return redirect()->route('admin.posts.index');
+    }
+
+    public function unpublish(Post $post)
+    {
+        $post->unpublish();
+        return redirect()->route('admin.posts.index');
+    }
 }

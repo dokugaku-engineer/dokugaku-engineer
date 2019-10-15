@@ -27,7 +27,9 @@
                         <tr>
                             <th>ID</th>
                             <th>タイトル</th>
+                            <th>状態</th>
                             <th>編集</th>
+                            <th>公開</th>
                             <th>非公開</th>
                             <th>削除</th>
                         </tr>
@@ -38,10 +40,20 @@
                         <tr>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>
+                            <td>{{ $post->status }}</td>
                             <td><a href="{{ route('admin.posts.edit', $post) }}"
                                     class="btn btn-outline-primary btn-xs">編集</a></td>
-                            <td><a href="" class="btn btn-outline-primary btn-xs">非公開</a></td>
-                            <td><a href="" class="btn btn-outline-danger btn-xs">削除</a></td>
+                            <td><a href="{{ route('admin.posts.publish', $post) }}"
+                                    class="btn btn-outline-primary btn-xs">公開</a></td>
+                            <td><a href="{{ route('admin.posts.unpublish', $post) }}"
+                                    class="btn btn-outline-primary btn-xs">非公開</a></td>
+                            <td>
+                                <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-outline-danger btn-xs">削除</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         @endif
