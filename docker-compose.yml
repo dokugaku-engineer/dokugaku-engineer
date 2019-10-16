@@ -10,17 +10,19 @@ services:
     volumes:
       - ./api:/var/www
     depends_on:
-      - api
+      - client
 
-  db:
+  client:
     build:
-      context: ./docker/db
+      context: ./docker/client
       dockerfile: Dockerfile
     ports:
-      - "3306:3306"
-    env_file:
-      - ./docker/db/db-variables.env
-
+      - "3000:3000"
+    volumes:
+      - ./client:/var/www
+    depends_on:
+      - api
+  
   api:
     build:
       context: ./docker/api
@@ -31,3 +33,12 @@ services:
       - ./api:/var/www
     depends_on:
       - db
+
+  db:
+    build:
+      context: ./docker/db
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./docker/db/db-variables.env

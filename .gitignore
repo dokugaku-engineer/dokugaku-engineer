@@ -15,4 +15,7 @@ api/Homestead.yaml
 api/npm-debug.log
 api/yarn-error.log
 
+client/node_modules
+client/.nuxt
+
 .vscode
