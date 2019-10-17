@@ -19,4 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'Api'], function () {
     Route::get('sample', 'SampleController@index');
+    Route::resource('categories', 'CategoryController')->only([
+        'index', 'create', 'store', 'edit', 'update'
+    ]);
+    // Route::resource('posts', 'PostController')->only([
+    //     'index', 'create', 'store', 'edit', 'update', 'destroy'
+    // ]);
+    // Route::get('/posts/{post}/publish', 'PostController@publish')->name('posts.publish');
+    // Route::get('/posts/{post}/unpublish', 'PostController@unpublish')->name('posts.unpublish');
 });

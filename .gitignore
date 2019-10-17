@@ -5,7 +5,6 @@ docker/db/db-variables.env
 api/node_modules
 api/public/hot
 api/public/storage
-api/public/docs
 api/storage/*.key
 api/vendor
 api/.env

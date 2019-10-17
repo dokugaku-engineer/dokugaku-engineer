@@ -1,14 +1,14 @@
-# Dokugaku Engineer
+# 独学エンジニア
 
-## API Development
+## API
 
-If you're interested in the development of a api, API documentation is available.
+APIの開発を行いたい場合は、下記コマンドを実行し、APIのドキュメントを参照してください。
 
 ```sh
 docker exec -it dokugaku-engineer_api_1 /bin/bash
 php artisan apidoc:generate
 ```
 
-Then, you can find documentation at [http://localhost:8080/api/index.html](http://localhost:8080/api/index.html).
+コマンドを実行すると、[http://localhost:8080/docs/index.html](http://localhost:8080/docs/index.html)からAPIドキュメントを閲覧することができます。
 
-If you use [Postman](https://www.getpostman.com/), you can test API by importing `public/docs/collection.json`.
+もし[Postman](https://www.getpostman.com/)を使用されている場合は、`public/docs/collection.json`ファイルをインポートすることでAPIをテストできます。

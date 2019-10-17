@@ -2,13 +2,13 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\ApiRequest;
 use Illuminate\Validation\Rule;
 
-class CategoryRequest extends FormRequest
+class CategoryRequest extends ApiRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * 認可されているかを判定
      *
      * @return bool
      */
@@ -18,7 +18,7 @@ class CategoryRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * バリデーションルールを返す
      *
      * @return array
      */
