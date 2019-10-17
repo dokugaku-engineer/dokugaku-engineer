@@ -6,7 +6,7 @@
 export default {
   layout: "admin",
   asyncData({ $axios }) {
-    return $axios.$post(`http://nginx:80/api/sample`).then(res => {
+    return $axios.$get(`http://nginx:80/api/sample`).then(res => {
       return { title: res.title }
     })
   }
