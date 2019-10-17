@@ -1,17 +1,6 @@
 version: "3"
 
 services:
-  web:
-    build:
-      context: ./docker/web
-      dockerfile: Dockerfile
-    ports:
-      - "8080:80"
-    volumes:
-      - ./api:/var/www
-    depends_on:
-      - client
-
   client:
     build:
       context: ./docker/client
@@ -21,8 +10,19 @@ services:
     volumes:
       - ./client:/var/www
     depends_on:
+      - nginx
+
+  nginx:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./api:/var/www
+    depends_on:
       - api
-  
+
   api:
     build:
       context: ./docker/api

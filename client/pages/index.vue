@@ -1,9 +1,14 @@
 <template>
-  <h1>Hello world!</h1>
+  <h1>Hello! {{ title }}</h1>
 </template>
 
 <script>
 export default {
-  layout: "admin"
-};
+  layout: "admin",
+  asyncData({ $axios }) {
+    return $axios.$post(`http://nginx:80/api/sample`).then(res => {
+      return { title: res.title }
+    })
+  }
+}
 </script>

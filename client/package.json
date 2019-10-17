@@ -11,6 +11,7 @@
     "lintfix": "eslint --fix --ext .js,.vue ."
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.6.0",
     "nuxt": "^2.10.1"
   },
   "license": "ISC",
@@ -22,6 +23,5 @@
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.2.3",
     "prettier": "^1.18.2"
-  },
-  "precommit": "npm run lint"
+  }
 }
