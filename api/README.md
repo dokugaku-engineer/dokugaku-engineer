@@ -1,8 +1,8 @@
-# 独学エンジニア
+# 独学エンジニア - API
 
-## API
+## APIのドキュメンテーション
 
-APIの開発を行いたい場合は、下記コマンドを実行し、APIのドキュメントを参照してください。
+APIのドキュメントは下記コマンドを実行することで確認できます。
 
 ```sh
 docker exec -it dokugaku-engineer_api_1 /bin/bash
