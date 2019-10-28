@@ -34,7 +34,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ["./plugins/axios.js", "./plugins/mixins/validation.js"],
   /*
    ** Nuxt.js dev-modules
    */
@@ -52,7 +52,10 @@ export default {
      */
     extend() {}
   },
-  axios: {}
+  axios: {
+    // TODO: 環境変数で出し分けるようにする
+    baseURL: "http://localhost:8080"
+  }
   // router: {
   //   middleware: "stats"
   // }

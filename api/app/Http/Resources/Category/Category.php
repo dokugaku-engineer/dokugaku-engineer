@@ -24,4 +24,16 @@ class Category extends JsonResource
             'updated_at' => DateHelper::getTimestamp($this->updated_at),
         ];
     }
+
+    /**
+     * リソースに対して送信するレスポンス
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Response  $response
+     * @return void
+     */
+    public function withResponse($request, $response)
+    {
+        $response->header('X-Value', 'True');
+    }
 }
