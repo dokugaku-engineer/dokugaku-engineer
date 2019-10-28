@@ -49,6 +49,349 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 #1. Category
 
 
+<!-- START_109013899e0bc43247b0f00b67f889cf -->
+## カテゴリー一覧を取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/categories" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/categories");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "name": "ウェブ",
+        "slug": "web",
+        "parent": 0,
+        "created_at": "2019-10-17T09:18:11Z",
+        "updated_at": "2019-10-17T09:18:11Z"
+    },
+    {
+        "id": 2,
+        "name": "HTML",
+        "slug": "html",
+        "parent": 0,
+        "created_at": "2019-10-17T09:20:33Z",
+        "updated_at": "2019-10-17T09:20:33Z"
+    },
+    {
+        "id": 3,
+        "name": "CSS",
+        "slug": "css",
+        "parent": 0,
+        "created_at": "2019-10-17T09:27:21Z",
+        "updated_at": "2019-10-17T09:27:21Z"
+    },
+    {
+        "id": 4,
+        "name": "Docker",
+        "slug": "docker",
+        "parent": 0,
+        "created_at": "2019-10-17T09:28:27Z",
+        "updated_at": "2019-10-17T09:28:27Z"
+    },
+    {
+        "id": 5,
+        "name": "Nuxt",
+        "slug": "nuxt",
+        "parent": 0,
+        "created_at": "2019-10-17T09:30:20Z",
+        "updated_at": "2019-10-17T09:30:20Z"
+    },
+    {
+        "id": 6,
+        "name": "JS",
+        "slug": "js",
+        "parent": 0,
+        "created_at": "2019-10-17T09:32:18Z",
+        "updated_at": "2019-10-17T09:32:18Z"
+    },
+    {
+        "id": 7,
+        "name": "type",
+        "slug": "type",
+        "parent": 0,
+        "created_at": "2019-10-17T09:32:51Z",
+        "updated_at": "2019-10-17T09:32:51Z"
+    },
+    {
+        "id": 8,
+        "name": "Ruby",
+        "slug": "ruby",
+        "parent": 0,
+        "created_at": "2019-10-17T11:04:28Z",
+        "updated_at": "2019-10-17T11:04:28Z"
+    },
+    {
+        "id": 9,
+        "name": "hoge",
+        "slug": "hoge",
+        "parent": 0,
+        "created_at": "2019-10-17T11:12:19Z",
+        "updated_at": "2019-10-17T11:12:19Z"
+    },
+    {
+        "id": 10,
+        "name": "web",
+        "slug": "null",
+        "parent": 0,
+        "created_at": "2019-10-17T13:02:07Z",
+        "updated_at": "2019-10-17T13:02:07Z"
+    },
+    {
+        "id": 13,
+        "name": "AWS",
+        "slug": "aws",
+        "parent": 2,
+        "created_at": "2019-10-17T13:28:08Z",
+        "updated_at": "2019-10-17T13:28:08Z"
+    },
+    {
+        "id": 14,
+        "name": "アンパンマン",
+        "slug": "anpanman",
+        "parent": 0,
+        "created_at": "2019-10-19T20:17:41Z",
+        "updated_at": "2019-10-19T20:17:41Z"
+    },
+    {
+        "id": 15,
+        "name": "Sample",
+        "slug": "sample",
+        "parent": 0,
+        "created_at": "2019-10-19T20:39:19Z",
+        "updated_at": "2019-10-19T20:39:19Z"
+    },
+    {
+        "id": 16,
+        "name": "Sample1",
+        "slug": "sample1",
+        "parent": 0,
+        "created_at": "2019-10-19T20:40:22Z",
+        "updated_at": "2019-10-19T20:40:22Z"
+    },
+    {
+        "id": 17,
+        "name": "Sample2",
+        "slug": "sample2",
+        "parent": 0,
+        "created_at": "2019-10-19T20:55:26Z",
+        "updated_at": "2019-10-19T20:55:26Z"
+    },
+    {
+        "id": 18,
+        "name": "Sample3",
+        "slug": "sample3",
+        "parent": 0,
+        "created_at": "2019-10-19T20:56:12Z",
+        "updated_at": "2019-10-19T20:56:12Z"
+    },
+    {
+        "id": 19,
+        "name": "Sample4",
+        "slug": "sample4",
+        "parent": 0,
+        "created_at": "2019-10-19T20:56:51Z",
+        "updated_at": "2019-10-19T20:56:51Z"
+    },
+    {
+        "id": 20,
+        "name": "Sample5",
+        "slug": "sample5",
+        "parent": 0,
+        "created_at": "2019-10-19T20:58:17Z",
+        "updated_at": "2019-10-19T20:58:17Z"
+    },
+    {
+        "id": 21,
+        "name": "Sample6",
+        "slug": "sample6",
+        "parent": 0,
+        "created_at": "2019-10-20T19:58:39Z",
+        "updated_at": "2019-10-20T19:58:39Z"
+    },
+    {
+        "id": 22,
+        "name": "Sample7",
+        "slug": "sample7",
+        "parent": 0,
+        "created_at": "2019-10-20T19:59:22Z",
+        "updated_at": "2019-10-20T19:59:22Z"
+    },
+    {
+        "id": 23,
+        "name": "Sample8",
+        "slug": "sample8",
+        "parent": 0,
+        "created_at": "2019-10-25T20:30:09Z",
+        "updated_at": "2019-10-25T20:30:09Z"
+    },
+    {
+        "id": 24,
+        "name": "Sample9",
+        "slug": "sample9",
+        "parent": 0,
+        "created_at": "2019-10-25T20:32:22Z",
+        "updated_at": "2019-10-25T20:32:22Z"
+    },
+    {
+        "id": 25,
+        "name": "Sample10",
+        "slug": "sample10",
+        "parent": 0,
+        "created_at": "2019-10-25T20:45:15Z",
+        "updated_at": "2019-10-25T20:45:15Z"
+    },
+    {
+        "id": 26,
+        "name": "Sample11",
+        "slug": "sample11",
+        "parent": 0,
+        "created_at": "2019-10-25T21:32:57Z",
+        "updated_at": "2019-10-25T21:32:57Z"
+    },
+    {
+        "id": 27,
+        "name": "Sample12",
+        "slug": "sample12",
+        "parent": 0,
+        "created_at": "2019-10-25T21:35:14Z",
+        "updated_at": "2019-10-25T21:35:14Z"
+    },
+    {
+        "id": 28,
+        "name": "Sample13",
+        "slug": "sample13",
+        "parent": 0,
+        "created_at": "2019-10-25T21:36:31Z",
+        "updated_at": "2019-10-25T21:36:31Z"
+    },
+    {
+        "id": 29,
+        "name": "h1",
+        "slug": "h1",
+        "parent": 0,
+        "created_at": "2019-10-25T21:37:55Z",
+        "updated_at": "2019-10-25T21:37:55Z"
+    },
+    {
+        "id": 30,
+        "name": "h2",
+        "slug": "h2",
+        "parent": 0,
+        "created_at": "2019-10-25T21:38:51Z",
+        "updated_at": "2019-10-25T21:38:51Z"
+    },
+    {
+        "id": 31,
+        "name": "Sample14",
+        "slug": "sample14",
+        "parent": 0,
+        "created_at": "2019-10-25T21:57:42Z",
+        "updated_at": "2019-10-25T21:57:42Z"
+    },
+    {
+        "id": 32,
+        "name": "Sample15",
+        "slug": "sample15",
+        "parent": 0,
+        "created_at": "2019-10-25T22:21:31Z",
+        "updated_at": "2019-10-25T22:21:31Z"
+    },
+    {
+        "id": 33,
+        "name": "Sample16",
+        "slug": "sample16",
+        "parent": 0,
+        "created_at": "2019-10-25T22:25:40Z",
+        "updated_at": "2019-10-25T22:25:40Z"
+    },
+    {
+        "id": 34,
+        "name": "Sample17",
+        "slug": "sample17",
+        "parent": 0,
+        "created_at": "2019-10-25T22:27:45Z",
+        "updated_at": "2019-10-25T22:27:45Z"
+    },
+    {
+        "id": 35,
+        "name": "sensuikan1973",
+        "slug": "100",
+        "parent": 0,
+        "created_at": "2019-10-25T22:30:16Z",
+        "updated_at": "2019-10-25T22:30:16Z"
+    },
+    {
+        "id": 36,
+        "name": "sensuikan1",
+        "slug": "1",
+        "parent": 0,
+        "created_at": "2019-10-25T22:32:30Z",
+        "updated_at": "2019-10-25T22:32:30Z"
+    },
+    {
+        "id": 37,
+        "name": "Sample20",
+        "slug": "Sample20",
+        "parent": 0,
+        "created_at": "2019-10-26T22:05:14Z",
+        "updated_at": "2019-10-26T22:05:14Z"
+    },
+    {
+        "id": 38,
+        "name": "Sample21",
+        "slug": "Sample21",
+        "parent": 0,
+        "created_at": "2019-10-28T04:02:09Z",
+        "updated_at": "2019-10-28T04:02:09Z"
+    },
+    {
+        "id": 39,
+        "name": "Sample22",
+        "slug": "Sample22",
+        "parent": 0,
+        "created_at": "2019-10-28T05:27:29Z",
+        "updated_at": "2019-10-28T05:27:29Z"
+    },
+    {
+        "id": 40,
+        "name": "Sample23",
+        "slug": "Sample23",
+        "parent": 0,
+        "created_at": "2019-10-28T08:04:50Z",
+        "updated_at": "2019-10-28T08:04:50Z"
+    }
+]
+```
+
+### HTTP Request
+`GET api/categories`
+
+
+<!-- END_109013899e0bc43247b0f00b67f889cf -->
+
 <!-- START_2335abbed7f782ea7d7dd6df9c738d74 -->
 ## Categoryを保存
 

@@ -14,6 +14,19 @@ use Illuminate\Database\QueryException;
 class CategoryController extends ApiController
 {
     /**
+     * カテゴリー一覧を取得
+     *
+     * @responsefile responses/category.index.json
+     *
+     * @return CategoryResourceCollection
+     *
+     */
+    public function index()
+    {
+        return CategoryResource::collection(Category::all());
+    }
+
+    /**
      * Categoryを保存
      *
      * @bodyParam name string required Category name. Example: ウェブ
