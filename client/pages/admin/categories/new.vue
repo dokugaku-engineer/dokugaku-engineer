@@ -26,6 +26,9 @@
           <div v-if="submitted && !$v.category.slug.required" class="error">
             URL名（スラッグ）は必須です。
           </div>
+          <div v-if="!$v.category.slug.alphaNum" class="error">
+            URL名（スラッグ）は英数字のみ入力可能です。
+          </div>
           <div v-if="!$v.category.slug.maxLength" class="error">
             URL名（スラッグ）は最大で
             {{ $v.category.slug.$params.maxLength.max }}
@@ -58,7 +61,7 @@
 </template>
 
 <script>
-import { required, maxLength } from "vuelidate/lib/validators"
+import { required, maxLength, helpers } from "vuelidate/lib/validators"
 
 export default {
   data() {
@@ -84,6 +87,7 @@ export default {
     category: {
       slug: {
         required,
+        alphaNum: helpers.regex("", /^[a-zA-Z0-9\-_]+$/),
         maxLength: maxLength(255)
       },
       name: {
