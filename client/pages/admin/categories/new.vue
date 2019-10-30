@@ -8,93 +8,22 @@
         <h4>新規作成</h4>
       </div>
       <div class="box-content">
-        <form @submit.prevent="handleSubmit">
-          <ul>
-            <li v-for="(value, key) in errors" :key="key">
-              {{ key }}:&nbsp;{{ value[0] }}
-            </li>
-          </ul>
-          <div :class="{ error: $v.category.slug.$error }">
-            <label for="slug">URL名（スラッグ）</label>
-            <input
-              v-model.trim="$v.category.slug.$model"
-              type="text"
-              name="slug"
-              required
-            />
-          </div>
-          <div v-if="submitted && !$v.category.slug.required" class="error">
-            URL名（スラッグ）は必須です。
-          </div>
-          <div v-if="!$v.category.slug.alphaNum" class="error">
-            URL名（スラッグ）は英数字のみ入力可能です。
-          </div>
-          <div v-if="!$v.category.slug.maxLength" class="error">
-            URL名（スラッグ）は最大で
-            {{ $v.category.slug.$params.maxLength.max }}
-            文字です。
-          </div>
-          <div :class="{ error: $v.category.name.$error }">
-            <label for="name">カテゴリー名</label>
-            <input
-              v-model="$v.category.name.$model"
-              type="text"
-              name="name"
-              required
-            />
-          </div>
-          <div v-if="submitted && !$v.category.name.required" class="error">
-            カテゴリー名は必須です。
-          </div>
-          <div v-if="!$v.category.name.maxLength" class="error">
-            カテゴリー名は最大で
-            {{ $v.category.name.$params.maxLength.max }}
-            文字です。
-          </div>
-          <button type="submit" class="">
-            登録する
-          </button>
-        </form>
+        <category-form :categories="categories" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { required, maxLength, helpers } from "vuelidate/lib/validators"
+import CategoryForm from "@/components/admin/partials/CategoryForm.vue"
 
 export default {
-  data() {
-    return {
-      category: {
-        slug: "",
-        name: ""
-      },
-      submitted: false
-    }
+  components: {
+    CategoryForm
   },
-  methods: {
-    async handleSubmit() {
-      this.submitted = true
-      await this.$axios.$post("/api/categories", {
-        slug: this.category.slug,
-        name: this.category.name
-      })
-      this.$router.push("/admin/categories/new")
-    }
-  },
-  validations: {
-    category: {
-      slug: {
-        required,
-        alphaNum: helpers.regex("", /^[a-zA-Z0-9\-_]+$/),
-        maxLength: maxLength(255)
-      },
-      name: {
-        required,
-        maxLength: maxLength(255)
-      }
-    }
+  async asyncData({ $axios }) {
+    const data = await $axios.$get("/categories")
+    return { categories: data }
   }
 }
 </script>

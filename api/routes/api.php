@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
     Route::get('sample', 'SampleController@index');
     Route::resource('categories', 'CategoryController')->only([
-        'index', 'create', 'store', 'edit', 'update'
+        'index', 'store', 'show', 'update'
     ]);
     // Route::resource('posts', 'PostController')->only([
     //     'index', 'create', 'store', 'edit', 'update', 'destroy'

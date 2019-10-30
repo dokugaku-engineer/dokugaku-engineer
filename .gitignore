@@ -8,7 +8,6 @@ api/public/storage
 api/storage/*.key
 api/vendor
 api/.env
-api/.env.backup
 api/.phpunit.result.cache
 api/Homestead.json
 api/Homestead.yaml
@@ -19,3 +18,4 @@ api/.vscode
 client/node_modules
 client/.nuxt
 client/.vscode
+client/.env

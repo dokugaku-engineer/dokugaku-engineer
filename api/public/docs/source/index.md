@@ -382,6 +382,102 @@ fetch(url, {
         "parent": 0,
         "created_at": "2019-10-28T08:04:50Z",
         "updated_at": "2019-10-28T08:04:50Z"
+    },
+    {
+        "id": 41,
+        "name": "Sample24",
+        "slug": "Sample24",
+        "parent": 0,
+        "created_at": "2019-10-28T19:57:47Z",
+        "updated_at": "2019-10-28T19:57:47Z"
+    },
+    {
+        "id": 42,
+        "name": "Sample25",
+        "slug": "Sample25",
+        "parent": 0,
+        "created_at": "2019-10-28T20:16:51Z",
+        "updated_at": "2019-10-28T20:16:51Z"
+    },
+    {
+        "id": 43,
+        "name": "Sample26",
+        "slug": "Sample26",
+        "parent": 0,
+        "created_at": "2019-10-29T01:30:19Z",
+        "updated_at": "2019-10-29T01:30:19Z"
+    },
+    {
+        "id": 44,
+        "name": "Sample27",
+        "slug": "Sample27",
+        "parent": 0,
+        "created_at": "2019-10-29T01:30:55Z",
+        "updated_at": "2019-10-29T01:30:55Z"
+    },
+    {
+        "id": 45,
+        "name": "Sample28",
+        "slug": "Sample28",
+        "parent": 0,
+        "created_at": "2019-10-29T01:31:38Z",
+        "updated_at": "2019-10-29T01:31:38Z"
+    },
+    {
+        "id": 46,
+        "name": "Sample29",
+        "slug": "Sample29",
+        "parent": 0,
+        "created_at": "2019-10-29T01:34:05Z",
+        "updated_at": "2019-10-29T01:34:05Z"
+    },
+    {
+        "id": 47,
+        "name": "Sample30",
+        "slug": "Sample30",
+        "parent": 0,
+        "created_at": "2019-10-29T01:34:33Z",
+        "updated_at": "2019-10-29T01:34:33Z"
+    },
+    {
+        "id": 48,
+        "name": "Sample31",
+        "slug": "Sample31",
+        "parent": 0,
+        "created_at": "2019-10-29T01:39:53Z",
+        "updated_at": "2019-10-29T01:39:53Z"
+    },
+    {
+        "id": 49,
+        "name": "Sample32",
+        "slug": "Sample32",
+        "parent": 0,
+        "created_at": "2019-10-29T01:40:58Z",
+        "updated_at": "2019-10-29T01:40:58Z"
+    },
+    {
+        "id": 50,
+        "name": "Sample33",
+        "slug": "Sample33",
+        "parent": 0,
+        "created_at": "2019-10-29T01:52:45Z",
+        "updated_at": "2019-10-29T01:52:45Z"
+    },
+    {
+        "id": 51,
+        "name": "Sample34",
+        "slug": "Sample34",
+        "parent": 0,
+        "created_at": "2019-10-29T02:57:16Z",
+        "updated_at": "2019-10-29T02:57:16Z"
+    },
+    {
+        "id": 52,
+        "name": "Sample35",
+        "slug": "Sample35",
+        "parent": 0,
+        "created_at": "2019-10-29T03:18:42Z",
+        "updated_at": "2019-10-29T03:18:42Z"
     }
 ]
 ```
@@ -393,7 +489,7 @@ fetch(url, {
 <!-- END_109013899e0bc43247b0f00b67f889cf -->
 
 <!-- START_2335abbed7f782ea7d7dd6df9c738d74 -->
-## Categoryを保存
+## カテゴリーを保存
 
 > Example request:
 
@@ -449,10 +545,134 @@ fetch(url, {
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     name | string |  required  | Category name.
-    slug | string |  required  | Category name.
+    slug | string |  required  | Category slug.
     parent | string |  optional  | Parent ID.
 
 <!-- END_2335abbed7f782ea7d7dd6df9c738d74 -->
+
+<!-- START_bde66498000776d89def876462bcdf29 -->
+## カテゴリーを取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/categories/1/edit" \
+    -H "Content-Type: application/json" \
+    -d '{"id":13}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/categories/1/edit");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "id": 13
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "name": "ウェブ",
+    "slug": "web",
+    "parent": 0,
+    "created_at": "2019-10-17T09:18:11Z",
+    "updated_at": "2019-10-17T09:18:11Z"
+}
+```
+
+### HTTP Request
+`GET api/categories/{category}/edit`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    id | integer |  required  | Category id.
+
+<!-- END_bde66498000776d89def876462bcdf29 -->
+
+<!-- START_549109b98c9f25ebff47fb4dc23423b6 -->
+## カテゴリーを更新
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost:8080/api/categories/1" \
+    -H "Content-Type: application/json" \
+    -d '{"id":13,"name":"\u30a6\u30a7\u30d6","slug":"web","parent":"2"}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/categories/1");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "id": 13,
+    "name": "\u30a6\u30a7\u30d6",
+    "slug": "web",
+    "parent": "2"
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "name": "ウェブ",
+    "slug": "web",
+    "parent": "2",
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`PUT api/categories/{category}`
+
+`PATCH api/categories/{category}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    id | integer |  required  | Category id.
+    name | string |  required  | Category name.
+    slug | string |  required  | Category slug.
+    parent | string |  optional  | Parent ID.
+
+<!-- END_549109b98c9f25ebff47fb4dc23423b6 -->
 
 #general
 

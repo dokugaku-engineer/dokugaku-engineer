@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 export default {
   mode: "universal",
   /*
@@ -42,7 +44,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: ["@nuxtjs/dotenv"],
   /*
    ** Nuxt.js modules
    */
@@ -56,10 +58,8 @@ export default {
      */
     extend() {}
   },
-  axios: {
-    // TODO: 環境変数で出し分けるようにする
-    baseURL: "http://localhost:8080"
-  }
+  axios: {},
+  dotenv: {}
   // router: {
   //   middleware: "stats"
   // }
