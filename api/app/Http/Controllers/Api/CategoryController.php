@@ -43,7 +43,7 @@ class CategoryController extends ApiController
      *
      * @bodyParam name string required Category name. Example: ウェブ
      * @bodyParam slug string required Category slug. Example: web
-     * @bodyParam parent string Parent ID. Example: 2
+     * @bodyParam parent int Parent ID. Example: 2
      * 
      * @response {
      *   "id": 13,
@@ -99,7 +99,7 @@ class CategoryController extends ApiController
      * @bodyParam id int required Category id. Example: 13
      * @bodyParam name string required Category name. Example: ウェブ
      * @bodyParam slug string required Category slug. Example: web
-     * @bodyParam parent string Parent ID. Example: 2
+     * @bodyParam parent int Parent ID. Example: 2
      * 
      * @response {
      *   "id": 13,

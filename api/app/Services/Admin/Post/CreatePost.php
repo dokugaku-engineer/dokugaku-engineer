@@ -20,6 +20,7 @@ class CreatePost
 
     try {
       $post = new Post($inputs['posts']);
+      $post->status = 'private';
       $post->save();
 
       $category_post = new CategoryPost($inputs['category_posts']);

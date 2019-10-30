@@ -55,11 +55,16 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories" 
+curl -X GET -G "http://localhost:8080/api/categories?except=consequatur" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
+
+    let params = {
+            "except": "consequatur",
+        };
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
 let headers = {
     "Accept": "application/json",
@@ -81,403 +86,27 @@ fetch(url, {
 [
     {
         "id": 1,
-        "name": "ウェブ",
-        "slug": "web",
-        "parent": 0,
-        "created_at": "2019-10-17T09:18:11Z",
-        "updated_at": "2019-10-17T09:18:11Z"
-    },
-    {
-        "id": 2,
-        "name": "HTML",
-        "slug": "html",
-        "parent": 0,
-        "created_at": "2019-10-17T09:20:33Z",
-        "updated_at": "2019-10-17T09:20:33Z"
-    },
-    {
-        "id": 3,
-        "name": "CSS",
-        "slug": "css",
-        "parent": 0,
-        "created_at": "2019-10-17T09:27:21Z",
-        "updated_at": "2019-10-17T09:27:21Z"
-    },
-    {
-        "id": 4,
-        "name": "Docker",
-        "slug": "docker",
-        "parent": 0,
-        "created_at": "2019-10-17T09:28:27Z",
-        "updated_at": "2019-10-17T09:28:27Z"
-    },
-    {
-        "id": 5,
-        "name": "Nuxt",
-        "slug": "nuxt",
-        "parent": 0,
-        "created_at": "2019-10-17T09:30:20Z",
-        "updated_at": "2019-10-17T09:30:20Z"
-    },
-    {
-        "id": 6,
-        "name": "JS",
-        "slug": "js",
-        "parent": 0,
-        "created_at": "2019-10-17T09:32:18Z",
-        "updated_at": "2019-10-17T09:32:18Z"
-    },
-    {
-        "id": 7,
-        "name": "type",
-        "slug": "type",
-        "parent": 0,
-        "created_at": "2019-10-17T09:32:51Z",
-        "updated_at": "2019-10-17T09:32:51Z"
-    },
-    {
-        "id": 8,
-        "name": "Ruby",
-        "slug": "ruby",
-        "parent": 0,
-        "created_at": "2019-10-17T11:04:28Z",
-        "updated_at": "2019-10-17T11:04:28Z"
-    },
-    {
-        "id": 9,
-        "name": "hoge",
-        "slug": "hoge",
-        "parent": 0,
-        "created_at": "2019-10-17T11:12:19Z",
-        "updated_at": "2019-10-17T11:12:19Z"
-    },
-    {
-        "id": 10,
-        "name": "web",
-        "slug": "null",
-        "parent": 0,
-        "created_at": "2019-10-17T13:02:07Z",
-        "updated_at": "2019-10-17T13:02:07Z"
-    },
-    {
-        "id": 13,
-        "name": "AWS",
-        "slug": "aws",
-        "parent": 2,
-        "created_at": "2019-10-17T13:28:08Z",
-        "updated_at": "2019-10-17T13:28:08Z"
-    },
-    {
-        "id": 14,
-        "name": "アンパンマン",
-        "slug": "anpanman",
-        "parent": 0,
-        "created_at": "2019-10-19T20:17:41Z",
-        "updated_at": "2019-10-19T20:17:41Z"
-    },
-    {
-        "id": 15,
-        "name": "Sample",
-        "slug": "sample",
-        "parent": 0,
-        "created_at": "2019-10-19T20:39:19Z",
-        "updated_at": "2019-10-19T20:39:19Z"
-    },
-    {
-        "id": 16,
         "name": "Sample1",
         "slug": "sample1",
         "parent": 0,
-        "created_at": "2019-10-19T20:40:22Z",
-        "updated_at": "2019-10-19T20:40:22Z"
+        "created_at": "2019-10-30T00:06:03Z",
+        "updated_at": "2019-10-30T00:06:29Z"
     },
     {
-        "id": 17,
+        "id": 2,
         "name": "Sample2",
-        "slug": "sample2",
-        "parent": 0,
-        "created_at": "2019-10-19T20:55:26Z",
-        "updated_at": "2019-10-19T20:55:26Z"
+        "slug": "Sample2",
+        "parent": 3,
+        "created_at": "2019-10-30T00:07:20Z",
+        "updated_at": "2019-10-30T00:41:37Z"
     },
     {
-        "id": 18,
+        "id": 3,
         "name": "Sample3",
-        "slug": "sample3",
+        "slug": "Sample3",
         "parent": 0,
-        "created_at": "2019-10-19T20:56:12Z",
-        "updated_at": "2019-10-19T20:56:12Z"
-    },
-    {
-        "id": 19,
-        "name": "Sample4",
-        "slug": "sample4",
-        "parent": 0,
-        "created_at": "2019-10-19T20:56:51Z",
-        "updated_at": "2019-10-19T20:56:51Z"
-    },
-    {
-        "id": 20,
-        "name": "Sample5",
-        "slug": "sample5",
-        "parent": 0,
-        "created_at": "2019-10-19T20:58:17Z",
-        "updated_at": "2019-10-19T20:58:17Z"
-    },
-    {
-        "id": 21,
-        "name": "Sample6",
-        "slug": "sample6",
-        "parent": 0,
-        "created_at": "2019-10-20T19:58:39Z",
-        "updated_at": "2019-10-20T19:58:39Z"
-    },
-    {
-        "id": 22,
-        "name": "Sample7",
-        "slug": "sample7",
-        "parent": 0,
-        "created_at": "2019-10-20T19:59:22Z",
-        "updated_at": "2019-10-20T19:59:22Z"
-    },
-    {
-        "id": 23,
-        "name": "Sample8",
-        "slug": "sample8",
-        "parent": 0,
-        "created_at": "2019-10-25T20:30:09Z",
-        "updated_at": "2019-10-25T20:30:09Z"
-    },
-    {
-        "id": 24,
-        "name": "Sample9",
-        "slug": "sample9",
-        "parent": 0,
-        "created_at": "2019-10-25T20:32:22Z",
-        "updated_at": "2019-10-25T20:32:22Z"
-    },
-    {
-        "id": 25,
-        "name": "Sample10",
-        "slug": "sample10",
-        "parent": 0,
-        "created_at": "2019-10-25T20:45:15Z",
-        "updated_at": "2019-10-25T20:45:15Z"
-    },
-    {
-        "id": 26,
-        "name": "Sample11",
-        "slug": "sample11",
-        "parent": 0,
-        "created_at": "2019-10-25T21:32:57Z",
-        "updated_at": "2019-10-25T21:32:57Z"
-    },
-    {
-        "id": 27,
-        "name": "Sample12",
-        "slug": "sample12",
-        "parent": 0,
-        "created_at": "2019-10-25T21:35:14Z",
-        "updated_at": "2019-10-25T21:35:14Z"
-    },
-    {
-        "id": 28,
-        "name": "Sample13",
-        "slug": "sample13",
-        "parent": 0,
-        "created_at": "2019-10-25T21:36:31Z",
-        "updated_at": "2019-10-25T21:36:31Z"
-    },
-    {
-        "id": 29,
-        "name": "h1",
-        "slug": "h1",
-        "parent": 0,
-        "created_at": "2019-10-25T21:37:55Z",
-        "updated_at": "2019-10-25T21:37:55Z"
-    },
-    {
-        "id": 30,
-        "name": "h2",
-        "slug": "h2",
-        "parent": 0,
-        "created_at": "2019-10-25T21:38:51Z",
-        "updated_at": "2019-10-25T21:38:51Z"
-    },
-    {
-        "id": 31,
-        "name": "Sample14",
-        "slug": "sample14",
-        "parent": 0,
-        "created_at": "2019-10-25T21:57:42Z",
-        "updated_at": "2019-10-25T21:57:42Z"
-    },
-    {
-        "id": 32,
-        "name": "Sample15",
-        "slug": "sample15",
-        "parent": 0,
-        "created_at": "2019-10-25T22:21:31Z",
-        "updated_at": "2019-10-25T22:21:31Z"
-    },
-    {
-        "id": 33,
-        "name": "Sample16",
-        "slug": "sample16",
-        "parent": 0,
-        "created_at": "2019-10-25T22:25:40Z",
-        "updated_at": "2019-10-25T22:25:40Z"
-    },
-    {
-        "id": 34,
-        "name": "Sample17",
-        "slug": "sample17",
-        "parent": 0,
-        "created_at": "2019-10-25T22:27:45Z",
-        "updated_at": "2019-10-25T22:27:45Z"
-    },
-    {
-        "id": 35,
-        "name": "sensuikan1973",
-        "slug": "100",
-        "parent": 0,
-        "created_at": "2019-10-25T22:30:16Z",
-        "updated_at": "2019-10-25T22:30:16Z"
-    },
-    {
-        "id": 36,
-        "name": "sensuikan1",
-        "slug": "1",
-        "parent": 0,
-        "created_at": "2019-10-25T22:32:30Z",
-        "updated_at": "2019-10-25T22:32:30Z"
-    },
-    {
-        "id": 37,
-        "name": "Sample20",
-        "slug": "Sample20",
-        "parent": 0,
-        "created_at": "2019-10-26T22:05:14Z",
-        "updated_at": "2019-10-26T22:05:14Z"
-    },
-    {
-        "id": 38,
-        "name": "Sample21",
-        "slug": "Sample21",
-        "parent": 0,
-        "created_at": "2019-10-28T04:02:09Z",
-        "updated_at": "2019-10-28T04:02:09Z"
-    },
-    {
-        "id": 39,
-        "name": "Sample22",
-        "slug": "Sample22",
-        "parent": 0,
-        "created_at": "2019-10-28T05:27:29Z",
-        "updated_at": "2019-10-28T05:27:29Z"
-    },
-    {
-        "id": 40,
-        "name": "Sample23",
-        "slug": "Sample23",
-        "parent": 0,
-        "created_at": "2019-10-28T08:04:50Z",
-        "updated_at": "2019-10-28T08:04:50Z"
-    },
-    {
-        "id": 41,
-        "name": "Sample24",
-        "slug": "Sample24",
-        "parent": 0,
-        "created_at": "2019-10-28T19:57:47Z",
-        "updated_at": "2019-10-28T19:57:47Z"
-    },
-    {
-        "id": 42,
-        "name": "Sample25",
-        "slug": "Sample25",
-        "parent": 0,
-        "created_at": "2019-10-28T20:16:51Z",
-        "updated_at": "2019-10-28T20:16:51Z"
-    },
-    {
-        "id": 43,
-        "name": "Sample26",
-        "slug": "Sample26",
-        "parent": 0,
-        "created_at": "2019-10-29T01:30:19Z",
-        "updated_at": "2019-10-29T01:30:19Z"
-    },
-    {
-        "id": 44,
-        "name": "Sample27",
-        "slug": "Sample27",
-        "parent": 0,
-        "created_at": "2019-10-29T01:30:55Z",
-        "updated_at": "2019-10-29T01:30:55Z"
-    },
-    {
-        "id": 45,
-        "name": "Sample28",
-        "slug": "Sample28",
-        "parent": 0,
-        "created_at": "2019-10-29T01:31:38Z",
-        "updated_at": "2019-10-29T01:31:38Z"
-    },
-    {
-        "id": 46,
-        "name": "Sample29",
-        "slug": "Sample29",
-        "parent": 0,
-        "created_at": "2019-10-29T01:34:05Z",
-        "updated_at": "2019-10-29T01:34:05Z"
-    },
-    {
-        "id": 47,
-        "name": "Sample30",
-        "slug": "Sample30",
-        "parent": 0,
-        "created_at": "2019-10-29T01:34:33Z",
-        "updated_at": "2019-10-29T01:34:33Z"
-    },
-    {
-        "id": 48,
-        "name": "Sample31",
-        "slug": "Sample31",
-        "parent": 0,
-        "created_at": "2019-10-29T01:39:53Z",
-        "updated_at": "2019-10-29T01:39:53Z"
-    },
-    {
-        "id": 49,
-        "name": "Sample32",
-        "slug": "Sample32",
-        "parent": 0,
-        "created_at": "2019-10-29T01:40:58Z",
-        "updated_at": "2019-10-29T01:40:58Z"
-    },
-    {
-        "id": 50,
-        "name": "Sample33",
-        "slug": "Sample33",
-        "parent": 0,
-        "created_at": "2019-10-29T01:52:45Z",
-        "updated_at": "2019-10-29T01:52:45Z"
-    },
-    {
-        "id": 51,
-        "name": "Sample34",
-        "slug": "Sample34",
-        "parent": 0,
-        "created_at": "2019-10-29T02:57:16Z",
-        "updated_at": "2019-10-29T02:57:16Z"
-    },
-    {
-        "id": 52,
-        "name": "Sample35",
-        "slug": "Sample35",
-        "parent": 0,
-        "created_at": "2019-10-29T03:18:42Z",
-        "updated_at": "2019-10-29T03:18:42Z"
+        "created_at": "2019-10-30T00:36:34Z",
+        "updated_at": "2019-10-30T00:36:34Z"
     }
 ]
 ```
@@ -485,6 +114,11 @@ fetch(url, {
 ### HTTP Request
 `GET api/categories`
 
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    except |  optional  | Category id to except
 
 <!-- END_109013899e0bc43247b0f00b67f889cf -->
 
@@ -496,7 +130,7 @@ fetch(url, {
 ```bash
 curl -X POST "http://localhost:8080/api/categories" \
     -H "Content-Type: application/json" \
-    -d '{"name":"\u30a6\u30a7\u30d6","slug":"web","parent":"2"}'
+    -d '{"name":"\u30a6\u30a7\u30d6","slug":"web","parent":2}'
 
 ```
 
@@ -511,7 +145,7 @@ let headers = {
 let body = {
     "name": "\u30a6\u30a7\u30d6",
     "slug": "web",
-    "parent": "2"
+    "parent": 2
 }
 
 fetch(url, {
@@ -546,24 +180,24 @@ Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     name | string |  required  | Category name.
     slug | string |  required  | Category slug.
-    parent | string |  optional  | Parent ID.
+    parent | integer |  optional  | Parent ID.
 
 <!-- END_2335abbed7f782ea7d7dd6df9c738d74 -->
 
-<!-- START_bde66498000776d89def876462bcdf29 -->
+<!-- START_34925c1e31e7ecc53f8f52c8b1e91d44 -->
 ## カテゴリーを取得
 
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories/1/edit" \
+curl -X GET -G "http://localhost:8080/api/categories/1" \
     -H "Content-Type: application/json" \
     -d '{"id":13}'
 
 ```
 
 ```javascript
-const url = new URL("http://localhost:8080/api/categories/1/edit");
+const url = new URL("http://localhost:8080/api/categories/1");
 
 let headers = {
     "Content-Type": "application/json",
@@ -589,16 +223,16 @@ fetch(url, {
 ```json
 {
     "id": 1,
-    "name": "ウェブ",
-    "slug": "web",
+    "name": "Sample1",
+    "slug": "sample1",
     "parent": 0,
-    "created_at": "2019-10-17T09:18:11Z",
-    "updated_at": "2019-10-17T09:18:11Z"
+    "created_at": "2019-10-30T00:06:03Z",
+    "updated_at": "2019-10-30T00:06:29Z"
 }
 ```
 
 ### HTTP Request
-`GET api/categories/{category}/edit`
+`GET api/categories/{category}`
 
 #### Body Parameters
 
@@ -606,7 +240,7 @@ Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     id | integer |  required  | Category id.
 
-<!-- END_bde66498000776d89def876462bcdf29 -->
+<!-- END_34925c1e31e7ecc53f8f52c8b1e91d44 -->
 
 <!-- START_549109b98c9f25ebff47fb4dc23423b6 -->
 ## カテゴリーを更新
@@ -616,7 +250,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X PUT "http://localhost:8080/api/categories/1" \
     -H "Content-Type: application/json" \
-    -d '{"id":13,"name":"\u30a6\u30a7\u30d6","slug":"web","parent":"2"}'
+    -d '{"id":13,"name":"\u30a6\u30a7\u30d6","slug":"web","parent":2}'
 
 ```
 
@@ -632,7 +266,7 @@ let body = {
     "id": 13,
     "name": "\u30a6\u30a7\u30d6",
     "slug": "web",
-    "parent": "2"
+    "parent": 2
 }
 
 fetch(url, {
@@ -670,9 +304,94 @@ Parameter | Type | Status | Description
     id | integer |  required  | Category id.
     name | string |  required  | Category name.
     slug | string |  required  | Category slug.
-    parent | string |  optional  | Parent ID.
+    parent | integer |  optional  | Parent ID.
 
 <!-- END_549109b98c9f25ebff47fb4dc23423b6 -->
+
+#2. Post
+
+
+<!-- START_ea8d166c68ec035668ea724e12cafa45 -->
+## 記事を保存
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/posts" \
+    -H "Content-Type: application/json" \
+    -d '{"posts":{"slug":"web","title":"Web\u306e\u57fa\u672c","content":"Web\u306e\u57fa\u672c\u306fTCP\/IP\u3067\u3059\u3002","parent":12},"category_posts":{"category_id":1}}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/posts");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "posts": {
+        "slug": "web",
+        "title": "Web\u306e\u57fa\u672c",
+        "content": "Web\u306e\u57fa\u672c\u306fTCP\/IP\u3067\u3059\u3002",
+        "parent": 12
+    },
+    "category_posts": {
+        "category_id": 1
+    }
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 13,
+        "slug": "web",
+        "title": "Webの基本",
+        "content": "Webの基本はTCP・IPです。",
+        "parent": 12,
+        "status": "private",
+        "category_post": {
+            "id": 13,
+            "category_id": 1,
+            "post_id": 13,
+            "created_at": "2019-10-30T05:15:06Z",
+            "updated_at": "2019-10-30T05:15:06Z"
+        },
+        "deleted_at": null,
+        "created_at": "2019-10-17T13:28:08Z",
+        "updated_at": "2019-10-17T13:28:08Z"
+    }
+]
+```
+
+### HTTP Request
+`POST api/posts`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    posts[slug] | string |  required  | Post slug.
+    posts[title] | string |  required  | Post title.
+    posts[content] | string |  required  | Post content.
+    posts[parent] | integer |  optional  | Post parant ID.
+    category_posts[category_id] | integer |  optional  | CategoryPost ID.
+
+<!-- END_ea8d166c68ec035668ea724e12cafa45 -->
 
 #general
 

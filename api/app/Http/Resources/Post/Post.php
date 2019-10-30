@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Category;
+namespace App\Http\Resources\Post;
 
 use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CategoryPost\CategoryPost as CategoryPostResource;
 
-class Category extends JsonResource
+class Post extends JsonResource
 {
     /**
      * リソースを配列へ変換
@@ -17,9 +18,13 @@ class Category extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
             'slug' => $this->slug,
+            'title' => $this->title,
+            'content' => $this->content,
             'parent' => $this->parent,
+            'status' => $this->status,
+            'category_post' => new CategoryPostResource($this->category_post),
+            'deleted_at' => DateHelper::getTimestamp($this->deleted_at),
             'created_at' => DateHelper::getTimestamp($this->created_at),
             'updated_at' => DateHelper::getTimestamp($this->updated_at),
         ];
