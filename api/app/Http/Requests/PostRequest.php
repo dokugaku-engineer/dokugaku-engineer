@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\ApiRequest;
 use Illuminate\Validation\Rule;
 
-class PostRequest extends FormRequest
+class PostRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.

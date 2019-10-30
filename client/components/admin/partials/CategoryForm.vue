@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="isEdiging ? updateCategory() : createCategory()">
+  <form @submit.prevent="isEditing ? updateCategory() : createCategory()">
     <ul>
       <li v-for="(value, key) in errors" :key="key">
         {{ key }}:&nbsp;{{ value[0] }}
@@ -85,7 +85,7 @@ export default {
       type: Number,
       default: 0
     },
-    isEditing: {
+    editing: {
       type: Boolean,
       default: false
     }
@@ -98,7 +98,7 @@ export default {
         parent: this.parent
       },
       submitted: false,
-      isEdiging: this.isEditing
+      isEditing: this.editing
     }
   },
   methods: {

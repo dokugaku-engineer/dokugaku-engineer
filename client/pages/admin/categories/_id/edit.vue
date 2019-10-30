@@ -13,7 +13,7 @@
           :slug="category.slug"
           :name="category.name"
           :parent="category.parent"
-          :is-editing="true"
+          :editing="true"
         />
       </div>
     </div>
