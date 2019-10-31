@@ -47,9 +47,9 @@ class PostController extends Controller
      * @bodyParam posts[content] string required Post content. Example: Webの基本はTCP/IPです。
      * @bodyParam posts[parent] int Post parant ID. Example: 12
      * @bodyParam category_posts[category_id] int CategoryPost ID. Example: 1
-     * 
+     *
      * @responsefile responses/post.store.json
-     * 
+     *
      * @param PostRequest $request
      * @return PostResource|\Illuminate\Http\JsonResponse
      */
@@ -69,9 +69,9 @@ class PostController extends Controller
      * 記事を取得
      *
      * @bodyParam id int required Post id. Example: 13
-     * 
+     *
      * @responsefile responses/post.store.json
-     * 
+     *
      * @param int $id
      * @return PostResource
      */
@@ -90,9 +90,9 @@ class PostController extends Controller
      * @bodyParam posts[content] string required Post content. Example: Webの基本はTCP/IPです。
      * @bodyParam posts[parent] int Post parant ID. Example: 12
      * @bodyParam category_posts[category_id] int CategoryPost ID. Example: 1
-     * 
+     *
      * @responsefile responses/post.store.json
-     * 
+     *
      * @param PostRequest $request
      * @param Post $post
      * @return PostResource|\Illuminate\Http\JsonResponse
@@ -106,6 +106,54 @@ class PostController extends Controller
             return $this->respondInvalidQuery();
         }
 
+        return new PostResource($post);
+    }
+
+    /**
+     * 記事を削除
+     *
+     * @bodyParam id int required Post id. Example: 1
+     *
+     * @responsefile responses/post.store.json
+     *
+     * @param Post $post
+     * @return PostResource
+     */
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return new PostResource($post);
+    }
+
+    /**
+     * 記事を公開
+     *
+     * @bodyParam id int required Post id. Example: 1
+     *
+     * @responsefile responses/post.store.json
+     *
+     * @param Post $post
+     * @return PostResource
+     */
+    public function publish(Post $post)
+    {
+        $post->publish();
+        return new PostResource($post);
+    }
+
+    /**
+     * 記事を非公開
+     *
+     * @bodyParam id int required Post id. Example: 1
+     *
+     * @responsefile responses/post.store.json
+     *
+     * @param Post $post
+     * @return PostResource
+     */
+    public function unpublish(Post $post)
+    {
+        $post->unpublish();
         return new PostResource($post);
     }
 }

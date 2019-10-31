@@ -33,9 +33,27 @@
                   編集
                 </n-link>
               </td>
-              <td>公開</td>
-              <td>非公開</td>
-              <td>削除</td>
+              <td>
+                <button
+                  :disabled="post.status === 'publish'"
+                  @click="publish(post.id)"
+                >
+                  公開
+                </button>
+              </td>
+              <td>
+                <button
+                  :disabled="post.status === 'private'"
+                  @click="unpublish(post.id)"
+                >
+                  非公開
+                </button>
+              </td>
+              <td>
+                <button :disabled="post.deleted_at" @click="destroy(post.id)">
+                  削除
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -46,9 +64,31 @@
 
 <script>
 export default {
+  data() {
+    return {
+      posts: []
+    }
+  },
   async asyncData({ $axios }) {
-    const data = await $axios.$get("/posts")
-    return { posts: data }
+    const posts = await $axios.$get("/posts")
+    return { posts: posts }
+  },
+  methods: {
+    async publish(postId) {
+      const post = await this.$axios.$get(`/posts/${postId}/publish`)
+      const foundIndex = this.posts.findIndex(p => p.id === post.id)
+      this.posts.splice(foundIndex, 1, post)
+    },
+    async unpublish(postId) {
+      const post = await this.$axios.$get(`/posts/${postId}/unpublish`)
+      const foundIndex = this.posts.findIndex(p => p.id === post.id)
+      this.posts.splice(foundIndex, 1, post)
+    },
+    async destroy(postId) {
+      const post = await this.$axios.$delete(`/posts/${postId}`)
+      const foundIndex = this.posts.findIndex(p => p.id === post.id)
+      this.posts.splice(foundIndex, 1)
+    }
   }
 }
 </script>

@@ -55,14 +55,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=dolor" 
+curl -X GET -G "http://localhost:8080/api/categories?except=ex" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "dolor",
+            "except": "ex",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -317,14 +317,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=nobis" 
+curl -X GET -G "http://localhost:8080/api/posts?except=vel" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "nobis",
+            "except": "vel",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -362,7 +362,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T04:53:07Z",
-        "updated_at": "2019-10-30T04:53:07Z"
+        "updated_at": "2019-10-31T20:44:37Z"
     },
     {
         "id": 2,
@@ -380,7 +380,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T04:57:19Z",
-        "updated_at": "2019-10-31T01:14:45Z"
+        "updated_at": "2019-10-31T20:29:07Z"
     },
     {
         "id": 3,
@@ -398,7 +398,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T04:58:19Z",
-        "updated_at": "2019-10-31T00:25:24Z"
+        "updated_at": "2019-10-31T20:31:26Z"
     },
     {
         "id": 4,
@@ -416,7 +416,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T05:00:03Z",
-        "updated_at": "2019-10-30T05:00:03Z"
+        "updated_at": "2019-10-31T20:31:35Z"
     },
     {
         "id": 5,
@@ -424,7 +424,7 @@ fetch(url, {
         "title": "Webの基本",
         "content": "Webの基本はHTTP通信です。",
         "parent": 12,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 5,
             "category_id": 1,
@@ -434,7 +434,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T05:00:29Z",
-        "updated_at": "2019-10-30T05:00:29Z"
+        "updated_at": "2019-10-31T19:54:45Z"
     },
     {
         "id": 6,
@@ -442,7 +442,7 @@ fetch(url, {
         "title": "Webの基本",
         "content": "Webの基本はHTTP通信です。",
         "parent": 12,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 6,
             "category_id": 1,
@@ -452,7 +452,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T05:01:45Z",
-        "updated_at": "2019-10-30T05:01:45Z"
+        "updated_at": "2019-10-31T19:55:35Z"
     },
     {
         "id": 7,
@@ -460,7 +460,7 @@ fetch(url, {
         "title": "Webの基本",
         "content": "Webの基本はHTTP通信です。",
         "parent": 12,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 7,
             "category_id": 1,
@@ -470,7 +470,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T05:02:50Z",
-        "updated_at": "2019-10-30T05:02:50Z"
+        "updated_at": "2019-10-31T19:56:51Z"
     },
     {
         "id": 8,
@@ -478,7 +478,7 @@ fetch(url, {
         "title": "Webの基本",
         "content": "Webの基本はHTTP通信です。",
         "parent": 12,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 8,
             "category_id": 1,
@@ -488,7 +488,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T05:13:07Z",
-        "updated_at": "2019-10-30T05:13:07Z"
+        "updated_at": "2019-10-31T19:57:59Z"
     },
     {
         "id": 9,
@@ -496,7 +496,7 @@ fetch(url, {
         "title": "Webの基本",
         "content": "Webの基本はHTTP通信です。",
         "parent": 12,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 9,
             "category_id": 1,
@@ -506,7 +506,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T05:15:06Z",
-        "updated_at": "2019-10-30T05:15:06Z"
+        "updated_at": "2019-10-31T20:26:59Z"
     },
     {
         "id": 10,
@@ -514,7 +514,7 @@ fetch(url, {
         "title": "hoge",
         "content": "hoge",
         "parent": 0,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 10,
             "category_id": 1,
@@ -524,7 +524,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T06:20:52Z",
-        "updated_at": "2019-10-30T06:20:52Z"
+        "updated_at": "2019-10-31T20:27:04Z"
     },
     {
         "id": 11,
@@ -532,7 +532,7 @@ fetch(url, {
         "title": "hoge",
         "content": "hoge",
         "parent": 0,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 11,
             "category_id": 3,
@@ -542,7 +542,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T06:24:40Z",
-        "updated_at": "2019-10-30T06:24:40Z"
+        "updated_at": "2019-10-31T20:04:30Z"
     },
     {
         "id": 12,
@@ -550,7 +550,7 @@ fetch(url, {
         "title": "parent",
         "content": "parent",
         "parent": 6,
-        "status": "private",
+        "status": "publish",
         "category_post": {
             "id": 12,
             "category_id": 2,
@@ -560,7 +560,7 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-31T00:42:12Z",
-        "updated_at": "2019-10-31T00:42:12Z"
+        "updated_at": "2019-10-31T20:03:36Z"
     }
 ]
 ```
@@ -709,7 +709,7 @@ fetch(url, {
     },
     "deleted_at": null,
     "created_at": "2019-10-30T04:53:07Z",
-    "updated_at": "2019-10-30T04:53:07Z"
+    "updated_at": "2019-10-31T20:44:37Z"
 }
 ```
 
@@ -807,6 +807,210 @@ Parameter | Type | Status | Description
     category_posts[category_id] | integer |  optional  | CategoryPost ID.
 
 <!-- END_6d1dfaf5fa710725519375063e4e9db0 -->
+
+<!-- START_790d23dbb8c799c36c70f7133a51e7a5 -->
+## 記事を削除
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost:8080/api/posts/1" \
+    -H "Content-Type: application/json" \
+    -d '{"id":1}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/posts/1");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "id": 1
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "slug": "web",
+    "title": "Webの基本",
+    "content": "Webの基本はTCP・IPです。",
+    "parent": 12,
+    "status": "private",
+    "category_post": {
+        "id": 13,
+        "category_id": 1,
+        "post_id": 13,
+        "created_at": "2019-10-30T05:15:06Z",
+        "updated_at": "2019-10-30T05:15:06Z"
+    },
+    "deleted_at": null,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`DELETE api/posts/{post}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    id | integer |  required  | Post id.
+
+<!-- END_790d23dbb8c799c36c70f7133a51e7a5 -->
+
+<!-- START_acaa9500f220d6a67942ac923cd26e7d -->
+## 記事を公開
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/posts/1/publish" \
+    -H "Content-Type: application/json" \
+    -d '{"id":1}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/posts/1/publish");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "id": 1
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "slug": "web",
+    "title": "Webの基本",
+    "content": "Webの基本はHTTP通信です。",
+    "parent": 12,
+    "status": "publish",
+    "category_post": {
+        "id": 1,
+        "category_id": 1,
+        "post_id": 1,
+        "created_at": "2019-10-30T04:53:07Z",
+        "updated_at": "2019-10-30T04:53:07Z"
+    },
+    "deleted_at": null,
+    "created_at": "2019-10-30T04:53:07Z",
+    "updated_at": "2019-10-31T20:51:04Z"
+}
+```
+
+### HTTP Request
+`GET api/posts/{post}/publish`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    id | integer |  required  | Post id.
+
+<!-- END_acaa9500f220d6a67942ac923cd26e7d -->
+
+<!-- START_b983679a3d7e0cf86939f7140d986aca -->
+## 記事を非公開
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/posts/1/unpublish" \
+    -H "Content-Type: application/json" \
+    -d '{"id":1}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/posts/1/unpublish");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "id": 1
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "slug": "web",
+    "title": "Webの基本",
+    "content": "Webの基本はHTTP通信です。",
+    "parent": 12,
+    "status": "private",
+    "category_post": {
+        "id": 1,
+        "category_id": 1,
+        "post_id": 1,
+        "created_at": "2019-10-30T04:53:07Z",
+        "updated_at": "2019-10-30T04:53:07Z"
+    },
+    "deleted_at": null,
+    "created_at": "2019-10-30T04:53:07Z",
+    "updated_at": "2019-10-31T20:44:37Z"
+}
+```
+
+### HTTP Request
+`GET api/posts/{post}/unpublish`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    id | integer |  required  | Post id.
+
+<!-- END_b983679a3d7e0cf86939f7140d986aca -->
 
 #general
 
