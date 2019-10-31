@@ -84,9 +84,8 @@ class CategoryController extends ApiController
      *   "updated_at": "2019-10-20T13:28:08Z"
      * }
      * 
-     * @param CategoryRequest $request
      * @param Category $category
-     * @return CategoryResource|\Illuminate\Http\JsonResponse
+     * @return CategoryResource
      */
     public function show(Category $category)
     {

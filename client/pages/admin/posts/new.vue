@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div class="header">
-      <h1>ブログの新規作成</h1>
+      <h1>ブログ記事の新規作成</h1>
     </div>
     <div class="box">
       <div class="box-header">
         <h4>新規作成</h4>
       </div>
       <div class="box-content">
-        <post-form :categories="categories" />
+        <post-form :posts="posts" :categories="categories" />
       </div>
     </div>
   </div>
@@ -22,8 +22,11 @@ export default {
     PostForm
   },
   async asyncData({ $axios }) {
-    const data = await $axios.$get("/categories")
-    return { categories: data }
+    const [posts, categories] = await Promise.all([
+      $axios.$get("/posts"),
+      $axios.$get("/categories")
+    ])
+    return { posts: posts, categories: categories }
   }
 }
 </script>

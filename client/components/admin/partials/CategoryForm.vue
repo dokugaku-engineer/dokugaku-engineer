@@ -25,6 +25,7 @@
       {{ $v.category.slug.$params.maxLength.max }}
       文字です。
     </div>
+
     <div :class="{ error: $v.category.name.$error }">
       <label for="name">カテゴリー名</label>
       <input
@@ -42,6 +43,7 @@
       {{ $v.category.name.$params.maxLength.max }}
       文字です。
     </div>
+
     <div :class="{ error: $v.category.parent.$error }">
       <label for="parent">親カテゴリー</label>
       <select v-model="$v.category.parent.$model" name="parent">

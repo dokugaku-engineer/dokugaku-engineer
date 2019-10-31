@@ -58,6 +58,21 @@
       本文は必須です。
     </div>
 
+    <div :class="{ error: $v.post.parent.$error }">
+      <label for="posts[parent]">親記事</label>
+      <select v-model="$v.post.parent.$model" name="posts[parent]">
+        <option :value="0">
+          親なし
+        </option>
+        <option v-for="p in posts" :key="p.id" :value="p.id">
+          {{ p.id }}
+        </option>
+      </select>
+    </div>
+    <div v-if="!$v.post.parent.numeric" class="error">
+      親記事は数値のみ入力可能です。
+    </div>
+
     <div :class="{ error: $v.categoryPost.category_id.$error }">
       <label for="category_posts[category_id]">カテゴリー</label>
       <select
@@ -84,6 +99,12 @@ import { required, maxLength, numeric, helpers } from "vuelidate/lib/validators"
 
 export default {
   props: {
+    posts: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
     categories: {
       type: Array,
       default() {
@@ -140,7 +161,7 @@ export default {
         })
         .then(() => {
           this.submitted = false
-          // this.$router.push("/admin/posts/")
+          this.$router.push("/admin/posts/")
         })
         .catch(() => {
           this.submitted = true
@@ -149,10 +170,13 @@ export default {
     async updatePost() {
       this.submitted = true
       await this.$axios
-        .$put(`/posts/${this.$route.params.id}`, this.post)
+        .$put(`/posts/${this.$route.params.id}`, {
+          posts: this.post,
+          category_posts: this.categoryPost
+        })
         .then(() => {
           this.submitted = false
-          // this.$router.push("/admin/categories/")
+          this.$router.push("/admin/posts/")
         })
         .catch(() => {
           this.submitted = true
