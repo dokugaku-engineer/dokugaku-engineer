@@ -13,12 +13,20 @@ export default {
       },
       {
         name: "viewport",
-        content: "width=device-width, initial-scale=1"
+        content: "width=device-width, initial-scale=1, minimum-scale=1"
       },
       {
         hid: "description",
         name: "description",
         content: process.env.npm_package_description || ""
+      },
+      {
+        "http-equiv": "X-UA-Compatible",
+        content: "IE=edge"
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image"
       }
     ],
     link: []
@@ -29,10 +37,6 @@ export default {
   loading: {
     color: "#fff"
   },
-  /*
-   ** Global CSS
-   */
-  css: [],
   /*
    ** Plugins to load before mounting the App
    */
@@ -48,7 +52,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/style-resources"],
   /*
    ** Build configuration
    */
@@ -57,6 +61,16 @@ export default {
      ** You can extend webpack config here
      */
     extend() {}
+  },
+  /*
+   ** Global CSS
+   */
+  css: ["ress/dist/ress.min.css", "~assets/styles/app.scss"],
+  /*
+   ** Global CSS variables
+   */
+  styleResources: {
+    scss: ["~assets/styles/variables.scss"]
   },
   axios: {},
   dotenv: {}

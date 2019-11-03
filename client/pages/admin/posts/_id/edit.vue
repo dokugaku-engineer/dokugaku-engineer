@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import PostForm from "@/components/admin/partials/PostForm.vue"
+import PostForm from "@/components/partials/admin/PostForm.vue"
 
 export default {
   components: {
