@@ -5,11 +5,11 @@
         書いている人
       </h4>
       <div class="p-blog-aside__writer clearfix">
-        <!-- <img
+        <img
           class="p-blog-aside__writer-img"
-          src="{{ asset('images/profile.jpg') }}"
+          src="@/assets/images/profile.jpg"
           alt=""
-        /> -->
+        />
         <dl class="p-blog-aside__writer-profile">
           <dt class="p-blog-aside__writer-name">
             山浦　清透
