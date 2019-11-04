@@ -1,10 +1,24 @@
 <template>
-  <div>
+  <div class="wrap">
     <Header />
     <nuxt />
-    <Footer />
+    <div class="footer_wrap">
+      <Footer />
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer_wrap {
+  margin-top: auto;
+}
+</style>
 
 <script>
 import Header from "@/components/layouts/Header.vue"
