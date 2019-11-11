@@ -63,6 +63,10 @@
 </template>
 
 <style lang="scss" scoped>
+.p-blog__content {
+  background-color: $color-white2;
+}
+
 @media screen and (min-width: 768px) {
   .p-blog__content {
     margin: 0 auto 20px;

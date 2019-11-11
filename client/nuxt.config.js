@@ -29,6 +29,12 @@ export default {
         content: "summary_large_image"
       }
     ],
+    script: [
+      {
+        src: "https://kit.fontawesome.com/381734123f.js",
+        crossorigin: "anonymous"
+      }
+    ],
     link: []
   },
   /*

@@ -28,6 +28,10 @@
 </template>
 
 <style lang="scss" scoped>
+.container {
+  background-color: $color-white2;
+}
+
 .c-btn {
   border-radius: 4px;
   cursor: pointer;

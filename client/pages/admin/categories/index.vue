@@ -36,6 +36,7 @@
 
 <script>
 export default {
+  layout: "admin",
   async asyncData({ $axios }) {
     const data = await $axios.$get("/categories")
     return { categories: data }
