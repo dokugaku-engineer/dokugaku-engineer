@@ -18,6 +18,7 @@
 import CategoryForm from "@/components/partials/admin/CategoryForm.vue"
 
 export default {
+  layout: "admin",
   components: {
     CategoryForm
   },
