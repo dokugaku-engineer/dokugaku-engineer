@@ -1,7 +1,7 @@
 <template>
-  <button class="btn" type="submit">
+  <n-link :to="to" class="btn">
     <slot />
-  </button>
+  </n-link>
 </template>
 
 <style lang="scss" scoped>
@@ -30,3 +30,14 @@
   color: $color-teal1;
 }
 </style>
+
+<script>
+export default {
+  props: {
+    to: {
+      type: String,
+      default: ""
+    }
+  }
+}
+</script>

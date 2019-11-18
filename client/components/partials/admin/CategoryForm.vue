@@ -5,7 +5,8 @@
         {{ key }}:&nbsp;{{ value[0] }}
       </li>
     </ul>
-    <div :class="{ error: $v.category.slug.$error }">
+
+    <div class="form form-input" :class="{ error: $v.category.slug.$error }">
       <label for="slug">URL（スラッグ）</label>
       <input
         v-model.trim="$v.category.slug.$model"
@@ -26,7 +27,7 @@
       文字です。
     </div>
 
-    <div :class="{ error: $v.category.name.$error }">
+    <div class="form form-input" :class="{ error: $v.category.name.$error }">
       <label for="name">カテゴリー名</label>
       <input
         v-model="$v.category.name.$model"
@@ -44,30 +45,96 @@
       文字です。
     </div>
 
-    <div :class="{ error: $v.category.parent.$error }">
+    <div class="form" :class="{ error: $v.category.parent.$error }">
       <label for="parent">親カテゴリー</label>
-      <select v-model="$v.category.parent.$model" name="parent">
-        <option :value="0">
-          親なし
-        </option>
-        <option v-for="c in categories" :key="c.id" :value="c.id">
-          {{ c.name }}
-        </option>
-      </select>
+      <div class="form-select">
+        <select v-model="$v.category.parent.$model" name="parent">
+          <option :value="0">
+            親なし
+          </option>
+          <option v-for="c in categories" :key="c.id" :value="c.id">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
     </div>
     <div v-if="!$v.category.parent.numeric" class="error">
       親カテゴリーは数値のみ入力可能です。
     </div>
-    <button type="submit">
-      登録する
-    </button>
+
+    <div class="form-btn">
+      <nui-button class="btn-red1">
+        登録する
+      </nui-button>
+    </div>
   </form>
 </template>
 
+<style lang="scss" scoped>
+.form {
+  margin-bottom: 10px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+.form-input {
+  input {
+    border: 1px solid $color-gray1;
+    border-radius: 0.25rem;
+    color: $color-black;
+    max-height: 32px;
+    padding: 20px 8px 20px;
+    width: 100%;
+  }
+}
+
+.form-select {
+  border: 1px solid $color-gray1;
+  border-radius: 0.25rem;
+  position: relative;
+  color: $color-black;
+
+  select {
+    color: $color-black;
+    padding: 10px 8px 10px;
+    width: 100%;
+  }
+
+  &::after {
+    bottom: 0;
+    color: $color-gray2;
+    content: "\f0d7";
+    display: block;
+    font-family: "Font Awesome 5 Pro";
+    font-size: 0.8em;
+    font-weight: 900;
+    height: 1em;
+    margin: auto;
+    pointer-events: none;
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    width: 1em;
+  }
+}
+
+.form-btn {
+  margin-top: 50px;
+  text-align: center;
+}
+</style>
+
 <script>
+import NuiButton from "@/components/commons/Button.vue"
 import { required, maxLength, numeric, helpers } from "vuelidate/lib/validators"
 
 export default {
+  components: {
+    NuiButton
+  },
   props: {
     categories: {
       type: Array,

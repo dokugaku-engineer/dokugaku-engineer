@@ -5,9 +5,9 @@
       <template slot="header">
         <div class="header">
           <h4>カテゴリー</h4>
-          <nui-button to="/admin/categories/new" class="btn-red1">
+          <link-button to="/admin/categories/new" class="btn-red1">
             新規作成
-          </nui-button>
+          </link-button>
         </div>
       </template>
       <template slot="content">
@@ -22,12 +22,12 @@
             <tr v-for="category in categories" :key="category.name">
               <td>{{ category.name }}</td>
               <td class="text-right">
-                <nui-button
+                <link-button
                   :to="`/admin/categories/${category.id}/edit`"
                   class="btn-xs btn-outline-teal1"
                 >
                   編集
-                </nui-button>
+                </link-button>
               </td>
             </tr>
           </tbody>
@@ -42,11 +42,6 @@
   align-items: center;
   display: flex;
   position: relative;
-
-  h4 {
-    display: inline-block;
-    font-weight: 700;
-  }
 
   a {
     position: absolute;
@@ -79,14 +74,14 @@
 <script>
 import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
 import ContentBox from "@/components/partials/admin/ContentBox.vue"
-import NuiButton from "@/components/commons/Button.vue"
+import LinkButton from "@/components/commons/LinkButton.vue"
 
 export default {
   layout: "admin",
   components: {
     ContentHeader,
     ContentBox,
-    NuiButton
+    LinkButton
   },
   async asyncData({ $axios }) {
     const data = await $axios.$get("/categories")

@@ -18,6 +18,11 @@
 .box-header {
   border-bottom: solid 1px $color-gray1;
   padding-bottom: 20px;
+
+  h4 {
+    display: inline-block;
+    font-weight: 700;
+  }
 }
 
 .box-content {
