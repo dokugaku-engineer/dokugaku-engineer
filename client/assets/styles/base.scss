@@ -35,6 +35,12 @@ ol, ul {
   list-style: none;
 }
 
+table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+
 .clearfix:after {
   content: "";
   clear: both;
