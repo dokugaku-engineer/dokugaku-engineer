@@ -1,12 +1,7 @@
 <template>
   <div>
     <content-header title="カテゴリーの新規作成" />
-    <content-box>
-      <template slot="header">
-        <div class="header">
-          <h4>新規作成</h4>
-        </div>
-      </template>
+    <content-box title="新規作成">
       <template slot="content">
         <category-form :categories="categories" />
       </template>

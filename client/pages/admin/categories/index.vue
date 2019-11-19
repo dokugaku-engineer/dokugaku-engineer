@@ -1,15 +1,11 @@
 <template>
   <div>
     <content-header title="カテゴリー一覧" />
-    <content-box>
-      <template slot="header">
-        <div class="header">
-          <h4>カテゴリー</h4>
-          <link-button to="/admin/categories/new" class="btn-red1">
-            新規作成
-          </link-button>
-        </div>
-      </template>
+    <content-box
+      title="カテゴリー"
+      to="/admin/categories/new"
+      button-text="新規作成"
+    >
       <template slot="content">
         <table class="table">
           <thead>
@@ -38,17 +34,6 @@
 </template>
 
 <style lang="scss" scoped>
-.header {
-  align-items: center;
-  display: flex;
-  position: relative;
-
-  a {
-    position: absolute;
-    right: 10px;
-  }
-}
-
 .table {
   thead {
     th {

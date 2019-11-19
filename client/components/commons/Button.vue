@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" type="submit">
+  <button class="btn" :type="submit ? 'submit' : ''" @click="$emit('on-click')">
     <slot />
   </button>
 </template>
@@ -13,6 +13,16 @@
   line-height: 1.5;
   padding: 0.5rem 2rem;
   text-align: center;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:disabled {
+    color: $color-disabled2;
+    background-color: $color-disabled1;
+    border-color: $color-disabled1;
+  }
 }
 
 .btn-xs {
@@ -29,4 +39,30 @@
   border-color: $color-teal1;
   color: $color-teal1;
 }
+
+.btn-outline-red1 {
+  border-color: $color-red1;
+  color: $color-red1;
+}
+
+.btn-outline-blue {
+  border-color: $color-blue;
+  color: $color-blue;
+}
+
+.btn-outline-purple {
+  border-color: $color-purple;
+  color: $color-purple;
+}
 </style>
+
+<script>
+export default {
+  props: {
+    submit: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>

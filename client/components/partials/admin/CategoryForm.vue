@@ -6,43 +6,53 @@
       </li>
     </ul>
 
-    <div class="form form-input" :class="{ error: $v.category.slug.$error }">
-      <label for="slug">URL（スラッグ）</label>
-      <input
-        v-model.trim="$v.category.slug.$model"
-        type="text"
-        name="slug"
-        required
-      />
-    </div>
-    <div v-if="submitted && !$v.category.slug.required" class="error">
-      URL名（スラッグ）は必須です。
-    </div>
-    <div v-if="!$v.category.slug.alphaNum" class="error">
-      URL名（スラッグ）は英数字のみ入力可能です。
-    </div>
-    <div v-if="!$v.category.slug.maxLength" class="error">
-      URL名（スラッグ）は最大で
-      {{ $v.category.slug.$params.maxLength.max }}
-      文字です。
+    <div class="form">
+      <div class="form-input" :class="{ error: $v.category.slug.$error }">
+        <label for="slug">URL（スラッグ）</label>
+        <input
+          v-model.trim="$v.category.slug.$model"
+          type="text"
+          name="slug"
+          required
+        />
+      </div>
+      <div
+        v-if="submitted && !$v.category.slug.required"
+        class="error error-text"
+      >
+        URL名（スラッグ）は必須です。
+      </div>
+      <div v-if="!$v.category.slug.alphaNum" class="error error-text">
+        URL名（スラッグ）は英数字のみ入力可能です。
+      </div>
+      <div v-if="!$v.category.slug.maxLength" class="error error-text">
+        URL名（スラッグ）は最大で
+        {{ $v.category.slug.$params.maxLength.max }}
+        文字です。
+      </div>
     </div>
 
-    <div class="form form-input" :class="{ error: $v.category.name.$error }">
-      <label for="name">カテゴリー名</label>
-      <input
-        v-model="$v.category.name.$model"
-        type="text"
-        name="name"
-        required
-      />
-    </div>
-    <div v-if="submitted && !$v.category.name.required" class="error">
-      カテゴリー名は必須です。
-    </div>
-    <div v-if="!$v.category.name.maxLength" class="error">
-      カテゴリー名は最大で
-      {{ $v.category.name.$params.maxLength.max }}
-      文字です。
+    <div class="form">
+      <div class="form-input" :class="{ error: $v.category.name.$error }">
+        <label for="name">カテゴリー名</label>
+        <input
+          v-model="$v.category.name.$model"
+          type="text"
+          name="name"
+          required
+        />
+      </div>
+      <div
+        v-if="submitted && !$v.category.name.required"
+        class="error error-text"
+      >
+        カテゴリー名は必須です。
+      </div>
+      <div v-if="!$v.category.name.maxLength" class="error error-text">
+        カテゴリー名は最大で
+        {{ $v.category.name.$params.maxLength.max }}
+        文字です。
+      </div>
     </div>
 
     <div class="form" :class="{ error: $v.category.parent.$error }">
@@ -57,13 +67,13 @@
           </option>
         </select>
       </div>
-    </div>
-    <div v-if="!$v.category.parent.numeric" class="error">
-      親カテゴリーは数値のみ入力可能です。
+      <div v-if="!$v.category.parent.numeric" class="error error-text">
+        親カテゴリーは数値のみ入力可能です。
+      </div>
     </div>
 
     <div class="form-btn">
-      <nui-button class="btn-red1">
+      <nui-button class="btn-red1" submit="true">
         登録する
       </nui-button>
     </div>
@@ -124,6 +134,14 @@
 .form-btn {
   margin-top: 50px;
   text-align: center;
+}
+
+.error {
+  color: $color-red3;
+}
+
+.error-text {
+  font-size: $font-size-sm;
 }
 </style>
 
