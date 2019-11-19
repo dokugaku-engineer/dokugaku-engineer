@@ -1,13 +1,8 @@
 <template>
-  <div class="container">
-    <div class="header">
-      <h1>ブログ記事の編集</h1>
-    </div>
-    <div class="box">
-      <div class="box-header">
-        <h4>編集</h4>
-      </div>
-      <div class="box-content">
+  <div>
+    <content-header title="ブログ記事の編集" />
+    <content-box title="編集">
+      <template slot="content">
         <post-form
           :posts="posts"
           :categories="categories"
@@ -18,16 +13,21 @@
           :category-id="post.category_post.category_id"
           :editing="true"
         />
-      </div>
-    </div>
+      </template>
+    </content-box>
   </div>
 </template>
 
 <script>
+import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
+import ContentBox from "@/components/partials/admin/ContentBox.vue"
 import PostForm from "@/components/partials/admin/PostForm.vue"
 
 export default {
+  layout: "admin",
   components: {
+    ContentHeader,
+    ContentBox,
     PostForm
   },
   async asyncData({ $axios, params }) {
