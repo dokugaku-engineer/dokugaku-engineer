@@ -30,14 +30,24 @@ export default {
     ContentBox,
     PostForm
   },
-  async asyncData({ $axios, params }) {
+  data() {
+    return {
+      categories: [],
+      posts: [],
+      post: {}
+    }
+  },
+  async created() {
+    // TODO: エラーになる
     // OPTIMIZE: 高速化するならpostsのみAPIから取得し、その後postsとpostに分離する。現在は処理の見やすさを重視し、別個にAPIから取得している
     const [posts, post, categories] = await Promise.all([
-      $axios.$get(`/posts?except=${params.id}`),
-      $axios.$get(`/posts/${params.id}`),
-      $axios.$get("/categories")
+      this.$axios.$get(`/posts?except=${this.$route.params.id}`),
+      this.$axios.$get(`/posts/${this.$route.params.id}`),
+      this.$axios.$get("/categories")
     ])
-    return { posts: posts, post: post, categories: categories }
+    this.posts = posts
+    this.post = post
+    this.categories = categories
   }
 }
 </script>

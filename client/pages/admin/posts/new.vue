@@ -21,12 +21,19 @@ export default {
     ContentBox,
     PostForm
   },
-  async asyncData({ $axios }) {
+  data() {
+    return {
+      categories: [],
+      posts: []
+    }
+  },
+  async created() {
     const [posts, categories] = await Promise.all([
-      $axios.$get("/posts"),
-      $axios.$get("/categories")
+      this.$axios.$get("/posts"),
+      this.$axios.$get("/categories")
     ])
-    return { posts: posts, categories: categories }
+    this.posts = posts
+    this.categories = categories
   }
 }
 </script>

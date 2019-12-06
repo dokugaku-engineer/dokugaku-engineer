@@ -102,9 +102,9 @@ export default {
       posts: []
     }
   },
-  async asyncData({ $axios }) {
-    const posts = await $axios.$get("/posts")
-    return { posts: posts }
+  async created() {
+    const posts = await this.$axios.$get("/posts")
+    this.posts = posts
   },
   methods: {
     async publish(postId) {

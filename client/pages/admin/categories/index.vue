@@ -68,9 +68,14 @@ export default {
     ContentBox,
     LinkButton
   },
-  async asyncData({ $axios }) {
-    const data = await $axios.$get("/categories")
-    return { categories: data }
+  data() {
+    return {
+      categories: []
+    }
+  },
+  async created() {
+    const data = await this.$axios.$get("/categories")
+    this.categories = data
   }
 }
 </script>

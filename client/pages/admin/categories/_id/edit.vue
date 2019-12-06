@@ -27,12 +27,20 @@ export default {
     ContentBox,
     CategoryForm
   },
-  async asyncData({ $axios, params }) {
+  data() {
+    return {
+      category: {},
+      categories: []
+    }
+  },
+  async created() {
+    // TODO: データを取得できてない
     const [category, categories] = await Promise.all([
-      $axios.$get(`/categories/${params.id}`),
-      $axios.$get(`/categories?except=${params.id}`)
+      this.$axios.$get(`/categories/${this.$route.params.id}`),
+      this.$axios.$get(`/categories?except=${this.$route.params.id}`)
     ])
-    return { category: category, categories: categories }
+    this.category = category
+    this.categories = categories
   }
 }
 </script>
