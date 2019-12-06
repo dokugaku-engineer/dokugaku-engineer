@@ -19,3 +19,4 @@ client/node_modules
 client/.nuxt
 client/.vscode
 client/.env
+client/dist
