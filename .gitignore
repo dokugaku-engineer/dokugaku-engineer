@@ -19,4 +19,7 @@ client/node_modules
 client/.nuxt
 client/.vscode
 client/.env
+client/.awspublish
 client/dist
+client/deploy.sh
+client/.awspublish-dokugaku-engineer-client

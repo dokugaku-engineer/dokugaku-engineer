@@ -69,6 +69,10 @@ export default {
     extend() {}
   },
   /*
+   ** Generate configuration
+   */
+  generate: {},
+  /*
    ** Global CSS
    */
   css: ["ress/dist/ress.min.css", "~assets/styles/app.scss"],

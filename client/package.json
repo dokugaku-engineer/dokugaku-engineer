@@ -22,11 +22,15 @@
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
     "babel-eslint": "^10.0.3",
+    "concurrent-transform": "^1.0.0",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.2.3",
+    "gulp": "^4.0.2",
+    "gulp-awspublish": "^4.0.1",
+    "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
     "node-sass": "^4.13.0",
     "prettier": "^1.18.2",
     "sass-loader": "^8.0.0"

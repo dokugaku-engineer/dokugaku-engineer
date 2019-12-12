@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export AWS_ACCESS_KEY_ID="key"
+export AWS_SECRET_ACCESS_KEY="secret"
+export AWS_BUCKET_NAME="example.com"
+export AWS_CLOUDFRONT="UPPERCASE"
+export AWS_DEFAULT_REGION="region"
+
+# nvm（node version manager）を読み込み、node（.nvmrc 内のバージョン）をインストールし、npm パッケージをインストールします。
+[ -s "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" && nvm use
+# まだインストールされていない場合は npm をインストールする
+[ ! -d "node_modules" ] && npm install
+
+npm run generate
+gulp deploy

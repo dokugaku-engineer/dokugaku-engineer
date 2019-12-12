@@ -7,6 +7,7 @@ RUN yum update -y
 RUN yum install -y git vim sudo procps
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 RUN yum install -y nodejs
+RUN npm install -g gulp
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
