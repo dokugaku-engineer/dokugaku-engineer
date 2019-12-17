@@ -26,13 +26,15 @@ ENV PATH $PATH:/root/.composer/vendor/bin
 
 # set php-fpm/www.conf
 RUN rm /etc/php-fpm.d/www.conf
-COPY php-fpm/www.conf /etc/php-fpm.d/www.conf
+COPY docker/api/php-fpm/www.conf /etc/php-fpm.d/www.conf
 
 # set xdebug
 RUN pecl install xdebug
 
 # set php.ini
-COPY php.ini  /etc/php.d/php.ini
+COPY docker/api/php.ini  /etc/php.d/php.ini
+
+COPY api/ var/www
 
 # expose 9000 port
 EXPOSE 9000

@@ -3,8 +3,8 @@ version: "3"
 services:
   client:
     build:
-      context: ./docker/client
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/client/Dockerfile
     ports:
       - "3000:3000"
     volumes:
@@ -14,8 +14,8 @@ services:
 
   nginx:
     build:
-      context: ./docker/nginx
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/nginx/Dockerfile
     ports:
       - "8080:80"
     volumes:
@@ -25,8 +25,8 @@ services:
 
   api:
     build:
-      context: ./docker/api
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: docker/api/Dockerfile
     ports:
       - "9000:9000"
     volumes:
@@ -36,8 +36,8 @@ services:
 
   db:
     build:
-      context: ./docker/db
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: docker/db/Dockerfile
     ports:
       - "3306:3306"
     env_file:

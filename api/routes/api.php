@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
-    Route::get('sample', 'SampleController@index');
+    Route::get('health', 'HealthController@index');
     Route::resource('categories', 'CategoryController')->only([
         'index', 'store', 'show', 'update'
     ]);
