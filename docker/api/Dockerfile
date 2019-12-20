@@ -34,7 +34,10 @@ RUN pecl install xdebug
 # set php.ini
 COPY docker/api/php.ini  /etc/php.d/php.ini
 
-COPY api/ var/www
+ARG env=development
+
+COPY api/ /var/www/
+COPY api/.env.${env} /var/www/.env
 
 # expose 9000 port
 EXPOSE 9000

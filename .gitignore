@@ -1,6 +1,7 @@
 .DS_Store
 
 docker/db/db-variables.env
+docker/nginx/nginx.conf
 
 api/node_modules
 api/public/hot
@@ -8,6 +9,7 @@ api/public/storage
 api/storage/*.key
 api/vendor
 api/.env
+api/.env.production
 api/.phpunit.result.cache
 api/Homestead.json
 api/Homestead.yaml
@@ -19,6 +21,7 @@ client/node_modules
 client/.nuxt
 client/.vscode
 client/.env
+client/.env.production
 client/.awspublish
 client/dist
 client/deploy.sh

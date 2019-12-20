@@ -2,23 +2,40 @@
 
 ## 起動
 
+環境変数を設定します。
+
 ```bash
-git pull
-
 cp docker/nginx/nginx_development.conf docker/nginx/nginx.conf
+cp api/.evn.development api/.env
+cp client/.env.development client.env
+```
 
-# clientに移動してローカルでnpm installを行う
+clientに移動してローカルでnpm installを行います。
+
+```bash
 cd client
 npm install
-
 cd ..
+```
 
+Dockerを起動します。
+
+```bash
 docker-compose up -d --build
 ```
 
-### データベースの作成
+apiでcomposer installを行います。
 
 ```bash
-docker exec -it dokugaku-engineer_api_1 /bin/bash
-php artisan migrate
+docker-compose exec api php artisan migrate
 ```
+
+データベースのマイグレーションを実行します。
+
+```bash
+docker-compose exec api php artisan migrate
+```
+
+これでサイトにアクセスできます。
+
+[http://localhost:3000/](http://localhost:3000/)
