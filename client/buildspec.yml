@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - sudo apt-get update
+  pre_build:
+    commands:
+      - echo 'Start npm install'
+      - npm install
+  build:
+    commands:
+      - echo 'Start npm run generate'
+      - npm run generate
+  post_build:
+    commands:
+      - echo 'Start gulp deploy'
+      - ./node_modules/.bin/gulp deploy
