@@ -16,10 +16,13 @@ phases:
       nodejs: 10
   pre_build:
     commands:
+      - pwd
+      - cd client
       - echo 'Start npm install'
       - npm install
   build:
     commands:
+      - pwd
       - echo 'Start npm run generate'
       - npm run generate
   post_build:
