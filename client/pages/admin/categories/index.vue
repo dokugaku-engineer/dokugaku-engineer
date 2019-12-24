@@ -1,6 +1,6 @@
 <template>
   <div>
-    <content-header title="カテゴリー一覧です" />
+    <content-header title="カテゴリー一覧" />
     <content-box
       title="カテゴリー"
       to="/admin/categories/new"

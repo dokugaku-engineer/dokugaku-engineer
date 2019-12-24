@@ -24,5 +24,4 @@ client/.env
 client/.env.production
 client/.awspublish
 client/dist
-client/deploy.sh
 client/.awspublish-dokugaku-engineer-client
