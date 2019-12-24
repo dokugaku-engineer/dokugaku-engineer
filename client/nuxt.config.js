@@ -1,6 +1,6 @@
 require("dotenv").config()
 
-import axios from 'axios'
+import axios from "axios"
 
 export default {
   mode: "universal",
@@ -73,20 +73,7 @@ export default {
   /*
    ** Generate configuration
    */
-  generate: {
-    routes () {
-      // TODO: 修正する
-      return axios.get('https://my-api/users')
-        .then((res) => {
-          return res.data.map((user) => {
-            return {
-              route: '/users/' + user.id,
-              payload: user
-            }
-          })
-        })
-    }
-  },
+  generate: {},
   /*
    ** Global CSS
    */
