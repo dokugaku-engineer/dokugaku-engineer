@@ -12,6 +12,8 @@ env:
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 10
     commands:
       - sudo apt-get update
   pre_build:
