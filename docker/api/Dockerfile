@@ -39,6 +39,8 @@ ARG env=development
 COPY api/ /var/www/
 COPY api/.env.${env} /var/www/.env
 
+RUN composer install
+
 # expose 9000 port
 EXPOSE 9000
 

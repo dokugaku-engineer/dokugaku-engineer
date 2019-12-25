@@ -22,6 +22,9 @@ env:
     AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_API_REPOSITORY_URI"
 
 phases:
+  install:
+    runtime-versions:
+      docker: 18
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
