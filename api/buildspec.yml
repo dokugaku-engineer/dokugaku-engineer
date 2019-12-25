@@ -1,0 +1,50 @@
+version: 0.2
+
+env:
+  parameter-store:
+    APP_URL: "/Prod/DokugakuEngineer/Api/APP_URL"
+    APP_NAME: "/Prod/DokugakuEngineer/Api/APP_NAME"
+    APP_ENV: "/Prod/DokugakuEngineer/Api/APP_ENV"
+    APP_KEY: "/Prod/DokugakuEngineer/Api/APP_KEY"
+    APP_DEBUG: "/Prod/DokugakuEngineer/Api/APP_DEBUG"
+    CLIENT_SCHEME: "/Prod/DokugakuEngineer/Api/CLIENT_SCHEME"
+    CLIENT_HOST: "/Prod/DokugakuEngineer/Api/CLIENT_HOST"
+    LOG_CHANNEL: "/Prod/DokugakuEngineer/Api/LOG_CHANNEL"
+    DB_CONNECTION: "/Prod/DokugakuEngineer/Api/DB_CONNECTION"
+    DB_READ_HOST: "/Prod/DokugakuEngineer/Api/DB_READ_HOST"
+    DB_WRITE_HOST: "/Prod/DokugakuEngineer/Api/DB_WRITE_HOST"
+    DB_PORT: "/Prod/DokugakuEngineer/Api/DB_PORT"
+    DB_DATABASE: "/Prod/DokugakuEngineer/Api/DB_DATABASE"
+    DB_USERNAME: "/Prod/DokugakuEngineer/Api/DB_USERNAME"
+    DB_PASSWORD: "/Prod/DokugakuEngineer/Api/DB_PASSWORD"
+    AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Api/AWS_DEFAULT_REGION"
+    AWS_NGINX_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_NGINX_REPOSITORY_URI"
+    AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_API_REPOSITORY_URI"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo API Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $AWS_NGINX_REPOSITORY_URI:latest -f docker/nginx/Dockerfile . --build-arg env=production
+      - docker build -t $AWS_API_REPOSITORY_URI:latest -f docker/api/Dockerfile . --build-arg env=production
+      - docker tag $AWS_NGINX_REPOSITORY_URI:latest $AWS_NGINX_REPOSITORY_URI:$IMAGE_TAG
+      - docker tag $AWS_API_REPOSITORY_URI:latest $AWS_API_REPOSITORY_URI:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $AWS_NGINX_REPOSITORY_URI:latest
+      - docker push $AWS_NGINX_REPOSITORY_URI:$IMAGE_TAG
+      - docker push $AWS_API_REPOSITORY_URI:latest
+      - docker push $AWS_API_REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"nginx","imageUri":"%s"},{"name":"api","imageUri":"%s"},]' $AWS_NGINX_REPOSITORY_URI:$IMAGE_TAG $AWS_API_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+artifacts:
+  files: imagedefinitions.json
