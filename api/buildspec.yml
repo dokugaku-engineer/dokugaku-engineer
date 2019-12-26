@@ -48,6 +48,6 @@ phases:
       - docker push $AWS_API_REPOSITORY_URI:latest
       - docker push $AWS_API_REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"nginx","imageUri":"%s"},{"name":"api","imageUri":"%s"},]' $AWS_NGINX_REPOSITORY_URI:$IMAGE_TAG $AWS_API_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"nginx","imageUri":"%s"},{"name":"api","imageUri":"%s"}]' $AWS_NGINX_REPOSITORY_URI:$IMAGE_TAG $AWS_API_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
