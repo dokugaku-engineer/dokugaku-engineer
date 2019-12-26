@@ -37,7 +37,6 @@ COPY docker/api/php.ini  /etc/php.d/php.ini
 ARG env=development
 
 COPY api/ /var/www/
-COPY api/.env.${env} /var/www/.env
 
 RUN composer install
 
