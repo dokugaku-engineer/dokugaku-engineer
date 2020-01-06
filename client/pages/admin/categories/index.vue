@@ -2,7 +2,7 @@
   <div>
     <content-header title="カテゴリー一覧" />
     <content-box
-      title="カテゴリー"
+      title="カテゴリー一覧"
       to="/admin/categories/new"
       button-text="新規作成"
     >
