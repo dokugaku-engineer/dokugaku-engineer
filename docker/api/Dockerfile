@@ -34,8 +34,6 @@ RUN pecl install xdebug
 # set php.ini
 COPY docker/api/php.ini  /etc/php.d/php.ini
 
-ARG env=development
-
 COPY api/ /var/www/
 
 RUN composer install
