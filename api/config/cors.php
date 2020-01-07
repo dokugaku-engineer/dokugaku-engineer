@@ -13,7 +13,7 @@ return [
     */
 
     'supportsCredentials' => false,
-    'allowedOrigins' => [env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_HOST', 'localhost') . env('CLIENT_PORT')],
+    'allowedOrigins' => [env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3000')],
     'allowedHeaders' => ['Content-Type', 'X-Requested-With'],
     'allowedMethods' => ['GET', 'POST', 'PUT', 'DELETE'],
     'exposedHeaders' => [],
