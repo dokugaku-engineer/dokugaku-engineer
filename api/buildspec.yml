@@ -8,7 +8,7 @@ env:
     APP_KEY: "/Prod/DokugakuEngineer/Api/APP_KEY"
     APP_DEBUG: "/Prod/DokugakuEngineer/Api/APP_DEBUG"
     CLIENT_SCHEME: "/Prod/DokugakuEngineer/Api/CLIENT_SCHEME"
-    CLIENT_HOST: "/Prod/DokugakuEngineer/Api/CLIENT_HOST"
+    CLIENT_URL: "/Prod/DokugakuEngineer/Api/CLIENT_URL"
     LOG_CHANNEL: "/Prod/DokugakuEngineer/Api/LOG_CHANNEL"
     DB_CONNECTION: "/Prod/DokugakuEngineer/Api/DB_CONNECTION"
     DB_READ_HOST: "/Prod/DokugakuEngineer/Api/DB_READ_HOST"
