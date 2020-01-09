@@ -24,15 +24,17 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN composer global require laravel/installer
 ENV PATH $PATH:/root/.composer/vendor/bin
 
-# set php-fpm/www.conf
-RUN rm /etc/php-fpm.d/www.conf
-COPY docker/api/php-fpm/www.conf /etc/php-fpm.d/www.conf
-
 # set xdebug
 RUN pecl install xdebug
 
+ARG env=development
+
+# set php-fpm.conf
+COPY docker/api/php-fpm/php-fpm.conf /etc/php-fpm.conf
+COPY docker/api/php-fpm/www.${env}.conf /etc/php-fpm.d/www.conf
+
 # set php.ini
-COPY docker/api/php.ini  /etc/php.d/php.ini
+COPY docker/api/php.${env}.ini  /etc/php.d/php.ini
 
 COPY api/ /var/www/
 
@@ -40,8 +42,10 @@ RUN composer install
 
 RUN chmod -R 777 /var/www/storage/ /var/www/bootstrap/cache/
 
+RUN ln -sf /dev/stdout /var/www/storage/logs/laravel.log
+
 # expose 9000 port
 EXPOSE 9000
 
 # PHP-FPM on foreground
-ENTRYPOINT /usr/sbin/php-fpm -F
+ENTRYPOINT ["/usr/sbin/php-fpm", "-F"]
