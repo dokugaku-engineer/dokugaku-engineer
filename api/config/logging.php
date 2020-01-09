@@ -36,8 +36,17 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily', 'stderr'],
+            'channels' => ['daily', 'stdout'],
             'ignore_exceptions' => false,
+        ],
+
+        'stdout' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'with' => [
+                'stream' => 'php://stdout',
+                'level' => 'debug',
+            ],
         ],
 
         'single' => [

@@ -42,8 +42,6 @@ RUN composer install
 
 RUN chmod -R 777 /var/www/storage/ /var/www/bootstrap/cache/
 
-RUN ln -sf /dev/stdout /var/www/storage/logs/laravel.log
-
 # expose 9000 port
 EXPOSE 9000
 
