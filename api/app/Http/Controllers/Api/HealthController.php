@@ -9,6 +9,6 @@ class HealthController extends Controller
     // TODO: DB疎通させたほうがよい
     public function index()
     {
-        return response()->json(['health' => 'ok'], 200, []);
+        return response()->json(['health' => 'ok!!'], 200, []);
     }
 }
