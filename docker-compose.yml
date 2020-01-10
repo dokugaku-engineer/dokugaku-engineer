@@ -35,9 +35,7 @@ services:
       - db
 
   db:
-    build:
-      context: .
-      dockerfile: docker/db/Dockerfile
+    image: mysql:5.7.12
     ports:
       - "3306:3306"
     env_file:
