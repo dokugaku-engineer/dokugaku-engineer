@@ -8,7 +8,7 @@ RUN amazon-linux-extras install -y php7.3
 RUN yum install -y git vim sudo procps
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 ## for php and laravel
-RUN yum install -y php-mbstring php-xml php-zip php-fpm nodejs
+RUN yum install -y php-mbstring php-xml php-zip php-fpm php-soap nodejs
 ## for xdebug
 RUN yum install -y php-pear php-devel pcre-devel gcc make
 
