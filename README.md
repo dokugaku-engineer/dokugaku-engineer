@@ -25,12 +25,6 @@ Dockerを起動します。
 docker-compose up -d --build
 ```
 
-apiでcomposer installを行います。
-
-```bash
-docker-compose exec api composer install
-```
-
 データベースのマイグレーションを実行します。
 
 ```bash
