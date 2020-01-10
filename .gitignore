@@ -4,15 +4,11 @@ docker/db/db-variables.env
 docker/nginx/nginx.conf
 
 api/node_modules
-api/public/hot
 api/public/storage
 api/storage/*.key
 api/vendor
 api/.env
 api/.env.production
-api/.phpunit.result.cache
-api/Homestead.json
-api/Homestead.yaml
 api/npm-debug.log
 api/yarn-error.log
 api/.vscode
