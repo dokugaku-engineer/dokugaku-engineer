@@ -6,6 +6,7 @@
 
 ```bash
 cp docker/nginx/nginx_development.conf docker/nginx/nginx.conf
+cp docker/db/db-variables.development.env docker/db/db-variables.env
 cp api/.evn.development api/.env
 cp client/.env.development client.env
 ```
