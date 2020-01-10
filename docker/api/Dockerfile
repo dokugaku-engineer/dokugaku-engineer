@@ -41,6 +41,8 @@ COPY api/ /var/www/
 RUN composer install
 
 RUN chmod -R 777 /var/www/storage/ /var/www/bootstrap/cache/
+RUN php artisan config:clear && \
+    php artisan cache:clear
 
 # expose 9000 port
 EXPOSE 9000
