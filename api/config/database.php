@@ -45,7 +45,6 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
             'read' => [
                 'host' => [
                     env('DB_READ_HOST')
