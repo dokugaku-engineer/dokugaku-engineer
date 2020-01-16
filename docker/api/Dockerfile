@@ -49,7 +49,7 @@ RUN mkdir /tmp/ssm && \
     curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o /tmp/ssm/amazon-ssm-agent.rpm && \
     yum install -y /tmp/ssm/amazon-ssm-agent.rpm && \
     stop amazon-ssm-agent && \
-    amazon-ssm-agent -register -code "${SSM_AGENT_CODE}" -id "${SSM_AGENT_ID}" -region "${AWS_DEFAULT_REGION}" && \
+    amazon-ssm-agent -register -code "${SSM_AGENT_CODE}" -id "${SSM_AGENT_ID}" -region "ap-northeast-1" && \
     start amazon-ssm-agent &
 
 # expose 9000 port
