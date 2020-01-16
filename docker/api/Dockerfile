@@ -42,6 +42,15 @@ RUN composer install
 
 RUN chmod -R 777 /var/www/storage/ /var/www/bootstrap/cache/
 RUN chmod -R 777 /var/www/vendor/
+# RUN php artisan config:cache
+
+# SSMエージェントの起動
+RUN mkdir /tmp/ssm && \
+    curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o /tmp/ssm/amazon-ssm-agent.rpm && \
+    yum install -y /tmp/ssm/amazon-ssm-agent.rpm && \
+    stop amazon-ssm-agent && \
+    amazon-ssm-agent -register -code "${SSM_AGENT_CODE}" -id "${SSM_AGENT_ID}" -region "${AWS_DEFAULT_REGION}" && \
+    start amazon-ssm-agent &
 
 # expose 9000 port
 EXPOSE 9000
