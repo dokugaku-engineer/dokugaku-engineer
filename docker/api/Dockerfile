@@ -45,11 +45,11 @@ RUN chmod -R 777 /var/www/vendor/
 # RUN php artisan config:cache
 
 # SSMエージェントの起動
-RUN mkdir /tmp/ssm && \
-    curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o /tmp/ssm/amazon-ssm-agent.rpm && \
-    yum install -y /tmp/ssm/amazon-ssm-agent.rpm && \
-    stop amazon-ssm-agent && \
-    amazon-ssm-agent -register -code "${SSM_AGENT_CODE}" -id "${SSM_AGENT_ID}" -region "ap-northeast-1"
+RUN mkdir /tmp/ssm
+RUN curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o /tmp/ssm/amazon-ssm-agent.rpm
+RUN yum install -y /tmp/ssm/amazon-ssm-agent.rpm
+RUN stop amazon-ssm-agent
+RUN amazon-ssm-agent -register -code "${SSM_AGENT_CODE}" -id "${SSM_AGENT_ID}" -region "ap-northeast-1"
 RUN start amazon-ssm-agent &
 RUN echo ${SSM_AGENT_CODE}
 RUN echo "${SSM_AGENT_ID}"
