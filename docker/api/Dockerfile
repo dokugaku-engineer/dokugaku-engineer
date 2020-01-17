@@ -2,7 +2,7 @@ FROM amazonlinux:2.0.20190823.1 as a2-systemd
 
 ENV container docker
 RUN yum update -y
-RUN yum install systemd -y
+RUN yum -y install sudo systemd && yum clean all
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
     rm -f /lib/systemd/system/multi-user.target.wants/*;\
@@ -61,6 +61,7 @@ RUN chmod -R 777 /var/www/vendor/
 # RUN php artisan config:cache
 
 # SSMエージェントの起動
+RUN echo "hello"
 RUN echo ${SSM_AGENT_CODE}
 RUN echo "${SSM_AGENT_ID}"
 RUN mkdir /tmp/ssm
