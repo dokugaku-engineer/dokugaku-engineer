@@ -44,6 +44,8 @@ RUN chmod -R 777 /var/www/vendor/
 # RUN php artisan config:cache
 
 # SSMエージェントの起動
+ARG ssm_agent_code=hoge
+ARG ssm_agent_id=hoge
 RUN echo "hello"
 RUN echo ${ssm_agent_code}
 RUN echo "${ssm_agent_id}"
