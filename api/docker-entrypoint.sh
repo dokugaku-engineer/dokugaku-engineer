@@ -7,4 +7,4 @@ set -e
 #   nohup amazon-ssm-agent > /dev/null &
 # fi
 
-/usr/sbin/php-fpm -F
+exec /usr/sbin/php-fpm -F
