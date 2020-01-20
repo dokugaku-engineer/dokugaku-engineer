@@ -45,12 +45,12 @@ RUN chmod -R 777 /var/www/vendor/
 
 # SSMエージェントの起動
 RUN echo "hello"
-RUN echo ${SSM_AGENT_CODE}
-RUN echo "${SSM_AGENT_ID}"
+RUN echo ${ssm_agent_code}
+RUN echo "${ssm_agent_id}"
 RUN mkdir /tmp/ssm
 RUN curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o /tmp/ssm/amazon-ssm-agent.rpm
 RUN yum install -y /tmp/ssm/amazon-ssm-agent.rpm
-RUN amazon-ssm-agent -register -code "${SSM_AGENT_CODE}" -id "${SSM_AGENT_ID}" -region "ap-northeast-1"
+RUN amazon-ssm-agent -register -code "${ssm_agent_code}" -id "${ssm_agent_id}" -region "ap-northeast-1"
 
 # expose 9000 port
 EXPOSE 9000

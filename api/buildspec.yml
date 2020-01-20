@@ -38,7 +38,7 @@ phases:
       - echo API Build started on `date`
       - echo Building the Docker image...
       - docker build -t $AWS_NGINX_REPOSITORY_URI:latest -f docker/nginx/Dockerfile . --build-arg env=production
-      - docker build -t $AWS_API_REPOSITORY_URI:latest -f docker/api/Dockerfile . --build-arg env=production
+      - docker build -t $AWS_API_REPOSITORY_URI:latest -f docker/api/Dockerfile . --build-arg env=production --build-arg ssm_agent_code=$SSM_AGENT_CODE --build-arg ssm_agent_id=$SSM_AGENT_ID
       - docker tag $AWS_NGINX_REPOSITORY_URI:latest $AWS_NGINX_REPOSITORY_URI:$IMAGE_TAG
       - docker tag $AWS_API_REPOSITORY_URI:latest $AWS_API_REPOSITORY_URI:$IMAGE_TAG
   post_build:
