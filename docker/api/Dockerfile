@@ -43,19 +43,5 @@ RUN chmod -R 777 /var/www/storage/ /var/www/bootstrap/cache/
 RUN chmod -R 777 /var/www/vendor/
 # RUN php artisan config:cache
 
-# SSMエージェントの起動
-ARG ssm_agent_code=hoge
-ARG ssm_agent_id=hoge
-RUN echo "hello"
-RUN echo ${ssm_agent_code}
-RUN echo "${ssm_agent_id}"
-RUN mkdir /tmp/ssm
-RUN curl https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm -o /tmp/ssm/amazon-ssm-agent.rpm
-RUN yum install -y /tmp/ssm/amazon-ssm-agent.rpm
-RUN amazon-ssm-agent -register -code "${ssm_agent_code}" -id "${ssm_agent_id}" -region "ap-northeast-1"
-
 # expose 9000 port
 EXPOSE 9000
-
-# PHP-FPM on foreground
-# ENTRYPOINT ["/usr/sbin/php-fpm", "-F"]
