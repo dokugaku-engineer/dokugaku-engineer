@@ -58,4 +58,4 @@ RUN amazon-ssm-agent -register -code "${ssm_agent_code}" -id "${ssm_agent_id}" -
 EXPOSE 9000
 
 # PHP-FPM on foreground
-ENTRYPOINT ["/usr/sbin/php-fpm", "-F"]
+# ENTRYPOINT ["/usr/sbin/php-fpm", "-F"]
