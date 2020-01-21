@@ -31,7 +31,7 @@
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.0.1",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.18.2",
     "sass-loader": "^8.0.0"
   }

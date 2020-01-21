@@ -8,7 +8,7 @@
 cp docker/nginx/nginx.development.conf docker/nginx/nginx.conf
 cp docker/db/db-variables.development.env docker/db/db-variables.env
 cp api/.env.development api/.env
-cp client/.env.development client.env
+cp client/.env.development client/.env
 ```
 
 clientに移動してローカルでnpm installを行います。
