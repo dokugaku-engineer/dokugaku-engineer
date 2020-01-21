@@ -4,12 +4,13 @@ WORKDIR /var/www
 
 # install package
 RUN amazon-linux-extras install -y php7.3
-RUN yum install -y git vim sudo procps
+RUN yum install -y git vim sudo procps openssh-server
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 ## for php and laravel
 RUN yum install -y php-mbstring php-xml php-zip php-fpm php-soap nodejs
 ## for xdebug
 RUN yum install -y php-pear php-devel pcre-devel gcc make
+
 
 # install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -39,9 +40,14 @@ COPY api/ /var/www/
 
 RUN composer install
 
-RUN chmod -R 777 /var/www/storage/ /var/www/bootstrap/cache/
-RUN chmod -R 777 /var/www/vendor/
+RUN chmod -R a+w /var/www/storage/ /var/www/bootstrap/cache/ /var/www/vendor/
 # RUN php artisan config:cache
 
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i s/PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config
+RUN sed -i s/#PermitUserEnvironment.*/PermitUserEnvironment\ yes/ /etc/ssh/sshd_config
+
 # expose 9000 port
+
 EXPOSE 9000
+EXPOSE 22

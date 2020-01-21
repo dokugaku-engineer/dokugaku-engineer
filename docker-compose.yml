@@ -32,6 +32,7 @@ services:
       - /var/www/docker-entrypoint.sh
     ports:
       - "9000:9000"
+      - "22:22"
     volumes:
       - ./api:/var/www
     depends_on:
