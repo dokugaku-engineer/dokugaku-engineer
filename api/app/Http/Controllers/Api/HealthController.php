@@ -11,7 +11,7 @@ class HealthController extends Controller
     {
         return response()->json(
             [
-                'health' => 'ok!!',
+                'health' => 'ok',
                 'c' => env('DB_CONNECTION'),
                 'r' => env('DB_READ_HOST'),
                 'r' => env('DB_WRITE_HOST'),
