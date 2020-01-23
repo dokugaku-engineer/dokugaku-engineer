@@ -4,7 +4,7 @@ WORKDIR /var/www
 
 # install package
 RUN amazon-linux-extras install -y php7.3
-RUN yum install -y git vim sudo procps openssh-server
+RUN yum install -y git vim sudo procps
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 ## for php and laravel
 RUN yum install -y php-mbstring php-xml php-zip php-fpm php-soap nodejs
@@ -42,9 +42,11 @@ RUN composer install
 
 RUN chmod -R a+w /var/www/storage/ /var/www/bootstrap/cache/ /var/www/vendor/
 
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -i s/PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config
-RUN sed -i s/#PermitUserEnvironment.*/PermitUserEnvironment\ yes/ /etc/ssh/sshd_config
+# SSHしたいときはコメントアウトする
+# RUN yum install -y openssh-server
+# RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+# RUN sed -i s/PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config
+# RUN sed -i s/#PermitUserEnvironment.*/PermitUserEnvironment\ yes/ /etc/ssh/sshd_config
 
 # expose 9000 port
 

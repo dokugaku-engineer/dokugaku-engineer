@@ -2,21 +2,6 @@ version: 0.2
 
 env:
   parameter-store:
-    APP_URL: "/Prod/DokugakuEngineer/Api/APP_URL"
-    APP_NAME: "/Prod/DokugakuEngineer/Api/APP_NAME"
-    APP_ENV: "/Prod/DokugakuEngineer/Api/APP_ENV"
-    APP_KEY: "/Prod/DokugakuEngineer/Api/APP_KEY"
-    APP_DEBUG: "/Prod/DokugakuEngineer/Api/APP_DEBUG"
-    CLIENT_SCHEME: "/Prod/DokugakuEngineer/Api/CLIENT_SCHEME"
-    CLIENT_URL: "/Prod/DokugakuEngineer/Api/CLIENT_URL"
-    LOG_CHANNEL: "/Prod/DokugakuEngineer/Api/LOG_CHANNEL"
-    DB_CONNECTION: "/Prod/DokugakuEngineer/Api/DB_CONNECTION"
-    DB_READ_HOST: "/Prod/DokugakuEngineer/Api/DB_READ_HOST"
-    DB_WRITE_HOST: "/Prod/DokugakuEngineer/Api/DB_WRITE_HOST"
-    DB_PORT: "/Prod/DokugakuEngineer/Api/DB_PORT"
-    DB_DATABASE: "/Prod/DokugakuEngineer/Api/DB_DATABASE"
-    DB_USERNAME: "/Prod/DokugakuEngineer/Api/DB_USERNAME"
-    DB_PASSWORD: "/Prod/DokugakuEngineer/Api/DB_PASSWORD"
     AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Api/AWS_DEFAULT_REGION"
     AWS_NGINX_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_NGINX_REPOSITORY_URI"
     AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_API_REPOSITORY_URI"
