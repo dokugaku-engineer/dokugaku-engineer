@@ -41,7 +41,6 @@ COPY api/ /var/www/
 RUN composer install
 
 RUN chmod -R a+w /var/www/storage/ /var/www/bootstrap/cache/ /var/www/vendor/
-RUN php artisan config:cache
 
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i s/PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config

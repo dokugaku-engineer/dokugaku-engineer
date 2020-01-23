@@ -21,4 +21,6 @@ echo ${DB_PORT}
 #   amazon-ssm-agent &
 # fi
 
+php artisan config:cache
+
 /usr/sbin/php-fpm -F
