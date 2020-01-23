@@ -14,12 +14,11 @@ class HealthController extends Controller
                 'health' => 'ok',
                 'c' => env('DB_CONNECTION'),
                 'r' => env('DB_READ_HOST'),
-                'r' => env('DB_WRITE_HOST'),
-                'p' => env('DB_PORT'),
+                'w' => env('DB_WRITE_HOST'),
+                'po' => env('DB_PORT'),
                 'd' => env('DB_DATABASE'),
                 'u' => env('DB_USERNAME'),
-                'p' => env('DB_PASSWORD'),
-                's' => env('DB_SOCKET'),
+                'ps' => env('DB_PASSWORD'),
             ],
             200, []);
     }
