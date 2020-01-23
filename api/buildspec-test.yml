@@ -19,9 +19,7 @@ env:
     DB_PASSWORD: "/Prod/DokugakuEngineer/Api/DB_PASSWORD"
     AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Api/AWS_DEFAULT_REGION"
     AWS_NGINX_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/TEST/AWS_NGINX_REPOSITORY_URI"
-    AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/TEST/AWS_API_REPOSITORY_URI_TEST"
-    SSM_AGENT_CODE: "/Prod/DokugakuEngineer/Api/SSM_AGENT_CODE"
-    SSM_AGENT_ID: "/Prod/DokugakuEngineer/Api/SSM_AGENT_ID"
+    AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/TEST/AWS_API_REPOSITORY_URI"
 
 phases:
   install:

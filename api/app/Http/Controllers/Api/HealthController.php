@@ -12,7 +12,15 @@ class HealthController extends Controller
         return response()->json(
             [
                 'health' => 'ok',
-                'c' => env('DB_CONNECTION'),
+                'name' => env('APP_NAME'),
+                'env' => env('APP_ENV'),
+                'key' => env('APP_KEY'),
+                'debug' => env('APP_DEBUG'),
+                'url' => env('APP_URL'),
+                'scheme' => env('CLIENT_SCHEME'),
+                'clienturl' => env('CLIENT_URL'),
+                'log' => env('LOG_CHANNEL'),
+                'connection' => env('DB_CONNECTION'),
                 'r' => env('DB_READ_HOST'),
                 'w' => env('DB_WRITE_HOST'),
                 'po' => env('DB_PORT'),
