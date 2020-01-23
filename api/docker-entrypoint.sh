@@ -14,7 +14,7 @@ echo ${DB_WRITE_HOST}
 echo ${DB_DATABASE}
 echo ${DB_USERNAME}
 echo ${DB_PASSWORD}
-echo ${DB_SOCKET}
+echo ${DB_PORT}
 
 # if [ "$SSM_ACTIVATE" = "true" ]; then
 #   amazon-ssm-agent -register -code "${ACTIVATE_CODE}" -id "${ACTIVATE_ID}" -region "ap-northeast-1" -y
