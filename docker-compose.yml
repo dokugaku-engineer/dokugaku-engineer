@@ -7,6 +7,7 @@ services:
       dockerfile: docker/client/Dockerfile
     ports:
       - "3000:3000"
+      - "8081:8081"
     volumes:
       - ./client:/var/www
       - /var/www/node_modules/

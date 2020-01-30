@@ -12,5 +12,5 @@ COPY client/ /var/www/
 RUN npm install --no-optional
 
 ENV HOST 0.0.0.0
-EXPOSE 3000
+EXPOSE 3000 8081
 CMD ["npm", "run", "dev"]

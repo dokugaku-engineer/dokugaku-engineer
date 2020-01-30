@@ -9,7 +9,8 @@
     "generate": "nuxt generate",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue .",
-    "lintfix": "eslint --fix --ext .js,.vue ."
+    "lintfix": "eslint --fix --ext .js,.vue .",
+    "http-server": "http-server ./dist -p 8081"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.3",
@@ -31,6 +32,7 @@
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.1.1",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
+    "http-server": "^0.12.1",
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2"
