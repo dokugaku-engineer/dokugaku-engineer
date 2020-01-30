@@ -12,27 +12,27 @@
     "lintfix": "eslint --fix --ext .js,.vue ."
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.6.0",
+    "@nuxtjs/axios": "^5.9.3",
     "@nuxtjs/style-resources": "^1.0.0",
-    "nuxt": "^2.10.1",
-    "ress": "^2.0.1",
-    "vuelidate": "^0.7.4"
+    "nuxt": "^2.11.0",
+    "ress": "^2.0.4",
+    "vuelidate": "^0.7.5"
   },
   "license": "ISC",
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
     "babel-eslint": "^10.0.3",
     "concurrent-transform": "^1.0.0",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-loader": "^3.0.2",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-vue": "^5.2.3",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-vue": "^6.1.2",
     "gulp": "^4.0.2",
-    "gulp-awspublish": "^4.0.1",
+    "gulp-awspublish": "^4.1.1",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
     "node-sass": "^4.13.1",
-    "prettier": "^1.18.2",
-    "sass-loader": "^8.0.0"
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.2"
   }
 }

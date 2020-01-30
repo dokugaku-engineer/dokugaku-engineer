@@ -11,14 +11,6 @@ cp api/.env.development api/.env
 cp client/.env.development client/.env
 ```
 
-clientに移動してローカルでnpm installを行います。
-
-```bash
-cd client
-npm install
-cd ..
-```
-
 Dockerを起動します。
 
 ```bash

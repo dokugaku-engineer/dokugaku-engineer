@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     volumes:
       - ./client:/var/www
+      - /var/www/node_modules/
     depends_on:
       - nginx
 
