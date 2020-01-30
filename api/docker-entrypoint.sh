@@ -8,6 +8,8 @@ set -e
 # echo "root:$root_pw" | chpasswd
 # /usr/sbin/sshd
 
-php artisan config:cache
+if [ ${APP_ENV} = "production" ]; then
+  php artisan config:cache
+fi
 
 /usr/sbin/php-fpm -F

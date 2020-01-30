@@ -35,6 +35,8 @@ services:
       - "22:22"
     volumes:
       - ./api:/var/www
+    environment:
+      - APP_ENV=development
     depends_on:
       - db
 
