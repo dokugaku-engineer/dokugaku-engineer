@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: docker/client/Dockerfile
     ports:
-      - "3000:3000"
+      - "3333:3333"
       - "8081:8081"
     volumes:
       - ./client:/var/www

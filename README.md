@@ -33,4 +33,4 @@ docker-compose exec api php artisan migrate
 
 これでサイトにアクセスできます。
 
-[http://localhost:3000/](http://localhost:3000/)
+[http://localhost:3333/](http://localhost:3333/)
