@@ -67,7 +67,7 @@
   background-color: $color-white2;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog__content {
     margin: 0 auto 20px;
     max-width: 1230px;
@@ -83,7 +83,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-post__main {
     float: left;
     margin-bottom: 1vw;
@@ -96,7 +96,7 @@
   padding: 20px 0 15px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-post__header {
     padding: 46px 0 36px;
   }
@@ -117,7 +117,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-post__metadata {
     font-size: $font-size-sm;
     margin-bottom: 20px;
@@ -129,7 +129,7 @@
   font-weight: 700;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-post__title {
     font-size: 2.8rem;
   }
@@ -187,7 +187,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-post__content {
     p {
       margin: 0 0 1.8em;
@@ -227,7 +227,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-post__contents {
     padding: 20px;
   }
