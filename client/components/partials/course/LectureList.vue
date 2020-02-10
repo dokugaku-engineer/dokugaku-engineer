@@ -1,5 +1,5 @@
 <template>
-  <transion name="fade">
+  <div>
     <div @click="showLecture = !showLecture" class="lesson-title" :class="lesson.lessonPlay ? 'play' : ''">
       <h2>
         レッスン{{ lesson.lessonNo }}：<span class="lesson-title-detail">{{ lesson.lessonTitle }}</span>
@@ -14,7 +14,7 @@
         </a>
       </li>
     </ol>
-  </transion>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -62,7 +62,7 @@
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
 
   i {
     margin-right: 1.4rem;
@@ -77,15 +77,20 @@
   }
 }
 
+@media screen and (min-width: 769px) {
+  .lecture-link {
+    white-space: nowrap;
+  }
+}
+
 .play {
   color: $color-black;
   font-weight: 700;
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .2s;
 }
-
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }

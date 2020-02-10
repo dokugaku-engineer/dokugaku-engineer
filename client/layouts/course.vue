@@ -4,8 +4,28 @@
       <h2 class="header-logo">
         <logo />
       </h2>
-      <!-- <h1 class="header-title">コースについて</h1> -->
-      <span class="header-title">コースについて</span>
+      <i @click="showMenu = !showMenu" class="far fa-bars header-bars"></i>
+      <transition name="fade">
+        <div v-if="showMenu" class="menu">
+          <i @click="showMenu = !showMenu" class="fal fa-times fa-lg header-cross"></i>
+          <div class="menu-inner">
+            <div class="lesson-course">
+              <div class="lesson">
+                <h2 class="lesson-title">ホーム</h2>
+              </div>
+            </div>
+            <div class="lesson-course">
+              <div class="lesson">
+                <h2 class="lesson-title">コースについて</h2>
+              </div>
+            </div>
+            <div v-for="(lesson, index) in lessons" class="lesson">
+              <LectureList :lesson="lesson" />
+            </div>
+          </div>
+        </div>
+      </transition>
+      <h1 class="header-title">コースについて</h1>
     </header>
     
     <div class="main">
@@ -23,6 +43,9 @@
         <nuxt />
       </div>
     </div>
+
+    
+
     <div class="footer_wrap">
       <Footer />
     </div>
@@ -34,6 +57,34 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.header-logo {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .header-logo {
+    display: block;
+  }
+}
+
+.header-bars {
+  color: $color-red1;
+  display: block;
+  margin-right: 1rem;
+}
+
+@media screen and (min-width: 769px) {
+  .header-bars {
+    display: none;
+  }
+}
+
+.header-cross {
+  color: $color-red1;
+  margin: 1.5rem 1rem .5rem;
+
 }
 
 .header {
@@ -50,6 +101,30 @@
   width: 100%;
 }
 
+.menu {
+  background-color: rgb(255, 255, 255) !important;
+  bottom: 0px !important;
+  height: 100% !important;
+  left: 0px !important;
+  position: fixed !important;
+  right: 0px !important;
+  top: 0px !important;
+  
+  z-index: 10 !important;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.menu-inner {
+  padding: 2rem;
+}
+
 .main {
   background-color: $color-white2;
   display: flex;
@@ -59,15 +134,25 @@
 }
 
 .sidebar {
-  background-color: $color-white1;
-  border-radius: .5rem;
-  color: $color-gray2;
-  font-size: $font-size-sm;
-  margin-right: 1.5rem;  
-  width: 32rem;
-  overflow: auto;
-  padding: 1rem;
+  display: none;
 }
+
+@media screen and (min-width: 769px) {
+  .sidebar {
+    background-color: $color-white1;
+    border-radius: .5rem;
+    color: $color-gray2;
+    display: block;
+    font-size: $font-size-sm;
+    margin-right: 1.5rem;
+    overflow: auto;
+    padding: 1rem;
+    transition: all .2s;
+    width: 32rem;
+  }
+}
+
+
 
 .lesson {
   margin-bottom: 1.2rem;
@@ -129,6 +214,7 @@ export default {
   },
   data() {
     return {
+      showMenu: true,
       lessons: [
         {
           lessonNo: 1,
