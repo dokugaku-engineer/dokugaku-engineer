@@ -36,7 +36,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog-breadcrumb {
     font-size: $font-size-base;
     margin-bottom: 10px;
@@ -47,7 +47,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog-breadcrumb__wrap {
     margin-left: 5px;
     text-align: left;

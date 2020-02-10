@@ -18,7 +18,7 @@
   background-color: $color-white2;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog__content {
     margin: 0 auto 20px;
     max-width: 1230px;
@@ -32,7 +32,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog__main {
     float: left;
     width: 67%;
@@ -45,7 +45,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog-category {
     margin-bottom: 25px;
   }

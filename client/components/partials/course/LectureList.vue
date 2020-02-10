@@ -30,6 +30,7 @@
 .lesson-title {
   align-items: center;
   background-color: $color-white2;
+  border-radius: .8rem;
   display: flex;
   margin: 1rem 0;
   padding: .8rem 1.6rem;

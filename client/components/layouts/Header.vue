@@ -13,7 +13,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .l-header {
     padding: 17px 0 10px;
   }
@@ -23,7 +23,7 @@
   width: 170px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .l-header-logo {
     width: 222px;
   }

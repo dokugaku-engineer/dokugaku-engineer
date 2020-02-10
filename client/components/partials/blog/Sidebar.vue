@@ -29,7 +29,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog__sidebar {
     float: right;
     width: 29%;

@@ -61,7 +61,7 @@
   margin: 14px 0 0;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog-article-list {
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +84,7 @@
   box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, 0.2);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog-article-list__article {
     width: 48%;
     margin: 0 1% 17px;
@@ -114,7 +114,7 @@
   flex: 1 1 0%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .p-blog-article-list__article-texts {
     padding-left: 10px;
   }

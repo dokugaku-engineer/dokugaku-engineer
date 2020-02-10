@@ -40,11 +40,12 @@
   background-color: $color-white1;
   display: flex;
   align-items: center;
-  padding: .75rem .75rem .25rem;
+  padding: 1rem 1rem .5rem;
   text-align: left;
 }
 
 .header-title {
+  font-weight: 700;
   text-align: center;
   width: 100%;
 }
@@ -80,6 +81,7 @@
 .lesson-title {
   align-items: center;
   background-color: $color-white2;
+  border-radius: .8rem;
   display: flex;
   margin-bottom: 1rem;
   padding: .8rem 1.6rem;

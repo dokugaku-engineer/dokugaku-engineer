@@ -13,7 +13,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .l-footer {
     padding: 15px 0;
   }
