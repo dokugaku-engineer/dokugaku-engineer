@@ -11,7 +11,7 @@
           <h2 class="part-title">イントロダクション</h2>
           <p class="part-content">独学サーバーサイドのコースへようこそ！最初に、コースを受講するとできるようになることと、コースの進め方について学びます。</p>
           <div>
-            <LectureList :lesson="lesson1" />
+            <LectureList :lessonLectures="lesson1" />
           </div>
         </div>
       </div>
@@ -21,8 +21,8 @@
           <h2 class="part-title">プログラムの作り方</h2>
           <p class="part-content">プログラムの作り方を学びます。プログラミング初学者は、入門書などでプログラミングの文法は学んでいるものの、プログラムの作り方を学んでいないケースが多いです。プログラミングの文法とプログラムの作り方は別物で、プログラムの作り方を習得しないとプログラムでモノは作れるようになりません。個別の技術知識を学ぶ前に、まずはプログラムの作り方を、実際に作りながら学んでいきましょう。</p>
           <div>
-            <LectureList :lesson="lesson2" />
-            <LectureList :lesson="lesson2" />
+            <LectureList :lessonLectures="lesson2" />
+            <LectureList :lessonLectures="lesson2" />
           </div>
         </div>
       </div>

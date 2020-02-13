@@ -100,14 +100,14 @@
 
 export default {
   props: {
-    lesson: {
+    lessonLectures: {
       type: Object,
-      default: {}
+      default: () => {}
     }
   },
   data() {
     return {
-      lesson: this.lesson,
+      lesson: this.lessonLectures,
       showLecture: false,
     }
   },

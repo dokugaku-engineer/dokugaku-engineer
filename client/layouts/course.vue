@@ -20,7 +20,7 @@
               </div>
             </div>
             <div v-for="(lesson, index) in lessons" class="lesson">
-              <LectureList :lesson="lesson" />
+              <LectureList :lessonLectures="lesson" />
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div v-for="(lesson, index) in lessons" class="lesson">
-          <LectureList :lesson="lesson" />
+          <LectureList :lessonLectures="lesson" />
         </div>
       </nav>
       <div class="content">
@@ -214,7 +214,7 @@ export default {
   },
   data() {
     return {
-      showMenu: true,
+      showMenu: false,
       lessons: [
         {
           lessonNo: 1,
