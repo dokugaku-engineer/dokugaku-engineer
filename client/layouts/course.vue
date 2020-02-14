@@ -191,7 +191,9 @@
 
 .content {
   background-color: $color-white1;
+  border-radius: .5rem;
   box-shadow: 0 1px 20px 0 $color-gray-shadow;
+  flex: 1;
   margin: 0 auto;
   max-width: 1024px;
 }

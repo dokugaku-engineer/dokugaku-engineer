@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="header">
       <h3 class="header-title">コアカリキュラム</h3>
       <p class="header-text">実践的なスキルやエンジニアとしての考え方を身に付け、実務レベルで自走できる状態になり、エンジニアとして自走できる状態で就職する。基礎はおろか、発展的内容も一部は理解している。</p>
@@ -31,13 +31,17 @@
 </template>
 
 <style lang="scss" scoped>
-.container {
-}
-
 .header {
   background-color: #fafbfc;
   border-bottom: 1px solid $color-gray1;
-  padding: 2.8rem 5.6rem;
+  border-radius: .5rem;
+  padding: 2rem 3rem;
+}
+
+@media screen and (min-width: 769px) {
+  .header {
+    padding: 2.8rem 5.6rem;
+  }
 }
 
 .header-title {
@@ -53,7 +57,13 @@
 }
 
 .main {
-  padding: 4.2rem 5.6rem 0;
+  padding: 3rem 3rem 0;
+}
+
+@media screen and (min-width: 769px) {
+  .main {
+    padding: 4.2rem 5.6rem 0;
+  }
 }
 
 .part {
@@ -67,7 +77,13 @@
 }
 
 .part-inner {
-  margin-bottom: 4.2rem;
+  margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 769px) {
+  .part-inner {
+    margin-bottom: 4.2rem;
+  }
 }
 
 .part-subtitle {
