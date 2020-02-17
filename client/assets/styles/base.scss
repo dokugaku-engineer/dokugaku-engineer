@@ -17,11 +17,19 @@ a {
 body {
   color: $color-black;
   font-size: $font-size-base;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-    "ヒラギノ角ゴ ProN W3", "Yu Gothic", YuGothic, Arial, Meiryo, sans-serif;
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   line-height: 1.5;
   overflow-wrap: break-word;
   word-break: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  line-height: 1.7142857143;
 }
 
 img {
@@ -31,7 +39,8 @@ img {
   vertical-align: middle;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 

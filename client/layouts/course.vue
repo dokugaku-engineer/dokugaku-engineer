@@ -44,8 +44,6 @@
       </div>
     </div>
 
-    
-
     <div class="footer_wrap">
       <Footer />
     </div>
