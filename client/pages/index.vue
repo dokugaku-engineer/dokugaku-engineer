@@ -32,7 +32,7 @@
         </div>
         <div class="tagline-img">
           <img
-            src="@/assets/images/business-hero.png"
+            src="@/assets/images/serverside-hero.png"
             alt=""
           />
         </div>
@@ -56,7 +56,7 @@
             <div class="intro-img-container">
               <img
                 class="intro-img"
-                src="@/assets/images/business-feature.png"
+                src="@/assets/images/serverside-feature-illust.png"
                 alt=""
               />
             </div>
@@ -71,7 +71,7 @@
             <div class="intro-img-container">
               <img
                 class="intro-img"
-                src="@/assets/images/business-feature.png"
+                src="@/assets/images/serverside-feature-roadmap.png"
                 alt=""
               />
             </div>
@@ -86,7 +86,7 @@
             <div class="intro-img-container">
               <img
                 class="intro-img"
-                src="@/assets/images/business-feature.png"
+                src="@/assets/images/serverside-feature-code.png"
                 alt=""
               />
             </div>
@@ -127,7 +127,7 @@
             自走するためのロードマップ
           </h2>
           <p>
-            ロードマップのゴールは、実務で未知の課題に出会っても自力で解決していけるサーバーサイドエンジニアになることです。
+            ロードマップのゴールは、実務で未知の課題に出会っても自力で解決していけるWEB系サーバーサイドエンジニアになることです。
             <br>
             そのために、実務で必要なスキルを1ステップずつ学び、プロジェクトの実装を通じて理解を深めます。
             <br>
@@ -217,17 +217,25 @@
           <h2>よくある質問</h2>
           <ul>
             <li class="qa-question">受講における必要条件はありますか？</li>
-            <li class="qa-answer">何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。</li>
+            <li class="qa-answer">何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。</li>
+          </ul>
+          <ul>
+            <li class="qa-question">パソコンはWindows、Macのどちらでも大丈夫でしょうか？</li>
+            <li class="qa-answer">Windows、Macのどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。</li>
           </ul>
           <ul>
             <li class="qa-question">なぜプログラミング言語はPHPなのですか？</li>
-            <li class="qa-answer">何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。</li>
+            <li class="qa-answer">初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。WEB系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。</li>
+          </ul>
+          <ul>
+            <li class="qa-question">料金はかかりますか？</li>
+            <li class="qa-answer">現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。</li>
           </ul>
           <div class="qa-btn">
             <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
               無料で受講する
             </nui-button>
-        </div>
+         </div>
         </div>
       </div>
 
@@ -318,6 +326,7 @@
 }
 
 .intro-header, .roadmap-header {
+  margin-bottom: 6.4rem;
   text-align: center;
 }
 
@@ -372,13 +381,14 @@
 }
 
 .roadmap-header {
-  margin-bottom: 4.8rem;
+  margin-bottom: 6.4rem;
 }
 
 .rodmap-content-wrap {
   margin-left: auto;
   margin-right: auto;
   max-width: 97rem;
+  padding-top: 1rem;
 }
 
 .roadmap-content {
