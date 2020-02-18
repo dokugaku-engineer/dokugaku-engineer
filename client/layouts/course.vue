@@ -4,27 +4,21 @@
       <h2 class="header-logo">
         <logo />
       </h2>
-      <i @click="showMenu = !showMenu" class="far fa-bars header-bars"></i>
-      <transition name="fade">
-        <div v-if="showMenu" class="menu">
-          <i @click="showMenu = !showMenu" class="fal fa-times fa-lg header-cross"></i>
-          <div class="menu-inner">
-            <div class="lesson-course">
-              <div class="lesson">
-                <h2 class="lesson-title">ホーム</h2>
-              </div>
-            </div>
-            <div class="lesson-course">
-              <div class="lesson">
-                <h2 class="lesson-title">コースについて</h2>
-              </div>
-            </div>
-            <div v-for="(lesson, index) in lessons" class="lesson">
-              <LectureList :lessonLectures="lesson" />
-            </div>
+      <course-menu>
+        <div class="lesson-course">
+          <div class="lesson">
+            <h2 class="lesson-title">ホーム</h2>
           </div>
         </div>
-      </transition>
+        <div class="lesson-course">
+          <div class="lesson">
+            <h2 class="lesson-title">コースについて</h2>
+          </div>
+        </div>
+        <div v-for="(lesson, index) in lessons" class="lesson">
+          <LectureList :lessonLectures="lesson" />
+        </div>
+      </course-menu>
       <h1 class="header-title">コースについて</h1>
     </header>
     
@@ -67,24 +61,6 @@
   }
 }
 
-.header-bars {
-  color: $color-red1;
-  display: block;
-  margin-right: 1rem;
-}
-
-@media screen and (min-width: 769px) {
-  .header-bars {
-    display: none;
-  }
-}
-
-.header-cross {
-  color: $color-red1;
-  margin: 1.5rem 1rem .5rem;
-
-}
-
 .header {
   background-color: $color-white1;
   display: flex;
@@ -97,30 +73,6 @@
   font-weight: 700;
   text-align: center;
   width: 100%;
-}
-
-.menu {
-  background-color: rgb(255, 255, 255) !important;
-  bottom: 0px !important;
-  height: 100% !important;
-  left: 0px !important;
-  position: fixed !important;
-  right: 0px !important;
-  top: 0px !important;
-  
-  z-index: 10 !important;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease-out;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
-.menu-inner {
-  padding: 2rem;
 }
 
 .main {
@@ -203,12 +155,14 @@
 
 <script>
 import Logo from "@/components/svg/Logo.vue"
+import CourseMenu from "@/components/commons/CourseMenu.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import Footer from "@/components/layouts/Footer.vue"
 
 export default {
   components: {
     Logo,
+    CourseMenu,
     LectureList,
     Footer
   },

@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="container">
     <header class="header fixed-top bg-white1">
-      <a href="">
+      <a href="" class="header-logo">
         <logo />
       </a>
+      <header-menu />
       <div class="header-menu">
         <a href="" class="header-link">ログイン</a>
         <nui-button class="btn-teal1 btn-xs btn-shadow-all header-link header-btn">無料で受講</nui-button>
@@ -12,29 +13,37 @@
 
     <div class="content">
       <div class="tagline bg-white2">
-        <div>
-          <h1>
-            実務で自走するための
-            <br>
-            プログラミングロードマップ
-            <br>
-            <span class="tagline-title">「独学エンジニア」</span>
-          </h1>
-          <div class="tagline-btn">
-            <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
-              無料で受講する
-            </nui-button>
-            <nui-button class="btn-outline-teal1 btn-shadow content-btn" submit="true">
-              <i class="fas fa-play-circle fa-lg"></i>
-              講座をプレビュー
-            </nui-button>
-          </div>
-        </div>
-        <div class="tagline-img">
+        <div class="tagline-img-left">
           <img
             src="@/assets/images/serverside-hero.png"
             alt=""
           />
+        </div>
+        <div class="tagline-content">
+          <div>
+            <h1>
+              実務で自走するための
+              <br>
+              プログラミングロードマップ
+              <br>
+              <span class="tagline-title">「独学エンジニア」</span>
+            </h1>
+            <div class="tagline-btn">
+              <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
+                無料で受講する
+              </nui-button>
+              <nui-button class="btn-outline-teal1 btn-shadow content-btn" submit="true">
+                <i class="fas fa-play-circle fa-lg"></i>
+                講座をプレビュー
+              </nui-button>
+            </div>
+          </div>
+          <div class="tagline-img-right">
+            <img
+              src="@/assets/images/serverside-hero.png"
+              alt=""
+            />
+          </div>
         </div>
       </div>
 
@@ -101,23 +110,25 @@
       </div>
 
       <div class="philosophy bg-white2">
-        <h2>サービス名に込めた想い</h2>
-        <p>
-          プログラミング初学者が自学自習のみで実務レベルの技術力を身に付けるのは難しく、そのための道のりも整備されていません。
-          <br>
-          <br>
-          だからこそ、初学者から実務へのロードマップを整える。
-          <br>
-          「初学者が、自分で学びながら実務でやっていけるエンジニアへ」という想いが込められています。
-          <br>
-          <br>
-          エンジニアとして就職・転職できるのはもちろん、その後の実務で使える実践的スキルを。
-        </p>
-        <h3 class="philosophy-message">「初学者から実務で自走できるエンジニアへ」</h3>
-        <div class="philosophy-btn">
-          <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
-            無料で受講する
-          </nui-button>
+        <div class="philosophy-container">
+          <h2>サービス名に込めた想い</h2>
+          <p>
+            プログラミング初学者が自学自習のみで実務レベルの技術力を身に付けるのは難しく、そのための道のりも整備されていません。
+            <br>
+            <br>
+            だからこそ、初学者から実務へのロードマップを整える。
+            <br>
+            「初学者が、自分で学びながら実務でやっていけるエンジニアへ」という想いが込められています。
+            <br>
+            <br>
+            エンジニアとして就職・転職できるのはもちろん、その後の実務で使える実践的スキルを。
+          </p>
+          <h3 class="philosophy-message">「初学者から実務で自走できるエンジニアへ」</h3>
+          <div class="content-single-btn">
+            <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
+              無料で受講する
+            </nui-button>
+          </div>
         </div>
       </div>
 
@@ -213,29 +224,31 @@
       </div>
 
       <div class="qa bg-white2">
-        <div class="qa-content">
-          <h2>よくある質問</h2>
-          <ul>
-            <li class="qa-question">受講における必要条件はありますか？</li>
-            <li class="qa-answer">何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。</li>
-          </ul>
-          <ul>
-            <li class="qa-question">パソコンはWindows、Macのどちらでも大丈夫でしょうか？</li>
-            <li class="qa-answer">Windows、Macのどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。</li>
-          </ul>
-          <ul>
-            <li class="qa-question">なぜプログラミング言語はPHPなのですか？</li>
-            <li class="qa-answer">初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。WEB系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。</li>
-          </ul>
-          <ul>
-            <li class="qa-question">料金はかかりますか？</li>
-            <li class="qa-answer">現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。</li>
-          </ul>
-          <div class="qa-btn">
-            <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
-              無料で受講する
-            </nui-button>
-         </div>
+        <div class="qa-container">
+          <div class="qa-content">
+            <h2>よくある質問</h2>
+            <ul>
+              <li class="qa-question">受講における必要条件はありますか？</li>
+              <li class="qa-answer">何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。</li>
+            </ul>
+            <ul>
+              <li class="qa-question">パソコンはWindows、Macのどちらでも大丈夫でしょうか？</li>
+              <li class="qa-answer">Windows、Macのどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。</li>
+            </ul>
+            <ul>
+              <li class="qa-question">なぜプログラミング言語はPHPなのですか？</li>
+              <li class="qa-answer">初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。WEB系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。</li>
+            </ul>
+            <ul>
+              <li class="qa-question">料金はかかりますか？</li>
+              <li class="qa-answer">現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。</li>
+            </ul>
+            <div class="content-single-btn">
+              <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
+                無料で受講する
+              </nui-button>
+           </div>
+          </div>
         </div>
       </div>
 
@@ -246,15 +259,36 @@
 </template>
 
 <style lang="scss" scoped>
+.container {
+  overflow-x: hidden;
+}
+
 .header {
   align-items: center;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
   display: flex;
-  padding: 2rem 3.2rem;
+  padding: 1.6rem .8rem 1rem 2rem;
+}
+
+@media screen and (min-width: 769px) {
+  .header {
+    padding: 2rem 3.2rem;
+  }
 }
 
 .header-menu {
-  text-align: right;
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .header-menu {
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+}
+
+.header-logo {
   width: 100%;
 }
 
@@ -274,31 +308,60 @@
 }
 
 .content {
-  letter-spacing: 0.16rem;
-  line-height: 1.7142857143;
-
   h2 {
-    font-size: 3.2rem;
+    font-size: $font-size-xxl;
     font-weight: 700;
     margin-bottom: 1.6rem;
   }
 }
 
+@media screen and (min-width: 769px) {
+  .content {
+    letter-spacing: 0.16rem;
+    line-height: 1.7142857143;
+  
+    h2 {
+      font-size: 3.2rem;
+    }
+  }
+}
+
 .tagline {
   align-items: center;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 4rem;
-  padding-left: 3%;
-  padding-right: 7%;
-  padding-top: 12rem;
+  padding-top: 10rem;
+}
+
+@media screen and (min-width: 769px) {
+  .tagline {
+    padding-top: 0;
+  }
+}
+
+.tagline-content {
+  padding: 0 2.7rem 6.4rem;
 
   h1 {
-    font-size: 3.6rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    letter-spacing: 1.2rem;
-    line-height: 4.8rem;
-    margin-right: 3rem;
+    line-height: 3.7rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .tagline-content {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4rem;
+    padding-left: 3%;
+    padding-right: 7%;
+    padding-top: 12rem;
+
+    h1 {
+      font-size: 3.6rem;
+      letter-spacing: 1.2rem;
+      line-height: 4.8rem;
+      margin-right: 3rem;
+    }
   }
 }
 
@@ -307,27 +370,80 @@
 }
 
 .tagline-btn {
-  margin-top: 3rem;
+  margin-top: 2rem;
 
   .btn {
-    margin-right: 2rem;
+    margin-top: 1rem;
+    width: 100%;
   }
 }
 
-.tagline-img {
-  max-width: 46%;
+@media screen and (min-width: 769px) {
+  .tagline-btn {
+    margin-top: 3rem;
+
+    .btn {
+      margin-right: 2rem;
+      margin-top: 0;
+      width: 20rem !important;
+    }
+  }
+}
+
+.tagline-img-left {
+  margin-right: -3rem;
+  margin-bottom: 3rem;
+}
+
+
+@media screen and (min-width: 769px) {
+  .tagline-img-left {
+    display: none;
+  }
+}
+
+.tagline-img-right {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .tagline-img-right {
+    display: block;
+    max-width: 46%;
+  }
 }
 
 .intro, .roadmap {
-  max-width: 114rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 9.6rem 4.6rem 6.4rem;
+  margin: 0 auto;
+  padding: 6.4rem 2.4rem;
 }
 
-.intro-header, .roadmap-header {
-  margin-bottom: 6.4rem;
-  text-align: center;
+@media screen and (min-width: 769px) {
+  .intro, .roadmap {
+    max-width: 114rem;
+    padding: 9.6rem 4.6rem 6.4rem;
+  }
+}
+
+.intro-header {
+  margin-bottom: 1.2rem;
+}
+
+.roadmap-header {
+  margin-bottom: 4.8rem;
+}
+
+@media screen and (min-width: 769px) {
+  .intro-header, .roadmap-header {
+    margin-bottom: 6.4rem;
+  }
+}
+
+
+@media screen and (min-width: 769px) {
+  .intro-header, .roadmap-header {
+    text-align: center;
+  }
 }
 
 .intro-point-container {
@@ -336,16 +452,28 @@
   margin-top: 1.5rem;
 }
 
-
 .intro-point {
-  flex: 0 0 33.333333%;
-  max-width: 33.333333%;
-  padding: 0 3.2rem 3.2rem;
-  
+  flex: 0 0 100%;
+  margin: 3.6rem 0 0 0;
+  max-width: 100%;
+
   h3 {
-    font-size: $font-size-xxxl;
+    font-size: $font-size-lg;
     font-weight: 700;
-    margin: 2.4rem 0 2.4rem;
+    margin: 1.6rem 0 2.4rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .intro-point {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    padding: 0 3.2rem 3.2rem;
+    
+    h3 {
+      font-size: $font-size-xxxl;
+      margin: 2.4rem 0 2.4rem;
+    }
   }
 }
 
@@ -362,26 +490,74 @@
 }
 
 .philosophy, .qa {
-  padding: 9.6rem 4.6rem 6.4rem;
-  text-align: center;
+  padding: 6.4rem 2.4rem;
 
   h2 {
-    margin-bottom: 4rem;
+    margin-bottom: 3.2rem;
+    text-align: center;
   }
+}
+
+@media screen and (min-width: 769px) {
+  .philosophy, .qa {
+    padding: 9.6rem 4.6rem 6.4rem;
+    text-align: center;
+  
+    h2 {
+      margin-bottom: 4rem;
+    }
+  }
+}
+
+.philosophy-container, .qa-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 114rem;
 }
 
 .philosophy-message {
   color: $color-teal1;
-  font-size: 3.6rem;
-  margin-top: 4rem;
+  font-size: 2.4rem;
+  margin-top: 3.2rem;
+  text-align: center;
 }
 
-.philosophy-btn, .qa-btn {
-  margin-top: 4rem;
+
+@media screen and (min-width: 769px) {
+  .philosophy-message {
+    color: $color-teal1;
+    font-size: 3.6rem;
+    margin-top: 4rem;
+  }
+}
+
+.content-single-btn {
+  margin-top: 3.2rem;
+
+  .btn {
+    width: 100%;
+  }
+}
+
+
+@media screen and (min-width: 769px) {
+  .content-single-btn {
+    margin-top: 4rem;
+
+    .btn {
+      width: 20rem;
+    }
+  }
 }
 
 .roadmap-header {
-  margin-bottom: 6.4rem;
+  margin-bottom: 3.2rem;
+}
+
+@media screen and (min-width: 769px) {
+  .roadmap-header {
+    margin-bottom: 6.4rem;
+  }
 }
 
 .rodmap-content-wrap {
@@ -393,7 +569,7 @@
 
 .roadmap-content {
   border-left: 1px solid $color-gray1;
-  padding: 0 0 4.8rem 4.8rem;
+  padding: 0 0 1.6rem 2.4rem;
   position: relative;
 
   &:after {
@@ -409,12 +585,17 @@
   }
 }
 
+@media screen and (min-width: 769px) {
+  .roadmap-content {
+    padding: 0 0 4.8rem 4.8rem;
+  }
+}
+
 .roadmap-part {
   bottom: 1rem;
   position: relative;
 
   h4 {
-    font-size: $font-size-lg;
     margin-bottom: 1.2rem;
   }
 
@@ -423,16 +604,25 @@
   }
 }
 
+@media screen and (min-width: 769px) {
+  .roadmap-part {
+    
+    h4 {
+      font-size: $font-size-lg;
+    }
+  }
+
+}
+
 .roadmap-project {
   list-style: disc;
   padding-left: 1.8rem;
 }
 
 .qa-content {
-  flex: 0 0 66.666667%;
+  flex: 0 0 100%;
   margin-left: auto;
   margin-right: auto;
-  max-width: 66.666667%;
 
   ul {
     border-bottom: 1px solid $color-gray1;
@@ -445,8 +635,16 @@
   }
 }
 
+@media screen and (min-width: 769px) {
+  .qa-content {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+}
+
 .qa-question {
   margin-bottom: 1.6rem;
+  padding-left: 1rem;
 
   &:before {
     background-color: $color-black;
@@ -465,6 +663,7 @@
 
 .qa-answer {
   margin-bottom: 1.6rem;
+  padding-left: 1rem;
 
   &:before {
     background-color: $color-red1;
@@ -480,6 +679,13 @@
     width: 30px;
   }
 }
+
+@media screen and (min-width: 769px) {
+  .qa-question, .qa-answer {
+    padding-left: 0;
+  }
+}
+
 
 .fixed-top {
   position: fixed;
@@ -504,14 +710,21 @@
 
 <script>
 import Logo from "@/components/svg/Logo.vue"
+import HeaderMenu from "@/components/commons/HeaderMenu.vue"
 import NuiButton from "@/components/commons/Button.vue"
 import Footer from "@/components/layouts/Footer.vue"
 
 export default {
   components: {
     Logo,
+    HeaderMenu,
     NuiButton,
     Footer
+  },
+  data() {
+    return {
+      showMenu: false
+    }
   }
 }
 </script>
