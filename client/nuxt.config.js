@@ -69,6 +69,7 @@ export default {
   },
   /*
    ** Generate configuration
+   ** TODO: 書き直す。 https: //nuxtjs.org/api/configuration-generate/#routes
    */
   generate: {
     routes: [
