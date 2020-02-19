@@ -21,8 +21,8 @@ phases:
       - npm install
   build:
     commands:
-      - echo 'Start npm run generate'
-      - npm run generate
+      - echo 'Start npm run build'
+      - npm run build
   post_build:
     commands:
       - echo 'Start gulp deploy'

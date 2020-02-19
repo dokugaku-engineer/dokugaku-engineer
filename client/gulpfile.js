@@ -32,7 +32,7 @@ const config = {
   wait: true // CloudFront のキャッシュ削除が完了するまでの時間（約30〜60秒）
 }
 
-gulp.task("deploy", function() {
+gulp.task("deploy", function () {
   // S3 オプションを使用して新しい publisher を作成する
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
   const publisher = awspublish.create(config)

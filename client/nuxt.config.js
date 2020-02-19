@@ -3,14 +3,13 @@ require("dotenv").config()
 import axios from "axios"
 
 export default {
-  mode: "universal",
+  mode: "spa",
   /*
    ** Headers of the page
    */
   head: {
     title: process.env.npm_package_name || "",
-    meta: [
-      {
+    meta: [{
         charset: "utf-8"
       },
       {
@@ -31,12 +30,10 @@ export default {
         content: "summary_large_image"
       }
     ],
-    script: [
-      {
-        src: "https://kit.fontawesome.com/381734123f.js",
-        crossorigin: "anonymous"
-      }
-    ],
+    script: [{
+      src: "https://kit.fontawesome.com/381734123f.js",
+      crossorigin: "anonymous"
+    }],
     link: []
   },
   /*
