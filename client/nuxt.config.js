@@ -70,7 +70,12 @@ export default {
   /*
    ** Generate configuration
    */
-  generate: {},
+  generate: {
+    routes: [
+      '/course/serverside/1/1',
+      '/course/serverside/1/2'
+    ]
+  },
   /*
    ** Global CSS
    */
