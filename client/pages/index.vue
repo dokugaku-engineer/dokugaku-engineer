@@ -201,7 +201,7 @@
             <li class="roadmap-content">
               <div class="roadmap-part">
                 <h4>フレームワーク「Laravel」を学ぼう</h4>
-                <p>PHPフレームワークのLaravelを利用して、受付システムを作成します。現場で実際に使われるような細かい機能が実装できるようになります。また、テストについても学びます。</p>
+                <p>PHPフレームワークのLaravelを利用して、求人サービスを作成します。現場で実際に使われるような細かい機能が実装できるようになります。また、テストについても学びます。</p>
                 <ul class="roadmap-project">
                   <li>プロジェクト：Laravelでブログサービス</li>
                 </ul>
