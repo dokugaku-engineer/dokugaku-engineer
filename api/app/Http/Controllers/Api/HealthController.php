@@ -13,6 +13,8 @@ class HealthController extends Controller
             [
                 'health' => 'ok',
             ],
-            200, []);
+            200,
+            []
+        );
     }
 }

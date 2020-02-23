@@ -9,8 +9,8 @@
 ```bash
 cp docker/nginx/nginx.development.conf docker/nginx/nginx.conf
 cp docker/db/db-variables.development.env docker/db/db-variables.env
-cp api/.env.development api/.env
-cp client/.env.development client/.env
+cp api/.env.dev api/.env
+cp client/.env.dev client/.env
 ```
 
 Dockerを起動します。
@@ -29,6 +29,12 @@ docker-compose exec api composer install
 
 ```bash
 docker-compose exec api php artisan migrate
+```
+
+レクチャー関連のデータを追加します。
+
+```bash
+docker-compose exec api php artisan import:lecture-csv
 ```
 
 これでサイトにアクセスできます。

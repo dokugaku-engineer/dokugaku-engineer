@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLecturesTable extends Migration
+class CreateLecturesOldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLecturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lectures', function (Blueprint $table) {
+        Schema::create('lectures_olds', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('lesson_id')->unsigned();
             $table->integer('order')->unsigned();
@@ -27,8 +27,6 @@ class CreateLecturesTable extends Migration
             $table->boolean('locked')->default(0);
             $table->boolean('premium')->default(0);
             $table->timestamps();
-
-            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
         });
     }
 
@@ -39,6 +37,6 @@ class CreateLecturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lectures');
+        Schema::dropIfExists('lectures_olds');
     }
 }
