@@ -12,14 +12,14 @@
         </div>
         <div class="lesson-course">
           <div class="lesson">
-            <h2 class="lesson-title">コースについて</h2>
+            <h2 class="lesson-title">{{ this.$store.state.lecture.name }}</h2>
           </div>
         </div>
         <div v-for="(lesson, index) in lessons" class="lesson">
           <LectureList :lessonLectures="lesson" />
         </div>
       </course-menu>
-      <h1 class="header-title">コースについて</h1>
+      <h1 class="header-title">{{ this.$store.state.lecture.name }}</h1>
     </header>
     
     <div class="main">

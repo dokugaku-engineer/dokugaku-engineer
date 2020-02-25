@@ -2,14 +2,14 @@
   <div>
     <div class="video-wrap">
       <div class="video">
-        <iframe src="https://player.vimeo.com/video/391168857?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        <iframe :src="`${lecture.video_url}?autoplay=1`" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
       </div>
     </div>
     <div class="detail">
       <div class="detail-content">
-        <h3 class="detail-header">このレクチャーの内容</h3>
+        <h3 class="detail-header">このレクチャーの内容・補足</h3>
         <div class="detail-body">
-          <p>コースを受講後にできるようになっていることを解説します。コースを完了すれば、みなさんのキャリアが変わっています！</p>
+          <p>{{ lecture.description }}</p>
         </div>
       </div>
     </div>
@@ -74,6 +74,16 @@
 
 <script>
 export default {
-  layout: "course"
+  layout: "course",
+  data() {
+    return {
+      lecture: {}
+    }
+  },
+  async created() {
+    const data = await this.$axios.$get(`/lectures/${this.$route.params.slug}`)
+    this.lecture = data
+    this.$store.dispatch('lecture/setName', this.lecture.name)
+  }
 }
 </script>

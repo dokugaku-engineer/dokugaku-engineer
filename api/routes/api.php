@@ -18,7 +18,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
+    // Health routes
     Route::get('health', 'HealthController@index');
+
+    // Lecture-related routes
+    Route::get('lectures/{slug}', 'LectureController@show');
+
+    // Post-related routes
     Route::resource('categories', 'CategoryController')->only([
         'index', 'store', 'show', 'update'
     ]);

@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Carbon;
 
 class ImportLectureCSV extends Command
 {
@@ -91,6 +92,8 @@ class ImportLectureCSV extends Command
             $rowData = [];
             foreach ($row as $k => $v) {
                 $rowData[$header[$k]] = $v;
+                $rowData['created_at'] = Carbon::now()->toDateTimeString();
+                $rowData['updated_at'] = Carbon::now()->toDateTimeString();
             }
             $data[] = $rowData;
         }
