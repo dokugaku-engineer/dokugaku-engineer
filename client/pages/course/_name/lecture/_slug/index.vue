@@ -89,8 +89,8 @@ export default {
     // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
     this.course = course
     this.lecture = lecture
+    this.$store.dispatch('course/setCourse', { course: this.course, lecture: this.lecture })
     this.$store.dispatch('lecture/setName', this.lecture.name)
-    this.$store.dispatch('course/setLessons', { course: this.course, lecture: this.lecture })
   }
 }
 </script>

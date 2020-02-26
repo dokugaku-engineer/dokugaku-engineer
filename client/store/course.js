@@ -1,17 +1,16 @@
 export const state = () => ({
   course: {},
-  lessons: []
+  lessons: [],
+  lecture: {}
 })
 
 export const mutations = {
-  SET_COURSE(state, course) {
-    state.course = course
-  },
-
-  SET_LESSONS(state, {
+  SET_COURSE(state, {
     course,
     lecture
   }) {
+    state.course = course
+    state.lecture = lecture
     let lessons = course.parts.map(part => part.lessons).flat()
     lessons.forEach(lesson => {
       let lessonPlay = false
@@ -31,17 +30,11 @@ export const mutations = {
 export const actions = {
   setCourse({
     commit
-  }, course) {
-    commit("SET_COURSE", course)
-  },
-
-  setLessons({
-    commit
   }, {
     course,
     lecture
   }) {
-    commit("SET_LESSONS", {
+    commit("SET_COURSE", {
       course,
       lecture
     })

@@ -8,11 +8,16 @@
     </div>
     <ol v-if="showLecture" class="lecture">
       <li v-for="lecture in lesson.lectures">
-        <a href="" class="lecture-link" :class="lecture.play ? 'play' : ''">
+        <nuxt-link
+          :to="`/course/${$store.state.course.course.name}/lecture/${lecture.slug}`"
+          @click.native="$emit('hideMenu')"
+          class="lecture-link"
+          :class="lecture.play ? 'play' : ''"
+        >
           <!-- TODO: 未視聴の場合はfa-checkを変更する -->
           <i class="far fa-check"></i>
           {{ lecture.order }}. {{ lecture.name }}
-        </a>
+        </nuxt-link>
       </li>
     </ol>
   </div>

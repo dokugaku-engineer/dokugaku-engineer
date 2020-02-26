@@ -1,35 +1,40 @@
 <template>
   <div class="wrap">
     <header class="header">
-      <h2 class="header-logo">
-        <logo />
-      </h2>
-      <course-menu>
-        <div class="lesson-course">
-          <div class="lesson">
-            <h2 class="lesson-title">ホーム</h2>
+      <nuxt-link :to="`/course/${$store.state.course.course.name}`">
+        <h2 class="header-logo">
+          <logo />
+        </h2>
+      </nuxt-link>
+      <div>
+        <i @click="showMenu = !showMenu" class="far fa-bars bars"></i>
+        <transition name="fade">
+          <div v-if="showMenu" class="menu">
+            <i @click="showMenu = !showMenu" class="fal fa-times fa-lg cross"></i>
+            <div class="menu-inner">
+              <div class="lesson-course">
+                <div class="lesson">
+                  <nuxt-link
+                    :to="`/course/${$store.state.course.course.name}`"
+                    @click.native="showMenu = false"
+                  >
+                    <h2 class="lesson-title">ホーム</h2>
+                  </nuxt-link>
+                </div>
+              </div>
+              <div v-for="(lesson, index) in $store.state.course.lessons" class="lesson">
+                <LectureList :lessonLectures="lesson" @hideMenu="showMenu = false" />
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="lesson-course">
-          <div class="lesson">
-            <h2 class="lesson-title">{{ this.$store.state.lecture.name }}</h2>
-          </div>
-        </div>
-        <div v-for="(lesson, index) in this.$store.state.course.lessons" class="lesson">
-          <LectureList :lessonLectures="lesson" />
-        </div>
-      </course-menu>
-      <h1 class="header-title">{{ this.$store.state.lecture.name }}</h1>
+        </transition>
+      </div>
+      <h1 class="header-title">{{ $store.state.lecture.name }}</h1>
     </header>
     
     <div class="main">
       <nav class="sidebar">
-        <div class="lesson-course">
-          <div class="lesson">
-            <h2 class="lesson-title">コースについて</h2>
-          </div>
-        </div>
-        <div v-for="(lesson, index) in this.$store.state.course.lessons" class="lesson">
+        <div v-for="(lesson, index) in $store.state.course.lessons" class="lesson">
           <LectureList :lessonLectures="lesson" />
         </div>
       </nav>
@@ -75,6 +80,46 @@
   width: 100%;
 }
 
+.bars {
+  color: $color-red1;
+  display: block;
+  margin-right: 1rem;
+}
+
+@media screen and (min-width: 769px) {
+  .bars {
+    display: none;
+  }
+}
+
+.cross {
+  color: $color-red1;
+  margin: 1.5rem 1rem .5rem;
+}
+
+.menu {
+  background-color: rgb(255, 255, 255) !important;
+  bottom: 0px !important;
+  height: 100% !important;
+  left: 0px !important;
+  position: fixed !important;
+  right: 0px !important;
+  top: 0px !important;
+  z-index: 10 !important;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.menu-inner {
+  padding: 2rem;
+}
+
 .main {
   background-color: $color-white2;
   display: flex;
@@ -101,8 +146,6 @@
     width: 32rem;
   }
 }
-
-
 
 .lesson {
   margin-bottom: 1.2rem;
@@ -155,14 +198,12 @@
 
 <script>
 import Logo from "@/components/svg/Logo.vue"
-import CourseMenu from "@/components/commons/CourseMenu.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import Footer from "@/components/layouts/Footer.vue"
 
 export default {
   components: {
     Logo,
-    CourseMenu,
     LectureList,
     Footer
   },
@@ -170,6 +211,6 @@ export default {
     return {
       showMenu: false,
     }
-  },
+  }
 }
 </script>
