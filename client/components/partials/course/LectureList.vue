@@ -113,7 +113,6 @@ export default {
   },
   data() {
     return {
-      lesson: this.lessonLectures,
       showLecture: false,
     }
   },
@@ -126,6 +125,9 @@ export default {
       } else {
         return "far fa-chevron-down";
       }
+    },
+    lesson() {
+      return this.lessonLectures
     }
   }
 }

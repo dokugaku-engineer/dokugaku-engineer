@@ -1,28 +1,17 @@
 <template>
   <div>
     <div class="header">
-      <h3 class="header-title">コアカリキュラム</h3>
-      <p class="header-text">実践的なスキルやエンジニアとしての考え方を身に付け、実務レベルで自走できる状態になり、エンジニアとして自走できる状態で就職する。基礎はおろか、発展的内容も一部は理解している。</p>
+      <h3 class="header-title">カリキュラム</h3>
+      <p class="header-text">{{ $store.state.course.course.description }}</p>
     </div>
     <div class="main">
-      <div class="part">
+      <div class="part" v-for="part in $store.state.course.course.parts">
         <div class="part-inner">
-          <h3 class="part-subtitle">PART 1</h3>
-          <h2 class="part-title">イントロダクション</h2>
-          <p class="part-content">独学サーバーサイドのコースへようこそ！最初に、コースを受講するとできるようになることと、コースの進め方について学びます。</p>
-          <div>
-            <LectureList :lessonLectures="lesson1" />
-          </div>
-        </div>
-      </div>
-      <div class="part">
-        <div class="part-inner">
-          <h3 class="part-subtitle">PART 2</h3>
-          <h2 class="part-title">プログラムの作り方</h2>
-          <p class="part-content">プログラムの作り方を学びます。プログラミング初学者は、入門書などでプログラミングの文法は学んでいるものの、プログラムの作り方を学んでいないケースが多いです。プログラミングの文法とプログラムの作り方は別物で、プログラムの作り方を習得しないとプログラムでモノは作れるようになりません。個別の技術知識を学ぶ前に、まずはプログラムの作り方を、実際に作りながら学んでいきましょう。</p>
-          <div>
-            <LectureList :lessonLectures="lesson2" />
-            <LectureList :lessonLectures="lesson2" />
+          <h3 class="part-subtitle">PART {{ part.order }}</h3>
+          <h2 class="part-title">{{ part.name }}</h2>
+          <p class="part-content">{{ part.description }}</p>
+          <div v-for="lesson in part.lessons">
+            <LectureList :lessonLectures="lesson" />
           </div>
         </div>
       </div>
@@ -113,53 +102,10 @@ export default {
   components: {
     LectureList,
   },
-  data() {
-    return {
-      lesson1: {
-        lessonNo: 1,
-        lessonTitle: "コースについて",
-        lessonPlay: false,
-        lectures: [
-          {
-            lectureNo: 1,
-            lectureTitle: "コースへようこそ",
-            lecturePlay: false
-          },
-          {
-            lectureNo: 2,
-            lectureTitle: "コースのゴール",
-            lecturePlay: false
-          },
-          {
-            lectureNo: 3,
-            lectureTitle: "コースを通じて作るものを最初に把握しておこう",
-            lecturePlay: false
-          },
-        ]
-      },
-      lesson2: {
-        lessonNo: 2,
-        lessonTitle: "読書管理サービスを作ろう",
-        lessonPlay: false,
-        lectures: [
-          {
-            lectureNo: 1,
-            lectureTitle: "コースへようこそ",
-            lecturePlay: false
-          },
-          {
-            lectureNo: 2,
-            lectureTitle: "コースのゴール",
-            lecturePlay: false
-          },
-          {
-            lectureNo: 3,
-            lectureTitle: "コースを通じて作るものを最初に把握しておこう",
-            lecturePlay: false
-          },
-        ]
-      },
-    }
-  },
+  async created() {
+    const data = await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`)
+    this.course = data
+    this.$store.dispatch('course/setCourse', { course: this.course, lecture: {} })
+  }
 }
 </script>

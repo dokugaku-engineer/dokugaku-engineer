@@ -22,19 +22,26 @@
                   </nuxt-link>
                 </div>
               </div>
-              <div v-for="(lesson, index) in $store.state.course.lessons" class="lesson">
+              <div v-for="lesson in this.$store.state.course.lessons" class="lesson">
                 <LectureList :lessonLectures="lesson" @hideMenu="showMenu = false" />
               </div>
             </div>
           </div>
         </transition>
       </div>
-      <h1 class="header-title">{{ $store.state.lecture.name }}</h1>
+      <h1 class="header-title">{{ courseTop ? 'ホーム' : $store.state.lecture.name }}</h1>
     </header>
     
     <div class="main">
       <nav class="sidebar">
-        <div v-for="(lesson, index) in $store.state.course.lessons" class="lesson">
+        <div class="lesson-course">
+          <div class="lesson">
+            <nuxt-link :to="`/course/${$store.state.course.course.name}`">
+              <h2 class="lesson-title" :class="courseTop ? 'play' : ''">コースについて</h2>
+            </nuxt-link>
+          </div>
+        </div>
+        <div v-for="lesson in this.$store.state.course.lessons" class="lesson">
           <LectureList :lessonLectures="lesson" />
         </div>
       </nav>
@@ -210,6 +217,11 @@ export default {
   data() {
     return {
       showMenu: false,
+    }
+  },
+  computed: {
+    courseTop() {
+      return this.$store.state.course.courseTop
     }
   }
 }
