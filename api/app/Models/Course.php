@@ -7,4 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $guarded = [];
+
+    public function parts()
+    {
+        return $this->hasMany('App\Models\Part');
+    }
+
+    public function withCourses()
+    {
+        return $this->load(['parts.lessons.lectures' => function ($query) {
+            $query->where('lectures.public', 1);
+        }]);
+    }
 }

@@ -7,7 +7,7 @@ use App\Models\Lecture;
 use App\Http\Resources\Lecture\Lecture as LectureResource;
 
 /**
- * @group 3. Lecture
+ * @group 4. Lecture
  */
 class LectureController extends Controller
 {
@@ -16,7 +16,7 @@ class LectureController extends Controller
      *
      * @bodyParam slug string required Lecture slug. Example: bN5sY6
      *
-     * @responsefile responses/post.store.json
+     * @responsefile responses/lecture.show.json
      *
      * @param string $slug
      * @return LectureResource

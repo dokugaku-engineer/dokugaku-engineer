@@ -15,7 +15,7 @@
             <h2 class="lesson-title">{{ this.$store.state.lecture.name }}</h2>
           </div>
         </div>
-        <div v-for="(lesson, index) in lessons" class="lesson">
+        <div v-for="(lesson, index) in this.$store.state.course.lessons" class="lesson">
           <LectureList :lessonLectures="lesson" />
         </div>
       </course-menu>
@@ -29,7 +29,7 @@
             <h2 class="lesson-title">コースについて</h2>
           </div>
         </div>
-        <div v-for="(lesson, index) in lessons" class="lesson">
+        <div v-for="(lesson, index) in this.$store.state.course.lessons" class="lesson">
           <LectureList :lessonLectures="lesson" />
         </div>
       </nav>
@@ -169,52 +169,6 @@ export default {
   data() {
     return {
       showMenu: false,
-      lessons: [
-        {
-          lessonNo: 1,
-          lessonTitle: "コースについて",
-          lessonPlay: true,
-          lectures: [
-            {
-              lectureNo: 1,
-              lectureTitle: "コースへようこそ",
-              lecturePlay: false
-            },
-            {
-              lectureNo: 2,
-              lectureTitle: "コースのゴール",
-              lecturePlay: true
-            },
-            {
-              lectureNo: 3,
-              lectureTitle: "コースを通じて作るものを最初に把握しておこう",
-              lecturePlay: false
-            },
-          ]
-        },
-        {
-          lessonNo: 2,
-          lessonTitle: "読書管理サービスでアプリケーション作りにチャレンジしよう",
-          lessonPlay: false,
-          lectures: [
-            {
-              lectureNo: 1,
-              lectureTitle: "コースへようこそ",
-              lecturePlay: false
-            },
-            {
-              lectureNo: 2,
-              lectureTitle: "コースのゴール",
-              lecturePlay: false
-            },
-            {
-              lectureNo: 3,
-              lectureTitle: "コースを通じて作るものを最初に把握しておこう",
-              lecturePlay: false
-            },
-          ]
-        }
-      ]
     }
   },
 }

@@ -19,6 +19,8 @@ class CreateLessonsOldsTable extends Migration
             $table->integer('order')->unsigned();
             $table->string('name', 255);
             $table->timestamps();
+
+            $table->foreign('part_id')->references('id')->on('parts_olds')->onDelete('cascade');
         });
     }
 

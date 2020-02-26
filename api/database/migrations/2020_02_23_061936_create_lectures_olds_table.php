@@ -27,6 +27,8 @@ class CreateLecturesOldsTable extends Migration
             $table->boolean('locked')->default(0);
             $table->boolean('premium')->default(0);
             $table->timestamps();
+
+            $table->foreign('lesson_id')->references('id')->on('lessons_olds')->onDelete('cascade');
         });
     }
 

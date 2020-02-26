@@ -2,7 +2,7 @@
   <div>
     <div class="video-wrap">
       <div class="video">
-        <iframe :src="`${lecture.video_url}?autoplay=1`" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        <iframe v-if="lecture.video_url" :src="`${lecture.video_url}?autoplay=1`" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
       </div>
     </div>
     <div class="detail">
@@ -77,13 +77,20 @@ export default {
   layout: "course",
   data() {
     return {
+      course: {},
       lecture: {}
     }
   },
   async created() {
-    const data = await this.$axios.$get(`/lectures/${this.$route.params.slug}`)
-    this.lecture = data
+    const [course, lecture] = await Promise.all([
+      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`),
+      this.$axios.$get(`/lectures/${this.$route.params.slug}`)
+    ])
+    // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
+    this.course = course
+    this.lecture = lecture
     this.$store.dispatch('lecture/setName', this.lecture.name)
+    this.$store.dispatch('course/setLessons', { course: this.course, lecture: this.lecture })
   }
 }
 </script>

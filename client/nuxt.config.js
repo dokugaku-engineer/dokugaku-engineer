@@ -73,8 +73,7 @@ export default {
    */
   generate: {
     routes: [
-      '/course/serverside/1/1',
-      '/course/serverside/1/2'
+      '/course/serverside/lecture/bN5sY6',
     ]
   },
   /*

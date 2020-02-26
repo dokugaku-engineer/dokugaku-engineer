@@ -20,6 +20,8 @@ class CreatePartsOldsTable extends Migration
             $table->string('name', 255);
             $table->longtext('description');
             $table->timestamps();
+
+            $table->foreign('course_id')->references('id')->on('courses_olds')->onDelete('cascade');
         });
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\Lecture\Lecture;
 use Illuminate\Http\Request;
 
 /*
@@ -23,6 +24,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     // Lecture-related routes
     Route::get('lectures/{slug}', 'LectureController@show');
+    Route::get('courses/{name}/lectures', 'CourseController@getLectures');
 
     // Post-related routes
     Route::resource('categories', 'CategoryController')->only([

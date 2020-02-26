@@ -1,16 +1,17 @@
 <template>
   <div>
-    <div @click="showLecture = !showLecture" class="lesson-title" :class="lesson.lessonPlay ? 'play' : ''">
+    <div @click="showLecture = !showLecture" class="lesson-title" :class="lesson.play ? 'play' : ''">
       <h2>
-        レッスン{{ lesson.lessonNo }}：<span class="lesson-title-detail">{{ lesson.lessonTitle }}</span>
+        レッスン{{ lesson.order }}：<span class="lesson-title-detail">{{ lesson.name }}</span>
       </h2>
       <i :class="cheveron"></i>
     </div>
     <ol v-if="showLecture" class="lecture">
       <li v-for="lecture in lesson.lectures">
-        <a href="" class="lecture-link" :class="lecture.lecturePlay ? 'play' : ''">
+        <a href="" class="lecture-link" :class="lecture.play ? 'play' : ''">
+          <!-- TODO: 未視聴の場合はfa-checkを変更する -->
           <i class="far fa-check"></i>
-          {{ lecture.lectureNo }}. {{ lecture.lectureTitle }}
+          {{ lecture.order }}. {{ lecture.name }}
         </a>
       </li>
     </ol>
@@ -113,7 +114,9 @@ export default {
   },
   computed: {
     cheveron() {
-      if (this.showLecture) {
+      if (!this.lesson.lectures.length) {
+        return "";
+      } else if (this.showLecture) {
         return "far fa-chevron-up";
       } else {
         return "far fa-chevron-down";

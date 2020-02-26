@@ -13,4 +13,9 @@ class Lecture extends Model
         'locked' => 0,
         'premium' => 0,
     ];
+
+    public function lesson()
+    {
+        return $this->belongsTo('App\Models\Lesson');
+    }
 }
