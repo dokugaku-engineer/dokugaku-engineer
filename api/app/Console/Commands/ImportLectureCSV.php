@@ -43,7 +43,7 @@ class ImportLectureCSV extends Command
      */
     public function handle()
     {
-        var_dump(123);
+        var_dump(111);
         $tables = ['course', 'part', 'lesson', 'lecture'];
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         foreach ($tables as $table) {
@@ -76,7 +76,14 @@ class ImportLectureCSV extends Command
      */
     private function getCsv($name)
     {
+        var_dump(222);
+        var_dump(env('FILE_DISK', 'local'));
+        var_dump(env('AWS_ACCESS_KEY_ID'));
+        var_dump(env('AWS_SECRET_ACCESS_KEY'));
+        var_dump(env('AWS_DEFAULT_REGION'));
+        var_dump(env('AWS_BUCKET'));
         $csvData = Storage::disk(env('FILE_DISK', 'local'))->get("lecture/${name}.csv");
+        var_dump($csvData);
         $csvLines = explode(PHP_EOL, $csvData);
         $csv = [];
         foreach ($csvLines as $line) {
