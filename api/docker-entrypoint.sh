@@ -8,9 +8,13 @@ set -e
 # echo "root:$root_pw" | chpasswd
 # /usr/sbin/sshd
 
+echo 0
 if [ ${APP_ENV} = "production" ]; then
+  echo 1
   php artisan config:cache
+  echo 2
   php artisan migrate
+  echo 3
 fi
 
 /usr/sbin/php-fpm -F
