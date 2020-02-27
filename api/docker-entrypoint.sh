@@ -10,6 +10,7 @@ set -e
 
 if [ ${APP_ENV} = "production" ]; then
   php artisan config:cache
+  php artisan migrate
 fi
 
 /usr/sbin/php-fpm -F
