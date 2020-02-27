@@ -43,6 +43,7 @@ class ImportLectureCSV extends Command
      */
     public function handle()
     {
+        var_dump(123);
         $tables = ['course', 'part', 'lesson', 'lecture'];
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         foreach ($tables as $table) {
