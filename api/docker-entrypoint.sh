@@ -13,7 +13,7 @@ if [ ${APP_ENV} = "production" ]; then
   echo 1
   php artisan config:cache
   echo 2
-  php artisan migrate
+  php artisan migrate --force
   echo 3
 fi
 
