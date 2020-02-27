@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
-use Illuminate\Support\Facades\DB;
 
 /**
  * @group 3. Course

@@ -16,14 +16,14 @@
                 <div class="lesson">
                   <nuxt-link
                     :to="`/course/${$store.state.course.course.name}`"
-                    @click.native="showMenu = false"
+                    @click.native="showMenu = !showMenu"
                   >
                     <h2 class="lesson-title">ホーム</h2>
                   </nuxt-link>
                 </div>
               </div>
               <div v-for="lesson in this.$store.state.course.lessons" class="lesson">
-                <LectureList :lessonLectures="lesson" @hideMenu="showMenu = false" />
+                <LectureList :lessonLectures="lesson" @hideMenu="showMenu = !showMenu" />
               </div>
             </div>
           </div>
