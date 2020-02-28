@@ -69,12 +69,23 @@ export default {
   },
   /*
    ** Generate configuration
-   ** TODO: 書き直す。 https: //nuxtjs.org/api/configuration-generate/#routes
    */
   generate: {
-    routes: [
-      '/course/serverside/lecture/bN5sY6',
-    ]
+    routes() {
+      let courses = axios.get(`${process.env.API_URL}/courses`)
+        .then((res) => {
+          return res.data.map((course) => {
+            return {
+              route: '/course/' + course.name,
+              payload: course
+            }
+          })
+        })
+
+      return Promise.all([courses]).then(values => {
+        return [...values[0]]
+      })
+    }
   },
   /*
    ** Global CSS

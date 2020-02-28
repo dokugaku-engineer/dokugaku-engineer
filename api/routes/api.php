@@ -22,9 +22,12 @@ Route::group(['namespace' => 'Api'], function () {
     // Health routes
     Route::get('health', 'HealthController@index');
 
-    // Lecture-related routes
-    Route::get('lectures/{slug}', 'LectureController@show');
+    // Course-related routes
+    Route::resource('courses', 'CourseController')->only([
+        'index'
+    ]);
     Route::get('courses/{name}/lectures', 'CourseController@getLectures');
+    Route::get('lectures/{slug}', 'LectureController@show');
 
     // Post-related routes
     Route::resource('categories', 'CategoryController')->only([

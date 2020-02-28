@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Http\Resources\Course\Course as CourseResource;
 use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
 
 /**
@@ -11,6 +13,20 @@ use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
  */
 class CourseController extends Controller
 {
+    /**
+     * コース一覧を取得
+     *
+     * @responsefile responses/course.index.json
+     *
+     * @return CourseResourceCollection
+     *
+     */
+    public function index(Request $request)
+    {
+        $categories = Course::all();
+        return CourseResource::collection($categories);
+    }
+
     /**
      * レクチャーを取得
      *
