@@ -300,10 +300,22 @@
     padding-top: 12rem;
 
     h1 {
+      font-size: 2.8rem;
+      letter-spacing: .1rem;
+      line-height: 4.5rem;
+      margin-right: 3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .tagline-content {
+
+    h1 {
       font-size: 3.6rem;
       letter-spacing: 1.2rem;
       line-height: 4.8rem;
-      margin-right: 3rem;
+      margin-right: 2rem;
     }
   }
 }
@@ -326,8 +338,20 @@
     margin-top: 3rem;
 
     .btn {
-      margin-right: 2rem;
+      margin-right: .5rem;
       margin-top: 0;
+      padding: 1.2rem .6rem;
+      width: 17.5rem !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .tagline-btn {
+
+    .btn {
+      margin-right: 2rem;
+      padding: 1.2rem 2rem;
       width: 20rem !important;
     }
   }
