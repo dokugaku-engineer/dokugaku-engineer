@@ -50,6 +50,11 @@ table {
   width: 100%;
 }
 
+img,
+svg {
+  vertical-align: middle;
+}
+
 .clearfix:after {
   content: "";
   clear: both;

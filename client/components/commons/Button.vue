@@ -13,6 +13,7 @@
   line-height: 1.5;
   padding: 1.2rem 2rem;
   text-align: center;
+  vertical-align: middle;
 
   &:focus {
     outline: 0;
