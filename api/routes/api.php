@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::resource('courses', 'CourseController')->only([
         'index'
     ]);
+    Route::get('courses/lectures', 'CourseController@getAllLectures');
     Route::get('courses/{name}/lectures', 'CourseController@getLectures');
     Route::get('lectures/{slug}', 'LectureController@show');
 

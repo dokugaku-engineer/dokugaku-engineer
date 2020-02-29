@@ -28,6 +28,22 @@ class CourseController extends Controller
     }
 
     /**
+     * コースとレクチャー一覧を取得
+     *
+     * @responsefile responses/course.getAllLectures.json
+     *
+     * @return CourseLectureResource
+     *
+     */
+    public function getAllLectures(Request $request)
+    {
+        $course = Course::with(['parts.lessons.lectures' => function ($query) {
+            $query->where('lectures.public', 1);
+        }])->get();
+        return CourseLectureResource::collection($course);
+    }
+
+    /**
      * レクチャーを取得
      *
      * @bodyParam name string required Course name. Example: serverside

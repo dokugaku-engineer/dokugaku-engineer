@@ -82,8 +82,22 @@ export default {
           })
         })
 
-      return Promise.all([courses]).then(values => {
-        return [...values[0]]
+      let lectures = axios.get(`${process.env.API_URL}/courses/lectures`)
+        .then((res) => {
+          let courseLectures = []
+          res.data.forEach(course => {
+            course.parts.forEach(part => part.lessons.forEach(lesson => lesson.lectures.forEach(lecture => {
+              courseLectures.push({
+                route: '/course/' + course.name + '/lecture/' + lecture.slug,
+                payload: lecture
+              })
+            })))
+          })
+          return courseLectures
+        })
+
+      return Promise.all([courses, lectures]).then(values => {
+        return [...values[0], ...values[1]]
       })
     }
   },
