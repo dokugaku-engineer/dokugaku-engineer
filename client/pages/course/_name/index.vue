@@ -103,9 +103,13 @@ export default {
     LectureList,
   },
   async created() {
-    const data = await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`)
-    this.course = data
-    this.$store.dispatch('course/setCourse', { course: this.course, lecture: {} })
+    await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`)
+      .then((res) => {
+        this.course = res
+        this.$store.dispatch('course/setCourse', { course: this.course, lecture: {} })
+      }).catch((e) => {
+        this.$router.push('/')
+      })
   }
 }
 </script>

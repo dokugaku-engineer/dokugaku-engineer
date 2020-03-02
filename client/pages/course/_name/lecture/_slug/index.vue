@@ -82,15 +82,18 @@ export default {
     }
   },
   async created() {
-    const [course, lecture] = await Promise.all([
+    await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}/lectures`),
       this.$axios.$get(`/lectures/${this.$route.params.slug}`)
-    ])
-    // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
-    this.course = course
-    this.lecture = lecture
-    this.$store.dispatch('course/setCourse', { course: this.course, lecture: this.lecture })
-    this.$store.dispatch('lecture/setName', this.lecture.name)
+    ]).then((res) => {
+      // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
+      this.course = res[0]
+      this.lecture = res[1]
+      this.$store.dispatch('course/setCourse', { course: this.course, lecture: this.lecture })
+      this.$store.dispatch('lecture/setName', this.lecture.name)
+    }).catch((e) => {
+      this.$router.push('/')
+    })
   }
 }
 </script>
