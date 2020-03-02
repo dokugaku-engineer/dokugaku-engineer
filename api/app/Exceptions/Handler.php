@@ -4,9 +4,12 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Traits\JsonRespondController;
 
 class Handler extends ExceptionHandler
 {
+    use JsonRespondController;
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -46,6 +49,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (!config('app.debug') && ($request->ajax() || $request->is('api/*'))) {
+            $status = 400;
+            if ($this->isHttpException($exception)) {
+                $status = $exception->getStatusCode();
+            }
+
+            // 非HTTPアクセスの場合は500エラーにする
+            if ($this->shouldReport($exception) && !$this->isHttpException($exception)) {
+                $status = 500;
+            }
+
+            return $this->setHTTPStatusCode($status)
+                ->setErrorCode(40)
+                ->respondWithError($exception->getMessage());
+        }
         return parent::render($request, $exception);
     }
 }
