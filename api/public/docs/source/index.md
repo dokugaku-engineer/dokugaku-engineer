@@ -55,14 +55,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=ex" 
+curl -X GET -G "http://localhost:8080/api/categories?except=voluptate" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "ex",
+            "except": "voluptate",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -86,27 +86,19 @@ fetch(url, {
 [
     {
         "id": 1,
-        "name": "Sample1",
-        "slug": "sample1",
+        "name": "ウェブ",
+        "slug": "web",
         "parent": 0,
-        "created_at": "2019-10-30T00:06:03Z",
-        "updated_at": "2019-10-30T00:06:29Z"
+        "created_at": "2019-10-17T09:18:11Z",
+        "updated_at": "2019-10-17T09:18:11Z"
     },
     {
         "id": 2,
-        "name": "sample2",
-        "slug": "sample2",
-        "parent": 3,
-        "created_at": "2019-10-30T00:07:20Z",
-        "updated_at": "2019-10-30T05:31:37Z"
-    },
-    {
-        "id": 3,
-        "name": "Sample3",
-        "slug": "Sample3",
+        "name": "HTML",
+        "slug": "html",
         "parent": 0,
-        "created_at": "2019-10-30T00:36:34Z",
-        "updated_at": "2019-10-30T00:36:34Z"
+        "created_at": "2019-10-17T09:20:33Z",
+        "updated_at": "2019-10-17T09:20:33Z"
     }
 ]
 ```
@@ -222,12 +214,12 @@ fetch(url, {
 
 ```json
 {
-    "id": 1,
-    "name": "Sample1",
-    "slug": "sample1",
-    "parent": 0,
-    "created_at": "2019-10-30T00:06:03Z",
-    "updated_at": "2019-10-30T00:06:29Z"
+    "id": 13,
+    "name": "ウェブ",
+    "slug": "web",
+    "parent": "2",
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-20T13:28:08Z"
 }
 ```
 
@@ -317,14 +309,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=vel" 
+curl -X GET -G "http://localhost:8080/api/posts?except=id" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "vel",
+            "except": "id",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -350,7 +342,7 @@ fetch(url, {
         "id": 1,
         "slug": "web",
         "title": "Webの基本",
-        "content": "Webの基本はHTTP通信です。",
+        "content": "Webの基本はTCP・IPです。",
         "parent": 12,
         "status": "private",
         "category_post": {
@@ -362,205 +354,25 @@ fetch(url, {
         },
         "deleted_at": null,
         "created_at": "2019-10-30T04:53:07Z",
-        "updated_at": "2019-10-31T20:44:37Z"
+        "updated_at": "2019-10-30T04:53:07Z"
     },
     {
         "id": 2,
-        "slug": "webb",
-        "title": "Webの基本",
-        "content": "Webの基本はHTTP通信です。",
-        "parent": 3,
-        "status": "private",
-        "category_post": {
-            "id": 2,
-            "category_id": 1,
-            "post_id": 2,
-            "created_at": "2019-10-30T04:57:19Z",
-            "updated_at": "2019-10-31T01:14:45Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T04:57:19Z",
-        "updated_at": "2019-10-31T20:29:07Z"
-    },
-    {
-        "id": 3,
-        "slug": "hoge",
-        "title": "hogehoe",
-        "content": "hogehoge",
-        "parent": 0,
-        "status": "private",
-        "category_post": {
-            "id": 3,
-            "category_id": 1,
-            "post_id": 3,
-            "created_at": "2019-10-30T04:58:19Z",
-            "updated_at": "2019-10-31T00:32:27Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T04:58:19Z",
-        "updated_at": "2019-10-31T20:31:26Z"
-    },
-    {
-        "id": 4,
         "slug": "web2",
         "title": "Webの基本",
         "content": "Webの基本はHTTP通信です。",
         "parent": 12,
         "status": "private",
         "category_post": {
-            "id": 4,
+            "id": 2,
             "category_id": 1,
-            "post_id": 4,
-            "created_at": "2019-10-30T05:00:03Z",
-            "updated_at": "2019-10-30T05:00:03Z"
+            "post_id": 2,
+            "created_at": "2019-10-30T04:57:19Z",
+            "updated_at": "2019-10-30T04:57:19Z"
         },
         "deleted_at": null,
-        "created_at": "2019-10-30T05:00:03Z",
-        "updated_at": "2019-10-31T20:31:35Z"
-    },
-    {
-        "id": 5,
-        "slug": "web3",
-        "title": "Webの基本",
-        "content": "Webの基本はHTTP通信です。",
-        "parent": 12,
-        "status": "publish",
-        "category_post": {
-            "id": 5,
-            "category_id": 1,
-            "post_id": 5,
-            "created_at": "2019-10-30T05:00:30Z",
-            "updated_at": "2019-10-30T05:00:30Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T05:00:29Z",
-        "updated_at": "2019-10-31T19:54:45Z"
-    },
-    {
-        "id": 6,
-        "slug": "web4",
-        "title": "Webの基本",
-        "content": "Webの基本はHTTP通信です。",
-        "parent": 12,
-        "status": "publish",
-        "category_post": {
-            "id": 6,
-            "category_id": 1,
-            "post_id": 6,
-            "created_at": "2019-10-30T05:01:45Z",
-            "updated_at": "2019-10-30T05:01:45Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T05:01:45Z",
-        "updated_at": "2019-10-31T19:55:35Z"
-    },
-    {
-        "id": 7,
-        "slug": "web5",
-        "title": "Webの基本",
-        "content": "Webの基本はHTTP通信です。",
-        "parent": 12,
-        "status": "publish",
-        "category_post": {
-            "id": 7,
-            "category_id": 1,
-            "post_id": 7,
-            "created_at": "2019-10-30T05:02:50Z",
-            "updated_at": "2019-10-30T05:02:50Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T05:02:50Z",
-        "updated_at": "2019-10-31T19:56:51Z"
-    },
-    {
-        "id": 8,
-        "slug": "web6",
-        "title": "Webの基本",
-        "content": "Webの基本はHTTP通信です。",
-        "parent": 12,
-        "status": "publish",
-        "category_post": {
-            "id": 8,
-            "category_id": 1,
-            "post_id": 8,
-            "created_at": "2019-10-30T05:13:07Z",
-            "updated_at": "2019-10-30T05:13:07Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T05:13:07Z",
-        "updated_at": "2019-10-31T19:57:59Z"
-    },
-    {
-        "id": 9,
-        "slug": "web7",
-        "title": "Webの基本",
-        "content": "Webの基本はHTTP通信です。",
-        "parent": 12,
-        "status": "publish",
-        "category_post": {
-            "id": 9,
-            "category_id": 1,
-            "post_id": 9,
-            "created_at": "2019-10-30T05:15:06Z",
-            "updated_at": "2019-10-30T05:15:06Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T05:15:06Z",
-        "updated_at": "2019-10-31T20:26:59Z"
-    },
-    {
-        "id": 10,
-        "slug": "hoge1",
-        "title": "hoge",
-        "content": "hoge",
-        "parent": 0,
-        "status": "publish",
-        "category_post": {
-            "id": 10,
-            "category_id": 1,
-            "post_id": 10,
-            "created_at": "2019-10-30T06:20:52Z",
-            "updated_at": "2019-10-30T06:20:52Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T06:20:52Z",
-        "updated_at": "2019-10-31T20:27:04Z"
-    },
-    {
-        "id": 11,
-        "slug": "hoge2",
-        "title": "hoge",
-        "content": "hoge",
-        "parent": 0,
-        "status": "publish",
-        "category_post": {
-            "id": 11,
-            "category_id": 3,
-            "post_id": 11,
-            "created_at": "2019-10-30T06:24:40Z",
-            "updated_at": "2019-10-30T06:24:40Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-30T06:24:40Z",
-        "updated_at": "2019-10-31T20:04:30Z"
-    },
-    {
-        "id": 12,
-        "slug": "parent",
-        "title": "parent",
-        "content": "parent",
-        "parent": 6,
-        "status": "publish",
-        "category_post": {
-            "id": 12,
-            "category_id": 2,
-            "post_id": 12,
-            "created_at": "2019-10-31T00:42:12Z",
-            "updated_at": "2019-10-31T00:42:12Z"
-        },
-        "deleted_at": null,
-        "created_at": "2019-10-31T00:42:12Z",
-        "updated_at": "2019-10-31T20:03:36Z"
+        "created_at": "2019-10-30T04:57:19Z",
+        "updated_at": "2019-10-30T04:57:19Z"
     }
 ]
 ```
@@ -694,22 +506,22 @@ fetch(url, {
 
 ```json
 {
-    "id": 1,
+    "id": 13,
     "slug": "web",
     "title": "Webの基本",
-    "content": "Webの基本はHTTP通信です。",
+    "content": "Webの基本はTCP・IPです。",
     "parent": 12,
     "status": "private",
     "category_post": {
-        "id": 1,
+        "id": 13,
         "category_id": 1,
-        "post_id": 1,
-        "created_at": "2019-10-30T04:53:07Z",
-        "updated_at": "2019-10-30T04:53:07Z"
+        "post_id": 13,
+        "created_at": "2019-10-30T05:15:06Z",
+        "updated_at": "2019-10-30T05:15:06Z"
     },
     "deleted_at": null,
-    "created_at": "2019-10-30T04:53:07Z",
-    "updated_at": "2019-10-31T20:44:37Z"
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
 }
 ```
 
@@ -914,22 +726,22 @@ fetch(url, {
 
 ```json
 {
-    "id": 1,
+    "id": 13,
     "slug": "web",
     "title": "Webの基本",
-    "content": "Webの基本はHTTP通信です。",
+    "content": "Webの基本はTCP・IPです。",
     "parent": 12,
-    "status": "publish",
+    "status": "private",
     "category_post": {
-        "id": 1,
+        "id": 13,
         "category_id": 1,
-        "post_id": 1,
-        "created_at": "2019-10-30T04:53:07Z",
-        "updated_at": "2019-10-30T04:53:07Z"
+        "post_id": 13,
+        "created_at": "2019-10-30T05:15:06Z",
+        "updated_at": "2019-10-30T05:15:06Z"
     },
     "deleted_at": null,
-    "created_at": "2019-10-30T04:53:07Z",
-    "updated_at": "2019-10-31T20:51:04Z"
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
 }
 ```
 
@@ -982,22 +794,22 @@ fetch(url, {
 
 ```json
 {
-    "id": 1,
+    "id": 13,
     "slug": "web",
     "title": "Webの基本",
-    "content": "Webの基本はHTTP通信です。",
+    "content": "Webの基本はTCP・IPです。",
     "parent": 12,
     "status": "private",
     "category_post": {
-        "id": 1,
+        "id": 13,
         "category_id": 1,
-        "post_id": 1,
-        "created_at": "2019-10-30T04:53:07Z",
-        "updated_at": "2019-10-30T04:53:07Z"
+        "post_id": 13,
+        "created_at": "2019-10-30T05:15:06Z",
+        "updated_at": "2019-10-30T05:15:06Z"
     },
     "deleted_at": null,
-    "created_at": "2019-10-30T04:53:07Z",
-    "updated_at": "2019-10-31T20:44:37Z"
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
 }
 ```
 
@@ -1012,19 +824,20 @@ Parameter | Type | Status | Description
 
 <!-- END_b983679a3d7e0cf86939f7140d986aca -->
 
-#general
+#3. Course
 
 
-<!-- START_4cf62d5f888cef179f9e93c44d0d51ef -->
-## api/sample
+<!-- START_0ec32a5c7dac7b493d908412c6b29324 -->
+## コース一覧を取得
+
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/sample" 
+curl -X GET -G "http://localhost:8080/api/courses" 
 ```
 
 ```javascript
-const url = new URL("http://localhost:8080/api/sample");
+const url = new URL("http://localhost:8080/api/courses");
 
 let headers = {
     "Accept": "application/json",
@@ -1043,15 +856,309 @@ fetch(url, {
 > Example response (200):
 
 ```json
+[
+    {
+        "id": 1,
+        "name": "serverside",
+        "description": "サーバーサイドエンジニアとして業務で自走できるようになることがゴールです。",
+        "created_at": "2020-02-28 06:48:01",
+        "updated_at": "2020-02-28 06:48:01"
+    }
+]
+```
+
+### HTTP Request
+`GET api/courses`
+
+
+<!-- END_0ec32a5c7dac7b493d908412c6b29324 -->
+
+<!-- START_40bcb093158f821689fe8255bf26f2c9 -->
+## コースとレクチャー一覧を取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/courses/lectures" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/courses/lectures");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "name": "serverside",
+        "description": "実務で自走できるようになることを目指します",
+        "created_at": "2020-02-26T06:18:39Z",
+        "updated_at": "2020-02-26T06:18:39Z",
+        "parts": [
+            {
+                "id": 1,
+                "course_id": 1,
+                "order": 1,
+                "name": "コースへようこそ！",
+                "created_at": "2020-02-26T06:18:39Z",
+                "updated_at": "2020-02-26T06:18:39Z",
+                "lessons": [
+                    {
+                        "id": 1,
+                        "part_id": 1,
+                        "order": 1,
+                        "name": "コースへようこそ！",
+                        "created_at": "2020-02-26T06:18:39Z",
+                        "updated_at": "2020-02-26T06:18:39Z",
+                        "lectures": [
+                            {
+                                "id": 1,
+                                "lesson_id": 1,
+                                "order": 1,
+                                "name": "コースへようこそ！",
+                                "video_url": "https:\/\/player.vimeo.com\/video\/391168857",
+                                "description": "コースを受講いただきありがとうございます！これからプロのエンジニアを目指して一緒にやっていきましょう！",
+                                "slug": "rQI62",
+                                "prev_lecture_slug": "",
+                                "next_lecture_slug": "bN5sY6",
+                                "public": 1,
+                                "locked": 0,
+                                "premium": 0,
+                                "created_at": "2020-02-26T06:18:39Z",
+                                "updated_at": "2020-02-26T06:18:39Z"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
+```
+
+### HTTP Request
+`GET api/courses/lectures`
+
+
+<!-- END_40bcb093158f821689fe8255bf26f2c9 -->
+
+<!-- START_74af4b6890ab4f3e31e8904435d099a1 -->
+## レクチャーを取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/courses/1/lectures" \
+    -H "Content-Type: application/json" \
+    -d '{"name":"serverside"}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/courses/1/lectures");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "name": "serverside"
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
 {
-    "title": "thanks god"
+    "id": 1,
+    "name": "serverside",
+    "description": "実務で自走できるようになることを目指します",
+    "created_at": "2020-02-26T06:18:39Z",
+    "updated_at": "2020-02-26T06:18:39Z",
+    "parts": [
+        {
+            "id": 1,
+            "course_id": 1,
+            "order": 1,
+            "name": "コースへようこそ！",
+            "created_at": "2020-02-26T06:18:39Z",
+            "updated_at": "2020-02-26T06:18:39Z",
+            "lessons": [
+                {
+                    "id": 1,
+                    "part_id": 1,
+                    "order": 1,
+                    "name": "コースへようこそ！",
+                    "created_at": "2020-02-26T06:18:39Z",
+                    "updated_at": "2020-02-26T06:18:39Z",
+                    "lectures": [
+                        {
+                            "id": 1,
+                            "lesson_id": 1,
+                            "order": 1,
+                            "name": "コースへようこそ！",
+                            "video_url": "https:\/\/player.vimeo.com\/video\/391168857",
+                            "description": "コースを受講いただきありがとうございます！これからプロのエンジニアを目指して一緒にやっていきましょう！",
+                            "slug": "rQI62",
+                            "prev_lecture_slug": "",
+                            "next_lecture_slug": "bN5sY6",
+                            "public": 1,
+                            "locked": 0,
+                            "premium": 0,
+                            "created_at": "2020-02-26T06:18:39Z",
+                            "updated_at": "2020-02-26T06:18:39Z"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }
 ```
 
 ### HTTP Request
-`GET api/sample`
+`GET api/courses/{name}/lectures`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    name | string |  required  | Course name.
+
+<!-- END_74af4b6890ab4f3e31e8904435d099a1 -->
+
+#4. Lecture
 
 
-<!-- END_4cf62d5f888cef179f9e93c44d0d51ef -->
+<!-- START_5aea6b8a5b275ae465be60b5be677eae -->
+## レクチャーを取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/lectures/1" \
+    -H "Content-Type: application/json" \
+    -d '{"slug":"bN5sY6"}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/lectures/1");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "slug": "bN5sY6"
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 2,
+    "lesson_id": 1,
+    "order": 2,
+    "name": "コースのゴール",
+    "video_url": "https:\/\/player.vimeo.com\/video\/391168857",
+    "description": "コースを受講後にできるようになっていることを解説します。コースを完了すれば、みなさんのキャリアが変わっています！",
+    "slug": "bN5sY6",
+    "prev_lecture_slug": "rQI62",
+    "next_lecture_slug": "ToeOO",
+    "public": 1,
+    "locked": 0,
+    "premium": 0,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`GET api/lectures/{slug}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    slug | string |  required  | Lecture slug.
+
+<!-- END_5aea6b8a5b275ae465be60b5be677eae -->
+
+#general
+
+
+<!-- START_46abdb365a7dca172c3257c85dbbdbe0 -->
+## api/health
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/health" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/health");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response:
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/health`
+
+
+<!-- END_46abdb365a7dca172c3257c85dbbdbe0 -->
 
 
