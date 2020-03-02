@@ -3,6 +3,7 @@
     <div class="tagline bg-white2">
       <div class="tagline-img-left">
         <img
+          @click="toggleModal"
           src="@/assets/images/serverside-hero.png"
           alt=""
         />
@@ -22,7 +23,7 @@
                 無料で受講する
               </nui-button>
             </nuxt-link>
-            <nui-button class="btn-outline-teal1 btn-shadow content-btn" submit="true">
+            <nui-button @click.native="showModal = true" class="btn-outline-teal1 btn-shadow content-btn" submit="true">
               <i class="fas fa-play-circle fa-lg"></i>
               講座をプレビュー
             </nui-button>
@@ -30,9 +31,20 @@
         </div>
         <div class="tagline-img-right">
           <img
+            @click="toggleModal"
             src="@/assets/images/serverside-hero.png"
             alt=""
           />
+        </div>
+      </div>
+    </div>
+
+    <div v-if="showModal" @click="toggleModal" class="video-modal">
+      <div class="video-modal-daialog">
+        <div class="video-modal-content">
+          <div class="video-modal-embed">
+            <iframe src="https://player.vimeo.com/video/391168857?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -380,6 +392,42 @@
   }
 }
 
+.video-modal {
+  background-color: rgba(0,0,0,.85);
+  height: 100vh;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 2000;
+}
+
+.video-modal-daialog {
+  align-items: center;
+  display: flex;
+  margin: .8rem auto;
+  max-width: 80%;
+  min-height: calc(100% - 1rem);
+  position: relative;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+}
+
+.video-modal-embed {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+  }
+}
+
 .intro, .roadmap {
   margin: 0 auto;
   padding: 6.4rem 2.4rem;
@@ -680,6 +728,16 @@ export default {
     Logo,
     NuiButton,
     Footer
+  },
+  data() {
+    return {
+      showModal: false
+    }
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
+    }
   }
 }
 </script>

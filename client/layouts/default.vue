@@ -122,10 +122,5 @@ export default {
     NuiButton,
     Footer
   },
-  data() {
-    return {
-      showMenu: false
-    }
-  }
 }
 </script>
