@@ -39,15 +39,17 @@
       </div>
     </div>
 
-    <div v-if="showModal" @click="toggleModal" class="video-modal">
-      <div class="video-modal-daialog">
-        <div class="video-modal-content">
-          <div class="video-modal-embed">
-            <iframe src="https://player.vimeo.com/video/391168857?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    <transition name="fade">
+      <div v-if="showModal" @click="toggleModal" class="video-modal">
+        <div class="video-modal-daialog">
+          <div class="video-modal-content">
+            <div class="video-modal-embed">
+              <iframe src="https://player.vimeo.com/video/391168857?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" data-ready="true"></iframe>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
 
     <div class="intro bg-white">
       <div class="intro-header">
@@ -426,6 +428,14 @@
     display: block;
     padding-top: 56.25%;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 .intro, .roadmap {
