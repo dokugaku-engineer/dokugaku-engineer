@@ -2,7 +2,8 @@ export const state = () => ({
   course: {},
   courseTop: false,
   lessons: [],
-  lecture: {}
+  lecture: {},
+  lectureName: ''
 })
 
 export const mutations = {
@@ -12,6 +13,10 @@ export const mutations = {
   }) {
     state.course = course
     state.lecture = lecture
+
+    if (!Object.keys(course).length) {
+      return
+    }
 
     if (!Object.keys(lecture).length) {
       state.courseTop = true
@@ -34,6 +39,13 @@ export const mutations = {
     });
 
     state.lessons = lessons
+  },
+
+  SET_LECTURE_NAME(state, {
+    name
+  }) {
+    state.lectureName = name
+    console.log(name)
   }
 }
 
@@ -49,4 +61,14 @@ export const actions = {
       lecture
     })
   },
+
+  setLectureName({
+    commit
+  }, {
+    name
+  }) {
+    commit("SET_LECTURE_NAME", {
+      name
+    })
+  }
 }

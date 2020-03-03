@@ -22,14 +22,14 @@
                   </nuxt-link>
                 </div>
               </div>
-              <div v-for="lesson in this.$store.state.course.lessons" class="lesson">
+              <div v-for="lesson in $store.state.course.lessons" class="lesson">
                 <LectureList :lessonLectures="lesson" @hideMenu="showMenu = !showMenu" />
               </div>
             </div>
           </div>
         </transition>
       </div>
-      <h1 class="header-title">{{ courseTop ? 'ホーム' : $store.state.lecture.name }}</h1>
+      <h1 class="header-title">{{ $store.state.course.lectureName }}</h1>
     </header>
     
     <div class="main">
@@ -90,7 +90,7 @@
 .bars {
   color: $color-red1;
   display: block;
-  margin-right: 1rem;
+  margin: .6rem 1rem .6rem 0;
 }
 
 @media screen and (min-width: 769px) {
@@ -222,7 +222,7 @@ export default {
   computed: {
     courseTop() {
       return this.$store.state.course.courseTop
-    }
-  }
+    },
+  },
 }
 </script>

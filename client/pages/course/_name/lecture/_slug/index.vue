@@ -16,7 +16,11 @@
           </nuxt-link>
         </div>
       </div>
+      <div v-if="loading" class="loading">
+        <i class="fad fa-spinner fa-spin fa-lg"></i>
+      </div>
     </div>
+
     <div class="detail">
       <div class="detail-btns">
         <nuxt-link
@@ -41,6 +45,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -172,6 +177,16 @@
     margin: 0 1.6rem;
   }
 }
+
+.loading {
+  align-items: center;
+  color: $color-teal1;
+  display: flex;
+  justify-content: center;
+  left: 47%;
+  position: absolute;
+  top: 50%;
+}
 </style>
 
 <script>
@@ -180,10 +195,13 @@ export default {
   data() {
     return {
       course: {},
-      lecture: {}
+      lecture: {},
+      loading: true
     }
   },
   async created() {
+    this.$store.dispatch('course/setCourse', { course: {}, lecture: {} })
+    this.$store.dispatch('course/setLectureName', { name: '' })
     await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}/lectures`),
       this.$axios.$get(`/lectures/${this.$route.params.slug}`)
@@ -191,8 +209,9 @@ export default {
       // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
       this.course = res[0]
       this.lecture = res[1]
+      this.loading = false
       this.$store.dispatch('course/setCourse', { course: this.course, lecture: this.lecture })
-      this.$store.dispatch('lecture/setName', this.lecture.name)
+      this.$store.dispatch('course/setLectureName', { name: this.lecture.name })
     }).catch((e) => {
       this.$router.push('/')
     })

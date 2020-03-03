@@ -5,6 +5,9 @@
       <p class="header-text">{{ $store.state.course.course.description }}</p>
     </div>
     <div class="main">
+      <div v-if="loading" class="loading">
+        <i class="fad fa-spinner fa-spin fa-lg"></i>
+      </div>
       <div class="part" v-for="part in $store.state.course.course.parts">
         <div class="part-inner">
           <h3 class="part-subtitle">PART {{ part.order }}</h3>
@@ -46,7 +49,9 @@
 }
 
 .main {
+  min-height: 30vh;
   padding: 3rem 3rem 0;
+  position: relative;
 }
 
 @media screen and (min-width: 769px) {
@@ -92,6 +97,13 @@
   line-height: 2.8rem;
   margin-bottom: 1.4rem;
 }
+
+.loading {
+  color: $color-teal1;
+  left: 47%;
+  position: absolute;
+  top: 50%;
+}
 </style>
 
 <script>
@@ -102,10 +114,18 @@ export default {
   components: {
     LectureList,
   },
+  data() {
+    return {
+      course: {},
+      loading: true
+    }
+  },
   async created() {
+    this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
     await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`)
       .then((res) => {
         this.course = res
+        this.loading = false
         this.$store.dispatch('course/setCourse', { course: this.course, lecture: {} })
       }).catch((e) => {
         this.$router.push('/')
