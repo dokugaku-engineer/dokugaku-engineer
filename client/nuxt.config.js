@@ -75,10 +75,7 @@ export default {
       let courses = axios.get(`${process.env.API_URL}/courses`)
         .then((res) => {
           return res.data.map((course) => {
-            return {
-              route: '/course/' + course.name,
-              payload: course
-            }
+            return '/course/' + course.name
           })
         })
 
@@ -87,10 +84,7 @@ export default {
           let courseLectures = []
           res.data.forEach(course => {
             course.parts.forEach(part => part.lessons.forEach(lesson => lesson.lectures.forEach(lecture => {
-              courseLectures.push({
-                route: '/course/' + course.name + '/lecture/' + lecture.slug,
-                payload: lecture
-              })
+              courseLectures.push('/course/' + course.name + '/lecture/' + lecture.slug)
             })))
           })
           return courseLectures
