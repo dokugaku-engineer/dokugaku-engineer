@@ -721,6 +721,10 @@
 
 .content-btn {
   width: 20rem;
+
+  i {
+    vertical-align: middle;
+  }
 }
 </style>
 
