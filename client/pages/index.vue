@@ -44,7 +44,7 @@
         <div class="video-modal-daialog">
           <div class="video-modal-content">
             <div class="video-modal-embed">
-              <iframe src="https://player.vimeo.com/video/391168857?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" data-ready="true"></iframe>
+              <iframe src="https://player.vimeo.com/video/391168857?autoplay=1&color=26a69a" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" data-ready="true"></iframe>
             </div>
           </div>
         </div>
@@ -721,10 +721,6 @@
 
 .content-btn {
   width: 20rem;
-
-  i {
-    vertical-align: middle;
-  }
 }
 </style>
 
