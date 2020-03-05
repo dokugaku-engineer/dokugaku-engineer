@@ -106,8 +106,5 @@ export default {
     scss: ["~assets/styles/variables.scss"]
   },
   axios: {},
-  dotenv: {}
-  // router: {
-  //   middleware: "stats"
-  // }
+  dotenv: {},
 }
