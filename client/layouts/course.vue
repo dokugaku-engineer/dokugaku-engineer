@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <header class="header">
-      <nuxt-link :to="`/course/${$store.state.course.course.name}`">
+      <nuxt-link :to="`/course/${course.name}`">
         <h2 class="header-logo">
           <logo />
         </h2>
@@ -15,33 +15,33 @@
               <div class="lesson-course">
                 <div class="lesson">
                   <nuxt-link
-                    :to="`/course/${$store.state.course.course.name}`"
+                    :to="`/course/${course.name}`"
                     @click.native="showMenu = !showMenu"
                   >
                     <h2 class="lesson-title">ホーム</h2>
                   </nuxt-link>
                 </div>
               </div>
-              <div v-for="lesson in $store.state.course.lessons" class="lesson">
+              <div v-for="lesson in lessons" class="lesson">
                 <LectureList :lessonLectures="lesson" @hideMenu="showMenu = !showMenu" />
               </div>
             </div>
           </div>
         </transition>
       </div>
-      <h1 class="header-title">{{ $store.state.course.lectureName }}</h1>
+      <h1 class="header-title">{{ lectureName }}</h1>
     </header>
     
     <div class="main">
       <nav class="sidebar">
         <div class="lesson-course">
           <div class="lesson">
-            <nuxt-link :to="`/course/${$store.state.course.course.name}`">
+            <nuxt-link :to="`/course/${course.name}`">
               <h2 class="lesson-title" :class="courseTop ? 'play' : ''">コースについて</h2>
             </nuxt-link>
           </div>
         </div>
-        <div v-for="lesson in this.$store.state.course.lessons" class="lesson">
+        <div v-for="lesson in lessons" class="lesson">
           <LectureList :lessonLectures="lesson" />
         </div>
       </nav>
@@ -207,6 +207,7 @@
 import Logo from "@/components/svg/Logo.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import Footer from "@/components/layouts/Footer.vue"
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -220,9 +221,7 @@ export default {
     }
   },
   computed: {
-    courseTop() {
-      return this.$store.state.course.courseTop
-    },
+    ...mapState('course', ['course', 'courseTop', 'lessons', 'lectureName'])
   },
 }
 </script>

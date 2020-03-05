@@ -2,13 +2,13 @@
   <div>
     <div class="header">
       <h3 class="header-title">カリキュラム</h3>
-      <p class="header-text">{{ $store.state.course.course.description }}</p>
+      <p class="header-text">{{ course.description }}</p>
     </div>
     <div class="main">
       <div v-if="loading" class="loading">
         <i class="fad fa-spinner fa-spin fa-lg"></i>
       </div>
-      <div class="part" v-for="part in $store.state.course.course.parts">
+      <div class="part" v-for="part in course.parts">
         <div class="part-inner">
           <h3 class="part-subtitle">PART {{ part.order }}</h3>
           <h2 class="part-title">{{ part.name }}</h2>
@@ -108,6 +108,7 @@
 
 <script>
 import LectureList from "@/components/partials/course/LectureList.vue"
+import { mapState } from 'vuex'
 
 export default {
   layout: "course",
@@ -119,6 +120,9 @@ export default {
       course: {},
       loading: true
     }
+  },
+  computed: {
+    ...mapState('course', ['course'])
   },
   async created() {
     this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
