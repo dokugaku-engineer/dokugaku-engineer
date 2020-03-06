@@ -259,7 +259,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -732,6 +731,8 @@
 import Logo from "@/components/svg/Logo.vue"
 import NuiButton from "@/components/commons/Button.vue"
 import Footer from "@/components/layouts/Footer.vue"
+import auth0Middleware from '~/middleware/auth0'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -739,6 +740,13 @@ export default {
     NuiButton,
     Footer
   },
+  computed: {
+    ...mapState('auth0', ['user', 'isAuthenticated'])
+  },
+  middleware: auth0Middleware.protect({
+    loginRequired: false,
+    authenticatedRedirectUri: '/course/serverside'
+  }),
   data() {
     return {
       showModal: false

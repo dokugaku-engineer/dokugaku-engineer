@@ -9,7 +9,7 @@
       </nuxt-link>
       <div class="header-item">
         <div class="header-menu">
-          <nuxt-link to="" class="header-link">ログイン</nuxt-link>
+          <nuxt-link to="" class="header-link" @click.native="login">ログイン</nuxt-link>
           <nuxt-link to="/course/serverside">
             <nui-button class="btn-teal1 btn-xs btn-shadow-all header-link header-btn">無料で受講</nui-button>
           </nuxt-link>
@@ -114,7 +114,6 @@ import LogoShort from "@/components/svg/LogoShort.vue"
 import NuiButton from "@/components/commons/Button.vue"
 import Footer from "@/components/layouts/Footer.vue"
 
-
 export default {
   components: {
     Logo,
@@ -122,5 +121,14 @@ export default {
     NuiButton,
     Footer
   },
+  methods: {
+    async login() {
+      await this.$auth0.loginWithRedirect({
+        redirect_uri: 'http://localhost:3333'
+      })
+      const user = await auth0.getUser();
+      console.log(user);
+    },
+  }
 }
 </script>
