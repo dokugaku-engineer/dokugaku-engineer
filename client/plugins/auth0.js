@@ -1,33 +1,25 @@
 import Vue from "vue"
 import createAuth0Client from "@auth0/auth0-spa-js"
 
-const DEFAULT_REDIRECT_CALLBACK = () =>
-  window.history.replaceState({}, document.title, window.location.pathname);
-
 let instance;
 
 const useAuth0 = async (store, {
-  onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
-  redirectUri = window.location.origin,
+  onRedirectCallback,
   ...options
 }) => {
   if (instance) return instance
-
 
   const auth0Client = await createAuth0Client({
     domain: options.domain,
     client_id: options.clientId,
     audience: options.audience,
     scope: options.scope,
-    redirect_uri: redirectUri
+    redirect_uri: window.location.origin
   })
 
   instance = new Vue({
     data() {
       return {
-        loading: true,
-        isAuthenticated: false,
-        user: {},
         auth0Client: null,
         error: null
       }
@@ -47,11 +39,12 @@ const useAuth0 = async (store, {
       },
       async handleRedirectCallback() {
         store.commit('auth0/SET_LOADING', true)
-
         try {
           await this.auth0Client.handleRedirectCallback()
           store.commit('auth0/SET_USER', await this.auth0Client.getUser())
           store.commit('auth0/SET_IS_AUTHENTICATED', true)
+        } catch (e) {
+          this.error = e
         } finally {
           store.commit('auth0/SET_LOADING', false)
         }
@@ -72,17 +65,20 @@ const useAuth0 = async (store, {
           const token = await this.auth0Client.getTokenWithPopup(options)
           return token
         } finally {
+          j
           store.commit('auth0/SET_POPUP_OPEN', false)
         }
       },
       logout(options) {
         store.commit('auth0/SET_IS_AUTHENTICATED', false)
         return this.auth0Client.logout(options)
+      },
+      getUser() {
+        return this.auth0Client.getUser();
       }
     },
     async created() {
       this.auth0Client = auth0Client
-
       try {
         if (
           window.location.search.includes("code=") &&
@@ -93,6 +89,8 @@ const useAuth0 = async (store, {
           } = await this.auth0Client.handleRedirectCallback()
           onRedirectCallback(appState)
         }
+      } catch (e) {
+        this.error = e
       } finally {
         store.commit('auth0/SET_IS_AUTHENTICATED', await this.auth0Client.isAuthenticated())
         store.commit('auth0/SET_USER', await this.auth0Client.getUser())
@@ -111,11 +109,7 @@ export default async function (context, inject) {
     audience: context.env.AUTH0_AUDIENCE,
     scope: context.env.AUTH0_SCOPE,
     onRedirectCallback: (appState) => {
-      context.app.router.push(
-        appState && appState.targetUrl ?
-        appState.targetUrl :
-        window.location.pathname
-      )
+      context.app.router.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname)
     }
   }
 

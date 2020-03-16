@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
@@ -11,7 +12,7 @@ use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
 /**
  * @group 3. Course
  */
-class CourseController extends Controller
+class CourseController extends ApiController
 {
     /**
      * コース一覧を取得

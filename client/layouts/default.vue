@@ -9,10 +9,8 @@
       </nuxt-link>
       <div class="header-item">
         <div class="header-menu">
-          <nuxt-link to="" class="header-link" @click.native="login">ログイン</nuxt-link>
-          <nuxt-link to="/course/serverside">
-            <nui-button class="btn-teal1 btn-xs btn-shadow-all header-link header-btn">無料で受講</nui-button>
-          </nuxt-link>
+          <button class="header-link" @click="login">ログイン</button>
+          <nui-button class="btn-teal1 btn-xs btn-shadow-all header-link header-btn" @click.native="signup">無料で受講</nui-button>
         </div>
       </div>
     </header>
@@ -123,11 +121,23 @@ export default {
   },
   methods: {
     async login() {
-      await this.$auth0.loginWithRedirect({
-        redirect_uri: 'http://localhost:3333'
-      })
-      const user = await auth0.getUser();
-      console.log(user);
+      const options = {
+        redirect_uri: 'http://localhost:3333/course/serverside',
+        appState: {
+          targetUrl: '/course/serverside'
+        },
+      }
+      await this.$auth0.loginWithRedirect(options)
+    },
+    async signup() {
+      const options = {
+        redirect_uri: 'http://localhost:3333/course/serverside',
+        appState: {
+          targetUrl: '/course/serverside'
+        },
+        screen_hint: 'signup'
+      }
+      await this.$auth0.loginWithRedirect(options)
     },
   }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiController;
 
-class HealthController extends Controller
+class HealthController extends ApiController
 {
     // TODO: DB疎通させたほうがよい
     public function index()

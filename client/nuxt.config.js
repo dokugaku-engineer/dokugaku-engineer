@@ -49,7 +49,7 @@ export default {
     "./plugins/axios.js",
     "./plugins/mixins/validation.js",
     "./plugins/vuelidate.js",
-    "./plugins/auth0.js"
+    "./plugins/auth0.js",
   ],
   /*
    ** Nuxt.js dev-modules

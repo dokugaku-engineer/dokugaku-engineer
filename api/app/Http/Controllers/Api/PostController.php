@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\Post\Post as PostResource;
 use App\Models\Post;
 use App\Services\Admin\Post\CreatePost;
 use App\Services\Admin\Post\UpdatePost;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 /**
  * @group 2. Post
  */
-class PostController extends Controller
+class PostController extends ApiController
 {
     /**
      * 記事一覧を取得

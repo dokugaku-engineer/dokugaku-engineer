@@ -55,14 +55,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=voluptate" 
+curl -X GET -G "http://localhost:8080/api/categories?except=dolorem" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "voluptate",
+            "except": "dolorem",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -309,14 +309,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=id" 
+curl -X GET -G "http://localhost:8080/api/posts?except=praesentium" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "id",
+            "except": "praesentium",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1120,6 +1120,68 @@ Parameter | Type | Status | Description
     slug | string |  required  | Lecture slug.
 
 <!-- END_5aea6b8a5b275ae465be60b5be677eae -->
+
+#5. User
+
+
+<!-- START_12e37982cc5398c7100e59625ebb5514 -->
+## ユーザーを保存
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/users" \
+    -H "Content-Type: application/json" \
+    -d '{"users":{"username":"kiyodori"}}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/users");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "users": {
+        "username": "kiyodori"
+    }
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "username": "kiyodori",
+    "email": "kiyodori@example.com",
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`POST api/users`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    users[username] | string |  required  | User username.
+
+<!-- END_12e37982cc5398c7100e59625ebb5514 -->
 
 #general
 

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiController;
 use App\Models\Lecture;
 use App\Http\Resources\Lecture\Lecture as LectureResource;
 
 /**
  * @group 4. Lecture
  */
-class LectureController extends Controller
+class LectureController extends ApiController
 {
     /**
      * レクチャーを取得

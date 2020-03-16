@@ -14,10 +14,20 @@ export default {
       redirect,
       store
     }) => {
-      if (options.loginRequired && !store.state.auth0.isAuthenticated) {
+      const isAuthenticated = store.state.auth0.isAuthenticated
+      const user = store.state.auth0.user
+
+      // 未ログインの場合
+      if (options.loginRequired && !isAuthenticated) {
         return redirect('/')
       }
 
+      // 会員情報が未登録の場合
+      if (isAuthenticated && !!user && !user[`${app.context.env.AUTH0_AUDIENCE}/user_metadata`].id) {
+        return redirect('/registration')
+      }
+
+      // 権限がない場合
       if (options.loginRequired && options.requiredPermissions.length > 0) {
         if (
           intersection(
@@ -29,8 +39,30 @@ export default {
         }
       }
 
+      // ログイン済みの場合
       if (options.authenticatedRedirectUri && store.state.auth0.isAuthenticated) {
         return redirect(options.authenticatedRedirectUri)
+      }
+    }
+  },
+  // registrationページを保護する
+  protectRegistration() {
+    return ({
+      app,
+      redirect,
+      store
+    }) => {
+      const isAuthenticated = store.state.auth0.isAuthenticated
+      const user = store.state.auth0.user
+
+      // 未ログインの場合
+      if (!isAuthenticated) {
+        return redirect('/')
+      }
+
+      // 登録済みの場合
+      if (!!user && !!user[`${app.context.env.AUTH0_AUDIENCE}/user_metadata`].id) {
+        return redirect('/course/serverside')
       }
     }
   }

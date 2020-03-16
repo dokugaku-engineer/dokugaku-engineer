@@ -30,6 +30,11 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('courses/{name}/lectures', 'CourseController@getLectures');
     Route::get('lectures/{slug}', 'LectureController@show');
 
+    // User routes
+    Route::resource('users', 'UserController')->only([
+        'store'
+    ]);
+
     // Post-related routes
     Route::resource('categories', 'CategoryController')->only([
         'index', 'store', 'show', 'update'
