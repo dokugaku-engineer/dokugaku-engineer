@@ -5,6 +5,7 @@ let instance;
 
 const useAuth0 = async (store, {
   onRedirectCallback,
+  redirectUri = window.location.origin,
   ...options
 }) => {
   if (instance) return instance
@@ -14,7 +15,7 @@ const useAuth0 = async (store, {
     client_id: options.clientId,
     audience: options.audience,
     scope: options.scope,
-    redirect_uri: window.location.origin
+    redirect_uri: redirectUri
   })
 
   instance = new Vue({
