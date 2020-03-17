@@ -253,6 +253,8 @@
         </div>
       </div>
     </div>
+
+    <LoadingModal :showModal="loading" />
   </div>
 </template>
 
@@ -722,6 +724,7 @@
 
 <script>
 import Logo from "@/components/svg/Logo.vue"
+import LoadingModal from "@/components/commons/LoadingModal.vue"
 import NuiButton from "@/components/commons/Button.vue"
 import Footer from "@/components/layouts/Footer.vue"
 import auth0Middleware from '~/middleware/auth0'
@@ -730,11 +733,12 @@ import { mapState } from 'vuex'
 export default {
   components: {
     Logo,
+    LoadingModal,
     NuiButton,
     Footer
   },
   computed: {
-    ...mapState('auth0', ['user', 'isAuthenticated'])
+    ...mapState('auth0', ['user', 'isAuthenticated', 'loading'])
   },
   middleware: auth0Middleware.protect({
     loginRequired: false,

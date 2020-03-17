@@ -53,6 +53,8 @@
     <div class="footer_wrap">
       <Footer />
     </div>
+
+    <LoadingModal :showModal="loading || submitted" />
   </div>
 </template>
 
@@ -169,6 +171,7 @@
 
 <script>
 import NuiButton from "@/components/commons/Button.vue"
+import LoadingModal from "@/components/commons/LoadingModal.vue"
 import Logo from "@/components/svg/Logo.vue"
 import Footer from "@/components/layouts/Footer.vue"
 import { required, minLength, maxLength } from "vuelidate/lib/validators"
@@ -186,8 +189,9 @@ export default {
   layout: 'none',
   components: {
     NuiButton,
+    LoadingModal,
     Logo,
-    Footer
+    Footer,
   },
   data() {
     return {
@@ -203,7 +207,8 @@ export default {
   computed: {
     ...mapState('auth0', {
       auth0User: 'user',
-      isAuthenticated: 'isAuthenticated'
+      isAuthenticated: 'isAuthenticated',
+      loading: 'loading'
     })
   },
   middleware: auth0Middleware.protectRegistration(),

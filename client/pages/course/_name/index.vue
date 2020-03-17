@@ -108,7 +108,6 @@
 
 <script>
 import LectureList from "@/components/partials/course/LectureList.vue"
-import auth0Middleware from '~/middleware/auth0'
 import { mapState } from 'vuex'
 
 export default {
@@ -125,7 +124,6 @@ export default {
   computed: {
     ...mapState('course', ['course'])
   },
-  middleware: auth0Middleware.protect(),
   async created() {
     this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
     await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`)

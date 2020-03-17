@@ -207,6 +207,7 @@
 import Logo from "@/components/svg/Logo.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import Footer from "@/components/layouts/Footer.vue"
+import auth0Middleware from '~/middleware/auth0'
 import { mapState } from 'vuex'
 
 export default {
@@ -220,6 +221,7 @@ export default {
       showMenu: false,
     }
   },
+  middleware: auth0Middleware.protect(),
   computed: {
     ...mapState('course', ['course', 'courseTop', 'lessons', 'lectureName'])
   },
