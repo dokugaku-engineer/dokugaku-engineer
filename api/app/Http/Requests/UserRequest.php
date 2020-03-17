@@ -28,4 +28,17 @@ class UserRequest extends ApiRequest
             'email' => 'unique:users'
         ];
     }
+
+    /**
+     * 定義済みバリデーションルールのエラーメッセージ取得
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'username.unique' => 'ユーザー名はすでに登録されています',
+            'email.unique' => 'メールアドレスはすでに登録されています',
+        ];
+    }
 }

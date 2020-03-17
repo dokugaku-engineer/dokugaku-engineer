@@ -540,7 +540,6 @@
   text-align: center;
 }
 
-
 @media screen and (min-width: 769px) {
   .philosophy-message {
     color: $color-teal1;
