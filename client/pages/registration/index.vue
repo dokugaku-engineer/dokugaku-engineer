@@ -72,7 +72,7 @@
       <Footer />
     </div>
 
-    <LoadingModal :showModal="loading || submitPending" />
+    <LoadingModal :showModal="submitPending" />
   </div>
 </template>
 
@@ -226,7 +226,6 @@ export default {
     ...mapState('auth0', {
       auth0User: 'user',
       isAuthenticated: 'isAuthenticated',
-      loading: 'loading'
     }),
     submitError() {
       return this.submitStatus === 'ERROR'
