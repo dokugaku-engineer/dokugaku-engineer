@@ -55,14 +55,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=dolorem" 
+curl -X GET -G "http://localhost:8080/api/categories?except=ut" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "dolorem",
+            "except": "ut",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -309,14 +309,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=praesentium" 
+curl -X GET -G "http://localhost:8080/api/posts?except=reprehenderit" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "praesentium",
+            "except": "reprehenderit",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 

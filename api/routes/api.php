@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Resources\Lecture\Lecture;
 use Illuminate\Http\Request;
 
 /*
@@ -19,16 +18,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
+    // These endpoints require a valid access token
+    Route::middleware(['jwt'])->group(function () {
+        // Course-related routes
+        Route::resource('courses', 'CourseController')->only([
+            'index'
+        ]);
+        Route::get('courses/lectures', 'CourseController@getAllLectures');
+        Route::get('courses/{name}/lectures', 'CourseController@getLectures');
+        Route::get('lectures/{slug}', 'LectureController@show');
+    });
+
+
     // Health routes
     Route::get('health', 'HealthController@index');
-
-    // Course-related routes
-    Route::resource('courses', 'CourseController')->only([
-        'index'
-    ]);
-    Route::get('courses/lectures', 'CourseController@getAllLectures');
-    Route::get('courses/{name}/lectures', 'CourseController@getLectures');
-    Route::get('lectures/{slug}', 'LectureController@show');
 
     // User routes
     Route::resource('users', 'UserController')->only([

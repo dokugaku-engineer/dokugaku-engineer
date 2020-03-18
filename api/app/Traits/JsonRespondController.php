@@ -76,6 +76,20 @@ trait JsonRespondController
     }
 
     /**
+     * 不適切な認証に対してエラーを送信
+     * Error Code = 31
+     *
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function respondUnauthorized(?string $message = null): JsonResponse
+    {
+        return $this->setHTTPStatusCode(401)
+            ->setErrorCode(31)
+            ->respondWithError($message);
+    }
+
+    /**
      * エラー時にレスポンスを送信
      *
      * @param string $message

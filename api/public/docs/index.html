@@ -88,11 +88,11 @@
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=dolorem" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=ut" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "dolorem",
+            "except": "ut",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -370,11 +370,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=praesentium" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=reprehenderit" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "praesentium",
+            "except": "reprehenderit",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
