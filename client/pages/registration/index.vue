@@ -26,10 +26,10 @@
                 placeholder="例）dokugaku"
                 required
               >
-              <div v-if="submitted && !$v.user.username.required" class="error-text">
+              <div v-if="submitError && !$v.user.username.required" class="error-text">
                 ユーザー名は必須です。
               </div>
-              <div v-if="submitted && !$v.user.username.minLength" class="error-text">
+              <div v-if="submitError && !$v.user.username.minLength" class="error-text">
                 ユーザー名は3文字以上で入力してください。
               </div>
               <div v-if="!$v.user.username.maxLength" class="error-text">
@@ -37,6 +37,24 @@
               </div>
               <div v-if="!$v.user.username.alphaNumName" class="error-text">
                 ユーザー名は半角英数字及び_, -で入力してください。
+              </div>
+            </div>
+
+            <div v-if="!auth0User.email" class="form-group">
+              <label for="users[email]">メールアドレス</label>
+              <span class="form-require">必須</span>
+              <input
+                v-model.trim="$v.user.email.$model"
+                type="text"
+                name="users[email]"
+                placeholder="PC・携帯どちらでも可"
+                required
+              >
+              <div v-if="submitError && !$v.user.email.required" class="error-text">
+                メールアドレスは必須です。
+              </div>
+              <div v-if="submitError && !$v.user.email.email" class="error-text">
+                メールアドレスのフォーマットが不適切です。
               </div>
             </div>
           
@@ -54,7 +72,7 @@
       <Footer />
     </div>
 
-    <LoadingModal :showModal="loading || submitted" />
+    <LoadingModal :showModal="loading || submitPending" />
   </div>
 </template>
 
@@ -108,7 +126,7 @@
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 2.4rem;
 
   label {
     font-size: $font-size-sm;
@@ -174,7 +192,7 @@ import NuiButton from "@/components/commons/Button.vue"
 import LoadingModal from "@/components/commons/LoadingModal.vue"
 import Logo from "@/components/svg/Logo.vue"
 import Footer from "@/components/layouts/Footer.vue"
-import { required, minLength, maxLength } from "vuelidate/lib/validators"
+import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
 import auth0Middleware from '~/middleware/auth0'
 import { mapState } from 'vuex'
 
@@ -200,7 +218,7 @@ export default {
         email: '',
         auth0Userid: ''
       },
-      submitted: false,
+      submitStatus: 'OK',
       state: this.$route.query.state,
     }
   },
@@ -209,31 +227,43 @@ export default {
       auth0User: 'user',
       isAuthenticated: 'isAuthenticated',
       loading: 'loading'
-    })
+    }),
+    submitError() {
+      return this.submitStatus === 'ERROR'
+    },
+    submitPending() {
+      return this.submitStatus === 'PENDING'
+    }
   },
   middleware: auth0Middleware.protectRegistration(),
   methods: {
     async createUser() {
-      this.submitted = true
+      if (this.auth0User.email) {
+        this.user.email = this.auth0User.email
+      }
+
+      this.user.auth0Userid = this.auth0User.sub
+      
       this.$v.$touch()
       if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
         return
       }
 
-      this.user.email = this.auth0User.email
-      this.user.auth0Userid = this.auth0User.sub
+      this.submitStatus = 'PENDING'
       await this.$axios
         .$post("/users", this.user)
         .then(response => {
-          this.submitted = false
+          this.submitStatus = 'PENDING'
         })  
         .catch((e) => {
-          this.submitted = true
+          this.submitStatus = 'ERROR'
         })
       
-      if (this.submitted) { return }
+      if (this.submitStatus === 'ERROR') { return }
 
       this.$store.commit('auth0/SET_USER', await this.$auth0.getUser())
+      this.submitStatus = 'OK'
       window.location.assign('/course/serverside')
     },
   },
@@ -244,6 +274,10 @@ export default {
         minLength: minLength(3),
         maxLength: maxLength(50),
         alphaNumName
+      },
+      email: {
+        required,
+        email
       }
     },
   }
