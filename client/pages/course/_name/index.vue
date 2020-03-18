@@ -117,7 +117,6 @@ export default {
   },
   data() {
     return {
-      course: {},
       loading: true
     }
   },
@@ -126,11 +125,16 @@ export default {
   },
   async created() {
     this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
-    await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`)
-      .then((res) => {
-        this.course = res
+    const token = await this.$auth0.getTokenSilently()
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options)
+      .then((response) => {
         this.loading = false
-        this.$store.dispatch('course/setCourse', { course: this.course, lecture: {} })
+        this.$store.dispatch('course/setCourse', { course: response, lecture: {} })
       }).catch((e) => {
         this.$router.push('/')
       })
