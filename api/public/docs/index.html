@@ -77,6 +77,14 @@
 <td style="text-align: left;">データ保存時のバリデーションエラー</td>
 </tr>
 <tr>
+<td style="text-align: left;">31</td>
+<td style="text-align: left;">認証失敗のエラー</td>
+</tr>
+<tr>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">権限不足のエラー</td>
+</tr>
+<tr>
 <td style="text-align: left;">40</td>
 <td style="text-align: left;">無効なクエリ</td>
 </tr>
@@ -88,11 +96,11 @@
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=ut" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=voluptatem" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "ut",
+            "except": "voluptatem",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -370,11 +378,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=reprehenderit" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=ipsa" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "reprehenderit",
+            "except": "ipsa",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 

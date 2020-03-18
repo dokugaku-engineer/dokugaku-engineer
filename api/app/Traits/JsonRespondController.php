@@ -90,6 +90,20 @@ trait JsonRespondController
     }
 
     /**
+     * 権限不足に対してエラーを送信
+     * Error Code = 32
+     *
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function respondInsufficientScope(?string $message = null): JsonResponse
+    {
+        return $this->setHTTPStatusCode(403)
+            ->setErrorCode(32)
+            ->respondWithError($message);
+    }
+
+    /**
      * エラー時にレスポンスを送信
      *
      * @param string $message

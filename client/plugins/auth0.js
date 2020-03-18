@@ -14,7 +14,6 @@ const useAuth0 = async (store, {
     domain: options.domain,
     client_id: options.clientId,
     audience: options.audience,
-    scope: options.scope,
     redirect_uri: redirectUri
   })
 
@@ -108,7 +107,6 @@ export default async function (context, inject) {
     domain: context.env.AUTH0_DOMAIN,
     clientId: context.env.AUTH0_CLIENT_ID,
     audience: context.env.AUTH0_AUDIENCE,
-    scope: context.env.AUTH0_SCOPE,
     onRedirectCallback: (appState) => {
       context.app.router.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname)
     }

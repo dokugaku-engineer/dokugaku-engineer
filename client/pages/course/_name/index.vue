@@ -136,7 +136,7 @@ export default {
         this.loading = false
         this.$store.dispatch('course/setCourse', { course: response, lecture: {} })
       }).catch((e) => {
-        this.$router.push('/')
+        this.$router.push('/course/serverside')
       })
   }
 }

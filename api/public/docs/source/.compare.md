@@ -43,6 +43,8 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 | コード | 内容                               |
 | :----- | :--------------------------------- |
 | 30     | データ保存時のバリデーションエラー |
+| 31     | 認証失敗のエラー                   |
+| 32     | 権限不足のエラー                   |
 | 40     | 無効なクエリ                       |
 
 
@@ -55,14 +57,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=ut" 
+curl -X GET -G "http://localhost:8080/api/categories?except=voluptatem" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "ut",
+            "except": "voluptatem",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -309,14 +311,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=reprehenderit" 
+curl -X GET -G "http://localhost:8080/api/posts?except=ipsa" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "reprehenderit",
+            "except": "ipsa",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 

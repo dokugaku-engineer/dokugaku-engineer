@@ -18,7 +18,7 @@ class CheckJWT
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $scopeRequired = null)
     {
         $accessToken = $request->bearerToken();
         if (empty($accessToken)) {
@@ -39,6 +39,28 @@ class CheckJWT
             return $this->respondUnauthorized($e->getMessage());
         }
 
+        if ($scopeRequired && !$this->tokenHasScope($decodedToken, $scopeRequired)) {
+            return $this->respondInsufficientScope('Insufficient scope');
+        }
+
         return $next($request);
+    }
+
+    /**
+     * トークンにスコープが設定されている場合はチェックする
+     *
+     * @param \stdClass $token - JWT access token to check.
+     * @param string $scopeRequired - Scope to check for.
+     *
+     * @return bool
+     */
+    protected function tokenHasScope($token, $scopeRequired)
+    {
+        if (empty($token->scope)) {
+            return false;
+        }
+
+        $tokenScopes = explode(' ', $token->scope);
+        return in_array($scopeRequired, $tokenScopes);
     }
 }
