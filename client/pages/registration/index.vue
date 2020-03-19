@@ -155,7 +155,7 @@
 }
 
 .error-box {
-  background-color: #fff7f7;
+  background-color: $color-red3;
   border-radius: .4rem;
   color: $color-red1;
   font-size: $font-size-sm;

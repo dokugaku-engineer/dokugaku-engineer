@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div v-if="error" class="error-box-wrap">
+      <ErrorBox message='データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。' />
+    </div>
     <div class="video-wrap">
       <div class="video">
         <iframe v-if="lecture.video_url" :src="`${lecture.video_url}?autoplay=1&color=26a69a`" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
@@ -187,16 +190,26 @@
   position: absolute;
   top: 50%;
 }
+
+.error-box-wrap {
+  margin: 4rem;
+}
 </style>
 
 <script>
+import ErrorBox from "@/components/commons/ErrorBox.vue"
+
 export default {
   layout: "course",
+  components: {
+    ErrorBox
+  },
   data() {
     return {
       course: {},
       lecture: {},
-      loading: true
+      loading: true,
+      error: null
     }
   },
   async created() {
@@ -211,15 +224,16 @@ export default {
     await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
       this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
-    ]).then((res) => {
+    ]).then((response) => {
       // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
-      this.course = res[0]
-      this.lecture = res[1]
+      this.course = response[0]
+      this.lecture = response[1]
       this.loading = false
       this.$store.dispatch('course/setCourse', { course: this.course, lecture: this.lecture })
       this.$store.dispatch('course/setLectureName', { name: this.lecture.name })
-    }).catch((e) => {
-      this.$router.push('/')
+    }).catch((error) => {
+      this.loading = false
+      this.error = error
     })
   }
 }

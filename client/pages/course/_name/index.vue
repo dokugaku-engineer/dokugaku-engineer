@@ -5,6 +5,9 @@
       <p class="header-text">{{ course.description }}</p>
     </div>
     <div class="main">
+      <div v-if="error">
+        <ErrorBox message='データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。' />
+      </div>
       <div v-if="loading" class="loading">
         <i class="fad fa-spinner fa-spin fa-lg"></i>
       </div>
@@ -108,16 +111,19 @@
 
 <script>
 import LectureList from "@/components/partials/course/LectureList.vue"
+import ErrorBox from "@/components/commons/ErrorBox.vue"
 import { mapState } from 'vuex'
 
 export default {
   layout: "course",
   components: {
     LectureList,
+    ErrorBox
   },
   data() {
     return {
-      loading: true
+      loading: true,
+      error: null
     }
   },
   computed: {
@@ -135,8 +141,9 @@ export default {
       .then((response) => {
         this.loading = false
         this.$store.dispatch('course/setCourse', { course: response, lecture: {} })
-      }).catch((e) => {
-        this.$router.push('/course/serverside')
+      }).catch((error) => {
+        this.loading = false
+        this.error = error
       })
   }
 }
