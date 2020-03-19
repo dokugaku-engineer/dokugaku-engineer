@@ -13,6 +13,11 @@ class Course extends Model
         return $this->hasMany('App\Models\Part');
     }
 
+    public function course_users()
+    {
+        return $this->hasMany('App\Models\CourseUser');
+    }
+
     public function withCourses()
     {
         return $this->load(['parts.lessons.lectures' => function ($query) {

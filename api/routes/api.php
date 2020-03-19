@@ -41,6 +41,11 @@ Route::group(['namespace' => 'Api'], function () {
         'store'
     ]);
 
+    // Course user routes
+    Route::resource('course_users', 'CourseUserController')->only([
+        'store'
+    ]);
+
     // Post-related routes
     Route::resource('categories', 'CategoryController')->only([
         'index', 'store', 'show', 'update'

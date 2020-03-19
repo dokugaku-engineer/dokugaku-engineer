@@ -240,25 +240,35 @@ export default {
       if (this.auth0User.email) {
         this.user.email = this.auth0User.email
       }
-
       this.user.auth0Userid = this.auth0User.sub
-      
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
         return
       }
 
+      // ユーザーを登録する
       this.submitStatus = 'PENDING'
       await this.$axios
         .$post("/users", this.user)
         .then(response => {
+          this.user.id = response.id
           this.submitStatus = 'PENDING'
         })  
-        .catch((e) => {
+        .catch((error) => {
           this.submitStatus = 'ERROR'
         })
       
+      if (this.submitStatus === 'ERROR') { return }
+
+      // 受講情報を登録する
+      const SEVERSIDE_COURSE_ID = 1
+      await this.$axios
+        .$post("/course_users", { user_id: this.user.id, course_id: SEVERSIDE_COURSE_ID })
+        .catch((error) => {
+          this.submitStatus = 'ERROR'
+        })
+
       if (this.submitStatus === 'ERROR') { return }
 
       this.$store.commit('auth0/SET_USER', await this.$auth0.getUser())
