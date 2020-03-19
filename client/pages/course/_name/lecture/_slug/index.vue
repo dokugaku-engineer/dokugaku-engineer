@@ -202,9 +202,15 @@ export default {
   async created() {
     this.$store.dispatch('course/setCourse', { course: {}, lecture: {} })
     this.$store.dispatch('course/setLectureName', { name: '' })
+    const token = await this.$auth0.getTokenSilently()
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
     await Promise.all([
-      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`),
-      this.$axios.$get(`/lectures/${this.$route.params.slug}`)
+      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
+      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
     ]).then((res) => {
       // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
       this.course = res[0]
