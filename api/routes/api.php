@@ -27,6 +27,9 @@ Route::group(['namespace' => 'Api'], function () {
         Route::get('courses/lectures', 'CourseController@getAllLectures');
         Route::get('courses/{name}/lectures', 'CourseController@getLectures');
         Route::get('lectures/{slug}', 'LectureController@show');
+
+        // Auth0 routes
+        Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
     });
 
 

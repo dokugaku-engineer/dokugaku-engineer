@@ -1,6 +1,6 @@
 <template>
   <div class="error-box">
-    <p >{{ message }}</p>
+    <slot />
   </div>  
 </template>
 
@@ -18,11 +18,5 @@
 
 <script>
 export default {
-  props: {
-    message: {
-      type: String,
-      default: ''
-    }
-  }
 }
 </script>

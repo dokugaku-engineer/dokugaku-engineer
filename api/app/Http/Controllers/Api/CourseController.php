@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Http\Resources\Course\Course as CourseResource;
 use App\Http\Resources\Course\CourseLecture as CourseLectureResource;

@@ -1,7 +1,9 @@
 <template>
   <div>
     <div v-if="error" class="error-box-wrap">
-      <ErrorBox message='データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。' />
+      <error-box>
+        <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+      </error-box>
     </div>
     <div class="video-wrap">
       <div class="video">

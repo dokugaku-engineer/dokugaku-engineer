@@ -1,12 +1,25 @@
 <template>
   <div>
     <div class="header">
+      <div v-if="!user.email_verified">
+        <error-box>
+          <p>メールアドレスの認証が完了していません。コースを受講するにはメールアドレスの認証を行ってください。</p>
+          <p>認証用メールを送信するには<a href="" class="error-box-link" @click.prevent="sendVerificationEmail">こちらをクリック</a>してください。</p>
+        </error-box>
+        <div v-if="auth0Error">
+          <error-box>
+            <p>認証用メール送信時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+          </error-box>
+        </div>
+      </div>
       <h3 class="header-title">カリキュラム</h3>
       <p class="header-text">{{ course.description }}</p>
     </div>
     <div class="main">
       <div v-if="error">
-        <ErrorBox message='データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。' />
+        <error-box>
+          <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+        </error-box>
       </div>
       <div v-if="loading" class="loading">
         <i class="fad fa-spinner fa-spin fa-lg"></i>
@@ -107,6 +120,10 @@
   position: absolute;
   top: 50%;
 }
+
+.error-box-link {
+  color: $color-blue;
+}
 </style>
 
 <script>
@@ -123,11 +140,30 @@ export default {
   data() {
     return {
       loading: true,
-      error: null
+      error: null,
+      auth0Error: null
     }
   },
   computed: {
-    ...mapState('course', ['course'])
+    ...mapState('course', ['course']),
+    ...mapState('auth0', ['user'])
+  },
+  methods: {
+    async sendVerificationEmail() {
+      const data = {
+        'user_id': this.user.sub
+      }
+      const token = await this.$auth0.getTokenSilently()
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      await this.$axios.$post('/auth0/send_verification_email', data, options)
+        .catch((error) => {
+          this.auth0Error = error.response
+        })
+    }
   },
   async created() {
     this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
@@ -143,7 +179,7 @@ export default {
         this.$store.dispatch('course/setCourse', { course: response, lecture: {} })
       }).catch((error) => {
         this.loading = false
-        this.error = error
+        this.error = error.response
       })
   }
 }
