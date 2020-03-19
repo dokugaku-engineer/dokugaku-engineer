@@ -6,10 +6,13 @@
       </error-box>
     </div>
     <div class="video-wrap">
-      <div class="video">
+      <div v-if="!user.email_verified">
+        <verification-email-box />
+      </div>
+      <div v-if="user.email_verified" class="video">
         <iframe v-if="lecture.video_url" :src="`${lecture.video_url}?autoplay=1&color=26a69a`" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
       </div>
-      <div class="video-btns">
+      <div v-if="user.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
           <nuxt-link :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`" class="video-btn-link">
             <i class="fas fa-less-than"></i>
@@ -200,11 +203,14 @@
 
 <script>
 import ErrorBox from "@/components/commons/ErrorBox.vue"
+import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
+import { mapState } from 'vuex'
 
 export default {
   layout: "course",
   components: {
-    ErrorBox
+    ErrorBox,
+    VerificationEmailBox
   },
   data() {
     return {
@@ -213,6 +219,9 @@ export default {
       loading: true,
       error: null
     }
+  },
+  computed: {
+    ...mapState('auth0', ['user'])
   },
   async created() {
     this.$store.dispatch('course/setCourse', { course: {}, lecture: {} })

@@ -2,10 +2,7 @@
   <div>
     <div class="header">
       <div v-if="!user.email_verified">
-        <error-box>
-          <p>メールアドレスの認証が完了していません。コースを受講するにはメールアドレスの認証を行ってください。</p>
-          <p>認証用メールを送信するには<a href="" class="error-box-link" @click.prevent="sendVerificationEmail">こちらをクリック</a>してください。</p>
-        </error-box>
+        <verification-email-box />
         <div v-if="auth0Error">
           <error-box>
             <p>認証用メール送信時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
@@ -120,22 +117,18 @@
   position: absolute;
   top: 50%;
 }
-
-.error-box-link {
-  color: $color-blue;
-}
 </style>
 
 <script>
 import LectureList from "@/components/partials/course/LectureList.vue"
-import ErrorBox from "@/components/commons/ErrorBox.vue"
+import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
 import { mapState } from 'vuex'
 
 export default {
   layout: "course",
   components: {
     LectureList,
-    ErrorBox
+    VerificationEmailBox
   },
   data() {
     return {
@@ -147,23 +140,6 @@ export default {
   computed: {
     ...mapState('course', ['course']),
     ...mapState('auth0', ['user'])
-  },
-  methods: {
-    async sendVerificationEmail() {
-      const data = {
-        'user_id': this.user.sub
-      }
-      const token = await this.$auth0.getTokenSilently()
-      const options = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-      await this.$axios.$post('/auth0/send_verification_email', data, options)
-        .catch((error) => {
-          this.auth0Error = error.response
-        })
-    }
   },
   async created() {
     this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
