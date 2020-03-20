@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\ApiRequest;
 use Illuminate\Validation\Rule;
 
-class CourseUserRequest extends ApiRequest
+class TakingCourseRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class CourseUserRequest extends ApiRequest
             'course_id' => [
                 'required',
                 'integer',
-                Rule::unique('course_users')->where(function ($query) {
+                Rule::unique('taking_courses')->where(function ($query) {
                     return $query->where('user_id', $this->input('user_id'));
                 })
             ]

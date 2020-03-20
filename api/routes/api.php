@@ -41,8 +41,8 @@ Route::group(['namespace' => 'Api'], function () {
         'store'
     ]);
 
-    // Course user routes
-    Route::resource('course_users', 'CourseUserController')->only([
+    // Taking course routes
+    Route::resource('taking_courses', 'TakingCourseController')->only([
         'store'
     ]);
 

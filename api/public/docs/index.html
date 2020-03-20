@@ -85,6 +85,10 @@
 <td style="text-align: left;">権限不足のエラー</td>
 </tr>
 <tr>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">対象が見つからない</td>
+</tr>
+<tr>
 <td style="text-align: left;">40</td>
 <td style="text-align: left;">無効なクエリ</td>
 </tr>
@@ -96,11 +100,11 @@
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=voluptatem" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=et" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "voluptatem",
+            "except": "et",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -378,11 +382,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=ipsa" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=rem" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "ipsa",
+            "except": "rem",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -1154,6 +1158,40 @@ fetch(url, {
 </tbody>
 </table>
 <!-- END_74af4b6890ab4f3e31e8904435d099a1 -->
+<!-- START_987ee5cd51f489c2c32dc75bdbf8bc6f -->
+<h2>認証用メールを送信</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost:8080/api/auth0/send_verification_email" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/auth0/send_verification_email");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[
+    {
+        "id": 1,
+        "name": "serverside",
+        "description": "サーバーサイドエンジニアとして業務で自走できるようになることがゴールです。",
+        "created_at": "2020-02-28 06:48:01",
+        "updated_at": "2020-02-28 06:48:01"
+    }
+]</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/auth0/send_verification_email</code></p>
+<!-- END_987ee5cd51f489c2c32dc75bdbf8bc6f -->
 <h1>4. Lecture</h1>
 <!-- START_5aea6b8a5b275ae465be60b5be677eae -->
 <h2>レクチャーを取得</h2>
@@ -1285,6 +1323,73 @@ fetch(url, {
 </tbody>
 </table>
 <!-- END_12e37982cc5398c7100e59625ebb5514 -->
+<h1>6. Course user</h1>
+<!-- START_942e4d62793db400efd4b9f9f545ea48 -->
+<h2>受講情報を保存</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost:8080/api/taking_courses" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id":10,"course_id":1}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/taking_courses");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "user_id": 10,
+    "course_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 13,
+    "user_id": 10,
+    "course_id": 1,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/taking_courses</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>integer</td>
+<td>required</td>
+<td>User id.</td>
+</tr>
+<tr>
+<td>course_id</td>
+<td>integer</td>
+<td>required</td>
+<td>Course id.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_942e4d62793db400efd4b9f9f545ea48 -->
 <h1>general</h1>
 <!-- START_46abdb365a7dca172c3257c85dbbdbe0 -->
 <h2>api/health</h2>

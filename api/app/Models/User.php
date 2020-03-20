@@ -8,8 +8,8 @@ class User extends Model
 {
     protected $guarded = ['id'];
 
-    public function course_users()
+    public function taking_courses()
     {
-        return $this->hasMany('App\Models\CourseUser');
+        return $this->hasMany('App\Models\TakingCourse');
     }
 }

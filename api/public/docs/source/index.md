@@ -45,6 +45,7 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 | 30     | データ保存時のバリデーションエラー |
 | 31     | 認証失敗のエラー                   |
 | 32     | 権限不足のエラー                   |
+| 33     | 対象が見つからない                 |
 | 40     | 無効なクエリ                       |
 
 
@@ -57,14 +58,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=voluptatem" 
+curl -X GET -G "http://localhost:8080/api/categories?except=et" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "voluptatem",
+            "except": "et",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -311,14 +312,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=ipsa" 
+curl -X GET -G "http://localhost:8080/api/posts?except=rem" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "ipsa",
+            "except": "rem",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1054,6 +1055,52 @@ Parameter | Type | Status | Description
 
 <!-- END_74af4b6890ab4f3e31e8904435d099a1 -->
 
+<!-- START_987ee5cd51f489c2c32dc75bdbf8bc6f -->
+## 認証用メールを送信
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/auth0/send_verification_email" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/auth0/send_verification_email");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "name": "serverside",
+        "description": "サーバーサイドエンジニアとして業務で自走できるようになることがゴールです。",
+        "created_at": "2020-02-28 06:48:01",
+        "updated_at": "2020-02-28 06:48:01"
+    }
+]
+```
+
+### HTTP Request
+`POST api/auth0/send_verification_email`
+
+
+<!-- END_987ee5cd51f489c2c32dc75bdbf8bc6f -->
+
 #4. Lecture
 
 
@@ -1184,6 +1231,68 @@ Parameter | Type | Status | Description
     users[username] | string |  required  | User username.
 
 <!-- END_12e37982cc5398c7100e59625ebb5514 -->
+
+#6. Course user
+
+
+<!-- START_942e4d62793db400efd4b9f9f545ea48 -->
+## 受講情報を保存
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/taking_courses" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id":10,"course_id":1}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/taking_courses");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "user_id": 10,
+    "course_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "user_id": 10,
+    "course_id": 1,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`POST api/taking_courses`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    user_id | integer |  required  | User id.
+    course_id | integer |  required  | Course id.
+
+<!-- END_942e4d62793db400efd4b9f9f545ea48 -->
 
 #general
 

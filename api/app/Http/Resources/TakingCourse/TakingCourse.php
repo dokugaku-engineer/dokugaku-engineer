@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\CourseUser;
+namespace App\Http\Resources\TakingCourse;
 
 use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CourseUser extends JsonResource
+class TakingCourse extends JsonResource
 {
     /**
      * リソースを配列へ変換

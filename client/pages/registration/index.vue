@@ -247,6 +247,7 @@ export default {
         return
       }
 
+      // TODO: 想定外のエラー対策に、一つのリクエストでユーザーと受講情報の両方を登録する
       // ユーザーを登録する
       this.submitStatus = 'PENDING'
       await this.$axios
@@ -264,7 +265,7 @@ export default {
       // 受講情報を登録する
       const SEVERSIDE_COURSE_ID = 1
       await this.$axios
-        .$post("/course_users", { user_id: this.user.id, course_id: SEVERSIDE_COURSE_ID })
+        .$post("/taking_courses", { user_id: this.user.id, course_id: SEVERSIDE_COURSE_ID })
         .catch((error) => {
           this.submitStatus = 'ERROR'
         })

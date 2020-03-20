@@ -13,9 +13,9 @@ class Course extends Model
         return $this->hasMany('App\Models\Part');
     }
 
-    public function course_users()
+    public function taking_courses()
     {
-        return $this->hasMany('App\Models\CourseUser');
+        return $this->hasMany('App\Models\TakingCourse');
     }
 
     public function withCourses()
