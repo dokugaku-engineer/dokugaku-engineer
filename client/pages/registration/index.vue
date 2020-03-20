@@ -247,7 +247,6 @@ export default {
         return
       }
 
-      // TODO: 想定外のエラー対策に、一つのリクエストでユーザーと受講情報の両方を登録する
       // ユーザーを登録する
       this.submitStatus = 'PENDING'
       await this.$axios
