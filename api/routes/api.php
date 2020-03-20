@@ -28,6 +28,11 @@ Route::group(['namespace' => 'Api'], function () {
         Route::get('courses/{name}/lectures', 'CourseController@getLectures');
         Route::get('lectures/{slug}', 'LectureController@show');
 
+        // Learning course routes
+        Route::resource('learning_courses', 'LearningCourseController')->only([
+            'store'
+        ]);
+
         // Auth0 routes
         Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
     });

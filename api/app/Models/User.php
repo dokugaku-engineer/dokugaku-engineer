@@ -12,4 +12,9 @@ class User extends Model
     {
         return $this->hasMany('App\Models\TakingCourse');
     }
+
+    public function learning_histories()
+    {
+        return $this->hasMany('App\Models\LearningHistory');
+    }
 }

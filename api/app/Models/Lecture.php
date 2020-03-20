@@ -18,4 +18,9 @@ class Lecture extends Model
     {
         return $this->belongsTo('App\Models\Lesson');
     }
+
+    public function learning_histories()
+    {
+        return $this->hasMany('App\Models\LearningHistory');
+    }
 }
