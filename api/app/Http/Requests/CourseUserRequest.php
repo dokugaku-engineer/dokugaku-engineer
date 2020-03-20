@@ -28,6 +28,7 @@ class CourseUserRequest extends ApiRequest
             'user_id' => 'required|integer',
             'course_id' => [
                 'required',
+                'integer',
                 Rule::unique('course_users')->where(function ($query) {
                     return $query->where('user_id', $this->input('user_id'));
                 })

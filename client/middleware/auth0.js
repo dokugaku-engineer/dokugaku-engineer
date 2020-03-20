@@ -23,7 +23,7 @@ export default {
       }
 
       // 会員情報が未登録の場合
-      if (isAuthenticated && !!user && !user[`${env.AUTH0_AUDIENCE}/user_metadata`].id) {
+      if (isAuthenticated && !!user && !user[env.AUTH0_NAMESPACE + 'user_id']) {
         return redirect('/registration')
       }
 
@@ -61,7 +61,7 @@ export default {
       }
 
       // 登録済みの場合
-      if (!!user && !!user[`${env.AUTH0_AUDIENCE}/user_metadata`].id) {
+      if (!!user && !!user[env.AUTH0_NAMESPACE + 'user_id']) {
         return redirect('/course/serverside')
       }
     }

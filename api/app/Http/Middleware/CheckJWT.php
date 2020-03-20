@@ -43,6 +43,8 @@ class CheckJWT
             return $this->respondInsufficientScope('Insufficient scope');
         }
 
+        $USERID_NAMESPACE = env('AUTH0_NAMESPACE') . 'user_id';
+        $request->merge(['user_id' => $decodedToken->$USERID_NAMESPACE]);
         return $next($request);
     }
 

@@ -104,6 +104,20 @@ trait JsonRespondController
     }
 
     /**
+     * 対象が見つからないためエラーを送信
+     * Error Code = 33
+     *
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function respondNotFound(?string $message = null): JsonResponse
+    {
+        return $this->setHTTPStatusCode(404)
+            ->setErrorCode(33)
+            ->respondWithError($message);
+    }
+
+    /**
      * エラー時にレスポンスを送信
      *
      * @param string $message

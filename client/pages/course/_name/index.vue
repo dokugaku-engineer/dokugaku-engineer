@@ -155,7 +155,7 @@ export default {
         this.$store.dispatch('course/setCourse', { course: response, lecture: {} })
       }).catch((error) => {
         this.loading = false
-        this.error = error.response
+        this.error = error
       })
   }
 }
