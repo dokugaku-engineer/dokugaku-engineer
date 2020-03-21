@@ -20,6 +20,6 @@ class TakingCourse extends Model
 
     public static function doesntExist($user_id, $course_id)
     {
-        TakingCourse::where([['user_id', $user_id], ['course_id', $course_id]])->doesntExist();
+        return TakingCourse::where([['user_id', $user_id], ['course_id', $course_id]])->doesntExist();
     }
 }
