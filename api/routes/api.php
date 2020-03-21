@@ -28,8 +28,8 @@ Route::group(['namespace' => 'Api'], function () {
         Route::get('courses/{name}/lectures', 'CourseController@getLectures');
         Route::get('lectures/{slug}', 'LectureController@show');
 
-        // Learning course routes
-        Route::resource('learning_courses', 'LearningCourseController')->only([
+        // Learning history routes
+        Route::resource('learning_histories', 'LearningHistoryController')->only([
             'store'
         ]);
 

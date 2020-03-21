@@ -10,7 +10,13 @@
         <verification-email-box />
       </div>
       <div v-if="user.email_verified" class="video">
-        <iframe v-if="lecture.video_url" :src="`${lecture.video_url}?autoplay=1&color=26a69a`" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+        <iframe
+          v-if="lecture.video_url"
+          @load="createLearningHistory()"
+          :src="`${lecture.video_url}?autoplay=1&color=26a69a`"
+          frameborder="0" allow="autoplay; fullscreen" allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;">
+        </iframe>
       </div>
       <div v-if="user.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
@@ -246,6 +252,21 @@ export default {
       this.loading = false
       this.error = error
     })
+  },
+  methods: {
+    async createLearningHistory() {
+      // TODO:受講済みならPOSTしない
+      const token = await this.$auth0.getTokenSilently()
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      await this.$axios.$post('learning_histories', { lecture_id: this.lecture.id }, options)
+        .catch((error) => {
+          return
+        })
+    }
   }
 }
 </script>

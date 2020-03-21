@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeaningHistories extends Migration
+class CreateLearningHistories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLeaningHistories extends Migration
      */
     public function up()
     {
-        Schema::create('leaning_histories', function (Blueprint $table) {
+        Schema::create('learning_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('lecture_id')->unsigned();
@@ -32,6 +32,6 @@ class CreateLeaningHistories extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leaning_histories');
+        Schema::dropIfExists('learning_histories');
     }
 }
