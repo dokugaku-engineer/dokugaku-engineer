@@ -56,9 +56,8 @@ class CourseController extends ApiController
      */
     public function getLectures(Request $request, $name)
     {
-        $userId = $request['user_id'];
         $course = Course::where('name', $name)->first();
-        if (TakingCourse::where([['user_id', $userId], ['course_id', $course->id]])->doesntExist()) {
+        if (TakingCourse::doesntExist($request['user_id'], $course->id)) {
             return $this->respondNotFound('Taking course not found');
         }
 

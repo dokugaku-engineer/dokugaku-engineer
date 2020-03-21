@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\ApiController;
+use Illuminate\Http\Request;
 use App\Models\Lecture;
+use App\Models\TakingCourse;
 use App\Http\Resources\Lecture\Lecture as LectureResource;
 
 /**
@@ -21,9 +23,14 @@ class LectureController extends ApiController
      * @param string $slug
      * @return LectureResource
      */
-    public function show(string $slug)
+    public function show(Request $request, string $slug)
     {
         $lecture = Lecture::where('slug', $slug)->first();
+        $lecture->load('lesson.part');
+        $course_id = $lecture->lesson->part->course_id;
+        if (TakingCourse::doesntExist($request['user_id'], $course_id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
         return new LectureResource($lecture);
     }
 }

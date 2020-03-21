@@ -17,4 +17,9 @@ class TakingCourse extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public static function doesntExist($user_id, $course_id)
+    {
+        TakingCourse::where([['user_id', $user_id], ['course_id', $course_id]])->doesntExist();
+    }
 }
