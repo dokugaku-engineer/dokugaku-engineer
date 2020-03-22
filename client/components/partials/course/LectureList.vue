@@ -14,8 +14,7 @@
           class="lecture-link"
           :class="lecture.play ? 'play' : ''"
         >
-          <!-- TODO: 未視聴の場合はfa-checkを変更する -->
-          <i class="far fa-check"></i>
+          <i :class="lecture.learned ? 'far fa-check' : 'fas fa-circle'"></i>
           {{ lecture.order }}. {{ lecture.name }}
         </nuxt-link>
       </li>

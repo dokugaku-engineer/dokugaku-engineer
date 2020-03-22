@@ -23,7 +23,7 @@
                 </div>
               </div>
               <div v-for="lesson in lessons" class="lesson">
-                <LectureList :lessonLectures="lesson" @hideMenu="showMenu = !showMenu" />
+                <lecture-list :lessonLectures="lesson" @hideMenu="showMenu = !showMenu" />
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div v-for="lesson in lessons" class="lesson">
-          <LectureList :lessonLectures="lesson" />
+          <lecture-list :lessonLectures="lesson" />
         </div>
       </nav>
       <div class="content">

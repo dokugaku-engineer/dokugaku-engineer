@@ -23,4 +23,11 @@ class Lecture extends Model
     {
         return $this->hasMany('App\Models\LearningHistory');
     }
+
+    public function load_learning_histories($user_id)
+    {
+        return $this->load(['learning_histories' => function ($query) use ($user_id) {
+            $query->where('learning_histories.user_id', $user_id);
+        }]);
+    }
 }

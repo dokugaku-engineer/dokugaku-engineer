@@ -255,7 +255,8 @@ export default {
   },
   methods: {
     async createLearningHistory() {
-      // TODO:受講済みならPOSTしない
+      if (this.lecture.learned) { return }
+
       const token = await this.$auth0.getTokenSilently()
       const options = {
         headers: {

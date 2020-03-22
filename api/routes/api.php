@@ -21,10 +21,6 @@ Route::group(['namespace' => 'Api'], function () {
     // These endpoints require a valid access token
     Route::middleware(['jwt'])->group(function () {
         // Course-related routes
-        Route::resource('courses', 'CourseController')->only([
-            'index'
-        ]);
-        Route::get('courses/lectures', 'CourseController@getAllLectures');
         Route::get('courses/{name}/lectures', 'CourseController@getLectures');
         Route::get('lectures/{slug}', 'LectureController@show');
 
@@ -40,6 +36,13 @@ Route::group(['namespace' => 'Api'], function () {
 
     // Health routes
     Route::get('health', 'HealthController@index');
+
+    // TODO: ミドルウェアでトークンを検証する
+    // Course-related routes
+    Route::resource('courses', 'CourseController')->only([
+        'index'
+    ]);
+    Route::get('courses/lectures', 'CourseController@getAllLectures');
 
     // User routes
     Route::resource('users', 'UserController')->only([

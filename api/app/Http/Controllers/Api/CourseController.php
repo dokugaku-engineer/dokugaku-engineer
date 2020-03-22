@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\TakingCourse;
 use App\Http\Resources\Course\Course as CourseResource;
 use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
+use App\Http\Resources\Course\CourseLectureWithLearned as CourseLectureWithLearnedResource;
 
 /**
  * @group 3. Course
@@ -33,7 +34,7 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.getAllLectures.json
      *
-     * @return CourseLectureResource
+     * @return CourseLectureResourceCollection
      *
      */
     public function getAllLectures(Request $request)
@@ -52,16 +53,17 @@ class CourseController extends ApiController
      * @responsefile responses/course.getLectures.json
      *
      * @param string $slug
-     * @return CourseLectureResource
+     * @return CourseLectureWithLearnedResource
      */
     public function getLectures(Request $request, $name)
     {
+        $user_id = $request['user_id'];
         $course = Course::where('name', $name)->first();
-        if (TakingCourse::doesntExist($request['user_id'], $course->id)) {
+        if (TakingCourse::doesntExist($user_id, $course->id)) {
             return $this->respondNotFound('Taking course not found');
         }
 
-        $course->withCourses();
-        return new CourseLectureResource($course);
+        $course->withCourses($user_id);
+        return new CourseLectureWithLearnedResource($course);
     }
 }
