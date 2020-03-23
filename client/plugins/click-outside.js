@@ -1,3 +1,12 @@
+/* 
+要素の外側をクリックされたらイベントハンドラーを起動するプラグイン
+
+使い方
+1. 対象要素に v-click-outside="{ exlude: ['item'], handler="onHandler" }" を指定する
+2. methodsに onHandler を定義する
+3. 除外したい要素に ref="item" を追加する（buttonやi要素など）
+*/
+
 import Vue from 'vue'
 
 let handleOutsideClick
