@@ -109,6 +109,8 @@
   bottom: 0px !important;
   height: 100% !important;
   left: 0px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   position: fixed !important;
   right: 0px !important;
   top: 0px !important;
