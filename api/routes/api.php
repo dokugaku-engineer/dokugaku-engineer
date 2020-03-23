@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
-    // These endpoints require a valid access token
+    // These endpoints require a valid id token for user
     Route::middleware(['jwt'])->group(function () {
         // Course-related routes
         Route::get('courses/{name}/lectures', 'CourseController@getLectures');
@@ -33,16 +33,18 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
     });
 
+    // These endpoints require a valid access token for machine
+    Route::middleware(['jwt.m2m'])->group(function () {
+        // Course-related routes
+        Route::resource('courses', 'CourseController')->only([
+            'index'
+        ]);
+        Route::get('courses/lectures', 'CourseController@getAllLectures');
+    });
+
 
     // Health routes
     Route::get('health', 'HealthController@index');
-
-    // TODO: ミドルウェアでトークンを検証する
-    // Course-related routes
-    Route::resource('courses', 'CourseController')->only([
-        'index'
-    ]);
-    Route::get('courses/lectures', 'CourseController@getAllLectures');
 
     // User routes
     Route::resource('users', 'UserController')->only([

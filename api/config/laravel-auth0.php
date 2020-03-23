@@ -97,4 +97,12 @@ return [
     |
     */
     // 'guzzle_options' => []
+
+    /*
+    |--------------------------------------------------------------------------
+    |   Management Api Configuration
+    |--------------------------------------------------------------------------
+    |
+    */
+    'management_api_api_identifier' => env('AUTH0_MANAGEMENT_API_AUDIENCE'),
 ];
