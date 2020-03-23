@@ -51,6 +51,7 @@ export default {
     "./plugins/mixins/validation.js",
     "./plugins/vuelidate.js",
     "./plugins/auth0.js",
+    "./plugins/click-outside.js",
   ],
   /*
    ** Nuxt.js dev-modules

@@ -7,24 +7,19 @@
         </h2>
       </nuxt-link>
       <div>
-        <i @click="toggleMenu" class="far fa-bars bars-regular"></i>
+        <i @click="showMenu = !showMenu" class="far fa-bars bars-regular"></i>
         <transition name="fade">
           <div v-if="showMenu" class="menu">
-            <i @click="toggleMenu" class="fal fa-times fa-lg cross"></i>
+            <i @click="showMenu = !showMenu" class="fal fa-times fa-lg cross"></i>
             <div class="menu-inner">
               <div class="menu-boarder">
                 <div class="menu-item">
                   <nuxt-link
                     :to="`/course/${course.name}`"
-                    @click.native="toggleMenu"
+                    @click.native="showMenu = !showMenu"
                   >
                     <h2 class="menu-item-title">ホーム</h2>
                   </nuxt-link>
-                </div>
-              </div>
-              <div class="menu-boarder">
-                <div v-for="lesson in lessons" class="menu-item">
-                  <lecture-list :lessonLectures="lesson" @hideMenu="toggleMenu" />
                 </div>
               </div>
               <div class="menu-item">
@@ -33,36 +28,22 @@
                 </nuxt-link>
               </div>
               <div class="menu-item">
-                <button class="menu-item-title" @click="logout">ログアウ</button>
+                <button class="menu-item-title" @click="logout">ログアウト</button>
               </div>
             </div>
           </div>
         </transition>
       </div>
       <h1 class="header-title">{{ lectureName }}</h1>
-      <i @click="toggleSetting" ref="bars" class="fas fa-bars fa-lg bars-solid"></i>
-      <div v-if="showSetting" v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }" class="setting">
+      <i @click="showSetting = !showSetting" class="fas fa-bars fa-lg bars-solid"></i>
+      <div v-if="showSetting" class="setting">
         <nuxt-link to="/settings" class="setting-link">設定</nuxt-link>
-        <button @click="logout" class="setting-link">ログアウ</button>
+        <button @click="logout" class="setting-link">ログアウト</button>
       </div>
     </header>
     
     <div class="main">
-      <nav class="sidebar">
-        <div class="menu-boarder">
-          <div class="lesson">
-            <nuxt-link :to="`/course/${course.name}`">
-              <h2 class="menu-item-title" :class="courseTop ? 'play' : ''">コースについて</h2>
-            </nuxt-link>
-          </div>
-        </div>
-        <div v-for="lesson in lessons" class="lesson">
-          <lecture-list :lessonLectures="lesson" />
-        </div>
-      </nav>
-      <div class="content">
-        <nuxt />
-      </div>
+      <nuxt />
     </div>
 
     <div class="footer_wrap">
@@ -165,7 +146,6 @@
   position: absolute;
   right: 0;
   top: 4.8rem;
-  z-index: 3000;
 }
 
 .setting-link {
@@ -186,25 +166,6 @@
   flex-grow: 1;
   height: 100%;
   padding: 1.6rem 1rem;
-}
-
-.sidebar {
-  display: none;
-}
-
-@media screen and (min-width: 769px) {
-  .sidebar {
-    background-color: $color-white1;
-    border-radius: .5rem;
-    color: $color-gray2;
-    display: block;
-    font-size: $font-size-sm;
-    margin-right: 1.5rem;
-    overflow: auto;
-    padding: 1rem;
-    transition: all .2s;
-    width: 32rem;
-  }
 }
 
 .menu-item {
@@ -243,20 +204,6 @@
   }
 }
 
-.play {
-  color: $color-black;
-  font-weight: 700;
-}
-
-.content {
-  background-color: $color-white1;
-  border-radius: .5rem;
-  box-shadow: 0 1px 20px 0 $color-gray-shadow;
-  flex: 1;
-  margin: 0 auto;
-  max-width: 1024px;
-}
-
 .footer_wrap {
   margin-top: auto;
 }
@@ -264,7 +211,6 @@
 
 <script>
 import Logo from "@/components/svg/Logo.vue"
-import LectureList from "@/components/partials/course/LectureList.vue"
 import Footer from "@/components/layouts/Footer.vue"
 import auth0Middleware from '~/middleware/auth0'
 import { mapState } from 'vuex'
@@ -272,7 +218,6 @@ import { mapState } from 'vuex'
 export default {
   components: {
     Logo,
-    LectureList,
     Footer
   },
   data() {
@@ -289,15 +234,6 @@ export default {
     async logout() {
       await this.$auth0.logout({ returnTo: window.location.origin })
     },
-    closeSetting() {
-      this.showSetting = false
-    },
-    toggleSetting() {
-      this.showSetting = !this.showSetting
-    },
-    toggleMenu() {
-      this.showMenu = !this.showMenu
-    }
   }
 }
 </script>
