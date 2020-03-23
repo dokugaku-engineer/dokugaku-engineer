@@ -7,12 +7,12 @@
         </h2>
       </nuxt-link>
       <div>
-        <i @click="showMenu = !showMenu" class="far fa-bars bars"></i>
+        <i @click="showMenu = !showMenu" class="far fa-bars bars-regular"></i>
         <transition name="fade">
           <div v-if="showMenu" class="menu">
             <i @click="showMenu = !showMenu" class="fal fa-times fa-lg cross"></i>
             <div class="menu-inner">
-              <div class="lesson-course">
+              <div class="lesson-boarder">
                 <div class="lesson">
                   <nuxt-link
                     :to="`/course/${course.name}`"
@@ -22,19 +22,34 @@
                   </nuxt-link>
                 </div>
               </div>
-              <div v-for="lesson in lessons" class="lesson">
-                <lecture-list :lessonLectures="lesson" @hideMenu="showMenu = !showMenu" />
+              <div class="lesson-boarder">
+                <div v-for="lesson in lessons" class="lesson">
+                  <lecture-list :lessonLectures="lesson" @hideMenu="showMenu = !showMenu" />
+                </div>
+              </div>
+              <div class="lesson">
+                <nuxt-link to="/settings">
+                  <h2 class="lesson-title">設定</h2>
+                </nuxt-link>
+              </div>
+              <div class="lesson">
+                <button class="lesson-title" @click="logout">ログアウト</button>
               </div>
             </div>
           </div>
         </transition>
       </div>
       <h1 class="header-title">{{ lectureName }}</h1>
+      <i @click="showSetting = !showSetting" class="fas fa-bars fa-lg bars-solid"></i>
+      <div v-if="showSetting" class="setting">
+        <nuxt-link to="/settings" class="setting-link">設定</nuxt-link>
+        <button @click="logout" class="setting-link">ログアウト</button>
+      </div>
     </header>
     
     <div class="main">
       <nav class="sidebar">
-        <div class="lesson-course">
+        <div class="lesson-boarder">
           <div class="lesson">
             <nuxt-link :to="`/course/${course.name}`">
               <h2 class="lesson-title" :class="courseTop ? 'play' : ''">コースについて</h2>
@@ -87,15 +102,28 @@
   width: 100%;
 }
 
-.bars {
+.bars-regular {
   color: $color-red1;
   display: block;
   margin: .6rem 1rem .6rem 0;
 }
 
 @media screen and (min-width: 769px) {
-  .bars {
+  .bars-regular {
     display: none;
+  }
+}
+
+.bars-solid {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .bars-solid {
+    color: $color-gray3;
+    cursor: pointer;
+    display: block;
+    margin: .6rem 1rem .6rem 0;
   }
 }
 
@@ -129,6 +157,28 @@
   padding: 2rem;
 }
 
+.setting {
+  background-color: rgb(255, 255, 255);
+  border-radius: .2rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 .3rem 1rem;
+  min-width: 16.5rem;
+  position: absolute;
+  right: 0;
+  top: 4.8rem;
+}
+
+.setting-link {
+  display: block;
+  font-size: $font-size-sm;
+  padding: 1.4rem 2rem;
+  text-align: left;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
 .main {
   background-color: $color-white2;
   display: flex;
@@ -160,7 +210,7 @@
   margin-bottom: 1.2rem;
 }
 
-.lesson-course {
+.lesson-boarder {
   border-bottom: 1px solid $color-gray1;
   margin-bottom: 1.2rem;
 }
@@ -170,8 +220,14 @@
   background-color: $color-white2;
   border-radius: .8rem;
   display: flex;
+  font-weight: 700;
   margin-bottom: 1rem;
   padding: .8rem 1.6rem;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+  }
 
   h2, i {
     display: inline-block;
@@ -221,11 +277,17 @@ export default {
   data() {
     return {
       showMenu: false,
+      showSetting: false
     }
   },
   middleware: auth0Middleware.protect(),
   computed: {
     ...mapState('course', ['course', 'courseTop', 'lessons', 'lectureName'])
   },
+  methods: {
+    async logout() {
+      await this.$auth0.logout({ returnTo: window.location.origin })
+    },
+  }
 }
 </script>
