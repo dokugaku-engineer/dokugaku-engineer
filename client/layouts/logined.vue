@@ -23,12 +23,12 @@
                 </div>
               </div>
               <div class="menu-item">
-                <nuxt-link to="/settings/profile">
+                <nuxt-link @click.native="toggleMenu" to="/settings/profile">
                   <h2 class="menu-item-title">プロフィール</h2>
                 </nuxt-link>
               </div>
               <div class="menu-item">
-                <nuxt-link to="/settings/password">
+                <nuxt-link @click.native="toggleMenu" to="/settings/password">
                   <h2 class="menu-item-title">パスワード</h2>
                 </nuxt-link>
               </div>
