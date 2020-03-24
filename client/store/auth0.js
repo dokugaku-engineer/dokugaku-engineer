@@ -35,5 +35,8 @@ export const getters = {
         return provider
       }
     })
+  },
+  userId(state) {
+    return state.user[process.env.AUTH0_NAMESPACE + 'user_id']
   }
 }

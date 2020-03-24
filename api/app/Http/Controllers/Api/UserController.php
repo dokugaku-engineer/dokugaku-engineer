@@ -6,8 +6,9 @@ use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\User\User as UserResource;
 use App\Models\User;
-use Illuminate\Database\QueryException;
 use App\Services\Auth0Service;
+use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 /**
  * @group 5. User
@@ -37,6 +38,23 @@ class UserController extends ApiController
             $auth0_client->updateUser($auth0_user_id, json_encode(['user_metadata' => ['id' => $user->id]]));
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
+        }
+
+        return new UserResource($user);
+    }
+
+    /**
+     * ユーザーを取得
+     *
+     * @responsefile responses/user.store.json
+     *
+     * @param UserRequest $request
+     * @return PostResource|\Illuminate\Http\JsonResponse
+     */
+    public function show(Request $request, User $user)
+    {
+        if ($request['user_id'] !== $user->id) {
+            return $this->respondInvalidQuery('Invalid user');
         }
 
         return new UserResource($user);
