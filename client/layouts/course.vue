@@ -28,12 +28,12 @@
                 </div>
               </div>
               <div class="menu-item">
-                <nuxt-link to="/settings">
-                  <h2 class="menu-item-title">設定</h2>
+                <nuxt-link to="/settings/profile">
+                  <h2 class="menu-item-title">プロフィール</h2>
                 </nuxt-link>
               </div>
               <div class="menu-item">
-                <button class="menu-item-title" @click="logout">ログアウ</button>
+                <button class="menu-item-title" @click="logout">ログアウト</button>
               </div>
             </div>
           </div>
@@ -42,8 +42,8 @@
       <h1 class="header-title">{{ lectureName }}</h1>
       <i @click="toggleSetting" ref="bars" class="fas fa-bars fa-lg bars-solid"></i>
       <div v-if="showSetting" v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }" class="setting">
-        <nuxt-link to="/settings" class="setting-link">設定</nuxt-link>
-        <button @click="logout" class="setting-link">ログアウ</button>
+        <nuxt-link to="/settings/profile" class="setting-link">プロフィール</nuxt-link>
+        <button @click="logout" class="setting-link">ログアウト</button>
       </div>
     </header>
     
@@ -85,14 +85,16 @@
 @media screen and (min-width: 769px) {
   .header-logo {
     display: block;
+    margin-right: 1.5rem;
+    width: 32rem;
   }
 }
 
 .header {
+  align-items: center;
   background-color: $color-white1;
   display: flex;
-  align-items: center;
-  padding: 1rem 1rem .5rem;
+  padding: 1rem 1rem;
   text-align: left;
 }
 
@@ -157,6 +159,42 @@
   padding: 2rem;
 }
 
+.menu-item {
+  margin-bottom: 1.2rem;
+}
+
+.menu-boarder {
+  border-bottom: 1px solid $color-gray1;
+  margin-bottom: 1.2rem;
+}
+
+.menu-item-title {
+  align-items: center;
+  background-color: $color-white2;
+  border-radius: .8rem;
+  display: flex;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding: .8rem 1.6rem;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+  }
+
+  h2, i {
+    display: inline-block;
+  }
+
+  h2 {
+    margin-right: 1.6rem;
+  }
+
+  i {
+    margin-left: auto;
+  }
+}
+
 .setting {
   background-color: rgb(255, 255, 255);
   border-radius: .2rem;
@@ -204,42 +242,6 @@
     padding: 1rem;
     transition: all .2s;
     width: 32rem;
-  }
-}
-
-.menu-item {
-  margin-bottom: 1.2rem;
-}
-
-.menu-boarder {
-  border-bottom: 1px solid $color-gray1;
-  margin-bottom: 1.2rem;
-}
-
-.menu-item-title {
-  align-items: center;
-  background-color: $color-white2;
-  border-radius: .8rem;
-  display: flex;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  padding: .8rem 1.6rem;
-  width: 100%;
-
-  &:focus {
-    outline: 0;
-  }
-
-  h2, i {
-    display: inline-block;
-  }
-
-  h2 {
-    margin-right: 1.6rem;
-  }
-
-  i {
-    margin-left: auto;
   }
 }
 
