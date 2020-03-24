@@ -28,6 +28,11 @@
                 </nuxt-link>
               </div>
               <div class="menu-item">
+                <nuxt-link to="/settings/password">
+                  <h2 class="menu-item-title">パスワード</h2>
+                </nuxt-link>
+              </div>
+              <div class="menu-item">
                 <button class="menu-item-title" @click="logout">ログアウト</button>
               </div>
             </div>
@@ -37,7 +42,8 @@
       <h1 class="header-title">{{ title }}</h1>
       <i @click="toggleSetting" ref="bars" class="fas fa-bars fa-lg bars-solid"></i>
       <div v-if="showSetting" v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }" class="setting">
-        <nuxt-link to="/settings/profile" class="setting-link">プロフィール</nuxt-link>
+        <nuxt-link to="/settings/profile" @click.native="closeSetting" class="setting-link">プロフィール</nuxt-link>
+        <nuxt-link to="/settings/password" @click.native="closeSetting" class="setting-link">パスワード</nuxt-link>
         <button @click="logout" class="setting-link">ログアウト</button>
       </div>
     </header>
@@ -315,7 +321,7 @@ export default {
   },
   middleware: auth0Middleware.protect(),
   computed: {
-    ...mapState('setting', ['title'])
+    ...mapState('setting', ['title']),
   },
   methods: {
     async logout() {

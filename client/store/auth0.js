@@ -23,3 +23,17 @@ export const mutations = {
     state.permissions = permissions
   }
 }
+
+export const getters = {
+  providers(state) {
+    return state.user[process.env.AUTH0_NAMESPACE + 'providers'].map(provider => {
+      if (provider == 'github') {
+        return 'GitHub'
+      } else if (provider == 'twitter') {
+        return 'Twitter'
+      } else {
+        return provider
+      }
+    })
+  }
+}
