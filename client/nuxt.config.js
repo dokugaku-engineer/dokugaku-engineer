@@ -143,8 +143,11 @@ export default {
   toast: {
     position: 'top-right',
     register: [{
-      name: 'save_success',
-      message: '保存しました',
+      name: 'instant_success',
+      message: payload => {
+        if (!payload.message) return '保存しました'
+        return payload.message
+      },
       options: {
         type: 'success',
         duration: 3000,

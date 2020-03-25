@@ -249,7 +249,7 @@ export default {
         .$patch(`/users/${this.userId}`, this.user, options)
         .then(res => {
           this.submitStatus = 'OK'
-          this.$toast.global.save_success()
+          this.$toast.global.instant_success()
         })
         .catch(err => {
           this.submitStatus = 'ERROR'

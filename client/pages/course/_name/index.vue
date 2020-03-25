@@ -120,6 +120,7 @@
 </style>
 
 <script>
+import ErrorBox from "@/components/commons/ErrorBox.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
 import { mapState, mapGetters } from 'vuex'
@@ -127,6 +128,7 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   layout: "course",
   components: {
+    ErrorBox,
     LectureList,
     VerificationEmailBox
   },
