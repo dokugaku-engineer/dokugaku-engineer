@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <div v-if="!user.email_verified">
+      <div v-if="isAuth0Provider && !auth0User.email_verified">
         <verification-email-box />
         <div v-if="auth0Error">
           <error-box>
@@ -122,7 +122,7 @@
 <script>
 import LectureList from "@/components/partials/course/LectureList.vue"
 import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   layout: "course",
@@ -139,7 +139,8 @@ export default {
   },
   computed: {
     ...mapState('course', ['course']),
-    ...mapState('auth0', ['user'])
+    ...mapState('auth0', ['auth0User']),
+    ...mapGetters('auth0', ['isAuth0Provider'])
   },
   async created() {
     this.$store.dispatch('course/setLectureName', { name: 'ホーム' })

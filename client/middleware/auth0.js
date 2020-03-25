@@ -15,7 +15,7 @@ export default {
       store
     }) => {
       const isAuthenticated = store.state.auth0.isAuthenticated
-      const user = store.state.auth0.user
+      const user = store.state.auth0.auth0User
 
       // 未ログインの場合
       if (options.loginRequired && !isAuthenticated) {
@@ -53,7 +53,7 @@ export default {
       store
     }) => {
       const isAuthenticated = store.state.auth0.isAuthenticated
-      const user = store.state.auth0.user
+      const user = store.state.auth0.auth0User
 
       // 未ログインの場合
       if (!isAuthenticated) {

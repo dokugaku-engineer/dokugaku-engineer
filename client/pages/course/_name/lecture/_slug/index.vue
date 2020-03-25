@@ -6,10 +6,10 @@
       </error-box>
     </div>
     <div class="video-wrap">
-      <div v-if="!user.email_verified">
+      <div v-if="isAuth0Provider && !auth0User.email_verified">
         <verification-email-box />
       </div>
-      <div v-if="user.email_verified" class="video">
+      <div v-if="!isAuth0Provider || auth0User.email_verified" class="video">
         <iframe
           v-if="lecture.video_url"
           @load="createLearningHistory()"
@@ -18,7 +18,7 @@
           style="position:absolute;top:0;left:0;width:100%;height:100%;">
         </iframe>
       </div>
-      <div v-if="user.email_verified" class="video-btns">
+      <div v-if="auth0User.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
           <nuxt-link :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`" class="video-btn-link">
             <i class="fas fa-less-than"></i>
@@ -210,7 +210,7 @@
 <script>
 import ErrorBox from "@/components/commons/ErrorBox.vue"
 import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   layout: "course",
@@ -227,7 +227,8 @@ export default {
     }
   },
   computed: {
-    ...mapState('auth0', ['user'])
+    ...mapState('auth0', ['auth0User']),
+    ...mapGetters('auth0', ['isAuth0Provider'])
   },
   async created() {
     this.$store.dispatch('course/setCourse', { course: {}, lecture: {} })

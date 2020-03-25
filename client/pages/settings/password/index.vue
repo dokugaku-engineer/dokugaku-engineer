@@ -4,7 +4,7 @@
     <h1 class="heading-title">パスワードの設定</h1>
   </div>
   <main>
-    <form v-if="providers.indexOf('auth0') >= 0" class="profile">
+    <form v-if="isAuth0Provider" class="profile">
       <p>ご登録されたメールアドレスにパスワード再設定のご案内が送信されます。</p>
       <div class="profile-btn">
         <nui-button class="btn-red1" :submit="true">
@@ -86,8 +86,7 @@ export default {
     NuiButton,
   },
   computed: {
-    ...mapState('auth0', ['user']),
-    ...mapGetters('auth0', ['providers'])
+    ...mapGetters('auth0', ['providers', 'isAuth0Provider'])
   },
   beforeCreate() {
     this.$store.dispatch('setting/setTitle', { title: 'パスワード' })

@@ -223,10 +223,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('auth0', {
-      auth0User: 'user',
-      isAuthenticated: 'isAuthenticated',
-    }),
+    ...mapState('auth0', ['auth0User', 'isAuthenticated']),
     submitError() {
       return this.submitStatus === 'ERROR'
     },
@@ -271,7 +268,7 @@ export default {
 
       if (this.submitStatus === 'ERROR') { return }
 
-      this.$store.commit('auth0/SET_USER', await this.$auth0.getUser())
+      this.$store.commit('auth0/SET_AUTH0_USER', await this.$auth0.getUser())
       this.submitStatus = 'OK'
       window.location.assign('/course/serverside')
     },

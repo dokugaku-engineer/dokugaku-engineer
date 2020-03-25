@@ -34,14 +34,14 @@ const useAuth0 = async (store, {
           store.commit('auth0/SET_POPUP_OPEN', false)
         }
 
-        store.commit('auth0/SET_USER', await this.auth0Client.getUser())
+        store.commit('auth0/SET_AUTH0_USER', await this.auth0Client.getUser())
         store.commit('auth0/SET_IS_AUTHENTICATED', true)
       },
       async handleRedirectCallback() {
         store.commit('auth0/SET_LOADING', true)
         try {
           await this.auth0Client.handleRedirectCallback()
-          store.commit('auth0/SET_USER', await this.auth0Client.getUser())
+          store.commit('auth0/SET_AUTH0_USER', await this.auth0Client.getUser())
           store.commit('auth0/SET_IS_AUTHENTICATED', true)
         } catch (e) {
           this.error = e
@@ -93,7 +93,7 @@ const useAuth0 = async (store, {
         this.error = e
       } finally {
         store.commit('auth0/SET_IS_AUTHENTICATED', await this.auth0Client.isAuthenticated())
-        store.commit('auth0/SET_USER', await this.auth0Client.getUser())
+        store.commit('auth0/SET_AUTH0_USER', await this.auth0Client.getUser())
         store.commit('auth0/SET_LOADING', false)
       }
     }

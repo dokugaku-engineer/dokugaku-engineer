@@ -1,7 +1,7 @@
 export const state = () => ({
   loading: true,
   isAuthenticated: false,
-  user: {},
+  auth0User: {},
   popupOpen: false,
   permissions: []
 })
@@ -13,8 +13,8 @@ export const mutations = {
   SET_IS_AUTHENTICATED(state, isAuthenticated) {
     state.isAuthenticated = !!isAuthenticated
   },
-  SET_USER(state, user) {
-    state.user = user
+  SET_AUTH0_USER(state, user) {
+    state.auth0User = user
   },
   SET_POPUP_OPEN(state, popupOpen) {
     state.popupOpen = !!popupOpen
@@ -26,7 +26,7 @@ export const mutations = {
 
 export const getters = {
   providers(state) {
-    return state.user[process.env.AUTH0_NAMESPACE + 'providers'].map(provider => {
+    return state.auth0User[process.env.AUTH0_NAMESPACE + 'providers'].map(provider => {
       if (provider == 'github') {
         return 'GitHub'
       } else if (provider == 'twitter') {
@@ -37,6 +37,12 @@ export const getters = {
     })
   },
   userId(state) {
-    return state.user[process.env.AUTH0_NAMESPACE + 'user_id']
+    return state.auth0User[process.env.AUTH0_NAMESPACE + 'user_id']
+  },
+  isAuth0Provider(state) {
+    const providers = state.auth0User[process.env.AUTH0_NAMESPACE + 'providers'].map(provider => {
+      return provider
+    })
+    return providers.indexOf('auth0') >= 0
   }
 }
