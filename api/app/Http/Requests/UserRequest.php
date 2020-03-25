@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\ApiRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends ApiRequest
 {
@@ -24,8 +25,17 @@ class UserRequest extends ApiRequest
     public function rules()
     {
         return [
-            'username' => 'unique:users',
-            'email' => 'unique:users'
+            'username' => [
+                'required',
+                'min:3',
+                'max:50',
+                Rule::unique('users')->ignore($this->user)
+            ],
+            'email' => [
+                'required',
+                'max:255',
+                Rule::unique('users')->ignore($this->user)
+            ]
         ];
     }
 
@@ -37,7 +47,12 @@ class UserRequest extends ApiRequest
     public function messages()
     {
         return [
+            'username.requiered' => 'ユーザー名は必須です',
+            'username.min' => 'ユーザー名は3文字以上で入力してください',
+            'username.max' => 'ユーザー名は50文字以内で入力してください',
             'username.unique' => 'ユーザー名はすでに登録されています',
+            'email.required' => 'メールアドレスは必須です',
+            'email.max' => 'メールアドレスは255文字以内で入力してください',
             'email.unique' => 'メールアドレスはすでに登録されています',
         ];
     }

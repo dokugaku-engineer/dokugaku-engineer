@@ -19,6 +19,7 @@ class UserController extends ApiController
      * ユーザーを保存
      *
      * @bodyParam users[username] string required User username. Example: kiyodori
+     * @bodyParam users[email] string required User email. Example: sample@example.com
      *
      * @responsefile responses/user.store.json
      *
@@ -55,6 +56,34 @@ class UserController extends ApiController
     {
         if ($request['user_id'] !== $user->id) {
             return $this->respondInvalidQuery('Invalid user');
+        }
+
+        return new UserResource($user);
+    }
+
+    /**
+     * ユーザーを更新
+     *
+     * @bodyParam users[username] string required User username. Example: kiyodori
+     * @bodyParam users[email] string required User email. Example: sample@example.com
+     *
+     * @responsefile responses/user.store.json
+     *
+     * @param UserRequest $request
+     * @return PostResource|\Illuminate\Http\JsonResponse
+     */
+    public function update(UserRequest $request, User $user)
+    {
+        try {
+            $validated = $request->validated();
+            $user->fill($validated);
+            $user->save();
+
+            // Auth0のメールアドレスを更新
+            // $auth0_client = new Auth0Service();
+            // $auth0_client->updateUser($auth0_user_id, json_encode(['user_metadata' => ['id' => $user->id]]));
+        } catch (QueryException $e) {
+            return $this->respondInvalidQuery($e);
         }
 
         return new UserResource($user);

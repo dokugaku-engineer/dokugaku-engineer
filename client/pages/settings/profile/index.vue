@@ -59,7 +59,10 @@
         </div>
       
         <div class="profile-form-btn">
-          <nui-button class="btn-red1" :submit="true">
+          <nui-button v-if="submitPending" class="btn-red1">
+            <i class="fad fa-spinner fa-spin fa-lg"></i>
+          </nui-button>
+          <nui-button v-else class="btn-red1" :submit="true">
             変更する
           </nui-button>
         </div>
@@ -179,12 +182,11 @@ export default {
   layout: "logined",
   components: {
     NuiButton,
-    ErrorBox
+    ErrorBox,
   },
   data() {
     return {
       user: {
-        id: null,
         username: '',
         email: '',
       },
@@ -201,6 +203,9 @@ export default {
     submitError() {
       return this.submitStatus === 'ERROR'
     },
+    submitPending() {
+      return this.submitStatus === 'PENDING'
+    }
   },
   beforeCreate() {
     this.$store.dispatch('setting/setTitle', { title: 'プロフィール' })
@@ -210,7 +215,8 @@ export default {
     const options = await this.getOptions()
     await this.$axios.$get(`/users/${this.userId}`, options)
       .then(res => {
-        this.user = res
+        this.user.username = res.username
+        this.user.email = res.email
       })
       .catch(err => {
         this.error = err.response
@@ -221,9 +227,15 @@ export default {
   methods: {
     async updateUser() {
       this.submitStatus = 'PENDING'
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+        return
+      }
+
       const options = await this.getOptions()
       await this.$axios
-        .$put("/users", this.user, options)
+        .$patch(`/users/${this.userId}`, this.user, options)
         .then(res => {
           this.submitStatus = 'OK'
         })
