@@ -60,7 +60,11 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/axios", "@nuxtjs/style-resources"],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/style-resources",
+    '@nuxtjs/toast',
+  ],
   /*
    ** Build configuration
    */
@@ -136,4 +140,16 @@ export default {
   },
   axios: {},
   dotenv: {},
+  toast: {
+    position: 'top-right',
+    register: [{
+      name: 'save_success',
+      message: '保存しました',
+      options: {
+        type: 'success',
+        duration: 3000,
+        className: ['toast-success']
+      }
+    }]
+  }
 }

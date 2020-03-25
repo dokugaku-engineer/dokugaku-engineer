@@ -165,6 +165,12 @@
 }
 </style>
 
+<style lang="scss">
+.toast-success {
+  background-color: $color-teal1 !important;
+}
+</style>
+
 <script>
 import NuiButton from "@/components/commons/Button.vue"
 import ErrorBox from "@/components/commons/ErrorBox.vue"
@@ -238,6 +244,7 @@ export default {
         .$patch(`/users/${this.userId}`, this.user, options)
         .then(res => {
           this.submitStatus = 'OK'
+          this.$toast.global.save_success()
         })
         .catch(err => {
           this.submitStatus = 'ERROR'
