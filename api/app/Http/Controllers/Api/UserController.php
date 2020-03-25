@@ -74,14 +74,24 @@ class UserController extends ApiController
      */
     public function update(UserRequest $request, User $user)
     {
+        if ($request['user_id'] !== $user->id) {
+            return $this->respondInvalidQuery('Invalid user');
+        }
+
+        $old_email = $user->email;
         try {
             $validated = $request->validated();
             $user->fill($validated);
             $user->save();
 
-            // Auth0のメールアドレスを更新
-            // $auth0_client = new Auth0Service();
-            // $auth0_client->updateUser($auth0_user_id, json_encode(['user_metadata' => ['id' => $user->id]]));
+            // メールアドレスが変更された時、Auth0のメールアドレスを更新
+            if ($user->email !== $old_email) {
+                $auth0_client = new Auth0Service();
+                $auth0_client->updateUser($request['auth0_user_id'], json_encode([
+                    'email' => $user->email,
+                    'email_verified' => true
+                ]));
+            }
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }

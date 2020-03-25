@@ -44,7 +44,10 @@ class CheckJWT
         }
 
         $USERID_NAMESPACE = env('AUTH0_NAMESPACE') . 'user_id';
-        $request->merge(['user_id' => $decodedToken->$USERID_NAMESPACE]);
+        $request->merge([
+            'user_id' => $decodedToken->$USERID_NAMESPACE,
+            'auth0_user_id' => $decodedToken->sub
+        ]);
         return $next($request);
     }
 
