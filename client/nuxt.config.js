@@ -1,6 +1,7 @@
 require("dotenv").config()
 
 import axios from "axios"
+import qs from 'qs'
 
 export default {
   mode: "spa",
@@ -49,6 +50,8 @@ export default {
     "./plugins/axios.js",
     "./plugins/mixins/validation.js",
     "./plugins/vuelidate.js",
+    "./plugins/auth0.js",
+    "./plugins/click-outside.js",
   ],
   /*
    ** Nuxt.js dev-modules
@@ -60,6 +63,7 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/style-resources",
+    '@nuxtjs/toast',
   ],
   /*
    ** Build configuration
@@ -75,15 +79,40 @@ export default {
    */
   generate: {
     async routes() {
-      console.log(10)
-      let courses = axios.get(`${process.env.API_URL}/courses`)
+      // Machine to mechine用のアクセストークンを取得する
+      const data = {
+        grant_type: 'client_credentials',
+        client_id: process.env.AUTH0_MANAGEMENT_API_CLIENT_ID,
+        client_secret: process.env.AUTH0_MANAGEMENT_API_CLIENT_SECRET,
+        audience: process.env.AUTH0_MANAGEMENT_API_AUDIENCE
+      };
+      const options = {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: qs.stringify(data),
+        url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
+      }
+      const access_token = await axios(options)
+        .then((res) => {
+          return res['data']['access_token']
+        })
+
+      const authorizationOptions = {
+        headers: {
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+
+      let courses = axios.get(`${process.env.API_URL}/courses`, authorizationOptions)
         .then((res) => {
           return res.data.map((course) => {
             return '/course/' + course.name
           })
         })
 
-      let lectures = axios.get(`${process.env.API_URL}/courses/lectures`)
+      let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
         .then((res) => {
           let courseLectures = []
           res.data.forEach(course => {
@@ -111,4 +140,19 @@ export default {
   },
   axios: {},
   dotenv: {},
+  toast: {
+    position: 'top-right',
+    register: [{
+      name: 'instant_success',
+      message: payload => {
+        if (!payload.message) return '保存しました'
+        return payload.message
+      },
+      options: {
+        type: 'success',
+        duration: 3000,
+        className: ['toast-success']
+      }
+    }]
+  }
 }
