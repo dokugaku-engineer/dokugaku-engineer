@@ -103,12 +103,6 @@ const useAuth0 = async (store, {
 }
 
 export default async function (context, inject) {
-  console.log("10:", context.env.AUTH0_DOMAIN, context.env.AUTH0_CLIENT_ID, context.env.AUTH0_AUDIENCE)
-  console.log("11:", context)
-  console.log("12:", context.env)
-  console.log("13:", context.env.API_URL)
-  console.log("14:", context.env.API_URL_BROWSER)
-  console.log("15:", context.env.AWS_CLIENT_BUCKET_NAME)
   const options = {
     domain: context.env.AUTH0_DOMAIN,
     clientId: context.env.AUTH0_CLIENT_ID,

@@ -751,11 +751,6 @@ export default {
   },
   methods: {
     toggleModal() {
-      console.log("20:", process.env)
-      console.log("21:", process.env.API_URL)
-      console.log("22:", process.env.AUTH0_DOMAIN)
-      console.log("23:", process.env.AUTH0_CLIENT_ID)
-      console.log("24:", process.env.ORIGIN)
       this.showModal = !this.showModal
     },
     async signup() {

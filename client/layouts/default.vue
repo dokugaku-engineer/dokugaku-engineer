@@ -122,7 +122,7 @@ export default {
   methods: {
     async login() {
       const options = {
-        redirect_uri: 'http://localhost:3333/course/serverside',
+        redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
           targetUrl: '/course/serverside'
         },
@@ -131,7 +131,7 @@ export default {
     },
     async signup() {
       const options = {
-        redirect_uri: 'http://localhost:3333/course/serverside',
+        redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
           targetUrl: '/course/serverside'
         },
