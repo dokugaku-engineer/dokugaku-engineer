@@ -1,7 +1,6 @@
 require("dotenv").config()
 
 import axios from "axios"
-import qs from 'qs'
 
 export default {
   mode: "spa",
@@ -112,19 +111,4 @@ export default {
   },
   axios: {},
   dotenv: {},
-  toast: {
-    position: 'top-right',
-    register: [{
-      name: 'instant_success',
-      message: payload => {
-        if (!payload.message) return '保存しました'
-        return payload.message
-      },
-      options: {
-        type: 'success',
-        duration: 3000,
-        className: ['toast-success']
-      }
-    }]
-  }
 }
