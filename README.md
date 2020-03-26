@@ -123,10 +123,10 @@ api/.env に下記を設定する。
 
 ```api/.env
 AUTH0_AUDIENCE=http://localhost:3333/api
-AUTH0_DOMAIN=${テナント名}
+AUTH0_DOMAIN=${テナント名}.auth0.com
 AUTH0_MANAGEMENT_API_AUDIENCE=${Auth0 Management APIのIdentifier}
 AUTH0_MANAGEMENT_API_CLIENT_ID=${Auth0 Management APIがAUTHORIZEDしているApplicationのClient ID}
-AUTH0_MANAGEMENT_API_CLIENT_SECRET=${Auth0 Management APIがAUTHORIZEDしているApplicationのClient Secret
+AUTH0_MANAGEMENT_API_CLIENT_SECRET=${Auth0 Management APIがAUTHORIZEDしているApplicationのClient Secret}
 }
 AUTH0_NAMESPACE=https://dokugaku-engineer.com/
 ```
@@ -134,7 +134,13 @@ AUTH0_NAMESPACE=https://dokugaku-engineer.com/
 client/.env に下記を設定する。
 
 ```client/.env
-
+AUTH0_AUDIENCE=http://localhost:3333/api
+AUTH0_CLIENT_ID=${作成したApplicatiopnのClient ID}
+AUTH0_DOMAIN=${テナント名}.auth0.com
+AUTH0_MANAGEMENT_API_AUDIENCE=${Auth0 Management APIのIdentifier}
+AUTH0_MANAGEMENT_API_CLIENT_ID=${Auth0 Management APIがAUTHORIZEDしているApplicationのClient ID}
+AUTH0_MANAGEMENT_API_CLIENT_SECRET=${Auth0 Management APIがAUTHORIZEDしているApplicationのClient Secret}
+AUTH0_NAMESPACE=https://dokugaku-engineer.com/
 ```
 
 ## Mission, Vision, Value
