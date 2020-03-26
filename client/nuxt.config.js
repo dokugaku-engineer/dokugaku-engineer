@@ -79,6 +79,12 @@ export default {
    */
   generate: {
     async routes() {
+      console.log(10)
+      console.log(`https://${process.env.AUTH0_DOMAIN}/oauth/token`)
+      console.log(process.env.AUTH0_MANAGEMENT_API_CLIENT_ID)
+      console.log(process.env.AUTH0_MANAGEMENT_API_CLIENT_SECRET)
+      console.log(process.env.AUTH0_MANAGEMENT_API_AUDIENCE)
+      console.log(`${process.env.API_URL}/courses`)
       // Machine to mechine用のアクセストークンを取得する
       const data = {
         grant_type: 'client_credentials',
@@ -94,10 +100,13 @@ export default {
         data: qs.stringify(data),
         url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
       }
+      console.log(11)
       const access_token = await axios(options)
         .then((res) => {
           return res['data']['access_token']
         })
+
+      console.log(12)
 
       const authorizationOptions = {
         headers: {
@@ -105,12 +114,16 @@ export default {
         }
       }
 
+      console.log(13)
+
       let courses = axios.get(`${process.env.API_URL}/courses`, authorizationOptions)
         .then((res) => {
           return res.data.map((course) => {
             return '/course/' + course.name
           })
         })
+
+      console.log(14)
 
       let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
         .then((res) => {
@@ -122,6 +135,8 @@ export default {
           })
           return courseLectures
         })
+
+      console.log(15)
 
       return Promise.all([courses, lectures]).then(values => {
         return [...values[0], ...values[1]]
