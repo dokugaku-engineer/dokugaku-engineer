@@ -78,55 +78,55 @@ export default {
    ** Generate configuration
    */
   generate: {
-    async routes() {
-      // Machine to mechine用のアクセストークンを取得する
-      const data = {
-        grant_type: 'client_credentials',
-        client_id: process.env.AUTH0_MANAGEMENT_API_CLIENT_ID,
-        client_secret: process.env.AUTH0_MANAGEMENT_API_CLIENT_SECRET,
-        audience: process.env.AUTH0_MANAGEMENT_API_AUDIENCE
-      };
-      const options = {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        data: qs.stringify(data),
-        url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
-      }
-      const access_token = await axios(options)
-        .then((res) => {
-          return res['data']['access_token']
-        })
+    // async routes() {
+    // Machine to mechine用のアクセストークンを取得する
+    // const data = {
+    //   grant_type: 'client_credentials',
+    //   client_id: process.env.AUTH0_MANAGEMENT_API_CLIENT_ID,
+    //   client_secret: process.env.AUTH0_MANAGEMENT_API_CLIENT_SECRET,
+    //   audience: process.env.AUTH0_MANAGEMENT_API_AUDIENCE
+    // };
+    // const options = {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
+    //   data: qs.stringify(data),
+    //   url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
+    // }
+    // const access_token = await axios(options)
+    //   .then((res) => {
+    //     return res['data']['access_token']
+    //   })
 
-      const authorizationOptions = {
-        headers: {
-          Authorization: `Bearer ${access_token}`
-        }
-      }
+    // const authorizationOptions = {
+    //   headers: {
+    //     Authorization: `Bearer ${access_token}`
+    //   }
+    // }
 
-      let courses = axios.get(`${process.env.API_URL}/courses`, authorizationOptions)
-        .then((res) => {
-          return res.data.map((course) => {
-            return '/course/' + course.name
-          })
-        })
+    // let courses = axios.get(`${process.env.API_URL}/courses`, authorizationOptions)
+    //   .then((res) => {
+    //     return res.data.map((course) => {
+    //       return '/course/' + course.name
+    //     })
+    //   })
 
-      let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
-        .then((res) => {
-          let courseLectures = []
-          res.data.forEach(course => {
-            course.parts.forEach(part => part.lessons.forEach(lesson => lesson.lectures.forEach(lecture => {
-              courseLectures.push('/course/' + course.name + '/lecture/' + lecture.slug)
-            })))
-          })
-          return courseLectures
-        })
+    // let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
+    //   .then((res) => {
+    //     let courseLectures = []
+    //     res.data.forEach(course => {
+    //       course.parts.forEach(part => part.lessons.forEach(lesson => lesson.lectures.forEach(lecture => {
+    //         courseLectures.push('/course/' + course.name + '/lecture/' + lecture.slug)
+    //       })))
+    //     })
+    //     return courseLectures
+    //   })
 
-      return Promise.all([courses, lectures]).then(values => {
-        return [...values[0], ...values[1]]
-      })
-    }
+    // return Promise.all([courses, lectures]).then(values => {
+    //   return [...values[0], ...values[1]]
+    // })
+    // }
   },
   /*
    ** Global CSS
