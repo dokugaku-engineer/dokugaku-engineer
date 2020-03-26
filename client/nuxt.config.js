@@ -78,6 +78,9 @@ export default {
    ** Generate configuration
    */
   generate: {
+    routes: [
+      '/course/serverside',
+    ]
     // async routes() {
     //   // Machine to mechine用のアクセストークンを取得する
     //   const data = {
