@@ -14,8 +14,7 @@
           class="lecture-link"
           :class="lecture.play ? 'play' : ''"
         >
-          <!-- TODO: 未視聴の場合はfa-checkを変更する -->
-          <i class="far fa-check"></i>
+          <i :class="lecture.learned ? 'far fa-check' : 'fas fa-circle'"></i>
           {{ lecture.order }}. {{ lecture.name }}
         </nuxt-link>
       </li>
@@ -37,6 +36,7 @@
   align-items: center;
   background-color: $color-white2;
   border-radius: .8rem;
+  cursor: pointer;
   display: flex;
   margin: 1rem 0;
   padding: .8rem 1.6rem;

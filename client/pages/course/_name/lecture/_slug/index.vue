@@ -1,10 +1,24 @@
 <template>
   <div>
+    <div v-if="error" class="error-box-wrap">
+      <error-box>
+        <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+      </error-box>
+    </div>
     <div class="video-wrap">
-      <div class="video">
-        <iframe v-if="lecture.video_url" :src="`${lecture.video_url}?autoplay=1&color=26a69a`" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+      <div v-if="isAuth0Provider && !auth0User.email_verified">
+        <verification-email-box />
       </div>
-      <div class="video-btns">
+      <div v-if="!isAuth0Provider || auth0User.email_verified" class="video">
+        <iframe
+          v-if="lecture.video_url"
+          @load="createLearningHistory()"
+          :src="`${lecture.video_url}?autoplay=1&color=26a69a`"
+          frameborder="0" allow="autoplay; fullscreen" allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;">
+        </iframe>
+      </div>
+      <div v-if="auth0User.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
           <nuxt-link :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`" class="video-btn-link">
             <i class="fas fa-less-than"></i>
@@ -187,34 +201,74 @@
   position: absolute;
   top: 50%;
 }
+
+.error-box-wrap {
+  margin: 4rem;
+}
 </style>
 
 <script>
+import ErrorBox from "@/components/commons/ErrorBox.vue"
+import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
+import { mapState, mapGetters } from 'vuex'
+
 export default {
   layout: "course",
+  components: {
+    ErrorBox,
+    VerificationEmailBox
+  },
   data() {
     return {
       course: {},
       lecture: {},
-      loading: true
+      loading: true,
+      error: null
     }
+  },
+  computed: {
+    ...mapState('auth0', ['auth0User']),
+    ...mapGetters('auth0', ['isAuth0Provider'])
   },
   async created() {
     this.$store.dispatch('course/setCourse', { course: {}, lecture: {} })
     this.$store.dispatch('course/setLectureName', { name: '' })
+    const token = await this.$auth0.getTokenSilently()
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
     await Promise.all([
-      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`),
-      this.$axios.$get(`/lectures/${this.$route.params.slug}`)
-    ]).then((res) => {
+      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
+      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
+    ]).then((response) => {
       // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
-      this.course = res[0]
-      this.lecture = res[1]
+      this.course = response[0]
+      this.lecture = response[1]
       this.loading = false
       this.$store.dispatch('course/setCourse', { course: this.course, lecture: this.lecture })
       this.$store.dispatch('course/setLectureName', { name: this.lecture.name })
-    }).catch((e) => {
-      this.$router.push('/')
+    }).catch((error) => {
+      this.loading = false
+      this.error = error
     })
+  },
+  methods: {
+    async createLearningHistory() {
+      if (this.lecture.learned) { return }
+
+      const token = await this.$auth0.getTokenSilently()
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      await this.$axios.$post('learning_histories', { lecture_id: this.lecture.id }, options)
+        .catch((error) => {
+          return
+        })
+    }
   }
 }
 </script>

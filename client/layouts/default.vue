@@ -9,10 +9,8 @@
       </nuxt-link>
       <div class="header-item">
         <div class="header-menu">
-          <nuxt-link to="" class="header-link">ログイン</nuxt-link>
-          <nuxt-link to="/course/serverside">
-            <nui-button class="btn-teal1 btn-xs btn-shadow-all header-link header-btn">無料で受講</nui-button>
-          </nuxt-link>
+          <button class="header-link" @click="login">ログイン</button>
+          <nui-button class="btn-teal1 btn-xs btn-shadow-all header-link header-btn" @click.native="signup">無料で受講</nui-button>
         </div>
       </div>
     </header>
@@ -114,7 +112,6 @@ import LogoShort from "@/components/svg/LogoShort.vue"
 import NuiButton from "@/components/commons/Button.vue"
 import Footer from "@/components/layouts/Footer.vue"
 
-
 export default {
   components: {
     Logo,
@@ -122,5 +119,26 @@ export default {
     NuiButton,
     Footer
   },
+  methods: {
+    async login() {
+      const options = {
+        redirect_uri: 'http://localhost:3333/course/serverside',
+        appState: {
+          targetUrl: '/course/serverside'
+        },
+      }
+      await this.$auth0.loginWithRedirect(options)
+    },
+    async signup() {
+      const options = {
+        redirect_uri: 'http://localhost:3333/course/serverside',
+        appState: {
+          targetUrl: '/course/serverside'
+        },
+        screen_hint: 'signup'
+      }
+      await this.$auth0.loginWithRedirect(options)
+    },
+  }
 }
 </script>

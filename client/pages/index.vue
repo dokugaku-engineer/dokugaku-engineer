@@ -18,12 +18,10 @@
             <span class="tagline-title">「独学エンジニア」</span>
           </h1>
           <div class="tagline-btn">
-            <nuxt-link to="/course/serverside">
-              <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
-                無料で受講する
-              </nui-button>
-            </nuxt-link>
-            <nui-button @click.native="showModal = true" class="btn-outline-teal1 btn-shadow content-btn" submit="true">
+            <nui-button @click.native="signup" class="btn-teal1 btn-shadow content-btn">
+              無料で受講する
+            </nui-button>
+            <nui-button @click.native="showModal = true" class="btn-outline-teal1 btn-shadow content-btn">
               <i class="fas fa-play-circle fa-lg"></i>
               講座をプレビュー
             </nui-button>
@@ -129,11 +127,9 @@
         </p>
         <h3 class="philosophy-message">「初学者から実務で自走できるエンジニアへ」</h3>
         <div class="content-single-btn">
-          <nuxt-link to="/course/serverside">
-            <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
-              無料で受講する
-            </nui-button>
-          </nuxt-link>
+          <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">
+            無料で受講する
+          </nui-button>
         </div>
       </div>
     </div>
@@ -250,16 +246,15 @@
             <li class="qa-answer">現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。</li>
           </ul>
           <div class="content-single-btn">
-            <nuxt-link to="/course/serverside">
-              <nui-button class="btn-teal1 btn-shadow content-btn" submit="true">
-                無料で受講する
-              </nui-button>
-            </nuxt-link>
+            <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">
+              無料で受講する
+            </nui-button>
           </div>
         </div>
       </div>
     </div>
 
+    <LoadingModal :showModal="loading" />
   </div>
 </template>
 
@@ -547,7 +542,6 @@
   text-align: center;
 }
 
-
 @media screen and (min-width: 769px) {
   .philosophy-message {
     color: $color-teal1;
@@ -730,15 +724,26 @@
 
 <script>
 import Logo from "@/components/svg/Logo.vue"
+import LoadingModal from "@/components/commons/LoadingModal.vue"
 import NuiButton from "@/components/commons/Button.vue"
 import Footer from "@/components/layouts/Footer.vue"
+import auth0Middleware from '~/middleware/auth0'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     Logo,
+    LoadingModal,
     NuiButton,
     Footer
   },
+  computed: {
+    ...mapState('auth0', ['user', 'isAuthenticated', 'loading'])
+  },
+  middleware: auth0Middleware.protect({
+    loginRequired: false,
+    authenticatedRedirectUri: '/course/serverside'
+  }),
   data() {
     return {
       showModal: false
@@ -747,7 +752,17 @@ export default {
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
-    }
+    },
+    async signup() {
+      const options = {
+        redirect_uri: `${process.env.ORIGIN}/course/serverside`,
+        appState: {
+          targetUrl: '/course/serverside'
+        },
+        screen_hint: 'signup'
+      }
+      await this.$auth0.loginWithRedirect(options)
+    },
   }
 }
 </script>

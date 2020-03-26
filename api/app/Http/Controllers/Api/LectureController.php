@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\ApiController;
+use Illuminate\Http\Request;
 use App\Models\Lecture;
-use App\Http\Resources\Lecture\Lecture as LectureResource;
+use App\Models\TakingCourse;
+use App\Http\Resources\Lecture\LectureWithLearned as LectureWithLearnedResource;
 
 /**
  * @group 4. Lecture
  */
-class LectureController extends Controller
+class LectureController extends ApiController
 {
     /**
      * レクチャーを取得
@@ -19,11 +21,18 @@ class LectureController extends Controller
      * @responsefile responses/lecture.show.json
      *
      * @param string $slug
-     * @return LectureResource
+     * @return LectureWithLearnedResource
      */
-    public function show(string $slug)
+    public function show(Request $request, string $slug)
     {
+        $user_id = $request['user_id'];
         $lecture = Lecture::where('slug', $slug)->first();
-        return new LectureResource($lecture);
+        $lecture->load(['lesson.part'])->load_learning_histories($user_id);
+        $course_id = $lecture->lesson->part->course_id;
+        if (TakingCourse::doesntExist($user_id, $course_id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+
+        return new LectureWithLearnedResource($lecture);
     }
 }

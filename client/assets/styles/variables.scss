@@ -1,9 +1,9 @@
 //Font-size
 $font-size-base: 1.6rem;
-$font-size-xxxl: $font-size-base + 0.8rem;
-$font-size-xxl: $font-size-base + 0.6rem;
-$font-size-xl: $font-size-base + 0.4rem;
-$font-size-lg: $font-size-base + 0.2rem;
+$font-size-xxxl: $font-size-base+0.8rem;
+$font-size-xxl: $font-size-base+0.6rem;
+$font-size-xl: $font-size-base+0.4rem;
+$font-size-lg: $font-size-base+0.2rem;
 $font-size-sm: $font-size-base - 0.2rem;
 $font-size-xs: $font-size-base - 0.4rem;
 
@@ -30,14 +30,14 @@ $color-purple: #ab47bc;
 $color-orange: #ffa726;
 $color-yellow: #ffee58;
 $color-pink: #ec407a;
-$color-grren: #4caf50;
+$color-green: #4caf50;
 
-// Colors Warning
-$color-red3: #b00200;
+// Colors Warning Background
+$color-red3: #fff7f7;
 
 // Colors Disabled
 $color-disabled1: rgba(0, 0, 0, 0.12);
 $color-disabled2: rgba(0, 0, 0, 0.26);
 
 // Colors Shadow
-$color-gray-shadow: rgba(46,61,73,.2);
+$color-gray-shadow: rgba(46, 61, 73, .2);

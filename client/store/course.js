@@ -45,7 +45,6 @@ export const mutations = {
     name
   }) {
     state.lectureName = name
-    console.log(name)
   }
 }
 

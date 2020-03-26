@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\TakingCourse;
 use App\Http\Resources\Course\Course as CourseResource;
 use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
+use App\Http\Resources\Course\CourseLectureWithLearned as CourseLectureWithLearnedResource;
 
 /**
  * @group 3. Course
  */
-class CourseController extends Controller
+class CourseController extends ApiController
 {
     /**
      * コース一覧を取得
@@ -32,7 +34,7 @@ class CourseController extends Controller
      *
      * @responsefile responses/course.getAllLectures.json
      *
-     * @return CourseLectureResource
+     * @return CourseLectureResourceCollection
      *
      */
     public function getAllLectures(Request $request)
@@ -51,12 +53,17 @@ class CourseController extends Controller
      * @responsefile responses/course.getLectures.json
      *
      * @param string $slug
-     * @return CourseLectureResource
+     * @return CourseLectureWithLearnedResource
      */
-    public function getLectures(string $name)
+    public function getLectures(Request $request, $name)
     {
+        $user_id = $request['user_id'];
         $course = Course::where('name', $name)->first();
-        $course->withCourses();
-        return new CourseLectureResource($course);
+        if (TakingCourse::doesntExist($user_id, $course->id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+
+        $course->withCourses($user_id);
+        return new CourseLectureWithLearnedResource($course);
     }
 }

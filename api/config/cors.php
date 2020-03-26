@@ -12,11 +12,11 @@ return [
     |
     */
 
-    'supportsCredentials' => false,
-    'allowedOrigins' => [env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333')],
-    'allowedHeaders' => ['Content-Type', 'X-Requested-With'],
-    'allowedMethods' => ['GET', 'POST', 'PUT', 'DELETE'],
-    'exposedHeaders' => [],
+    'supports_credentials' => true,
+    'allowed_origins' => [env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333')],
+    'allowed_headers' => ['Content-Type', 'X-Requested-With', 'Authorization', 'Origin'],
+    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    'exposed_headers' => [],
     'maxAge' => 0,
-
+    'paths' => ['api/*'],
 ];

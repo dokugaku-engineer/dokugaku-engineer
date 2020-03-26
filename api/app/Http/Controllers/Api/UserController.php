@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Api\ApiController;
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\User\User as UserResource;
+use App\Models\User;
+use App\Services\Auth0Service;
+use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
+/**
+ * @group 5. User
+ */
+class UserController extends ApiController
+{
+    /**
+     * ユーザーを保存
+     *
+     * @bodyParam users[username] string required User username. Example: kiyodori
+     * @bodyParam users[email] string required User email. Example: sample@example.com
+     *
+     * @responsefile responses/user.store.json
+     *
+     * @param UserRequest $request
+     * @return PostResource|\Illuminate\Http\JsonResponse
+     */
+    public function store(UserRequest $request)
+    {
+        $auth0_user_id = $request->input('auth0Userid');
+        try {
+            $validated = $request->validated();
+            $user = new User($validated);
+            $user->save();
+
+            // 本来はClient側でAuth0ユーザーの情報を更新する処理を行いたかったが、SPA上ではCORS preflight requestエラーになったため、APIで実行
+            $auth0_client = new Auth0Service();
+            $auth0_client->updateUser($auth0_user_id, json_encode(['user_metadata' => ['id' => $user->id]]));
+        } catch (QueryException $e) {
+            return $this->respondInvalidQuery($e);
+        }
+
+        return new UserResource($user);
+    }
+
+    /**
+     * ユーザーを取得
+     *
+     * @responsefile responses/user.store.json
+     *
+     * @param UserRequest $request
+     * @return PostResource|\Illuminate\Http\JsonResponse
+     */
+    public function show(Request $request, User $user)
+    {
+        if ($request['user_id'] !== $user->id) {
+            return $this->respondInvalidQuery('Invalid user');
+        }
+
+        return new UserResource($user);
+    }
+
+    /**
+     * ユーザーを更新
+     *
+     * @bodyParam users[username] string required User username. Example: kiyodori
+     * @bodyParam users[email] string required User email. Example: sample@example.com
+     *
+     * @responsefile responses/user.store.json
+     *
+     * @param UserRequest $request
+     * @return PostResource|\Illuminate\Http\JsonResponse
+     */
+    public function update(UserRequest $request, User $user)
+    {
+        if ($request['user_id'] !== $user->id) {
+            return $this->respondInvalidQuery('Invalid user');
+        }
+
+        $old_email = $user->email;
+        try {
+            $validated = $request->validated();
+            $user->fill($validated);
+            $user->save();
+
+            // メールアドレスが変更された時、Auth0のメールアドレスを更新
+            if ($user->email !== $old_email) {
+                $auth0_client = new Auth0Service();
+                $auth0_client->updateUser($request['auth0_user_id'], json_encode([
+                    'email' => $user->email,
+                    'email_verified' => true
+                ]));
+            }
+        } catch (QueryException $e) {
+            return $this->respondInvalidQuery($e);
+        }
+
+        return new UserResource($user);
+    }
+}

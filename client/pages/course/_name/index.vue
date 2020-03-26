@@ -1,10 +1,23 @@
 <template>
   <div>
     <div class="header">
+      <div v-if="isAuth0Provider && !auth0User.email_verified">
+        <verification-email-box />
+        <div v-if="auth0Error">
+          <error-box>
+            <p>認証用メール送信時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+          </error-box>
+        </div>
+      </div>
       <h3 class="header-title">カリキュラム</h3>
       <p class="header-text">{{ course.description }}</p>
     </div>
     <div class="main">
+      <div v-if="error">
+        <error-box>
+          <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+        </error-box>
+      </div>
       <div v-if="loading" class="loading">
         <i class="fad fa-spinner fa-spin fa-lg"></i>
       </div>
@@ -107,32 +120,45 @@
 </style>
 
 <script>
+import ErrorBox from "@/components/commons/ErrorBox.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
-import { mapState } from 'vuex'
+import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   layout: "course",
   components: {
+    ErrorBox,
     LectureList,
+    VerificationEmailBox
   },
   data() {
     return {
-      course: {},
-      loading: true
+      loading: true,
+      error: null,
+      auth0Error: null
     }
   },
   computed: {
-    ...mapState('course', ['course'])
+    ...mapState('course', ['course']),
+    ...mapState('auth0', ['auth0User']),
+    ...mapGetters('auth0', ['isAuth0Provider'])
   },
   async created() {
     this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
-    await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`)
-      .then((res) => {
-        this.course = res
+    const token = await this.$auth0.getTokenSilently()
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options)
+      .then((response) => {
         this.loading = false
-        this.$store.dispatch('course/setCourse', { course: this.course, lecture: {} })
-      }).catch((e) => {
-        this.$router.push('/')
+        this.$store.dispatch('course/setCourse', { course: response, lecture: {} })
+      }).catch((error) => {
+        this.loading = false
+        this.error = error
       })
   }
 }

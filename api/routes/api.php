@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Resources\Lecture\Lecture;
 use Illuminate\Http\Request;
 
 /*
@@ -19,16 +18,48 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Api'], function () {
+    // These endpoints require a valid id token for user
+    Route::middleware(['jwt'])->group(function () {
+        // User routes
+        Route::resource('users', 'UserController')->only([
+            'show', 'update'
+        ]);
+
+        // Course-related routes
+        Route::get('courses/{name}/lectures', 'CourseController@getLectures');
+        Route::get('lectures/{slug}', 'LectureController@show');
+
+        // Learning history routes
+        Route::resource('learning_histories', 'LearningHistoryController')->only([
+            'store'
+        ]);
+
+        // Auth0 routes
+        Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
+    });
+
+    // These endpoints require a valid access token for machine
+    Route::middleware(['jwt.m2m'])->group(function () {
+        // Course-related routes
+        Route::resource('courses', 'CourseController')->only([
+            'index'
+        ]);
+        Route::get('courses/lectures', 'CourseController@getAllLectures');
+    });
+
+
     // Health routes
     Route::get('health', 'HealthController@index');
 
-    // Course-related routes
-    Route::resource('courses', 'CourseController')->only([
-        'index'
+    // User routes
+    Route::resource('users', 'UserController')->only([
+        'store'
     ]);
-    Route::get('courses/lectures', 'CourseController@getAllLectures');
-    Route::get('courses/{name}/lectures', 'CourseController@getLectures');
-    Route::get('lectures/{slug}', 'LectureController@show');
+
+    // Taking course routes
+    Route::resource('taking_courses', 'TakingCourseController')->only([
+        'store'
+    ]);
 
     // Post-related routes
     Route::resource('categories', 'CategoryController')->only([

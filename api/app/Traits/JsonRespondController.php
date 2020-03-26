@@ -76,6 +76,48 @@ trait JsonRespondController
     }
 
     /**
+     * 不適切な認証に対してエラーを送信
+     * Error Code = 31
+     *
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function respondUnauthorized(?string $message = null): JsonResponse
+    {
+        return $this->setHTTPStatusCode(401)
+            ->setErrorCode(31)
+            ->respondWithError($message);
+    }
+
+    /**
+     * 権限不足に対してエラーを送信
+     * Error Code = 32
+     *
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function respondInsufficientScope(?string $message = null): JsonResponse
+    {
+        return $this->setHTTPStatusCode(403)
+            ->setErrorCode(32)
+            ->respondWithError($message);
+    }
+
+    /**
+     * 対象が見つからないためエラーを送信
+     * Error Code = 33
+     *
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function respondNotFound(?string $message = null): JsonResponse
+    {
+        return $this->setHTTPStatusCode(404)
+            ->setErrorCode(33)
+            ->respondWithError($message);
+    }
+
+    /**
      * エラー時にレスポンスを送信
      *
      * @param string $message

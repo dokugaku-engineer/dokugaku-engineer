@@ -137,7 +137,7 @@
 }
 
 .error {
-  color: $color-red3;
+  color: $color-red1;
 }
 
 .error-text {
