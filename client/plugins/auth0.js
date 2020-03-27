@@ -85,17 +85,18 @@ const useAuth0 = async (store, {
           window.location.search.includes("code=") &&
           window.location.search.includes("state=")
         ) {
+          console.log(41)
           const {
             appState
           } = await this.auth0Client.handleRedirectCallback()
-          console.log(41)
+          console.log(42)
           console.log(appState)
 
           onRedirectCallback(appState)
         }
       } catch (e) {
         this.error = e
-        console.log(42)
+        console.log(43)
         console.log(e)
       } finally {
         store.commit('auth0/SET_IS_AUTHENTICATED', await this.auth0Client.isAuthenticated())
