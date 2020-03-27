@@ -129,6 +129,9 @@ export default {
             return '/course/' + course.name
           })
         })
+        .catch(err => {
+          console.log(err.response)
+        })
 
       let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
         .then((res) => {
@@ -139,6 +142,9 @@ export default {
             })))
           })
           return courseLectures
+        })
+        .catch(err => {
+          console.log(err.response)
         })
 
       return Promise.all([courses, lectures]).then(values => {

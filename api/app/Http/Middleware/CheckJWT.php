@@ -26,8 +26,6 @@ class CheckJWT
         if (empty($accessToken)) {
             return $this->respondUnauthorized('Bearer token missing');
         }
-        info($accessToken);
-
 
         info(11);
 
@@ -37,8 +35,6 @@ class CheckJWT
             'valid_audiences' => [$laravelConfig['api_identifier']],
             'supported_algs' => $laravelConfig['supported_algs'],
         ];
-
-        info($jwtConfig);
 
         try {
             info(12);
@@ -50,7 +46,6 @@ class CheckJWT
             info($decodedToken);
         } catch (\Exception $e) {
             info(15);
-            info($e);
             return $this->respondUnauthorized($e->getMessage());
         }
 
