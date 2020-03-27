@@ -89,6 +89,7 @@ export default {
    */
   generate: {
     async routes() {
+      console.log(10)
       // Machine to mechine用のアクセストークンを取得する
       const data = {
         grant_type: 'client_credentials',
