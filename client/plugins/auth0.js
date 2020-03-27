@@ -102,7 +102,7 @@ const useAuth0 = async (store, {
         store.commit('auth0/SET_IS_AUTHENTICATED', await this.auth0Client.isAuthenticated())
         store.commit('auth0/SET_AUTH0_USER', await this.auth0Client.getUser())
         store.commit('auth0/SET_LOADING', false)
-        console.log(43)
+        console.log(44)
         console.log(await this.auth0Client.isAuthenticated())
         console.log(await this.auth0Client.getUser())
       }
