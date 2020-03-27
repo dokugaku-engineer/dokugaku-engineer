@@ -117,7 +117,13 @@ GitHubとTwitterの設定についてはAuth0のドキュメントを参考に�
 * [Connect your app to GitHub](https://auth0.com/docs/connections/social/github)
 * [Connect Your App to Twitter](https://auth0.com/docs/connections/social/twitter)
 
-#### 8. 環境変数の設定
+#### 8. ユニバーサルログインの使用
+
+Universal Login > Settings をクリックして、新ユニバーサルログインページを使用するように設定する。
+
+* Experience：New
+
+#### 9. 環境変数の設定
 
 api/.env に下記を設定する。
 
