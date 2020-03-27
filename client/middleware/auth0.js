@@ -52,6 +52,9 @@ export default {
       redirect,
       store
     }) => {
+      console.log(30)
+      console.log(store.state.auth0)
+      console.log(store.state.auth0.isAuthenticated)
       const isAuthenticated = store.state.auth0.isAuthenticated
       const user = store.state.auth0.auth0User
 

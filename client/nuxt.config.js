@@ -90,6 +90,12 @@ export default {
   generate: {
     async routes() {
       console.log(10)
+      console.log(process)
+      console.log(process.env)
+      console.log(process.env.AUTH0_MANAGEMENT_API_CLIENT_ID)
+      console.log(process.env.AUTH0_MANAGEMENT_API_CLIENT_SECRET)
+      console.log(process.env.AUTH0_MANAGEMENT_API_AUDIENCE)
+      console.log(process.env.AUTH0_DOMAIN)
       // Machine to mechine用のアクセストークンを取得する
       const data = {
         grant_type: 'client_credentials',
@@ -115,6 +121,9 @@ export default {
           Authorization: `Bearer ${access_token}`
         }
       }
+
+      console.log(11)
+      console.log(authorizationOptions)
 
       let courses = axios.get(`${process.env.API_URL}/courses`, authorizationOptions)
         .then((res) => {
