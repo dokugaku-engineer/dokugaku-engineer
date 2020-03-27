@@ -72,7 +72,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend() {}
+    quiet: false,
   },
   /*
    ** Env for client side
