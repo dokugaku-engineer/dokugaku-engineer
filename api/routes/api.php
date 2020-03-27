@@ -39,20 +39,13 @@ Route::group(['namespace' => 'Api'], function () {
     });
 
     // These endpoints require a valid access token for machine
-    // Route::middleware(['jwt.m2m'])->group(function () {
-    //     // Course-related routes
-    //     Route::resource('courses', 'CourseController')->only([
-    //         'index'
-    //     ]);
-    //     Route::get('courses/lectures', 'CourseController@getAllLectures');
-    // });
-
-    // Course-related routes
-    Route::resource('courses', 'CourseController')->only([
-        'index'
-    ]);
-    Route::get('courses/lectures', 'CourseController@getAllLectures');
-
+    Route::middleware(['jwt.m2m'])->group(function () {
+        // Course-related routes
+        Route::resource('courses', 'CourseController')->only([
+            'index'
+        ]);
+        Route::get('courses/lectures', 'CourseController@getAllLectures');
+    });
 
     // Health routes
     Route::get('health', 'HealthController@index');
