@@ -90,8 +90,6 @@ export default {
   generate: {
     async routes() {
       console.log(10)
-      console.log(process)
-      console.log(process.env)
       console.log(process.env.AUTH0_MANAGEMENT_API_CLIENT_ID)
       console.log(process.env.AUTH0_MANAGEMENT_API_CLIENT_SECRET)
       console.log(process.env.AUTH0_MANAGEMENT_API_AUDIENCE)
