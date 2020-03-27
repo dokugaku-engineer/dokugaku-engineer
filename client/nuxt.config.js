@@ -133,22 +133,26 @@ export default {
           console.log(err.response)
         })
 
-      let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
-        .then((res) => {
-          let courseLectures = []
-          res.data.forEach(course => {
-            course.parts.forEach(part => part.lessons.forEach(lesson => lesson.lectures.forEach(lecture => {
-              courseLectures.push('/course/' + course.name + '/lecture/' + lecture.slug)
-            })))
-          })
-          return courseLectures
-        })
-        .catch(err => {
-          console.log(err.response)
-        })
+      // let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
+      //   .then((res) => {
+      //     let courseLectures = []
+      //     res.data.forEach(course => {
+      //       course.parts.forEach(part => part.lessons.forEach(lesson => lesson.lectures.forEach(lecture => {
+      //         courseLectures.push('/course/' + course.name + '/lecture/' + lecture.slug)
+      //       })))
+      //     })
+      //     return courseLectures
+      //   })
+      //   .catch(err => {
+      //     console.log(err.response)
+      //   })
 
-      return Promise.all([courses, lectures]).then(values => {
-        return [...values[0], ...values[1]]
+      // return Promise.all([courses, lectures]).then(values => {
+      //   return [...values[0], ...values[1]]
+      // })
+
+      return Promise.all([courses]).then(values => {
+        return [...values[0]]
       })
     }
   },

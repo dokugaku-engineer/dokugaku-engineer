@@ -31,6 +31,8 @@ class CheckM2MJWT
             return $this->respondUnauthorized('Bearer token missing');
         }
 
+        info(print_r($accessToken, true));
+
         info(2);
         $laravelConfig = config('laravel-auth0');
         $jwtConfig = [
@@ -39,10 +41,13 @@ class CheckM2MJWT
             'supported_algs' => $laravelConfig['supported_algs'],
         ];
 
+        info(print_r($jwtConfig, true));
+
         try {
             info(3);
             $jwtVerifier = new JWTVerifier($jwtConfig);
             info(4);
+            info(print_r($jwtVerifier, true));
             $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
             info(5);
         } catch (\Exception $e) {
