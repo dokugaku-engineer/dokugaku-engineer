@@ -43,7 +43,7 @@ docker-compose exec api composer install
 # データベースのマイグレーション
 docker-compose exec api php artisan migrate
 
-# レクチャー関連のデータのインポート
+# レクチャー関連のデータのインポート（2回実行する）
 docker-compose exec api php artisan import:lecture-csv
 ```
 

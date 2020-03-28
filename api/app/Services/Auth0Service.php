@@ -23,8 +23,8 @@ class Auth0Service
     public function updateUser($user_id, $data)
     {
         info(22);
-        info($this->access_token);
-        info(env('AUTH0_DOMAIN'));
+        info('access_token: ' . $this->access_token);
+        info('AUTH0_DOMAIN: ' . env('AUTH0_DOMAIN'));
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -98,9 +98,9 @@ class Auth0Service
     private function getAccessToken()
     {
         info(20);
-        info(env('AUTH0_MANAGEMENT_API_CLIENT_ID'));
-        info(env('AUTH0_MANAGEMENT_API_CLIENT_SECRET'));
-        info(env('AUTH0_MANAGEMENT_API_AUDIENCE'));
+        info('AUTH0_MANAGEMENT_API_CLIENT_ID: ' . env('AUTH0_MANAGEMENT_API_CLIENT_ID'));
+        info('AUTH0_MANAGEMENT_API_CLIENT_SECRET: ' . env('AUTH0_MANAGEMENT_API_CLIENT_SECRET'));
+        info('AUTH0_MANAGEMENT_API_AUDIENCE: ' . env('AUTH0_MANAGEMENT_API_AUDIENCE'));
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
