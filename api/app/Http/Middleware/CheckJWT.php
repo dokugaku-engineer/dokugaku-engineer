@@ -43,7 +43,7 @@ class CheckJWT
 
             $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
             info(14);
-            info($decodedToken);
+            info(print_r($decodedToken, true));
         } catch (\Exception $e) {
             info(15);
             return $this->respondUnauthorized($e->getMessage());

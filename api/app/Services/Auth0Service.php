@@ -22,6 +22,10 @@ class Auth0Service
      */
     public function updateUser($user_id, $data)
     {
+        info(22);
+        info($this->access_token);
+        info(env('AUTH0_DOMAIN'));
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://" . env('AUTH0_DOMAIN') . "/api/v2/users/" . $user_id,
@@ -42,6 +46,7 @@ class Auth0Service
         curl_close($curl);
 
         if ($err) {
+            info(23);
             Log::error("auth0 update a user error #:" . $err);
         }
 
@@ -92,6 +97,11 @@ class Auth0Service
      */
     private function getAccessToken()
     {
+        info(20);
+        info(env('AUTH0_MANAGEMENT_API_CLIENT_ID'));
+        info(env('AUTH0_MANAGEMENT_API_CLIENT_SECRET'));
+        info(env('AUTH0_MANAGEMENT_API_AUDIENCE'));
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://" . env('AUTH0_DOMAIN') . "/oauth/token",
@@ -114,6 +124,8 @@ class Auth0Service
             Log::error("auth0 get access token error #:" . $err);
         } else {
             $access_token = json_decode($response, true)['access_token'];
+            info(21);
+            info(json_decode($response, true));
         }
 
         return $access_token;
