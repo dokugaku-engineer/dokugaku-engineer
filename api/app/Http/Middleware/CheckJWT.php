@@ -20,14 +20,10 @@ class CheckJWT
      */
     public function handle($request, Closure $next, $scopeRequired = null)
     {
-        info(10);
-
         $accessToken = $request->bearerToken();
         if (empty($accessToken)) {
             return $this->respondUnauthorized('Bearer token missing');
         }
-
-        info(11);
 
         $laravelConfig = config('laravel-auth0');
         $jwtConfig = [
@@ -37,23 +33,15 @@ class CheckJWT
         ];
 
         try {
-            info(12);
             $jwtVerifier = new JWTVerifier($jwtConfig);
-            info(13);
-
             $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
-            info(14);
-            info(print_r($decodedToken, true));
         } catch (\Exception $e) {
-            info(15);
             return $this->respondUnauthorized($e->getMessage());
         }
 
-        info(16);
         if ($scopeRequired && !$this->tokenHasScope($decodedToken, $scopeRequired)) {
             return $this->respondInsufficientScope('Insufficient scope');
         }
-        info(17);
 
         $USERID_NAMESPACE = env('AUTH0_NAMESPACE') . 'user_id';
         $request->merge([

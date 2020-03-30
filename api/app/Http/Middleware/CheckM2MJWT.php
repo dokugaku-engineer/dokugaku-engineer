@@ -24,16 +24,11 @@ class CheckM2MJWT
      */
     public function handle($request, Closure $next, $scopeRequired = null)
     {
-        info(1);
-
         $accessToken = $request->bearerToken();
         if (empty($accessToken)) {
             return $this->respondUnauthorized('Bearer token missing');
         }
 
-        info(print_r($accessToken, true));
-
-        info(2);
         $laravelConfig = config('laravel-auth0');
         $jwtConfig = [
             'authorized_iss' => $laravelConfig['authorized_issuers'],
@@ -41,17 +36,10 @@ class CheckM2MJWT
             'supported_algs' => $laravelConfig['supported_algs'],
         ];
 
-        info(print_r($jwtConfig, true));
-
         try {
-            info(3);
             $jwtVerifier = new JWTVerifier($jwtConfig);
-            info(4);
-            info(print_r($jwtVerifier, true));
             $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
-            info(5);
         } catch (\Exception $e) {
-            info(6);
             return $this->respondUnauthorized($e->getMessage());
         }
 
