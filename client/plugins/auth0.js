@@ -8,10 +8,6 @@ const useAuth0 = async (store, {
   redirectUri = window.location.origin,
   ...options
 }) => {
-  console.log(40)
-
-  if (instance) return instance
-
   const auth0Client = await createAuth0Client({
     domain: options.domain,
     client_id: options.clientId,
@@ -19,7 +15,23 @@ const useAuth0 = async (store, {
     redirect_uri: redirectUri
   })
 
-  console.log(41)
+  try {
+    if (
+      window.location.search.includes("code=") &&
+      window.location.search.includes("state=")
+    ) {
+      const {
+        appState
+      } = await auth0Client.handleRedirectCallback()
+      onRedirectCallback(appState)
+    }
+  } catch (e) {
+    this.error = e
+  } finally {
+    store.commit('auth0/SET_IS_AUTHENTICATED', await auth0Client.isAuthenticated())
+    store.commit('auth0/SET_AUTH0_USER', await auth0Client.getUser())
+    store.commit('auth0/SET_LOADING', false)
+  }
 
   instance = new Vue({
     data() {
@@ -83,57 +95,22 @@ const useAuth0 = async (store, {
     },
     async created() {
       this.auth0Client = auth0Client
-      console.log(42)
-      try {
-        if (
-          window.location.search.includes("code=") &&
-          window.location.search.includes("state=")
-        ) {
-          console.log(43)
-          const {
-            appState
-          } = await this.auth0Client.handleRedirectCallback()
-          console.log(44)
-          console.log(appState)
-
-          onRedirectCallback(appState)
-        }
-      } catch (e) {
-        this.error = e
-        console.log(45)
-        console.log(e)
-      } finally {
-        store.commit('auth0/SET_IS_AUTHENTICATED', await this.auth0Client.isAuthenticated())
-        store.commit('auth0/SET_AUTH0_USER', await this.auth0Client.getUser())
-        store.commit('auth0/SET_LOADING', false)
-        console.log(46)
-        console.log(await this.auth0Client.isAuthenticated())
-        console.log(await this.auth0Client.getUser())
-      }
     }
   })
-
-  console.log(47)
 
   return instance
 }
 
 export default async function (context, inject) {
-  console.log(48)
-
   const options = {
     domain: context.env.AUTH0_DOMAIN,
     clientId: context.env.AUTH0_CLIENT_ID,
     audience: context.env.AUTH0_AUDIENCE,
     onRedirectCallback: (appState) => {
-      console.log(49)
       context.app.router.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname)
     }
   }
 
   const auth0 = await useAuth0(context.store, options)
-
-  console.log(50)
-
   inject('auth0', auth0)
 }
