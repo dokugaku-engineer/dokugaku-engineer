@@ -37,6 +37,12 @@ cp client/.env.dev client/.env
 # Dockerの起動
 docker-compose up -d --build
 
+# APIに必要なライブラリをインストール
+docker-compose exec api composer install
+
+# Clientに必要なライブラリをインストール
+docker-compose exec client npm install --no-optional
+
 # データベースのマイグレーション
 docker-compose exec api php artisan migrate
 
