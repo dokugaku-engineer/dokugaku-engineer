@@ -11,7 +11,7 @@
   box-sizing: border-box;
   display: inline-block;
   line-height: 1.5;
-  padding: 0.5rem 2rem;
+  padding: 1.2rem 2rem;
   text-align: center;
 }
 
