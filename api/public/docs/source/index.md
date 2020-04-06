@@ -58,14 +58,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=et" 
+curl -X GET -G "http://localhost:8080/api/categories?except=distinctio" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "et",
+            "except": "distinctio",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -312,14 +312,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=rem" 
+curl -X GET -G "http://localhost:8080/api/posts?except=ratione" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "rem",
+            "except": "ratione",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -830,6 +830,148 @@ Parameter | Type | Status | Description
 #3. Course
 
 
+<!-- START_74af4b6890ab4f3e31e8904435d099a1 -->
+## レクチャーを取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/courses/1/lectures" \
+    -H "Content-Type: application/json" \
+    -d '{"name":"serverside"}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/courses/1/lectures");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "name": "serverside"
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 1,
+    "name": "serverside",
+    "description": "実務で自走できるようになることを目指します",
+    "created_at": "2020-02-26T06:18:39Z",
+    "updated_at": "2020-02-26T06:18:39Z",
+    "parts": [
+        {
+            "id": 1,
+            "course_id": 1,
+            "order": 1,
+            "name": "コースへようこそ！",
+            "created_at": "2020-02-26T06:18:39Z",
+            "updated_at": "2020-02-26T06:18:39Z",
+            "lessons": [
+                {
+                    "id": 1,
+                    "part_id": 1,
+                    "order": 1,
+                    "name": "コースへようこそ！",
+                    "created_at": "2020-02-26T06:18:39Z",
+                    "updated_at": "2020-02-26T06:18:39Z",
+                    "lectures": [
+                        {
+                            "id": 1,
+                            "lesson_id": 1,
+                            "order": 1,
+                            "name": "コースへようこそ！",
+                            "video_url": "https:\/\/player.vimeo.com\/video\/391168857",
+                            "description": "コースを受講いただきありがとうございます！これからプロのエンジニアを目指して一緒にやっていきましょう！",
+                            "slug": "rQI62",
+                            "prev_lecture_slug": "",
+                            "next_lecture_slug": "bN5sY6",
+                            "public": 1,
+                            "locked": 0,
+                            "premium": 0,
+                            "created_at": "2020-02-26T06:18:39Z",
+                            "updated_at": "2020-02-26T06:18:39Z",
+                            "learned": true
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+### HTTP Request
+`GET api/courses/{name}/lectures`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    name | string |  required  | Course name.
+
+<!-- END_74af4b6890ab4f3e31e8904435d099a1 -->
+
+<!-- START_987ee5cd51f489c2c32dc75bdbf8bc6f -->
+## 認証用メールを送信
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/auth0/send_verification_email" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/auth0/send_verification_email");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+[
+    {
+        "id": 1,
+        "name": "serverside",
+        "description": "サーバーサイドエンジニアとして業務で自走できるようになることがゴールです。",
+        "created_at": "2020-02-28 06:48:01",
+        "updated_at": "2020-02-28 06:48:01"
+    }
+]
+```
+
+### HTTP Request
+`POST api/auth0/send_verification_email`
+
+
+<!-- END_987ee5cd51f489c2c32dc75bdbf8bc6f -->
+
 <!-- START_0ec32a5c7dac7b493d908412c6b29324 -->
 ## コース一覧を取得
 
@@ -960,147 +1102,6 @@ fetch(url, {
 
 <!-- END_40bcb093158f821689fe8255bf26f2c9 -->
 
-<!-- START_74af4b6890ab4f3e31e8904435d099a1 -->
-## レクチャーを取得
-
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost:8080/api/courses/1/lectures" \
-    -H "Content-Type: application/json" \
-    -d '{"name":"serverside"}'
-
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/courses/1/lectures");
-
-let headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-}
-
-let body = {
-    "name": "serverside"
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-    body: body
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (200):
-
-```json
-{
-    "id": 1,
-    "name": "serverside",
-    "description": "実務で自走できるようになることを目指します",
-    "created_at": "2020-02-26T06:18:39Z",
-    "updated_at": "2020-02-26T06:18:39Z",
-    "parts": [
-        {
-            "id": 1,
-            "course_id": 1,
-            "order": 1,
-            "name": "コースへようこそ！",
-            "created_at": "2020-02-26T06:18:39Z",
-            "updated_at": "2020-02-26T06:18:39Z",
-            "lessons": [
-                {
-                    "id": 1,
-                    "part_id": 1,
-                    "order": 1,
-                    "name": "コースへようこそ！",
-                    "created_at": "2020-02-26T06:18:39Z",
-                    "updated_at": "2020-02-26T06:18:39Z",
-                    "lectures": [
-                        {
-                            "id": 1,
-                            "lesson_id": 1,
-                            "order": 1,
-                            "name": "コースへようこそ！",
-                            "video_url": "https:\/\/player.vimeo.com\/video\/391168857",
-                            "description": "コースを受講いただきありがとうございます！これからプロのエンジニアを目指して一緒にやっていきましょう！",
-                            "slug": "rQI62",
-                            "prev_lecture_slug": "",
-                            "next_lecture_slug": "bN5sY6",
-                            "public": 1,
-                            "locked": 0,
-                            "premium": 0,
-                            "created_at": "2020-02-26T06:18:39Z",
-                            "updated_at": "2020-02-26T06:18:39Z"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
-```
-
-### HTTP Request
-`GET api/courses/{name}/lectures`
-
-#### Body Parameters
-
-Parameter | Type | Status | Description
---------- | ------- | ------- | ------- | -----------
-    name | string |  required  | Course name.
-
-<!-- END_74af4b6890ab4f3e31e8904435d099a1 -->
-
-<!-- START_987ee5cd51f489c2c32dc75bdbf8bc6f -->
-## 認証用メールを送信
-
-> Example request:
-
-```bash
-curl -X POST "http://localhost:8080/api/auth0/send_verification_email" 
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/auth0/send_verification_email");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response (200):
-
-```json
-[
-    {
-        "id": 1,
-        "name": "serverside",
-        "description": "サーバーサイドエンジニアとして業務で自走できるようになることがゴールです。",
-        "created_at": "2020-02-28 06:48:01",
-        "updated_at": "2020-02-28 06:48:01"
-    }
-]
-```
-
-### HTTP Request
-`POST api/auth0/send_verification_email`
-
-
-<!-- END_987ee5cd51f489c2c32dc75bdbf8bc6f -->
-
 #4. Lecture
 
 
@@ -1155,7 +1156,8 @@ fetch(url, {
     "locked": 0,
     "premium": 0,
     "created_at": "2019-10-17T13:28:08Z",
-    "updated_at": "2019-10-17T13:28:08Z"
+    "updated_at": "2019-10-17T13:28:08Z",
+    "learned": true
 }
 ```
 
@@ -1173,6 +1175,160 @@ Parameter | Type | Status | Description
 #5. User
 
 
+<!-- START_8653614346cb0e3d444d164579a0a0a2 -->
+## ユーザーを取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/users/1" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/users/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "username": "kiyodori",
+    "email": "kiyodori@example.com",
+    "deleted_at": "2019-10-17T13:28:08Z",
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`GET api/users/{user}`
+
+
+<!-- END_8653614346cb0e3d444d164579a0a0a2 -->
+
+<!-- START_48a3115be98493a3c866eb0e23347262 -->
+## ユーザーを更新
+
+> Example request:
+
+```bash
+curl -X PUT "http://localhost:8080/api/users/1" \
+    -H "Content-Type: application/json" \
+    -d '{"users":{"username":"kiyodori","email":"sample@example.com"}}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/users/1");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "users": {
+        "username": "kiyodori",
+        "email": "sample@example.com"
+    }
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "username": "kiyodori",
+    "email": "kiyodori@example.com",
+    "deleted_at": "2019-10-17T13:28:08Z",
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`PUT api/users/{user}`
+
+`PATCH api/users/{user}`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    users[username] | string |  required  | User username.
+    users[email] | string |  required  | User email.
+
+<!-- END_48a3115be98493a3c866eb0e23347262 -->
+
+<!-- START_d2db7a9fe3abd141d5adbc367a88e969 -->
+## ユーザーを削除
+
+> Example request:
+
+```bash
+curl -X DELETE "http://localhost:8080/api/users/1" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/users/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "username": "kiyodori",
+    "email": "kiyodori@example.com",
+    "deleted_at": "2019-10-17T13:28:08Z",
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`DELETE api/users/{user}`
+
+
+<!-- END_d2db7a9fe3abd141d5adbc367a88e969 -->
+
 <!-- START_12e37982cc5398c7100e59625ebb5514 -->
 ## ユーザーを保存
 
@@ -1181,7 +1337,7 @@ Parameter | Type | Status | Description
 ```bash
 curl -X POST "http://localhost:8080/api/users" \
     -H "Content-Type: application/json" \
-    -d '{"users":{"username":"kiyodori"}}'
+    -d '{"users":{"username":"kiyodori","email":"sample@example.com"}}'
 
 ```
 
@@ -1195,7 +1351,8 @@ let headers = {
 
 let body = {
     "users": {
-        "username": "kiyodori"
+        "username": "kiyodori",
+        "email": "sample@example.com"
     }
 }
 
@@ -1216,6 +1373,7 @@ fetch(url, {
     "id": 13,
     "username": "kiyodori",
     "email": "kiyodori@example.com",
+    "deleted_at": "2019-10-17T13:28:08Z",
     "created_at": "2019-10-17T13:28:08Z",
     "updated_at": "2019-10-17T13:28:08Z"
 }
@@ -1229,10 +1387,11 @@ fetch(url, {
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     users[username] | string |  required  | User username.
+    users[email] | string |  required  | User email.
 
 <!-- END_12e37982cc5398c7100e59625ebb5514 -->
 
-#6. Course user
+#6. Taking course
 
 
 <!-- START_942e4d62793db400efd4b9f9f545ea48 -->
@@ -1293,6 +1452,68 @@ Parameter | Type | Status | Description
     course_id | integer |  required  | Course id.
 
 <!-- END_942e4d62793db400efd4b9f9f545ea48 -->
+
+#7. Learning history
+
+
+<!-- START_9a8b7bd348230c65efa299e8c5ee8330 -->
+## 受講情報を保存
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/learning_histories" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id":10,"lecture_id":1}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/learning_histories");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "user_id": 10,
+    "lecture_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "user_id": 10,
+    "lecture_id": 1,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`POST api/learning_histories`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    user_id | integer |  required  | User id.
+    lecture_id | integer |  required  | Lecture id.
+
+<!-- END_9a8b7bd348230c65efa299e8c5ee8330 -->
 
 #general
 

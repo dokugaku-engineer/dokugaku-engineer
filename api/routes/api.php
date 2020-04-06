@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::middleware(['jwt'])->group(function () {
         // User routes
         Route::resource('users', 'UserController')->only([
-            'show', 'update'
+            'show', 'update', 'destroy'
         ]);
 
         // Course-related routes
