@@ -29,12 +29,16 @@ class UserRequest extends ApiRequest
                 'required',
                 'min:3',
                 'max:50',
-                Rule::unique('users')->ignore($this->user)
+                Rule::unique('users')->ignore($this->user)->where(function ($query) {
+                    return $query->where('existence', 1);
+                })
             ],
             'email' => [
                 'required',
                 'max:255',
-                Rule::unique('users')->ignore($this->user)
+                Rule::unique('users')->ignore($this->user)->where(function ($query) {
+                    return $query->where('existence', 1);
+                })
             ]
         ];
     }

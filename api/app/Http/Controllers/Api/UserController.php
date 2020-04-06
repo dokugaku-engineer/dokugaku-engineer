@@ -24,7 +24,7 @@ class UserController extends ApiController
      * @responsefile responses/user.store.json
      *
      * @param UserRequest $request
-     * @return PostResource|\Illuminate\Http\JsonResponse
+     * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function store(UserRequest $request)
     {
@@ -50,7 +50,7 @@ class UserController extends ApiController
      * @responsefile responses/user.store.json
      *
      * @param UserRequest $request
-     * @return PostResource|\Illuminate\Http\JsonResponse
+     * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function show(Request $request, User $user)
     {
@@ -70,7 +70,7 @@ class UserController extends ApiController
      * @responsefile responses/user.store.json
      *
      * @param UserRequest $request
-     * @return PostResource|\Illuminate\Http\JsonResponse
+     * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function update(UserRequest $request, User $user)
     {
@@ -92,6 +92,34 @@ class UserController extends ApiController
                     'email_verified' => true
                 ]));
             }
+        } catch (QueryException $e) {
+            return $this->respondInvalidQuery($e);
+        }
+
+        return new UserResource($user);
+    }
+
+    /**
+     * ユーザーを削除
+     *
+     * @responsefile responses/user.store.json
+     *
+     * @param UserRequest $request
+     * @return UserResource|\Illuminate\Http\JsonResponse
+     */
+    public function destroy(Request $request, User $user)
+    {
+        if ($request['user_id'] !== $user->id) {
+            return $this->respondInvalidQuery('Invalid user');
+        }
+
+        $auth0_user_id = $request->input('auth0_user_id');
+
+        try {
+            $user->delete();
+            // Auth0のユーザーを削除
+            $auth0_client = new Auth0Service();
+            $auth0_client->deleteUser($auth0_user_id);
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }

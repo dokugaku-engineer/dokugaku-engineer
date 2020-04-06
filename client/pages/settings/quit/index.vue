@@ -4,28 +4,31 @@
       <h1 class="heading-title">アカウント削除</h1>
     </div>
     <main class="main">
-      <div v-if="isAuth0Provider && !auth0User.email_verified" class="setting-form">
+      <div v-if="isAuth0Provider && !auth0User.email_verified" class="setting">
         <verification-email-box />
       </div>
 
       <div v-else>
-        <nui-form>
-          <form class="setting-form">
-            <ul v-if="Object.keys(errors).length > 0" class="error-box">
-              <li v-for="(value, key) in errors" :key="key" class="error-box-disc">{{ value[0] }}</li>
-            </ul>
+        <div class="setting">
+          <error-box>
+            <p>アカウント削除は即時反映され、一度削除すると復活できません。これまでのデータはすべて削除されます。</p>
+            <p>削除しますか？</p>
+          </error-box>
 
+          <div v-if="error">
             <error-box>
-              <p>アカウント削除は即時反映され、一度削除すると復活できません。これまでのデータはすべて削除されます。</p>
-              <p>削除しますか？</p>
+              <p>アカウント削除時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
             </error-box>
+          </div>
 
-            <div class="form-two-btns">
-              <link-button to="/course/serverside" class="btn-outline-teal1">いいえ</link-button>
-              <nui-button @click.native="deleteUser" class="btn-red1" :submit="true">はい</nui-button>
-            </div>
-          </form>
-        </nui-form>
+          <div class="two-btns">
+            <link-button to="/course/serverside" class="btn-outline-teal1">いいえ</link-button>
+            <nui-button v-if="submitPending" class="btn-red1">
+              <i class="fad fa-spinner fa-spin fa-lg"></i>
+            </nui-button>
+            <nui-button v-else @click.native="deleteUser" class="btn-red1">はい</nui-button>
+          </div>
+        </div>
       </div>
     </main>
   </div>
@@ -51,13 +54,23 @@
   position: relative;
 }
 
-.setting-form {
+.setting {
   padding: 0 2.4rem 2.4rem;
 }
 
 @media screen and (min-width: 769px) {
-  .setting-form {
+  .setting {
     padding: 0 4rem 4rem;
+  }
+}
+
+.two-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3.2rem;
+
+  .btn {
+    width: 48%;
   }
 }
 </style>
@@ -79,18 +92,22 @@ export default {
     LinkButton,
     VerificationEmailBox
   },
+  data() {
+    return {
+      submitStatus: "OK",
+      error: null
+    }
+  },
   computed: {
     ...mapState("auth0", ["auth0User"]),
     ...mapGetters("auth0", ["userId", "isAuth0Provider"]),
-    submitError() {
-      return this.submitStatus === "ERROR"
-    },
     submitPending() {
       return this.submitStatus === "PENDING"
     }
   },
   methods: {
     async deleteUser() {
+      this.submitStatus = "PENDING"
       const options = await this.getOptions()
       await this.$axios
         .$delete(`/users/${this.userId}`, options)
@@ -102,13 +119,14 @@ export default {
         })
         .catch(err => {
           this.submitStatus = "ERROR"
+          this.error = err.response
         })
 
       if (this.submitStatus != "OK") {
         return
       }
 
-      await this.$auth0.logout({ returnTo: "/" })
+      await this.$auth0.logout({ returnTo: window.location.origin })
     },
     async getOptions() {
       const token = await this.$auth0.getTokenSilently()
