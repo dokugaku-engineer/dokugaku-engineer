@@ -211,7 +211,7 @@ import VerificationEmailBox from "@/components/partials/course/VerificationEmail
 import { mapState, mapGetters } from "vuex"
 
 export default {
-  layout: "course",
+  layout: "default",
   components: {
     ErrorBox,
     VerificationEmailBox
