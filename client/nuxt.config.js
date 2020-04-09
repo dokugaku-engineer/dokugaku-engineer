@@ -52,6 +52,7 @@ export default {
     "./plugins/vuelidate.js",
     "./plugins/auth0.js",
     "./plugins/click-outside.js",
+    "./plugins/sentry.js",
   ],
   /*
    ** Nuxt.js dev-modules
@@ -64,6 +65,7 @@ export default {
     "@nuxtjs/axios",
     "@nuxtjs/style-resources",
     '@nuxtjs/toast',
+    '@nuxtjs/sentry',
   ],
   /*
    ** Build configuration
@@ -83,6 +85,7 @@ export default {
     'AUTH0_DOMAIN': process.env.AUTH0_DOMAIN,
     'AUTH0_NAMESPACE': process.env.AUTH0_NAMESPACE,
     'ORIGIN': process.env.ORIGIN,
+    'SENTRY_DSN': process.env.SENTRY_DSN,
   },
   /*
    ** Generate configuration
@@ -154,8 +157,17 @@ export default {
   styleResources: {
     scss: ["~assets/styles/variables.scss"]
   },
+  /*
+   * Axios settings
+   */
   axios: {},
+  /*
+   * Dotenv settings
+   */
   dotenv: {},
+  /*
+   * Toast settings
+   */
   toast: {
     position: 'top-right',
     register: [{
@@ -170,5 +182,15 @@ export default {
         className: ['toast-success']
       }
     }]
+  },
+  /*
+   * Sentry settings
+   */
+  sentry: {
+    dsn: process.env.SENTRY_DSN || false,
+    disabled: false,
+    disableClientSide: false,
+    disableServerSide: true,
+    publishRelease: false
   }
 }

@@ -15,6 +15,7 @@
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.4",
     "@nuxtjs/axios": "^5.9.3",
+    "@nuxtjs/sentry": "^4.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/toast": "^3.3.0",
     "jsonwebtoken": "^8.5.1",

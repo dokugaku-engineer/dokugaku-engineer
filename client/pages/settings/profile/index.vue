@@ -177,6 +177,7 @@ export default {
       })
       .catch(err => {
         this.error = err.response
+        this.$sentry.captureException(err)
       })
 
     this.loadingUser = false
@@ -199,6 +200,7 @@ export default {
         })
         .catch(err => {
           this.submitStatus = "ERROR"
+          this.$sentry.captureException(err)
         })
     },
     async getOptions() {

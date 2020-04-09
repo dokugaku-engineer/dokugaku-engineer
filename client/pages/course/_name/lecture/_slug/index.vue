@@ -14,18 +14,26 @@
           v-if="lecture.video_url"
           @load="createLearningHistory()"
           :src="`${lecture.video_url}?autoplay=1&color=26a69a`"
-          frameborder="0" allow="autoplay; fullscreen" allowfullscreen
-          style="position:absolute;top:0;left:0;width:100%;height:100%;">
-        </iframe>
+          frameborder="0"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;"
+        ></iframe>
       </div>
       <div v-if="auth0User.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
-          <nuxt-link :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`" class="video-btn-link">
+          <nuxt-link
+            :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`"
+            class="video-btn-link"
+          >
             <i class="fas fa-less-than"></i>
           </nuxt-link>
         </div>
         <div v-if="lecture.next_lecture_slug" class="video-btn video-btn-next">
-          <nuxt-link :to="`/course/${course.name}/lecture/${lecture.next_lecture_slug}`" class="video-btn-link">
+          <nuxt-link
+            :to="`/course/${course.name}/lecture/${lecture.next_lecture_slug}`"
+            class="video-btn-link"
+          >
             <i class="fas fa-greater-than"></i>
           </nuxt-link>
         </div>
@@ -59,13 +67,12 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <style lang="scss" scoped>
 .video-wrap {
-  border-radius: .5rem .5rem 0 0;
+  border-radius: 0.5rem 0.5rem 0 0;
   overflow: hidden;
   position: relative;
 
@@ -102,11 +109,11 @@
 }
 
 .video-btn-prev {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .video-btn-next {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   right: 0;
 }
 
@@ -155,13 +162,13 @@
 .detail-btn-link {
   align-items: center;
   background-color: $color-gray1;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   color: $color-gray3;
   display: flex;
   flex: 1 1 0%;
   height: 5rem;
   justify-content: center;
-  transition: background-color .3s,border .3s;
+  transition: background-color 0.3s, border 0.3s;
 }
 
 .detail-btn-prev {
@@ -170,7 +177,7 @@
 
 .detail-header {
   background-color: $color-white2;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   font-weight: 700;
   margin-bottom: 2rem;
   padding: 1.6rem 1.4rem;
@@ -210,7 +217,7 @@
 <script>
 import ErrorBox from "@/components/commons/ErrorBox.vue"
 import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex"
 
 export default {
   layout: "course",
@@ -227,12 +234,12 @@ export default {
     }
   },
   computed: {
-    ...mapState('auth0', ['auth0User']),
-    ...mapGetters('auth0', ['isAuth0Provider'])
+    ...mapState("auth0", ["auth0User"]),
+    ...mapGetters("auth0", ["isAuth0Provider"])
   },
   async created() {
-    this.$store.dispatch('course/setCourse', { course: {}, lecture: {} })
-    this.$store.dispatch('course/setLectureName', { name: '' })
+    this.$store.dispatch("course/setCourse", { course: {}, lecture: {} })
+    this.$store.dispatch("course/setLectureName", { name: "" })
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
@@ -242,21 +249,31 @@ export default {
     await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
       this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
-    ]).then((response) => {
-      // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
-      this.course = response[0]
-      this.lecture = response[1]
-      this.loading = false
-      this.$store.dispatch('course/setCourse', { course: this.course, lecture: this.lecture })
-      this.$store.dispatch('course/setLectureName', { name: this.lecture.name })
-    }).catch((error) => {
-      this.loading = false
-      this.error = error
-    })
+    ])
+      .then(res => {
+        // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
+        this.course = res[0]
+        this.lecture = res[1]
+        this.loading = false
+        this.$store.dispatch("course/setCourse", {
+          course: this.course,
+          lecture: this.lecture
+        })
+        this.$store.dispatch("course/setLectureName", {
+          name: this.lecture.name
+        })
+      })
+      .catch(err => {
+        this.loading = false
+        this.error = err
+        this.$sentry.captureException(err)
+      })
   },
   methods: {
     async createLearningHistory() {
-      if (this.lecture.learned) { return }
+      if (this.lecture.learned) {
+        return
+      }
 
       const token = await this.$auth0.getTokenSilently()
       const options = {
@@ -264,9 +281,10 @@ export default {
           Authorization: `Bearer ${token}`
         }
       }
-      await this.$axios.$post('learning_histories', { lecture_id: this.lecture.id }, options)
-        .catch((error) => {
-          return
+      await this.$axios
+        .$post("learning_histories", { lecture_id: this.lecture.id }, options)
+        .catch(err => {
+          this.$sentry.captureException(err)
         })
     }
   }
