@@ -53,6 +53,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'jwt' => \App\Http\Middleware\CheckJWT::class,
         'jwt.m2m' => \App\Http\Middleware\CheckM2MJWT::class,
+        'sentry.context' => \App\Http\Middleware\SentryContext::class,
     ];
 
     /**

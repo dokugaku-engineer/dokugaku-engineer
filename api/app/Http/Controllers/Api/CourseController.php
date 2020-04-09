@@ -66,4 +66,12 @@ class CourseController extends ApiController
         $course->withCourses($user_id);
         return new CourseLectureWithLearnedResource($course);
     }
+
+    public function test(Request $request)
+    {
+        $course = Course::with(['parts.lessons.lectures' => function ($query) {
+            $query->where('lectures.public', 1);
+        }])->get();
+        return CourseLectureResource::collection($course);
+    }
 }

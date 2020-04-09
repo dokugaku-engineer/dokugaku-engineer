@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'Api'], function () {
     // These endpoints require a valid id token for user
-    Route::middleware(['jwt'])->group(function () {
+    Route::middleware(['jwt', 'sentry.context'])->group(function () {
         // User routes
         Route::resource('users', 'UserController')->only([
             'show', 'update', 'destroy'
@@ -69,4 +69,11 @@ Route::group(['namespace' => 'Api'], function () {
     ]);
     Route::get('/posts/{post}/publish', 'PostController@publish')->name('posts.publish');
     Route::get('/posts/{post}/unpublish', 'PostController@unpublish')->name('posts.unpublish');
+
+    // TODO: デバッグが終わったら削除する
+    Route::get('/debug-sentry', function () {
+        throw new Exception('Debug Sentry error!');
+    });
+    Route::get('courses/{name}/test', 'CourseController@test');
+    Route::get('lectures/{slug}/test', 'LectureController@test');
 });

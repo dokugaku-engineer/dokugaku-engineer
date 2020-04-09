@@ -14,10 +14,12 @@
         "fruitcake/laravel-cors": "^1.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "sentry/sentry-laravel": "1.7.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
+        "beyondcode/laravel-query-detector": "^1.2",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",

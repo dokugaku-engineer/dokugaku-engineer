@@ -11,7 +11,6 @@ RUN yum install -y php-mbstring php-xml php-zip php-fpm php-soap php-bcmath node
 ## for xdebug
 RUN yum install -y php-pear php-devel pcre-devel gcc make
 
-
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
@@ -23,9 +22,13 @@ ENV PATH $PATH:/root/.composer/vendor/bin
 # set xdebug
 RUN pecl install xdebug
 
-ARG env=development
+## for New Relic
+RUN sudo rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
+RUN sudo yum install newrelic-php5
+RUN sudo newrelic-install install
 
 # set php-fpm.conf
+ARG env=development
 COPY docker/api/php-fpm/php-fpm.conf /etc/php-fpm.conf
 COPY docker/api/php-fpm/www.${env}.conf /etc/php-fpm.d/www.conf
 

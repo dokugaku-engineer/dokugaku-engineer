@@ -120,6 +120,7 @@ export default {
         .catch(err => {
           this.submitStatus = "ERROR"
           this.error = err.response
+          this.$sentry.captureException(err)
         })
 
       if (this.submitStatus != "OK") {

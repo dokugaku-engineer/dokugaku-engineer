@@ -1,18 +1,9 @@
 <template>
   <div>
-    <div v-if="error" class="error-box-wrap">
-      <error-box>
-        <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
-      </error-box>
-    </div>
     <div class="video-wrap">
-      <div v-if="isAuth0Provider && !auth0User.email_verified">
-        <verification-email-box />
-      </div>
-      <div v-if="!isAuth0Provider || auth0User.email_verified" class="video">
+      <div class="video">
         <iframe
           v-if="lecture.video_url"
-          @load="createLearningHistory()"
           :src="`${lecture.video_url}?autoplay=1&color=26a69a`"
           frameborder="0"
           allow="autoplay; fullscreen"
@@ -20,8 +11,8 @@
           style="position:absolute;top:0;left:0;width:100%;height:100%;"
         ></iframe>
       </div>
-      <div v-if="auth0User.email_verified" class="video-btns">
-        <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
+      <div class="video-btns">
+        <div class="video-btn video-btn-prev">
           <nuxt-link
             :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`"
             class="video-btn-link"
@@ -240,15 +231,9 @@ export default {
   async created() {
     this.$store.dispatch("course/setCourse", { course: {}, lecture: {} })
     this.$store.dispatch("course/setLectureName", { name: "" })
-    const token = await this.$auth0.getTokenSilently()
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
     await Promise.all([
-      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
-      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
+      this.$axios.$get(`/courses/${this.$route.params.name}/test`),
+      this.$axios.$get(`/lectures/rQI62/test`)
     ])
       .then(res => {
         // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
@@ -268,25 +253,6 @@ export default {
         this.error = err
         this.$sentry.captureException(err)
       })
-  },
-  methods: {
-    async createLearningHistory() {
-      if (this.lecture.learned) {
-        return
-      }
-
-      const token = await this.$auth0.getTokenSilently()
-      const options = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-      await this.$axios
-        .$post("learning_histories", { lecture_id: this.lecture.id }, options)
-        .catch(err => {
-          this.$sentry.captureException(err)
-        })
-    }
   }
 }
 </script>

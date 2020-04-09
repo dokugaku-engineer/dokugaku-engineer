@@ -39,7 +39,7 @@
 .header {
   background-color: #fafbfc;
   border-bottom: 1px solid $color-gray1;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 2rem 3rem;
 }
 
@@ -97,7 +97,7 @@
   color: $color-gray2;
   font-size: $font-size-sm;
   letter-spacing: 1.5px;
-  margin-bottom: .7rem;
+  margin-bottom: 0.7rem;
 }
 
 .part-title {
@@ -123,7 +123,7 @@
 import ErrorBox from "@/components/commons/ErrorBox.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex"
 
 export default {
   layout: "course",
@@ -140,25 +140,31 @@ export default {
     }
   },
   computed: {
-    ...mapState('course', ['course']),
-    ...mapState('auth0', ['auth0User']),
-    ...mapGetters('auth0', ['isAuth0Provider'])
+    ...mapState("course", ["course"]),
+    ...mapState("auth0", ["auth0User"]),
+    ...mapGetters("auth0", ["isAuth0Provider"])
   },
   async created() {
-    this.$store.dispatch('course/setLectureName', { name: 'ホーム' })
+    this.$store.dispatch("course/setLectureName", { name: "ホーム" })
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }
-    await this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options)
-      .then((response) => {
+    await this.$axios
+      .$get(`/courses/${this.$route.params.name}/lectures`, options)
+      .then(res => {
         this.loading = false
-        this.$store.dispatch('course/setCourse', { course: response, lecture: {} })
-      }).catch((error) => {
+        this.$store.dispatch("course/setCourse", {
+          course: res,
+          lecture: {}
+        })
+      })
+      .catch(err => {
         this.loading = false
-        this.error = error
+        this.error = err
+        this.$sentry.captureException(err)
       })
   }
 }

@@ -35,4 +35,11 @@ class LectureController extends ApiController
 
         return new LectureWithLearnedResource($lecture);
     }
+
+    public function test(Request $request, string $slug)
+    {
+        $lecture = Lecture::where('slug', $slug)->first();
+        $lecture->load(['lesson.part'])->load_learning_histories(1);
+        return new LectureWithLearnedResource($lecture);
+    }
 }

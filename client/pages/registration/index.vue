@@ -1,21 +1,18 @@
 <template>
   <div class="container">
-
     <div class="box">
       <div class="box-inner">
         <header class="header">
           <logo />
           <h1 class="header-title">会員情報入力</h1>
         </header>
-    
+
         <main class="register">
           <form @submit.prevent="createUser()" class="register-form">
             <ul v-if="Object.keys(errors).length > 0" class="error-box">
-              <li v-for="(value, key) in errors" :key="key" class="error-box-disc">
-                {{ value[0] }}
-              </li>
+              <li v-for="(value, key) in errors" :key="key" class="error-box-disc">{{ value[0] }}</li>
             </ul>
-      
+
             <div class="form-group">
               <label for="users[username]">ユーザー名</label>
               <span class="form-require">必須</span>
@@ -25,19 +22,17 @@
                 name="users[username]"
                 placeholder="例）dokugaku"
                 required
-              >
-              <div v-if="submitError && !$v.user.username.required" class="error-text">
-                ユーザー名は必須です。
-              </div>
-              <div v-if="submitError && !$v.user.username.minLength" class="error-text">
-                ユーザー名は3文字以上で入力してください。
-              </div>
-              <div v-if="!$v.user.username.maxLength" class="error-text">
-                ユーザー名は50文字以下で入力してください。
-              </div>
-              <div v-if="!$v.user.username.alphaNumName" class="error-text">
-                ユーザー名は半角英数字及び_, -で入力してください。
-              </div>
+              />
+              <div v-if="submitError && !$v.user.username.required" class="error-text">ユーザー名は必須です。</div>
+              <div
+                v-if="submitError && !$v.user.username.minLength"
+                class="error-text"
+              >ユーザー名は3文字以上で入力してください。</div>
+              <div v-if="!$v.user.username.maxLength" class="error-text">ユーザー名は50文字以下で入力してください。</div>
+              <div
+                v-if="!$v.user.username.alphaNumName"
+                class="error-text"
+              >ユーザー名は半角英数字及び_, -で入力してください。</div>
             </div>
 
             <div v-if="!auth0User.email" class="form-group">
@@ -49,25 +44,22 @@
                 name="users[email]"
                 placeholder="PC・携帯どちらでも可"
                 required
-              >
-              <div v-if="submitError && !$v.user.email.required" class="error-text">
-                メールアドレスは必須です。
-              </div>
-              <div v-if="submitError && !$v.user.email.email" class="error-text">
-                メールアドレスのフォーマットが不適切です。
-              </div>
+              />
+              <div v-if="submitError && !$v.user.email.required" class="error-text">メールアドレスは必須です。</div>
+              <div
+                v-if="submitError && !$v.user.email.email"
+                class="error-text"
+              >メールアドレスのフォーマットが不適切です。</div>
             </div>
-          
+
             <div class="register-form-btn">
-              <nui-button class="btn-red1" :submit="true">
-                登録する
-              </nui-button>
+              <nui-button class="btn-red1" :submit="true">登録する</nui-button>
             </div>
           </form>
         </main>
       </div>
     </div>
-  
+
     <div class="footer_wrap">
       <Footer />
     </div>
@@ -94,7 +86,7 @@
 }
 
 .box-inner {
-  box-shadow: 0 1.2rem 4rem rgba(0,0,0,.12);
+  box-shadow: 0 1.2rem 4rem rgba(0, 0, 0, 0.12);
 }
 
 .header {
@@ -137,18 +129,18 @@
     border: 1px solid $color-gray1;
     border-radius: 0.4rem;
     color: $color-black;
-    margin-top: .8rem;
+    margin-top: 0.8rem;
     max-height: 3.2rem;
-    padding: 2rem .8rem 2rem;
+    padding: 2rem 0.8rem 2rem;
     width: 100%;
   }
 }
 
 .form-require {
   background: $color-red1;
-  margin: 0 0 0 .8rem;
-  padding: .2rem .4rem;
-  border-radius: .2rem;
+  margin: 0 0 0 0.8rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
   color: #fff;
   font-size: $font-size-xs;
   vertical-align: top;
@@ -156,7 +148,7 @@
 
 .error-box {
   background-color: $color-red3;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   color: $color-red1;
   font-size: $font-size-sm;
   font-weight: 700;
@@ -171,7 +163,7 @@
 .error-text {
   color: $color-red1;
   font-size: $font-size-sm;
-  margin-top: .8rem;
+  margin-top: 0.8rem;
 }
 
 .register-form-btn {
@@ -193,42 +185,42 @@ import LoadingModal from "@/components/commons/LoadingModal.vue"
 import Logo from "@/components/svg/Logo.vue"
 import Footer from "@/components/layouts/Footer.vue"
 import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
-import auth0Middleware from '~/middleware/auth0'
-import { mapState } from 'vuex'
+import auth0Middleware from "~/middleware/auth0"
+import { mapState } from "vuex"
 
-const alphaNumName = (name) => {
-  if (typeof name === 'undefined' || name === null || name === '') {
+const alphaNumName = name => {
+  if (typeof name === "undefined" || name === null || name === "") {
     return true
   }
   return /^[a-z0-9\-_]+$/.test(name)
 }
 
 export default {
-  layout: 'none',
+  layout: "none",
   components: {
     NuiButton,
     LoadingModal,
     Logo,
-    Footer,
+    Footer
   },
   data() {
     return {
       user: {
-        username: '',
-        email: '',
-        auth0Userid: ''
+        username: "",
+        email: "",
+        auth0Userid: ""
       },
-      submitStatus: 'OK',
-      state: this.$route.query.state,
+      submitStatus: "OK",
+      state: this.$route.query.state
     }
   },
   computed: {
-    ...mapState('auth0', ['auth0User', 'isAuthenticated']),
+    ...mapState("auth0", ["auth0User", "isAuthenticated"]),
     submitError() {
-      return this.submitStatus === 'ERROR'
+      return this.submitStatus === "ERROR"
     },
     submitPending() {
-      return this.submitStatus === 'PENDING'
+      return this.submitStatus === "PENDING"
     }
   },
   middleware: auth0Middleware.protectRegistration(),
@@ -240,38 +232,47 @@ export default {
       this.user.auth0Userid = this.auth0User.sub
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+        this.submitStatus = "ERROR"
         return
       }
 
       // ユーザーを登録する
-      this.submitStatus = 'PENDING'
+      this.submitStatus = "PENDING"
       await this.$axios
         .$post("/users", this.user)
-        .then(response => {
-          this.user.id = response.id
-          this.submitStatus = 'PENDING'
-        })  
-        .catch((error) => {
-          this.submitStatus = 'ERROR'
+        .then(res => {
+          this.user.id = res.id
+          this.submitStatus = "PENDING"
         })
-      
-      if (this.submitStatus === 'ERROR') { return }
+        .catch(err => {
+          this.submitStatus = "ERROR"
+          this.$sentry.captureException(err)
+        })
+
+      if (this.submitStatus === "ERROR") {
+        return
+      }
 
       // 受講情報を登録する
       const SEVERSIDE_COURSE_ID = 1
       await this.$axios
-        .$post("/taking_courses", { user_id: this.user.id, course_id: SEVERSIDE_COURSE_ID })
-        .catch((error) => {
-          this.submitStatus = 'ERROR'
+        .$post("/taking_courses", {
+          user_id: this.user.id,
+          course_id: SEVERSIDE_COURSE_ID
+        })
+        .catch(err => {
+          this.submitStatus = "ERROR"
+          this.$sentry.captureException(err)
         })
 
-      if (this.submitStatus === 'ERROR') { return }
+      if (this.submitStatus === "ERROR") {
+        return
+      }
 
-      this.$store.commit('auth0/SET_AUTH0_USER', await this.$auth0.getUser())
-      this.submitStatus = 'OK'
-      window.location.assign('/course/serverside')
-    },
+      this.$store.commit("auth0/SET_AUTH0_USER", await this.$auth0.getUser())
+      this.submitStatus = "OK"
+      window.location.assign("/course/serverside")
+    }
   },
   validations: {
     user: {
@@ -285,7 +286,7 @@ export default {
         required,
         email
       }
-    },
+    }
   }
 }
 </script>
