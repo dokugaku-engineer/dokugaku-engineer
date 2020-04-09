@@ -24,7 +24,7 @@ RUN pecl install xdebug
 
 ## for New Relic
 RUN sudo rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
-RUN sudo yum install newrelic-php5
+RUN sudo yum install -y newrelic-php5
 RUN sudo newrelic-install install
 
 # set php-fpm.conf
