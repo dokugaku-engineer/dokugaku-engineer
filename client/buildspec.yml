@@ -16,7 +16,7 @@ env:
     AWS_CLOUDFRONT: "/Prod/DokugakuEngineer/Client/AWS_CLOUDFRONT"
     AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Client/AWS_DEFAULT_REGION"
     AWS_SECRET_ACCESS_KEY: "/Prod/DokugakuEngineer/Client/AWS_SECRET_ACCESS_KEY"
-    ORIGIN: "/Prod/DokugakuEngineer/Client/ORIGIN",
+    ORIGIN: "/Prod/DokugakuEngineer/Client/ORIGIN"
     SENTRY_DSN: "/Prod/DokugakuEngineer/Client/SENTRY_DSN"
 
 phases:
