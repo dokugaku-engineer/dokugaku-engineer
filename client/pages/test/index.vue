@@ -232,7 +232,7 @@ export default {
     this.$store.dispatch("course/setCourse", { course: {}, lecture: {} })
     this.$store.dispatch("course/setLectureName", { name: "" })
     await Promise.all([
-      this.$axios.$get(`/courses/${this.$route.params.name}/test`),
+      this.$axios.$get(`/courses/serverside/test`),
       this.$axios.$get(`/lectures/rQI62/test`)
     ])
       .then(res => {
