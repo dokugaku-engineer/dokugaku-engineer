@@ -7,13 +7,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\TakingCourse;
+use App\Models\Lecture;
+use App\Models\LearningHistory;
 
 class ImportTestData extends Command
 {
     // 一度にINSERTするユーザー数
-    const ONCE_INSERT_NUM = 1000;
+    const ONCE_INSERT_NUM = 100;
     // INSERTを行う回数
-    const INSERT_LOOP_NUM = 10;
+    const INSERT_LOOP_NUM = 100;
 
     /**
      * The name and signature of the console command.
@@ -27,7 +29,7 @@ class ImportTestData extends Command
      *
      * @var string
      */
-    protected $description = 'Import test data of course, part, lesson, lecture, user and taking course';
+    protected $description = 'Import test data of courses and users';
 
     /**
      * Create a new command instance.
@@ -52,6 +54,10 @@ class ImportTestData extends Command
         for ($i = 1; $i <= $this::INSERT_LOOP_NUM; $i++) {
             $users = $this->insertUsers();
             $this->insertTakingCourses($users);
+            // 大量のINSERTを行うとメモリリークするので調整
+            if ($i === 1) {
+                $this->insertLearningHistories($users);
+            }
         }
     }
 
@@ -89,5 +95,26 @@ class ImportTestData extends Command
         }
         DB::table("taking_courses")->insert($takingCourses);
         return $takingCourses;
+    }
+
+    private function insertLearningHistories($users)
+    {
+        $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
+        $lectures = Lecture::all();
+        $lectureNum = count($lectures);
+        foreach ($users as $i => $user) {
+            $learningHistories = [];
+            foreach ($lectures as $index => $lecture) {
+                $learningHistory = [
+                    'id' => $lastId + $i * $lectureNum + $index + 1,
+                    'user_id' => $user['id'],
+                    'lecture_id' => $lecture->id,
+                    'created_at' => Carbon::now()->toDateTimeString(),
+                    'updated_at' => Carbon::now()->toDateTimeString(),
+                ];
+                array_push($learningHistories, $learningHistory);
+            }
+            DB::table("learning_histories")->insert($learningHistories);
+        }
     }
 }
