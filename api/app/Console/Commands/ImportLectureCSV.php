@@ -91,6 +91,9 @@ class ImportLectureCSV extends Command
 
             $rowData = [];
             foreach ($row as $k => $v) {
+                if ($v === '') {
+                    $v = NULL;
+                }
                 $rowData[$header[$k]] = $v;
                 $rowData['created_at'] = Carbon::now()->toDateTimeString();
                 $rowData['updated_at'] = Carbon::now()->toDateTimeString();
