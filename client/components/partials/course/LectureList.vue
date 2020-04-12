@@ -1,8 +1,13 @@
 <template>
   <div>
-    <div @click="showLecture = !showLecture" class="lesson-title" :class="lesson.play ? 'play' : ''">
+    <div
+      @click="showLecture = !showLecture"
+      class="lesson-title"
+      :class="lesson.play ? 'play' : ''"
+    >
       <h2>
-        レッスン{{ lesson.order }}：<span class="lesson-title-detail">{{ lesson.name }}</span>
+        レッスン{{ lesson.order }}：
+        <span class="lesson-title-detail">{{ lesson.name }}</span>
       </h2>
       <i :class="cheveron"></i>
     </div>
@@ -14,7 +19,7 @@
           class="lecture-link"
           :class="lecture.play ? 'play' : ''"
         >
-          <i :class="lecture.learned ? 'far fa-check' : 'fas fa-circle'"></i>
+          <i :class="learned(lecture.id) ? 'far fa-check' : 'fas fa-circle'"></i>
           {{ lecture.order }}. {{ lecture.name }}
         </nuxt-link>
       </li>
@@ -35,13 +40,14 @@
 .lesson-title {
   align-items: center;
   background-color: $color-white2;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   cursor: pointer;
   display: flex;
   margin: 1rem 0;
-  padding: .8rem 1.6rem;
+  padding: 0.8rem 1.6rem;
 
-  h2, i {
+  h2,
+  i {
     display: inline-block;
   }
 
@@ -94,40 +100,50 @@
   font-weight: 700;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
 
 <script>
-
 export default {
   props: {
     lessonLectures: {
       type: Object,
       default: () => {}
+    },
+    learnedLectureIds: {
+      type: Array,
+      default: []
     }
   },
   data() {
     return {
-      showLecture: false,
+      showLecture: false
     }
   },
   computed: {
     cheveron() {
       if (!this.lesson.lectures.length) {
-        return "";
+        return ""
       } else if (this.showLecture) {
-        return "far fa-chevron-up";
+        return "far fa-chevron-up"
       } else {
-        return "far fa-chevron-down";
+        return "far fa-chevron-down"
       }
     },
     lesson() {
       return this.lessonLectures
+    }
+  },
+  methods: {
+    learned(lectureId) {
+      return this.learnedLectureIds.includes(lectureId)
     }
   }
 }

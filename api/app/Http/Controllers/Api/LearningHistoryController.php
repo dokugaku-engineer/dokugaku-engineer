@@ -7,6 +7,7 @@ use App\Http\Requests\LearningHistoryRequest;
 use App\Http\Resources\LearningHistory\LearningHistory as LearningHistoryResource;
 use App\Models\LearningHistory;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
 /**
  * @group 7. Learning history
@@ -35,5 +36,12 @@ class LearningHistoryController extends ApiController
         }
 
         return new LearningHistoryResource($learning_history);
+    }
+
+    public function getLectureIds(Request $request)
+    {
+        $user_id = $request['user_id'];
+        $lecture_ids = LearningHistory::where('user_id', $user_id)->pluck('lecture_id')->toArray();
+        return $this->respondWithOK($lecture_ids);
     }
 }

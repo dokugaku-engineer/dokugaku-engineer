@@ -8,7 +8,6 @@ use App\Models\Course;
 use App\Models\TakingCourse;
 use App\Http\Resources\Course\Course as CourseResource;
 use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
-use App\Http\Resources\Course\CourseLectureWithLearned as CourseLectureWithLearnedResource;
 
 /**
  * @group 3. Course
@@ -39,9 +38,7 @@ class CourseController extends ApiController
      */
     public function getAllLectures(Request $request)
     {
-        $course = Course::with(['parts.lessons.lectures' => function ($query) {
-            $query->where('lectures.public', 1);
-        }])->get();
+        $course = Course::with('parts.lessons.lectures')->get();
         return CourseLectureResource::collection($course);
     }
 
@@ -53,7 +50,7 @@ class CourseController extends ApiController
      * @responsefile responses/course.getLectures.json
      *
      * @param string $slug
-     * @return CourseLectureWithLearnedResource
+     * @return CourseLectureResource
      */
     public function getLectures(Request $request, $name)
     {
@@ -63,14 +60,14 @@ class CourseController extends ApiController
             return $this->respondNotFound('Taking course not found');
         }
 
-        $course->withCourses($user_id);
-        return new CourseLectureWithLearnedResource($course);
+        $course->withCourses();
+        return new CourseLectureResource($course);
     }
 
     public function test(Request $request, $name)
     {
         $course = Course::where('name', $name)->first();
         $course->withCourses(1);
-        return new CourseLectureWithLearnedResource($course);
+        return new CourseLectureResource($course);
     }
 }

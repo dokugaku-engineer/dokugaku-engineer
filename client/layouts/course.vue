@@ -14,17 +14,18 @@
             <div class="menu-inner">
               <div class="menu-boarder">
                 <div class="menu-item">
-                  <nuxt-link
-                    :to="`/course/${course.name}`"
-                    @click.native="toggleMenu"
-                  >
+                  <nuxt-link :to="`/course/${course.name}`" @click.native="toggleMenu">
                     <h2 class="menu-item-title">ホーム</h2>
                   </nuxt-link>
                 </div>
               </div>
               <div class="menu-boarder">
                 <div v-for="lesson in lessons" class="menu-item">
-                  <lecture-list :lessonLectures="lesson" @hideMenu="toggleMenu" />
+                  <lecture-list
+                    :lessonLectures="lesson"
+                    :learnedLectureIds="learnedLectureIds"
+                    @hideMenu="toggleMenu"
+                  />
                 </div>
               </div>
               <div class="menu-item">
@@ -46,13 +47,17 @@
       </div>
       <h1 class="header-title">{{ lectureName }}</h1>
       <i @click="toggleSetting" ref="bars" class="fas fa-bars fa-lg bars-solid"></i>
-      <div v-if="showSetting" v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }" class="setting">
+      <div
+        v-if="showSetting"
+        v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }"
+        class="setting"
+      >
         <nuxt-link @click.native="closeSetting" to="/settings/profile" class="setting-link">プロフィール</nuxt-link>
         <nuxt-link @click.native="closeSetting" to="/settings/password" class="setting-link">パスワード</nuxt-link>
         <button @click="logout" class="setting-link">ログアウト</button>
       </div>
     </header>
-    
+
     <div class="main">
       <nav class="sidebar">
         <div class="menu-boarder">
@@ -63,7 +68,7 @@
           </div>
         </div>
         <div v-for="lesson in lessons" class="lesson">
-          <lecture-list :lessonLectures="lesson" />
+          <lecture-list :lessonLectures="lesson" :learnedLectureIds="learnedLectureIds" />
         </div>
       </nav>
       <div class="content">
@@ -113,7 +118,7 @@
 .bars-regular {
   color: $color-red1;
   display: block;
-  margin: .6rem 1rem .6rem 0;
+  margin: 0.6rem 1rem 0.6rem 0;
 }
 
 @media screen and (min-width: 769px) {
@@ -131,13 +136,13 @@
     color: $color-gray3;
     cursor: pointer;
     display: block;
-    margin: .6rem 1rem .6rem 0;
+    margin: 0.6rem 1rem 0.6rem 0;
   }
 }
 
 .cross {
   color: $color-red1;
-  margin: 1.5rem 1rem .5rem;
+  margin: 1.5rem 1rem 0.5rem;
 }
 
 .menu {
@@ -153,11 +158,13 @@
   z-index: 10 !important;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease-out;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-out;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
@@ -177,18 +184,19 @@
 .menu-item-title {
   align-items: center;
   background-color: $color-white2;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   display: flex;
   font-weight: 700;
   margin-bottom: 1rem;
-  padding: .8rem 1.6rem;
+  padding: 0.8rem 1.6rem;
   width: 100%;
 
   &:focus {
     outline: 0;
   }
 
-  h2, i {
+  h2,
+  i {
     display: inline-block;
   }
 
@@ -203,8 +211,8 @@
 
 .setting {
   background-color: rgb(255, 255, 255);
-  border-radius: .2rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 .3rem 1rem;
+  border-radius: 0.2rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 0.3rem 1rem;
   min-width: 16.5rem;
   position: absolute;
   right: 0;
@@ -239,14 +247,14 @@
 @media screen and (min-width: 769px) {
   .sidebar {
     background-color: $color-white1;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     color: $color-gray2;
     display: block;
     font-size: $font-size-sm;
     margin-right: 1.5rem;
     overflow: auto;
     padding: 1rem;
-    transition: all .2s;
+    transition: all 0.2s;
     width: 32rem;
   }
 }
@@ -258,7 +266,7 @@
 
 .content {
   background-color: $color-white1;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   box-shadow: 0 1px 20px 0 $color-gray-shadow;
   flex: 1;
   margin: 0 auto;
@@ -274,8 +282,8 @@
 import Logo from "@/components/svg/Logo.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import Footer from "@/components/layouts/Footer.vue"
-import auth0Middleware from '~/middleware/auth0'
-import { mapState } from 'vuex'
+import auth0Middleware from "~/middleware/auth0"
+import { mapState } from "vuex"
 
 export default {
   components: {
@@ -291,7 +299,13 @@ export default {
   },
   middleware: auth0Middleware.protect(),
   computed: {
-    ...mapState('course', ['course', 'courseTop', 'lessons', 'lectureName'])
+    ...mapState("course", [
+      "course",
+      "courseTop",
+      "lessons",
+      "lectureName",
+      "learnedLectureIds"
+    ])
   },
   methods: {
     async logout() {

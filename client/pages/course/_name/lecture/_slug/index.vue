@@ -248,7 +248,8 @@ export default {
     }
     await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
-      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
+      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options),
+      this.$axios.$get(`/learning_histories/lecture_ids`, options)
     ])
       .then(res => {
         // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
@@ -261,6 +262,9 @@ export default {
         })
         this.$store.dispatch("course/setLectureName", {
           name: this.lecture.name
+        })
+        this.$store.dispatch("course/setLearnedLectureIds", {
+          learningHistories: res[2]
         })
       })
       .catch(err => {

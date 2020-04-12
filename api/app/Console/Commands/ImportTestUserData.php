@@ -10,7 +10,7 @@ use App\Models\TakingCourse;
 use App\Models\Lecture;
 use App\Models\LearningHistory;
 
-class ImportTestData extends Command
+class ImportTestUserData extends Command
 {
     // 一度にINSERTするユーザー数
     const ONCE_INSERT_NUM = 100;
@@ -22,14 +22,14 @@ class ImportTestData extends Command
      *
      * @var string
      */
-    protected $signature = 'import:test-data';
+    protected $signature = 'import:test-user-data';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Import test data of courses and users';
+    protected $description = 'Import test data of users';
 
     /**
      * Create a new command instance.
@@ -48,9 +48,6 @@ class ImportTestData extends Command
      */
     public function handle()
     {
-        // コース関連のデータのインポート
-        $this->call('import:lecture-csv');
-        // ユーザー関連のデータのインポート
         for ($i = 1; $i <= $this::INSERT_LOOP_NUM; $i++) {
             $users = $this->insertUsers();
             $this->insertTakingCourses($users);
@@ -63,10 +60,10 @@ class ImportTestData extends Command
 
     private function insertUsers()
     {
-        if (User::all()->count() > 1) {
+        if (User::all()->count() > 0) {
             $lastId = User::orderBy('id', 'desc')->first()->id;
         } else {
-            $lastId = 1;
+            $lastId = 0;
         }
         $users = [];
         for ($i = $lastId + 1; $i <= ($lastId + 1 + $this::ONCE_INSERT_NUM); $i++) {
@@ -85,10 +82,10 @@ class ImportTestData extends Command
 
     private function insertTakingCourses($users)
     {
-        if (TakingCourse::all()->count() > 1) {
+        if (TakingCourse::all()->count() > 0) {
             $lastId = TakingCourse::orderBy('id', 'desc')->first()->id;
         } else {
-            $lastId = 1;
+            $lastId = 0;
         }
         $takingCourses = [];
         foreach ($users as $index => $user) {
@@ -107,10 +104,10 @@ class ImportTestData extends Command
 
     private function insertLearningHistories($users)
     {
-        if (LearningHistory::all()->count() > 1) {
+        if (LearningHistory::all()->count() > 0) {
             $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
         } else {
-            $lastId = 1;
+            $lastId = 0;
         }
         $lectures = Lecture::all();
         $lectureNum = count($lectures);

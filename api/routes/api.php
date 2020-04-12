@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('learning_histories', 'LearningHistoryController')->only([
             'store'
         ]);
+        Route::get('learning_histories/lecture_ids', 'LearningHistoryController@getLectureIds');
 
         // Auth0 routes
         Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');

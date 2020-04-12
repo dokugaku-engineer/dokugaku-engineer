@@ -27,7 +27,7 @@
           <h2 class="part-title">{{ part.name }}</h2>
           <p class="part-content">{{ part.description }}</p>
           <div v-for="lesson in part.lessons">
-            <LectureList :lessonLectures="lesson" />
+            <LectureList :lessonLectures="lesson" :learnedLectureIds="learnedLectureIds" />
           </div>
         </div>
       </div>
@@ -140,7 +140,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("course", ["course"]),
+    ...mapState("course", ["course", "learnedLectureIds"]),
     ...mapState("auth0", ["auth0User"]),
     ...mapGetters("auth0", ["isAuth0Provider"])
   },
@@ -152,13 +152,18 @@ export default {
         Authorization: `Bearer ${token}`
       }
     }
-    await this.$axios
-      .$get(`/courses/${this.$route.params.name}/lectures`, options)
+    await Promise.all([
+      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
+      this.$axios.$get(`/learning_histories/lecture_ids`, options)
+    ])
       .then(res => {
         this.loading = false
         this.$store.dispatch("course/setCourse", {
-          course: res,
+          course: res[0],
           lecture: {}
+        })
+        this.$store.dispatch("course/setLearnedLectureIds", {
+          learningHistories: res[1]
         })
       })
       .catch(err => {

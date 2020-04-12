@@ -3,7 +3,8 @@ export const state = () => ({
   courseTop: false,
   lessons: [],
   lecture: {},
-  lectureName: ''
+  lectureName: '',
+  learnedLectureIds: []
 })
 
 export const mutations = {
@@ -45,6 +46,12 @@ export const mutations = {
     name
   }) {
     state.lectureName = name
+  },
+
+  SET_LEARNED_LECTURE_IDS(state, {
+    learningHistories
+  }) {
+    state.learnedLectureIds = learningHistories
   }
 }
 
@@ -68,6 +75,16 @@ export const actions = {
   }) {
     commit("SET_LECTURE_NAME", {
       name
+    })
+  },
+
+  setLearnedLectureIds({
+    commit
+  }, {
+    learningHistories
+  }) {
+    commit("SET_LEARNED_LECTURE_IDS", {
+      learningHistories
     })
   }
 }
