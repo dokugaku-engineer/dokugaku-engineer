@@ -63,7 +63,11 @@ class ImportTestData extends Command
 
     private function insertUsers()
     {
-        $lastId = User::orderBy('id', 'desc')->first()->id;
+        if (User::all()->count() > 1) {
+            $lastId = User::orderBy('id', 'desc')->first()->id;
+        } else {
+            $lastId = 1;
+        }
         $users = [];
         for ($i = $lastId + 1; $i <= ($lastId + 1 + $this::ONCE_INSERT_NUM); $i++) {
             $user = [
@@ -81,7 +85,11 @@ class ImportTestData extends Command
 
     private function insertTakingCourses($users)
     {
-        $lastId = TakingCourse::orderBy('id', 'desc')->first()->id;
+        if (TakingCourse::all()->count() > 1) {
+            $lastId = TakingCourse::orderBy('id', 'desc')->first()->id;
+        } else {
+            $lastId = 1;
+        }
         $takingCourses = [];
         foreach ($users as $index => $user) {
             $takingCourse = [
@@ -99,7 +107,11 @@ class ImportTestData extends Command
 
     private function insertLearningHistories($users)
     {
-        $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
+        if (LearningHistory::all()->count() > 1) {
+            $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
+        } else {
+            $lastId = 1;
+        }
         $lectures = Lecture::all();
         $lectureNum = count($lectures);
         foreach ($users as $i => $user) {
