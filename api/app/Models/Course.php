@@ -20,6 +20,8 @@ class Course extends Model
 
     public function withCourses()
     {
-        return $this->load('parts.lessons.lectures');
+        return $this->load(['parts.lessons.lectures' => function ($query) {
+            $query->orderBy('order');
+        }]);
     }
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources\Course;
 
-use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Part\Part as PartResource;
+use App\Http\Resources\Part\PartWitrhLecture as PartWitrhLectureResource;
 
-class CourseLecture extends JsonResource
+class CourseWithLecture extends JsonResource
 {
     /**
      * リソースを配列へ変換
@@ -17,12 +16,9 @@ class CourseLecture extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'created_at' => DateHelper::getTimestamp($this->created_at),
-            'updated_at' => DateHelper::getTimestamp($this->updated_at),
-            'parts' => PartResource::collection($this->parts)
+            'parts' => PartWitrhLectureResource::collection($this->parts)
         ];
     }
 }

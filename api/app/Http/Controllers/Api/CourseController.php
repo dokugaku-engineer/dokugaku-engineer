@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\TakingCourse;
 use App\Http\Resources\Course\Course as CourseResource;
-use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
+use App\Http\Resources\Course\CourseWithLecture as CourseWithLectureResource;
 
 /**
  * @group 3. Course
@@ -33,13 +33,13 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.getAllLectures.json
      *
-     * @return CourseLectureResourceCollection
+     * @return CourseWithLectureResourceCollection
      *
      */
     public function getAllLectures(Request $request)
     {
         $course = Course::with('parts.lessons.lectures')->get();
-        return CourseLectureResource::collection($course);
+        return CourseWithLectureResource::collection($course);
     }
 
     /**
@@ -50,7 +50,7 @@ class CourseController extends ApiController
      * @responsefile responses/course.getLectures.json
      *
      * @param string $slug
-     * @return CourseLectureResource
+     * @return CourseWithLectureResource
      */
     public function getLectures(Request $request, $name)
     {
@@ -61,13 +61,13 @@ class CourseController extends ApiController
         }
 
         $course->withCourses();
-        return new CourseLectureResource($course);
+        return new CourseWithLectureResource($course);
     }
 
     public function test(Request $request, $name)
     {
         $course = Course::where('name', $name)->first();
         $course->withCourses(1);
-        return new CourseLectureResource($course);
+        return new CourseWithLectureResource($course);
     }
 }
