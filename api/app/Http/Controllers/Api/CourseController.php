@@ -24,8 +24,8 @@ class CourseController extends ApiController
      */
     public function index(Request $request)
     {
-        $categories = Course::all();
-        return CourseResource::collection($categories);
+        $courses = Course::all();
+        return CourseResource::collection($courses);
     }
 
     /**
