@@ -20,7 +20,7 @@ class CreateLessonsTable extends Migration
             $table->string('name', 255);
             $table->timestamps();
 
-            $table->foreign('part_id')->references('id')->on('parts')->onDelete('cascade');
+            $table->index('part_id');
         });
     }
 

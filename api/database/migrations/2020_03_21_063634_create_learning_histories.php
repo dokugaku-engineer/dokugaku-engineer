@@ -20,7 +20,7 @@ class CreateLearningHistories extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('lecture_id')->references('id')->on('lectures')->onDelete('cascade');
+            $table->index('lecture_id'); // 外部キーを貼るとlectures_oldsテーブルを参照しているときに整合性がとれなくなることがあるため貼らない
             $table->unique(['user_id', 'lecture_id']);
         });
     }

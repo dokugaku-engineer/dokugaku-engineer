@@ -23,12 +23,11 @@ class CreateLecturesTable extends Migration
             $table->string('slug', 255)->unique();
             $table->string('prev_lecture_slug', 255);
             $table->string('next_lecture_slug', 255);
-            $table->boolean('public')->default(1);
-            $table->boolean('locked')->default(0);
             $table->boolean('premium')->default(0);
+            $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
+            $table->index(['lesson_id', 'order', 'deleted_at']);
         });
     }
 
