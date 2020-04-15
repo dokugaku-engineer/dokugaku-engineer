@@ -1,4 +1,6 @@
-const gulp = require("gulp")
+const {
+  src
+} = require("gulp")
 const awspublish = require("gulp-awspublish")
 const cloudfront = require("gulp-cloudfront-invalidate-aws-publish")
 const parallelize = require("concurrent-transform")
@@ -32,12 +34,12 @@ const config = {
   wait: true // CloudFront のキャッシュ削除が完了するまでの時間（約30〜60秒）
 }
 
-gulp.task("deploy", function () {
+const deploy = () => {
   // S3 オプションを使用して新しい publisher を作成する
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
   const publisher = awspublish.create(config)
 
-  let g = gulp.src("./" + config.distDir + "/**")
+  let g = src("./" + config.distDir + "/**")
   // publisher は、上記で指定した Content-Length、Content-Type、および他のヘッダーを追加する
   // 指定しない場合、はデフォルトで x-amz-acl が public-read に設定される
   g = g.pipe(
@@ -69,4 +71,6 @@ gulp.task("deploy", function () {
   g = g.pipe(awspublish.reporter())
   console.log("5")
   return g
-})
+}
+
+exports.deploy = deploy
