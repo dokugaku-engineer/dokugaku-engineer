@@ -165,7 +165,10 @@ export default {
       this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
       this.$axios.$get(`/lessons?course=${this.$route.params.name}`, options),
       this.$axios.$get(`/lectures?course=${this.$route.params.name}`, options),
-      this.$axios.$get(`/learning_histories/lecture_ids`, options)
+      this.$axios.$get(
+        `/learning_histories/${this.$route.params.name}/lecture_ids`,
+        options
+      )
     ])
       .then(res => {
         this.loading = false

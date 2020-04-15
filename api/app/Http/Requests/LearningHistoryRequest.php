@@ -26,6 +26,7 @@ class LearningHistoryRequest extends ApiRequest
     {
         return [
             'user_id' => 'required|integer',
+            'course_id' => 'required|integer',
             'lecture_id' => [
                 'required',
                 'integer',

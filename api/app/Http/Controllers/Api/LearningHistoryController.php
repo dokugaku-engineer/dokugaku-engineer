@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\LearningHistoryRequest;
 use App\Http\Resources\LearningHistory\LearningHistory as LearningHistoryResource;
+use App\Models\Course;
 use App\Models\LearningHistory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -38,17 +39,19 @@ class LearningHistoryController extends ApiController
         return new LearningHistoryResource($learning_history);
     }
 
-    public function getLectureIds(Request $request)
+    public function getLectureIds(Request $request, $course_name)
     {
         $user_id = $request['user_id'];
-        $lecture_ids = LearningHistory::where('user_id', $user_id)->pluck('lecture_id')->toArray();
+        $course = Course::where('name', $course_name)->first();
+        $lecture_ids = LearningHistory::where('user_id', $user_id)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
         return $this->respondWithOK($lecture_ids);
     }
 
     public function test(Request $request)
     {
         $user_id = 1;
-        $lecture_ids = LearningHistory::where('user_id', $user_id)->pluck('lecture_id')->toArray();
+        $course = Course::where('name', 'serverside')->first();
+        $lecture_ids = LearningHistory::where('user_id', $user_id)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
         return $this->respondWithOK($lecture_ids);
     }
 }

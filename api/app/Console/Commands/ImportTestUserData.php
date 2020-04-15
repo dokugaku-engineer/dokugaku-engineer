@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\TakingCourse;
+use App\Models\Course;
 use App\Models\Lecture;
 use App\Models\LearningHistory;
 
@@ -110,6 +111,7 @@ class ImportTestUserData extends Command
             $lastId = 0;
         }
         $lectures = Lecture::all();
+        $course = Course::first();
         $lectureNum = count($lectures);
         foreach ($users as $i => $user) {
             $learningHistories = [];
@@ -117,6 +119,7 @@ class ImportTestUserData extends Command
                 $learningHistory = [
                     'id' => $lastId + $i * $lectureNum + $index + 1,
                     'user_id' => $user['id'],
+                    'course_id' => $course->id,
                     'lecture_id' => $lecture->id,
                     'created_at' => Carbon::now()->toDateTimeString(),
                     'updated_at' => Carbon::now()->toDateTimeString(),

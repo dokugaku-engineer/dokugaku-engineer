@@ -1,5 +1,6 @@
 {
     "id": 2,
+    "course_id": 1,
     "lesson_id": 1,
     "order": 2,
     "name": "コースのゴール",

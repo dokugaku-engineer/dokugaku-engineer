@@ -17,6 +17,7 @@ class LectureWithLearned extends JsonResource
     {
         return [
             'id' => $this->id,
+            'course_id' => $this->course_id,
             'lesson_id' => $this->lesson_id,
             'name' => $this->name,
             'video_url' => $this->video_url,

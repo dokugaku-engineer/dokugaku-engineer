@@ -57,8 +57,9 @@ class LectureController extends ApiController
     {
         $user_id = $request['user_id'];
         $lecture = Lecture::whereSlug($slug)->withTrashed()->whereExistence(true)->first();
-        $lecture->load_learning_histories($user_id);
-        if (TakingCourse::doesntExist($user_id, $lecture->course_id)) {
+        $course_id = $lecture->course_id;
+        $lecture->load_learning_histories($user_id, $course_id);
+        if (TakingCourse::doesntExist($user_id, $course_id)) {
             return $this->respondNotFound('Taking course not found');
         }
 
@@ -69,8 +70,9 @@ class LectureController extends ApiController
     {
         $user_id = 1;
         $lecture = Lecture::whereSlug($slug)->withTrashed()->whereExistence(true)->first();
-        $lecture->load_learning_histories($user_id);
-        if (TakingCourse::doesntExist($user_id, $lecture->course_id)) {
+        $course_id = $lecture->course_id;
+        $lecture->load_learning_histories($user_id, $course_id);
+        if (TakingCourse::doesntExist($user_id, $course_id)) {
             return $this->respondNotFound('Taking course not found');
         }
 
