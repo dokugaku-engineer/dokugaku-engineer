@@ -77,9 +77,6 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('/posts/{post}/unpublish', 'PostController@unpublish')->name('posts.unpublish');
 
     // TODO: デバッグが終わったら削除する
-    Route::get('/debug-sentry', function () {
-        throw new Exception('Debug Sentry error!');
-    });
     Route::get('courses/{name}/test', 'CourseController@test');
     Route::get('lectures/{slug}/test', 'LectureController@test');
 });
