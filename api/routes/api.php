@@ -47,7 +47,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('learning_histories', 'LearningHistoryController')->only([
             'store'
         ]);
-        Route::get('learning_histories/lecture_ids', 'LearningHistoryController@getLectureIds');
+        Route::get('learning_histories/{course_name}/lecture_ids', 'LearningHistoryController@getLectureIds');
 
         // Auth0 routes
         Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
@@ -77,6 +77,10 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('/posts/{post}/unpublish', 'PostController@unpublish')->name('posts.unpublish');
 
     // TODO: デバッグが終わったら削除する
+    Route::get('lectures/index/test', 'LectureController@indexTest');
+    Route::get('lectures/{slug}/test', 'LectureController@showTest');
     Route::get('courses/{name}/test', 'CourseController@test');
-    Route::get('lectures/{slug}/test', 'LectureController@test');
+    Route::get('parts/test', 'PartController@test');
+    Route::get('lessons/test', 'LessonController@test');
+    Route::get('learning_histories/test', 'LearningHistoryController@test');
 });

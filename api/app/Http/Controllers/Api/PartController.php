@@ -33,4 +33,15 @@ class PartController extends ApiController
         $parts = Part::where('course_id', $course->id)->get();
         return MinimumPartResource::collection($parts);
     }
+
+    public function test(Request $request)
+    {
+        $user_id = 1;
+        $course = Course::where('name', 'serverside')->first();
+        if (TakingCourse::doesntExist($user_id, $course->id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+        $parts = Part::where('course_id', $course->id)->get();
+        return MinimumPartResource::collection($parts);
+    }
 }

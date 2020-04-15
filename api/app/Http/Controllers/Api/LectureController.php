@@ -57,19 +57,42 @@ class LectureController extends ApiController
     {
         $user_id = $request['user_id'];
         $lecture = Lecture::whereSlug($slug)->withTrashed()->whereExistence(true)->first();
-        $lecture->load(['lesson.part'])->load_learning_histories($user_id);
-        $course_id = $lecture->lesson->part->course_id;
-        if (TakingCourse::doesntExist($user_id, $course_id)) {
+        $lecture->load_learning_histories($user_id);
+        if (TakingCourse::doesntExist($user_id, $lecture->course_id)) {
             return $this->respondNotFound('Taking course not found');
         }
 
         return new LectureWithLearnedResource($lecture);
     }
 
-    public function test(Request $request, string $slug)
+    public function showTest(Request $request, string $slug)
     {
+        $user_id = 1;
         $lecture = Lecture::whereSlug($slug)->withTrashed()->whereExistence(true)->first();
-        $lecture->load(['lesson.part'])->load_learning_histories(1);
+        $lecture->load_learning_histories($user_id);
+        if (TakingCourse::doesntExist($user_id, $lecture->course_id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+
         return new LectureWithLearnedResource($lecture);
+    }
+
+    public function indexTest(Request $request)
+    {
+        $user_id = 1;
+        $course = Course::where('name', 'serverside')->first();
+        if (TakingCourse::doesntExist($user_id, $course->id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+        // データ量が多いときにEloquentを使用するとResourcesの作成で遅くなったのでクエリビルダで処理
+        $lectures = DB::table('lectures')
+            ->select('id', 'lesson_id', 'order', 'name', 'slug')
+            ->where('course_id', $course->id)
+            ->where('existence', 1)
+            ->orderBy('lesson_id')
+            ->orderBy('order')
+            ->get()
+            ->toArray();
+        return $this->respondWithOK($lectures);
     }
 }
