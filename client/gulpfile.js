@@ -55,12 +55,18 @@ gulp.task("deploy", function () {
   }
 
   // 削除したファイルを同期する
+  console.log("1")
   if (config.deleteOldVersions) {
+    console.log("2")
+
     g = g.pipe(publisher.sync())
   }
   // 連続したアップロードを高速化するためにキャッシュファイルを作成する
+  console.log("3")
   g = g.pipe(publisher.cache())
   // アップロードの更新をコンソールに出力する
+  console.log("4")
   g = g.pipe(awspublish.reporter())
+  console.log("5")
   return g
 })
