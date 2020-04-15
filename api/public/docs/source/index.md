@@ -58,14 +58,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=est" 
+curl -X GET -G "http://localhost:8080/api/categories?except=atque" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "est",
+            "except": "atque",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -309,14 +309,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=tempora" 
+curl -X GET -G "http://localhost:8080/api/posts?except=earum" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "tempora",
+            "except": "earum",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1007,14 +1007,14 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/parts?course=in" 
+curl -X GET -G "http://localhost:8080/api/parts?course=sit" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/parts");
 
     let params = {
-            "course": "in",
+            "course": "sit",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1063,14 +1063,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lessons?course=sed" 
+curl -X GET -G "http://localhost:8080/api/lessons?course=tenetur" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lessons");
 
     let params = {
-            "course": "sed",
+            "course": "tenetur",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1118,14 +1118,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lectures?course=porro" 
+curl -X GET -G "http://localhost:8080/api/lectures?course=ut" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lectures");
 
     let params = {
-            "course": "porro",
+            "course": "ut",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1207,6 +1207,7 @@ fetch(url, {
 ```json
 {
     "id": 2,
+    "course_id": 1,
     "lesson_id": 1,
     "order": 2,
     "name": "コースのゴール",
@@ -1234,6 +1235,80 @@ Parameter | Type | Status | Description
     slug | string |  required  | Lecture slug.
 
 <!-- END_5aea6b8a5b275ae465be60b5be677eae -->
+
+<!-- START_582e178ccf3c75a7b53dd90f1baddcf7 -->
+## api/lectures/index/test
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/lectures/index/test" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/lectures/index/test");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response:
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/lectures/index/test`
+
+
+<!-- END_582e178ccf3c75a7b53dd90f1baddcf7 -->
+
+<!-- START_fed51e5e5a398f84031b3b873482ca5c -->
+## api/lectures/{slug}/test
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/lectures/1/test" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/lectures/1/test");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response:
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/lectures/{slug}/test`
+
+
+<!-- END_fed51e5e5a398f84031b3b873482ca5c -->
 
 <!-- START_8610058ca26734c476db0330d1be7d87 -->
 ## api/courses/{name}/test
@@ -1272,16 +1347,16 @@ null
 
 <!-- END_8610058ca26734c476db0330d1be7d87 -->
 
-<!-- START_fed51e5e5a398f84031b3b873482ca5c -->
-## api/lectures/{slug}/test
+<!-- START_365790a26a8ee3cdc0d2ee70eb8d4d0d -->
+## api/parts/test
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lectures/1/test" 
+curl -X GET -G "http://localhost:8080/api/parts/test" 
 ```
 
 ```javascript
-const url = new URL("http://localhost:8080/api/lectures/1/test");
+const url = new URL("http://localhost:8080/api/parts/test");
 
 let headers = {
     "Accept": "application/json",
@@ -1304,10 +1379,47 @@ null
 ```
 
 ### HTTP Request
-`GET api/lectures/{slug}/test`
+`GET api/parts/test`
 
 
-<!-- END_fed51e5e5a398f84031b3b873482ca5c -->
+<!-- END_365790a26a8ee3cdc0d2ee70eb8d4d0d -->
+
+<!-- START_b847069a5d4fc615a02476eefd1c81f1 -->
+## api/lessons/test
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/lessons/test" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/lessons/test");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response:
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/lessons/test`
+
+
+<!-- END_b847069a5d4fc615a02476eefd1c81f1 -->
 
 #3. Users
 
@@ -1525,16 +1637,16 @@ Parameter | Type | Status | Description
 
 <!-- END_9a8b7bd348230c65efa299e8c5ee8330 -->
 
-<!-- START_19c5a079a743124d03e91f1bc908b332 -->
-## api/learning_histories/lecture_ids
+<!-- START_a00d2732637251264272d45b473d0ab3 -->
+## api/learning_histories/{course_name}/lecture_ids
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/learning_histories/lecture_ids" 
+curl -X GET -G "http://localhost:8080/api/learning_histories/1/lecture_ids" 
 ```
 
 ```javascript
-const url = new URL("http://localhost:8080/api/learning_histories/lecture_ids");
+const url = new URL("http://localhost:8080/api/learning_histories/1/lecture_ids");
 
 let headers = {
     "Accept": "application/json",
@@ -1557,10 +1669,10 @@ null
 ```
 
 ### HTTP Request
-`GET api/learning_histories/lecture_ids`
+`GET api/learning_histories/{course_name}/lecture_ids`
 
 
-<!-- END_19c5a079a743124d03e91f1bc908b332 -->
+<!-- END_a00d2732637251264272d45b473d0ab3 -->
 
 <!-- START_12e37982cc5398c7100e59625ebb5514 -->
 ## ユーザーを保存
@@ -1682,6 +1794,43 @@ Parameter | Type | Status | Description
     course_id | integer |  required  | Course id.
 
 <!-- END_942e4d62793db400efd4b9f9f545ea48 -->
+
+<!-- START_03c6fa043931819cb4523f274f58e277 -->
+## api/learning_histories/test
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/learning_histories/test" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/learning_histories/test");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response:
+
+```json
+null
+```
+
+### HTTP Request
+`GET api/learning_histories/test`
+
+
+<!-- END_03c6fa043931819cb4523f274f58e277 -->
 
 #4. Auth0
 
