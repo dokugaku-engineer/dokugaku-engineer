@@ -238,8 +238,10 @@ export default {
     ...mapGetters("auth0", ["isAuth0Provider"])
   },
   async created() {
-    this.$store.dispatch("course/setCourse", { course: {}, lecture: {} })
-    this.$store.dispatch("course/setLectureName", { name: "" })
+    this.$store.dispatch("course/setLecture", {})
+    this.$store.dispatch("course/setCourse", {})
+    this.$store.dispatch("course/setLectureName", "")
+    this.$store.dispatch("course/setCourseTop", false)
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
@@ -247,21 +249,28 @@ export default {
       }
     }
     await Promise.all([
-      this.$axios.$get(`/courses/${this.$route.params.name}/lectures`, options),
-      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
+      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options),
+      this.$axios.$get(`/courses/${this.$route.params.name}`, options),
+      this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
+      this.$axios.$get(`/lessons?course=${this.$route.params.name}`, options),
+      this.$axios.$get(`/lectures?course=${this.$route.params.name}`, options),
+      this.$axios.$get(
+        `/learning_histories/${this.$route.params.name}/lecture_ids`,
+        options
+      )
     ])
       .then(res => {
         // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
-        this.course = res[0]
-        this.lecture = res[1]
         this.loading = false
-        this.$store.dispatch("course/setCourse", {
-          course: this.course,
-          lecture: this.lecture
-        })
-        this.$store.dispatch("course/setLectureName", {
-          name: this.lecture.name
-        })
+        this.lecture = res[0]
+        this.course = res[1]
+        this.$store.dispatch("course/setLecture", res[0])
+        this.$store.dispatch("course/setLectureName", res[0].name)
+        this.$store.dispatch("course/setCourse", res[1])
+        this.$store.dispatch("course/setParts", res[2])
+        this.$store.dispatch("course/setLessons", res[3])
+        this.$store.dispatch("course/setLectures", res[4])
+        this.$store.dispatch("course/setLearnedLectureIds", res[5])
       })
       .catch(err => {
         this.loading = false
@@ -274,7 +283,6 @@ export default {
       if (this.lecture.learned) {
         return
       }
-
       const token = await this.$auth0.getTokenSilently()
       const options = {
         headers: {
@@ -282,7 +290,11 @@ export default {
         }
       }
       await this.$axios
-        .$post("learning_histories", { lecture_id: this.lecture.id }, options)
+        .$post(
+          "learning_histories",
+          { course_id: this.lecture.course_id, lecture_id: this.lecture.id },
+          options
+        )
         .catch(err => {
           this.$sentry.captureException(err)
         })

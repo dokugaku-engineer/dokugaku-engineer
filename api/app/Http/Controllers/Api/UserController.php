@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 
 /**
- * @group 5. User
+ * @group 3. Users
  */
 class UserController extends ApiController
 {

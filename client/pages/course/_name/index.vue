@@ -21,13 +21,18 @@
       <div v-if="loading" class="loading">
         <i class="fad fa-spinner fa-spin fa-lg"></i>
       </div>
-      <div class="part" v-for="part in course.parts">
+      <div class="part" v-for="part in parts">
         <div class="part-inner">
           <h3 class="part-subtitle">PART {{ part.order }}</h3>
           <h2 class="part-title">{{ part.name }}</h2>
           <p class="part-content">{{ part.description }}</p>
-          <div v-for="lesson in part.lessons">
-            <LectureList :lessonLectures="lesson" />
+          <div v-for="lesson in filteredLessons(part.id)">
+            <lecture-list
+              :course="course"
+              :lesson="lesson"
+              :lectures="filteredLectures(lesson.id)"
+              :learnedLectureIds="learnedLectureIds"
+            />
           </div>
         </div>
       </div>
@@ -140,26 +145,38 @@ export default {
     }
   },
   computed: {
-    ...mapState("course", ["course"]),
     ...mapState("auth0", ["auth0User"]),
-    ...mapGetters("auth0", ["isAuth0Provider"])
+    ...mapState("course", ["course", "parts", "learnedLectureIds"]),
+    ...mapGetters("auth0", ["isAuth0Provider"]),
+    ...mapGetters("course", ["filteredLessons", "filteredLectures"])
   },
   async created() {
-    this.$store.dispatch("course/setLectureName", { name: "ホーム" })
+    this.$store.dispatch("course/setLecture", {})
+    this.$store.dispatch("course/setLectureName", "ホーム")
+    this.$store.dispatch("course/setCourseTop", true)
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
         Authorization: `Bearer ${token}`
       }
     }
-    await this.$axios
-      .$get(`/courses/${this.$route.params.name}/lectures`, options)
+    await Promise.all([
+      this.$axios.$get(`/courses/${this.$route.params.name}`, options),
+      this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
+      this.$axios.$get(`/lessons?course=${this.$route.params.name}`, options),
+      this.$axios.$get(`/lectures?course=${this.$route.params.name}`, options),
+      this.$axios.$get(
+        `/learning_histories/${this.$route.params.name}/lecture_ids`,
+        options
+      )
+    ])
       .then(res => {
         this.loading = false
-        this.$store.dispatch("course/setCourse", {
-          course: res,
-          lecture: {}
-        })
+        this.$store.dispatch("course/setCourse", res[0])
+        this.$store.dispatch("course/setParts", res[1])
+        this.$store.dispatch("course/setLessons", res[2])
+        this.$store.dispatch("course/setLectures", res[3])
+        this.$store.dispatch("course/setLearnedLectureIds", res[4])
       })
       .catch(err => {
         this.loading = false

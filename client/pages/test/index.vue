@@ -229,6 +229,37 @@ export default {
     ...mapGetters("auth0", ["isAuth0Provider"])
   },
   async created() {
+    this.$store.dispatch("course/setLecture", {})
+    this.$store.dispatch("course/setCourse", {})
+    this.$store.dispatch("course/setLectureName", "")
+    this.$store.dispatch("course/setCourseTop", false)
+    await Promise.all([
+      this.$axios.$get(`/lectures/Kn5cE/test`),
+      this.$axios.$get(`/courses/serverside/test`),
+      this.$axios.$get(`/parts/test`),
+      this.$axios.$get(`/lessons/test`),
+      this.$axios.$get(`/lectures/index/test`),
+      this.$axios.$get(`/learning_histories/test`)
+    ])
+      .then(res => {
+        // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
+        this.loading = false
+        this.lecture = res[0]
+        this.course = res[1]
+        this.$store.dispatch("course/setLecture", res[0])
+        this.$store.dispatch("course/setLectureName", res[0].name)
+        this.$store.dispatch("course/setCourse", res[1])
+        this.$store.dispatch("course/setParts", res[2])
+        this.$store.dispatch("course/setLessons", res[3])
+        this.$store.dispatch("course/setLectures", res[4])
+        this.$store.dispatch("course/setLearnedLectureIds", res[5])
+      })
+      .catch(err => {
+        this.loading = false
+        this.error = err
+        this.$sentry.captureException(err)
+      })
+
     this.$store.dispatch("course/setCourse", { course: {}, lecture: {} })
     this.$store.dispatch("course/setLectureName", { name: "" })
     await Promise.all([

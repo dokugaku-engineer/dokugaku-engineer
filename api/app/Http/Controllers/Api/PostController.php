@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 
 /**
- * @group 2. Post
+ * @group 1. Posts
  */
 class PostController extends ApiController
 {

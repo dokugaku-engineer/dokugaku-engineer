@@ -9,7 +9,7 @@ use App\Models\TakingCourse;
 use Illuminate\Database\QueryException;
 
 /**
- * @group 6. Taking course
+ * @group 3. Users
  */
 class TakingCourseController extends ApiController
 {

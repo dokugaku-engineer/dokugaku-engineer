@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lecture extends Model
 {
+    use SoftDeletes;
+
     protected $guarded = [];
 
     protected $attributes = [
@@ -24,10 +27,10 @@ class Lecture extends Model
         return $this->hasMany('App\Models\LearningHistory');
     }
 
-    public function load_learning_histories($user_id)
+    public function load_learning_histories($user_id, $course_id)
     {
-        return $this->load(['learning_histories' => function ($query) use ($user_id) {
-            $query->where('learning_histories.user_id', $user_id);
+        return $this->load(['learning_histories' => function ($query) use ($user_id, $course_id) {
+            $query->where('learning_histories.user_id', $user_id)->where('course_id', $course_id);
         }]);
     }
 }

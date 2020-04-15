@@ -7,16 +7,14 @@ use Illuminate\Http\Request;
 use App\Services\Auth0Service;
 
 /**
- * @group 3. Course
+ * @group 4. Auth0
  */
 class Auth0Controller extends ApiController
 {
     /**
      * 認証用メールを送信
      *
-     * @responsefile responses/course.index.json
-     *
-     * @return CourseResourceCollection
+     * @return JsonResponse
      *
      */
     public function sendVerificationEmail(Request $request)

@@ -15,12 +15,14 @@ class CreateLessonsOldsTable extends Migration
     {
         Schema::create('lessons_olds', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('course_id')->unsigned();
             $table->bigInteger('part_id')->unsigned();
             $table->integer('order')->unsigned();
             $table->string('name', 255);
             $table->timestamps();
 
-            $table->foreign('part_id')->references('id')->on('parts_olds')->onDelete('cascade');
+            $table->index('course_id');
+            $table->index('part_id');
         });
     }
 

@@ -46,7 +46,7 @@ docker-compose exec client npm install --no-optional
 # データベースのマイグレーション
 docker-compose exec api php artisan migrate
 
-# レクチャー関連のデータのインポート（2回実行する）
+# レクチャー関連のデータのインポート
 docker-compose exec api php artisan import:lecture-csv
 ```
 
@@ -57,7 +57,6 @@ docker-compose exec api php artisan import:lecture-csv
 ### ユーザー認証の設定
 
 Auth0を利用してユーザー認証を管理しています。開発にあたって、Auht0の登録、設定を行います。
-
 
 #### 1. Auth0のアカウントの開設
 

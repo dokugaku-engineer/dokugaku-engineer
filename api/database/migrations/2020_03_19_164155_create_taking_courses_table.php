@@ -20,7 +20,7 @@ class CreateTakingCoursesTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->index('course_id'); // 外部キーを貼るとcourses_oldsテーブルを参照しているときに整合性がとれなくなることがあるため貼らない
             $table->unique(['user_id', 'course_id']);
         });
     }

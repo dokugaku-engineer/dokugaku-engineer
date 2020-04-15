@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\TakingCourse;
+use App\Models\Course;
 use App\Models\Lecture;
 use App\Models\LearningHistory;
 
-class ImportTestData extends Command
+class ImportTestUserData extends Command
 {
     // 一度にINSERTするユーザー数
     const ONCE_INSERT_NUM = 100;
@@ -22,14 +23,14 @@ class ImportTestData extends Command
      *
      * @var string
      */
-    protected $signature = 'import:test-data';
+    protected $signature = 'import:test-user-data';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Import test data of courses and users';
+    protected $description = 'Import test data of users';
 
     /**
      * Create a new command instance.
@@ -48,9 +49,6 @@ class ImportTestData extends Command
      */
     public function handle()
     {
-        // コース関連のデータのインポート
-        $this->call('import:lecture-csv');
-        // ユーザー関連のデータのインポート
         for ($i = 1; $i <= $this::INSERT_LOOP_NUM; $i++) {
             $users = $this->insertUsers();
             $this->insertTakingCourses($users);
@@ -63,7 +61,11 @@ class ImportTestData extends Command
 
     private function insertUsers()
     {
-        $lastId = User::orderBy('id', 'desc')->first()->id;
+        if (User::all()->count() > 0) {
+            $lastId = User::orderBy('id', 'desc')->first()->id;
+        } else {
+            $lastId = 0;
+        }
         $users = [];
         for ($i = $lastId + 1; $i <= ($lastId + 1 + $this::ONCE_INSERT_NUM); $i++) {
             $user = [
@@ -81,7 +83,11 @@ class ImportTestData extends Command
 
     private function insertTakingCourses($users)
     {
-        $lastId = TakingCourse::orderBy('id', 'desc')->first()->id;
+        if (TakingCourse::all()->count() > 0) {
+            $lastId = TakingCourse::orderBy('id', 'desc')->first()->id;
+        } else {
+            $lastId = 0;
+        }
         $takingCourses = [];
         foreach ($users as $index => $user) {
             $takingCourse = [
@@ -99,8 +105,13 @@ class ImportTestData extends Command
 
     private function insertLearningHistories($users)
     {
-        $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
+        if (LearningHistory::all()->count() > 0) {
+            $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
+        } else {
+            $lastId = 0;
+        }
         $lectures = Lecture::all();
+        $course = Course::first();
         $lectureNum = count($lectures);
         foreach ($users as $i => $user) {
             $learningHistories = [];
@@ -108,6 +119,7 @@ class ImportTestData extends Command
                 $learningHistory = [
                     'id' => $lastId + $i * $lectureNum + $index + 1,
                     'user_id' => $user['id'],
+                    'course_id' => $course->id,
                     'lecture_id' => $lecture->id,
                     'created_at' => Carbon::now()->toDateTimeString(),
                     'updated_at' => Carbon::now()->toDateTimeString(),

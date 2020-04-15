@@ -7,11 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\TakingCourse;
 use App\Http\Resources\Course\Course as CourseResource;
-use App\Http\Resources\Course\CourseLecture as CourseLectureResource;
-use App\Http\Resources\Course\CourseLectureWithLearned as CourseLectureWithLearnedResource;
+use App\Http\Resources\Course\CourseWithLecture as CourseWithLectureResource;
 
 /**
- * @group 3. Course
+ * @group 2. Courses
  */
 class CourseController extends ApiController
 {
@@ -25,8 +24,26 @@ class CourseController extends ApiController
      */
     public function index(Request $request)
     {
-        $categories = Course::all();
-        return CourseResource::collection($categories);
+        $courses = Course::all();
+        return CourseResource::collection($courses);
+    }
+
+    /**
+     * コースを取得
+     *
+     * @responsefile responses/course.show.json
+     *
+     * @return CourseResource
+     *
+     */
+    public function show(Request $request, $name)
+    {
+        $user_id = $request['user_id'];
+        $course = Course::where('name', $name)->first();
+        if (TakingCourse::doesntExist($user_id, $course->id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+        return new CourseResource($course);
     }
 
     /**
@@ -34,43 +51,22 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.getAllLectures.json
      *
-     * @return CourseLectureResourceCollection
+     * @return CourseWithLectureResourceCollection
      *
      */
     public function getAllLectures(Request $request)
     {
-        $course = Course::with(['parts.lessons.lectures' => function ($query) {
-            $query->where('lectures.public', 1);
-        }])->get();
-        return CourseLectureResource::collection($course);
+        $course = Course::with('parts.lessons.lectures')->get();
+        return CourseWithLectureResource::collection($course);
     }
 
-    /**
-     * レクチャーを取得
-     *
-     * @bodyParam name string required Course name. Example: serverside
-     *
-     * @responsefile responses/course.getLectures.json
-     *
-     * @param string $slug
-     * @return CourseLectureWithLearnedResource
-     */
-    public function getLectures(Request $request, $name)
-    {
-        $user_id = $request['user_id'];
-        $course = Course::where('name', $name)->first();
-        if (TakingCourse::doesntExist($user_id, $course->id)) {
-            return $this->respondNotFound('Taking course not found');
-        }
-
-        $course->withCourses($user_id);
-        return new CourseLectureWithLearnedResource($course);
-    }
 
     public function test(Request $request, $name)
     {
         $course = Course::where('name', $name)->first();
-        $course->withCourses(1);
-        return new CourseLectureWithLearnedResource($course);
+        if (TakingCourse::doesntExist(1, $course->id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+        return new CourseResource($course);
     }
 }

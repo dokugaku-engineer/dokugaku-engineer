@@ -21,7 +21,7 @@ class CreatePartsOldsTable extends Migration
             $table->longtext('description');
             $table->timestamps();
 
-            $table->foreign('course_id')->references('id')->on('courses_olds')->onDelete('cascade');
+            $table->index('course_id');
         });
     }
 

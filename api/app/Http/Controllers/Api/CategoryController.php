@@ -10,7 +10,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 /**
- * @group 1. Category
+ * @group 1. Posts
  */
 class CategoryController extends ApiController
 {
@@ -44,7 +44,7 @@ class CategoryController extends ApiController
      * @bodyParam name string required Category name. Example: ウェブ
      * @bodyParam slug string required Category slug. Example: web
      * @bodyParam parent int Parent ID. Example: 2
-     * 
+     *
      * @response {
      *   "id": 13,
      *   "name": "ウェブ",
@@ -53,7 +53,7 @@ class CategoryController extends ApiController
      *   "created_at": "2019-10-17T13:28:08Z",
      *   "updated_at": "2019-10-17T13:28:08Z"
      * }
-     * 
+     *
      * @param CategoryRequest $request
      * @return CategoryResource|\Illuminate\Http\JsonResponse
      */
@@ -74,7 +74,7 @@ class CategoryController extends ApiController
      * カテゴリーを取得
      *
      * @bodyParam id int required Category id. Example: 13
-     * 
+     *
      * @response {
      *   "id": 13,
      *   "name": "ウェブ",
@@ -83,7 +83,7 @@ class CategoryController extends ApiController
      *   "created_at": "2019-10-17T13:28:08Z",
      *   "updated_at": "2019-10-20T13:28:08Z"
      * }
-     * 
+     *
      * @param Category $category
      * @return CategoryResource
      */
@@ -99,7 +99,7 @@ class CategoryController extends ApiController
      * @bodyParam name string required Category name. Example: ウェブ
      * @bodyParam slug string required Category slug. Example: web
      * @bodyParam parent int Parent ID. Example: 2
-     * 
+     *
      * @response {
      *   "id": 13,
      *   "name": "ウェブ",
@@ -108,7 +108,7 @@ class CategoryController extends ApiController
      *   "created_at": "2019-10-17T13:28:08Z",
      *   "updated_at": "2019-10-17T13:28:08Z"
      * }
-     * 
+     *
      * @param CategoryRequest $request
      * @param Category $category
      * @return CategoryResource|\Illuminate\Http\JsonResponse

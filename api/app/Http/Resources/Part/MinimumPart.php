@@ -2,11 +2,9 @@
 
 namespace App\Http\Resources\Part;
 
-use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Lesson\LessonWithLearned as LessonWithLearnedResource;
 
-class PartWithLearned extends JsonResource
+class MinimumPart extends JsonResource
 {
     /**
      * リソースを配列へ変換
@@ -22,9 +20,6 @@ class PartWithLearned extends JsonResource
             'order' => $this->order,
             'name' => $this->name,
             'description' => $this->description,
-            'created_at' => DateHelper::getTimestamp($this->created_at),
-            'updated_at' => DateHelper::getTimestamp($this->updated_at),
-            'lessons' => LessonWithLearnedResource::collection($this->lessons)
         ];
     }
 }

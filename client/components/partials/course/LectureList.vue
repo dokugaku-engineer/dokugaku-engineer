@@ -1,21 +1,22 @@
 <template>
   <div>
-    <div @click="showLecture = !showLecture" class="lesson-title" :class="lesson.play ? 'play' : ''">
+    <div @click="showLecture = !showLecture" class="lesson-title" :class="playLesson ? 'play' : ''">
       <h2>
-        レッスン{{ lesson.order }}：<span class="lesson-title-detail">{{ lesson.name }}</span>
+        レッスン{{ lesson.order }}：
+        <span class="lesson-title-detail">{{ lesson.name }}</span>
       </h2>
       <i :class="cheveron"></i>
     </div>
     <ol v-if="showLecture" class="lecture">
-      <li v-for="lecture in lesson.lectures">
+      <li v-for="lec in lectures">
         <nuxt-link
-          :to="`/course/${$store.state.course.course.name}/lecture/${lecture.slug}`"
+          :to="`/course/${course.name}/lecture/${lec.slug}`"
           @click.native="$emit('hideMenu')"
           class="lecture-link"
-          :class="lecture.play ? 'play' : ''"
+          :class="playLecture(lec) ? 'play' : ''"
         >
-          <i :class="lecture.learned ? 'far fa-check' : 'fas fa-circle'"></i>
-          {{ lecture.order }}. {{ lecture.name }}
+          <i :class="learned(lec.id) ? 'far fa-check' : 'fas fa-circle'"></i>
+          {{ lec.order }}. {{ lec.name }}
         </nuxt-link>
       </li>
     </ol>
@@ -35,13 +36,14 @@
 .lesson-title {
   align-items: center;
   background-color: $color-white2;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   cursor: pointer;
   display: flex;
   margin: 1rem 0;
-  padding: .8rem 1.6rem;
+  padding: 0.8rem 1.6rem;
 
-  h2, i {
+  h2,
+  i {
     display: inline-block;
   }
 
@@ -94,40 +96,69 @@
   font-weight: 700;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
 
 <script>
-
 export default {
   props: {
-    lessonLectures: {
+    course: {
       type: Object,
-      default: () => {}
+      default: () => ({})
+    },
+    lesson: {
+      type: Object,
+      default: () => ({})
+    },
+    lecture: {
+      type: Object,
+      default: () => ({})
+    },
+    lectures: {
+      type: Array,
+      default: () => []
+    },
+    learnedLectureIds: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      showLecture: false,
+      showLecture: false
     }
   },
   computed: {
     cheveron() {
-      if (!this.lesson.lectures.length) {
-        return "";
-      } else if (this.showLecture) {
-        return "far fa-chevron-up";
+      if (this.showLecture) {
+        return "far fa-chevron-up"
       } else {
-        return "far fa-chevron-down";
+        return "far fa-chevron-down"
       }
     },
-    lesson() {
-      return this.lessonLectures
+    playLesson() {
+      if (!Object.keys(this.lecture).length) {
+        return false
+      }
+      return this.lesson.id === this.lecture.lesson_id
+    }
+  },
+  methods: {
+    learned(lectureId) {
+      return this.learnedLectureIds.includes(lectureId)
+    },
+    playLecture(lecture) {
+      if (!Object.keys(this.lecture).length) {
+        return false
+      }
+      return this.lecture.id === lecture.id
     }
   }
 }
