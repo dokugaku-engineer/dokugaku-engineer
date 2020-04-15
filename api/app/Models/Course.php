@@ -17,11 +17,4 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\TakingCourse');
     }
-
-    public function withCourses()
-    {
-        return $this->load(['parts.lessons.lectures' => function ($query) {
-            $query->orderBy('order');
-        }]);
-    }
 }

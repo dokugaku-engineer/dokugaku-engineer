@@ -10,7 +10,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 /**
- * @group 7. Learning history
+ * @group 3. Users
  */
 class LearningHistoryController extends ApiController
 {

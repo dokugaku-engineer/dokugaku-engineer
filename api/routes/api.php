@@ -13,11 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['namespace' => 'Api'], function () {
+    // These endpoints require a valid access token for machine
+    Route::middleware(['jwt.m2m'])->group(function () {
+        // Course-related routes
+        Route::resource('courses', 'CourseController')->only([
+            'index'
+        ]);
+        Route::get('courses/lectures', 'CourseController@getAllLectures');
+    });
+
     // These endpoints require a valid id token for user
     Route::middleware(['jwt', 'sentry.context'])->group(function () {
         // User routes
@@ -26,7 +31,16 @@ Route::group(['namespace' => 'Api'], function () {
         ]);
 
         // Course-related routes
-        Route::get('courses/{name}/lectures', 'CourseController@getLectures');
+        Route::get('courses/{name}', 'CourseController@show');
+        Route::resource('parts', 'PartController')->only([
+            'index'
+        ]);
+        Route::resource('lessons', 'LessonController')->only([
+            'index'
+        ]);
+        Route::resource('lectures', 'LectureController')->only([
+            'index'
+        ]);
         Route::get('lectures/{slug}', 'LectureController@show');
 
         // Learning history routes
@@ -37,15 +51,6 @@ Route::group(['namespace' => 'Api'], function () {
 
         // Auth0 routes
         Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
-    });
-
-    // These endpoints require a valid access token for machine
-    Route::middleware(['jwt.m2m'])->group(function () {
-        // Course-related routes
-        Route::resource('courses', 'CourseController')->only([
-            'index'
-        ]);
-        Route::get('courses/lectures', 'CourseController@getAllLectures');
     });
 
     // Health routes

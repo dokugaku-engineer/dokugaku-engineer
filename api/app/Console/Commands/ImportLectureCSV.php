@@ -75,10 +75,10 @@ class ImportLectureCSV extends Command
      */
     private function getCsv($name)
     {
-        $csvData = Storage::disk(env('FILE_DISK', 'local'))->get("lecture/${name}.csv");
-        $csvLines = explode(PHP_EOL, $csvData);
+        $csv_data = Storage::disk(env('FILE_DISK', 'local'))->get("lecture/${name}.csv");
+        $csv_lines = explode(PHP_EOL, $csv_data);
         $csv = [];
-        foreach ($csvLines as $line) {
+        foreach ($csv_lines as $line) {
             $csv[] = str_getcsv($line);
         }
 
@@ -89,16 +89,16 @@ class ImportLectureCSV extends Command
                 continue;
             }
 
-            $rowData = [];
+            $row_data = [];
             foreach ($row as $k => $v) {
                 if ($v === '') {
                     $v = NULL;
                 }
-                $rowData[$header[$k]] = $v;
-                $rowData['created_at'] = Carbon::now()->toDateTimeString();
-                $rowData['updated_at'] = Carbon::now()->toDateTimeString();
+                $row_data[$header[$k]] = $v;
+                $row_data['created_at'] = Carbon::now()->toDateTimeString();
+                $row_data['updated_at'] = Carbon::now()->toDateTimeString();
             }
-            $data[] = $rowData;
+            $data[] = $row_data;
         }
         return $data;
     }
@@ -108,43 +108,60 @@ class ImportLectureCSV extends Command
      */
     private function addSlugs($csv)
     {
-        $lectures = [];
+        # 削除されているかで列を分割
+        $existing_lectures = array_filter($csv, function ($row) {
+            return $row['deleted_at'] === NULL;
+        });
+        $deleted_lectures = array_filter($csv, function ($row) {
+            return $row['deleted_at'] !== NULL;
+        });
 
-        # slugカラムを追加
-        foreach ($csv as $row) {
-            $row['slug'] = $this->alphaID($row['id'], self::PAD_UP);
-            $lectures[] = $row;
+        # 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
+        $processed_deleted_lectures = [];
+        foreach ($deleted_lectures as $lecture) {
+            $lecture['slug'] = NULL;
+            $lecture['prev_lecture_slug'] = NULL;
+            $lecture['next)lecture_slug'] = NULL;
+            $processed_deleted_lectures[] = $lecture;
         }
 
-        $processedLecrures = [];
+        # 存在している列にslug, prev_lecture_slug, next_lecture_slugカラムを追加する
+        # lesson_id, orderをキーとしてソートする
+        $lesson_id_sort_key = [];
+        $order_sort_key = [];
+        foreach ($existing_lectures as $index => $lecture) {
+            $lesson_id_sort_key[$index] = $lecture['lesson_id'];
+            $order_sort_key[$index] = $lecture['order'];
+        }
+        array_multisort($lesson_id_sort_key, SORT_ASC, $order_sort_key, SORT_ASC, $existing_lectures);
+
+        # slugカラムを追加
+        $lectures = [];
+        foreach ($existing_lectures as $lecture) {
+            $lecture['slug'] = $this->alphaID($lecture['id'], self::PAD_UP);
+            $lectures[] = $lecture;
+        }
 
         # prev_lecture_slug、next_lecture_slugカラムを追加
-        foreach ($lectures as $lecture) {
-            $prev_lecture_slug = '';
-            $next_lecture_slug = '';
-            $prev_lecture_id = $lecture['id'] - 1;
-            $next_lecture_id = $lecture['id'] + 1;
+        $processed_lectures = [];
+        foreach ($lectures as $index => $lecture) {
+            $prev_lecture_slug = NULL;
+            $next_lecture_slug = NULL;
 
-            if ($prev_lecture_id > 0) {
-                $prev_lecture = array_filter($lectures, function ($item) use ($prev_lecture_id) {
-                    return $item['id'] == $prev_lecture_id;
-                })[$prev_lecture_id - 1];
-                $prev_lecture_slug = $prev_lecture['slug'];
+            if ($index > 0) {
+                $prev_lecture_slug = $lectures[$index - 1]['slug'];
             }
 
-            if ($next_lecture_id <= count($lectures)) {
-                $next_lecture = array_filter($lectures, function ($item) use ($next_lecture_id) {
-                    return $item['id'] == $next_lecture_id;
-                })[$next_lecture_id - 1];
-                $next_lecture_slug = $next_lecture['slug'];
+            if ($index < count($lectures) - 1) {
+                $next_lecture_slug = $lectures[$index + 1]['slug'];
             }
 
             $lecture['prev_lecture_slug'] = $prev_lecture_slug;
             $lecture['next_lecture_slug'] = $next_lecture_slug;
-            $processedLecrures[] = $lecture;
+            $processed_lectures[] = $lecture;
         }
 
-        return $processedLecrures;
+        return array_merge($processed_lectures, $processed_deleted_lectures);
     }
 
     /**

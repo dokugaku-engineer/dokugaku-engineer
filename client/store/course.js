@@ -1,90 +1,108 @@
 export const state = () => ({
   course: {},
-  courseTop: false,
+  parts: [],
   lessons: [],
+  lectures: [],
   lecture: {},
+  learnedLectureIds: [],
   lectureName: '',
-  learnedLectureIds: []
+  courseTop: false
 })
 
 export const mutations = {
-  SET_COURSE(state, {
-    course,
-    lecture
-  }) {
-    state.course = course
-    state.lecture = lecture
-
-    if (!Object.keys(course).length) {
-      return
-    }
-
-    if (!Object.keys(lecture).length) {
-      state.courseTop = true
-    } else {
-      state.courseTop = false
-    }
-
-    let lessons = course.parts.map(part => part.lessons).flat()
-
-    lessons.forEach(lesson => {
-      let lessonPlay = false
-      lesson.lectures.forEach(lec => {
-        lec.play = false
-        if (lecture.id == lec.id) {
-          lec.play = true
-          lessonPlay = true
-        }
-      })
-      lesson.play = lessonPlay
-    });
-
-    state.lessons = lessons
+  SET_COURSE(state, $payload) {
+    state.course = $payload
   },
 
-  SET_LECTURE_NAME(state, {
-    name
-  }) {
-    state.lectureName = name
+  SET_PARTS(state, $payload) {
+    state.parts = $payload
   },
 
-  SET_LEARNED_LECTURE_IDS(state, {
-    learningHistories
-  }) {
-    state.learnedLectureIds = learningHistories
-  }
+  SET_LESSONS(state, $payload) {
+    state.lessons = $payload
+  },
+
+  SET_LECTURES(state, $payload) {
+    state.lectures = $payload
+  },
+
+  SET_LECTURE(state, $payload) {
+    state.lecture = $payload
+  },
+
+  SET_LEARNED_LECTURE_IDS(state, $payload) {
+    state.learnedLectureIds = $payload
+  },
+
+  SET_LECTURE_NAME(state, $payload) {
+    state.lectureName = $payload
+  },
+
+  SET_COURSE_TOP(state, $payload) {
+    state.courseTop = $payload
+  },
 }
 
 export const actions = {
   setCourse({
     commit
-  }, {
-    course,
-    lecture
-  }) {
-    commit("SET_COURSE", {
-      course,
-      lecture
-    })
+  }, $payload) {
+    commit("SET_COURSE", $payload)
   },
 
-  setLectureName({
+  setParts({
     commit
-  }, {
-    name
-  }) {
-    commit("SET_LECTURE_NAME", {
-      name
-    })
+  }, $payload) {
+    commit("SET_PARTS", $payload)
+  },
+
+  setLessons({
+    commit
+  }, $payload) {
+    commit("SET_LESSONS", $payload)
+  },
+
+  setLectures({
+    commit
+  }, $payload) {
+    commit("SET_LECTURES", $payload)
+  },
+
+  setLecture({
+    commit
+  }, $payload) {
+    commit("SET_LECTURE", $payload)
   },
 
   setLearnedLectureIds({
     commit
-  }, {
-    learningHistories
-  }) {
-    commit("SET_LEARNED_LECTURE_IDS", {
-      learningHistories
+  }, $payload) {
+    commit("SET_LEARNED_LECTURE_IDS", $payload)
+  },
+
+  setLectureName({
+    commit
+  }, $payload) {
+    commit("SET_LECTURE_NAME", $payload)
+  },
+
+  setCourseTop({
+    commit
+  }, $payload) {
+    commit("SET_COURSE_TOP", $payload)
+  },
+}
+
+export const getters = {
+  filteredLessons: (state) => (partId) => {
+    return state.lessons.filter(lesson => {
+      return lesson.part_id === partId
     })
-  }
+  },
+
+  filteredLectures: (state) => (lessonId) => {
+    return state.lectures.filter(lecture => {
+      return lecture.lesson_id === lessonId
+    })
+  },
 }

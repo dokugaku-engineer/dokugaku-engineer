@@ -15,11 +15,13 @@ class CreateLessonsTable extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('course_id')->unsigned();
             $table->bigInteger('part_id')->unsigned();
             $table->integer('order')->unsigned();
             $table->string('name', 255);
             $table->timestamps();
 
+            $table->index('course_id');
             $table->index('part_id');
         });
     }

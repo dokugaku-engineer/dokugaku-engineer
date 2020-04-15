@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources\Part;
 
-use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Part extends JsonResource
+class MinimumPart extends JsonResource
 {
     /**
      * リソースを配列へ変換
@@ -21,8 +20,6 @@ class Part extends JsonResource
             'order' => $this->order,
             'name' => $this->name,
             'description' => $this->description,
-            'created_at' => DateHelper::getTimestamp($this->created_at),
-            'updated_at' => DateHelper::getTimestamp($this->updated_at),
         ];
     }
 }

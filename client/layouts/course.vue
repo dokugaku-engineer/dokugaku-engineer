@@ -22,7 +22,10 @@
               <div class="menu-boarder">
                 <div v-for="lesson in lessons" class="menu-item">
                   <lecture-list
-                    :lessonLectures="lesson"
+                    :course="course"
+                    :lesson="lesson"
+                    :lecture="lecture"
+                    :lectures="filteredLectures(lesson.id)"
                     :learnedLectureIds="learnedLectureIds"
                     @hideMenu="toggleMenu"
                   />
@@ -68,7 +71,13 @@
           </div>
         </div>
         <div v-for="lesson in lessons" class="lesson">
-          <lecture-list :lessonLectures="lesson" :learnedLectureIds="learnedLectureIds" />
+          <lecture-list
+            :course="course"
+            :lesson="lesson"
+            :lecture="lecture"
+            :lectures="filteredLectures(lesson.id)"
+            :learnedLectureIds="learnedLectureIds"
+          />
         </div>
       </nav>
       <div class="content">
@@ -283,7 +292,7 @@ import Logo from "@/components/svg/Logo.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
 import Footer from "@/components/layouts/Footer.vue"
 import auth0Middleware from "~/middleware/auth0"
-import { mapState } from "vuex"
+import { mapState, mapGetters } from "vuex"
 
 export default {
   components: {
@@ -301,11 +310,13 @@ export default {
   computed: {
     ...mapState("course", [
       "course",
-      "courseTop",
       "lessons",
+      "lecture",
+      "learnedLectureIds",
       "lectureName",
-      "learnedLectureIds"
-    ])
+      "courseTop"
+    ]),
+    ...mapGetters("course", ["filteredLectures"])
   },
   methods: {
     async logout() {

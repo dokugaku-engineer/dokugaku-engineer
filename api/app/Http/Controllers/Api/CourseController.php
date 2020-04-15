@@ -10,7 +10,7 @@ use App\Http\Resources\Course\Course as CourseResource;
 use App\Http\Resources\Course\CourseWithLecture as CourseWithLectureResource;
 
 /**
- * @group 3. Course
+ * @group 2. Courses
  */
 class CourseController extends ApiController
 {
@@ -29,6 +29,24 @@ class CourseController extends ApiController
     }
 
     /**
+     * コースを取得
+     *
+     * @responsefile responses/course.show.json
+     *
+     * @return CourseResource
+     *
+     */
+    public function show(Request $request, $name)
+    {
+        $user_id = $request['user_id'];
+        $course = Course::where('name', $name)->first();
+        if (TakingCourse::doesntExist($user_id, $course->id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+        return new CourseResource($course);
+    }
+
+    /**
      * コースとレクチャー一覧を取得
      *
      * @responsefile responses/course.getAllLectures.json
@@ -42,32 +60,13 @@ class CourseController extends ApiController
         return CourseWithLectureResource::collection($course);
     }
 
-    /**
-     * レクチャーを取得
-     *
-     * @bodyParam name string required Course name. Example: serverside
-     *
-     * @responsefile responses/course.getLectures.json
-     *
-     * @param string $slug
-     * @return CourseWithLectureResource
-     */
-    public function getLectures(Request $request, $name)
-    {
-        $user_id = $request['user_id'];
-        $course = Course::where('name', $name)->first();
-        if (TakingCourse::doesntExist($user_id, $course->id)) {
-            return $this->respondNotFound('Taking course not found');
-        }
-
-        $course->withCourses();
-        return new CourseWithLectureResource($course);
-    }
 
     public function test(Request $request, $name)
     {
         $course = Course::where('name', $name)->first();
-        $course->withCourses(1);
-        return new CourseWithLectureResource($course);
+        if (TakingCourse::doesntExist(1, $course->id)) {
+            return $this->respondNotFound('Taking course not found');
+        }
+        return new CourseResource($course);
     }
 }

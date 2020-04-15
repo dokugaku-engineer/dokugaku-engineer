@@ -1,10 +1,6 @@
 <template>
   <div>
-    <div
-      @click="showLecture = !showLecture"
-      class="lesson-title"
-      :class="lesson.play ? 'play' : ''"
-    >
+    <div @click="showLecture = !showLecture" class="lesson-title" :class="playLesson ? 'play' : ''">
       <h2>
         レッスン{{ lesson.order }}：
         <span class="lesson-title-detail">{{ lesson.name }}</span>
@@ -12,15 +8,15 @@
       <i :class="cheveron"></i>
     </div>
     <ol v-if="showLecture" class="lecture">
-      <li v-for="lecture in lesson.lectures">
+      <li v-for="lec in lectures">
         <nuxt-link
-          :to="`/course/${$store.state.course.course.name}/lecture/${lecture.slug}`"
+          :to="`/course/${course.name}/lecture/${lec.slug}`"
           @click.native="$emit('hideMenu')"
           class="lecture-link"
-          :class="lecture.play ? 'play' : ''"
+          :class="playLecture(lec) ? 'play' : ''"
         >
-          <i :class="learned(lecture.id) ? 'far fa-check' : 'fas fa-circle'"></i>
-          {{ lecture.order }}. {{ lecture.name }}
+          <i :class="learned(lec.id) ? 'far fa-check' : 'fas fa-circle'"></i>
+          {{ lec.order }}. {{ lec.name }}
         </nuxt-link>
       </li>
     </ol>
@@ -113,13 +109,25 @@
 <script>
 export default {
   props: {
-    lessonLectures: {
+    course: {
       type: Object,
-      default: () => {}
+      default: () => ({})
+    },
+    lesson: {
+      type: Object,
+      default: () => ({})
+    },
+    lecture: {
+      type: Object,
+      default: () => ({})
+    },
+    lectures: {
+      type: Array,
+      default: () => []
     },
     learnedLectureIds: {
       type: Array,
-      default: []
+      default: () => []
     }
   },
   data() {
@@ -129,21 +137,28 @@ export default {
   },
   computed: {
     cheveron() {
-      if (!this.lesson.lectures.length) {
-        return ""
-      } else if (this.showLecture) {
+      if (this.showLecture) {
         return "far fa-chevron-up"
       } else {
         return "far fa-chevron-down"
       }
     },
-    lesson() {
-      return this.lessonLectures
+    playLesson() {
+      if (!Object.keys(this.lecture).length) {
+        return false
+      }
+      return this.lesson.id === this.lecture.lesson_id
     }
   },
   methods: {
     learned(lectureId) {
       return this.learnedLectureIds.includes(lectureId)
+    },
+    playLecture(lecture) {
+      if (!Object.keys(this.lecture).length) {
+        return false
+      }
+      return this.lecture.id === lecture.id
     }
   }
 }
