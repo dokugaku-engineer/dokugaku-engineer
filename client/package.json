@@ -27,6 +27,7 @@
   "license": "ISC",
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
+    "aws-sdk": "^2.657.0",
     "babel-eslint": "^10.0.3",
     "concurrent-transform": "^1.0.0",
     "eslint": "^6.8.0",
@@ -34,12 +35,14 @@
     "eslint-loader": "^3.0.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^6.1.2",
+    "fancy-log": "^1.3.3",
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.1.1",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
     "http-server": "^0.12.1",
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "through2": "^3.0.1"
   }
 }
