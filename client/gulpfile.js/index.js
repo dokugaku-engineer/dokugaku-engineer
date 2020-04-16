@@ -3,7 +3,9 @@ const {
 } = require("gulp")
 const awspublish = require("gulp-awspublish")
 const parallelize = require("concurrent-transform")
-const cfInvalidation = require("./cfInvalidation")
+const {
+  cfInvalidation
+} = require("./cfInvalidation")
 
 const config = {
   distDir: "dist",
@@ -31,7 +33,7 @@ const cfConfig = {
 }
 
 const deploy = (cb) => {
-  // S3 オプションを使用して新しい publisher を作成する
+  // S3 オプションを使用して新しい p
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
   const publisher = awspublish.create(awspublishConfig)
 

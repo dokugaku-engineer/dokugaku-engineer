@@ -94,4 +94,4 @@ const cfInvalidation = (options) => {
   return through.obj(processFile, invalidate);
 }
 
-exports.defalut = cfInvalidation
+exports.cfInvalidation = cfInvalidation
