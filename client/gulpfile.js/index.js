@@ -40,7 +40,7 @@ const deploy = (cb) => {
   src("./" + config.distDir + "/**")
     .pipe(parallelize(publisher.publish(config.headers), config.concurrentUploads)) // S3にアップロードする
     .pipe(cfInvalidation(cfConfig)) // CloudFrontのキャッシュを削除する
-    .pipe(publisher.sync('_nuxt/')) // S3をdist以下のファイルに同期し、古いファイルを削除する
+    .pipe(publisher.sync()) // S3をdist以下のファイルに同期し、古いファイルを削除する
     .pipe(publisher.cache()) // 連続したアップロードを高速化するためにキャッシュファイルを作成する
     .pipe(awspublish.reporter()) // アップロードの更新をコンソールに出力する
 
