@@ -33,7 +33,7 @@ const cfConfig = {
 }
 
 const deploy = (cb) => {
-  // S3 オプションを使用して新しい p
+  // S3 オプションを使用して新しい publisher を作成する
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property
   const publisher = awspublish.create(awspublishConfig)
 
