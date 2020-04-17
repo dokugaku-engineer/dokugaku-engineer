@@ -3,7 +3,9 @@ const {
 } = require("gulp")
 const awspublish = require("gulp-awspublish")
 const parallelize = require("concurrent-transform")
-const cfInvalidation = require("./cfInvalidation")
+const {
+  cfInvalidation
+} = require("./cfInvalidation")
 
 const config = {
   distDir: "dist",
