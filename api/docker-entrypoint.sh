@@ -2,13 +2,6 @@
 
 set -e
 
-# SSHしたいときはコメントアウトする
-# root_pw=${ROOT_PW:-rooot}
-# ssh-keygen -A
-# echo "root:$root_pw" | chpasswd
-# /usr/sbin/sshd
-
-
 if [ ${APP_ENV} = "production" ]; then
   echo "Cache config"
   php artisan config:cache
@@ -26,5 +19,11 @@ if [ ${APP_ENV} = "production" ]; then
     -e 's/;newrelic.daemon.start_timeout =.*/newrelic.daemon.start_timeout=5s/' \
     /etc/php.d/newrelic.ini
 fi
+
+# SSHしたいときはコメントアウトする
+root_pw=${ROOT_PW:-rooot}
+ssh-keygen -A
+echo "root:$root_pw" | chpasswd
+/usr/sbin/sshd
 
 /usr/sbin/php-fpm -F
