@@ -20,10 +20,14 @@ services:
       dockerfile: docker/nginx/Dockerfile
     ports:
       - "8080:80"
+      - "20022:20022"
     volumes:
       - ./api:/var/www
     depends_on:
       - api
+    entrypoint:
+      - sh
+      - /var/www/docker-entrypoint.sh
 
   api:
     build:
