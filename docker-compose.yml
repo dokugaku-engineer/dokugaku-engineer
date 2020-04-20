@@ -27,7 +27,7 @@ services:
       - api
     entrypoint:
       - sh
-      - /var/www/docker-entrypoint.sh
+      - /var/www/nginx-docker-entrypoint.sh
 
   api:
     build:
