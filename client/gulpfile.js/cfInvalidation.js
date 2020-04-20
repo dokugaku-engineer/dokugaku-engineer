@@ -4,8 +4,8 @@ const log = require('fancy-log')
 
 // CloudFront のキャッシュを削除する
 // https://github.com/lpender/gulp-cloudfront-invalidate-aws-publish/blob/master/index.js
-const cfInvalidation = (options) => {
-  const cloudfront = new aws.CloudFront();
+module.exports = (options) => {
+  const cloudfront = new aws.CloudFront()
   let files = []
   cloudfront.config.update({
     credentials: options.credentials
@@ -36,6 +36,9 @@ const cfInvalidation = (options) => {
   const processFile = (file, encoding, callback) => {
     if (!file.s3) return callback(null, file)
     if (!file.s3.state) return callback(null, file)
+    if (options.states &&
+      options.states.indexOf(file.s3.state) === -1) return callback(null, file)
+
     switch (file.s3.state) {
       case 'update':
       case 'create':
@@ -93,5 +96,3 @@ const cfInvalidation = (options) => {
   }
   return through.obj(processFile, invalidate);
 }
-
-exports.cfInvalidation = cfInvalidation
