@@ -16,23 +16,6 @@ module.exports = (options) => {
     throw new Error('gulp-cloudfront-invalidate', msg + ': ' + err)
   }
 
-  const check = (id, callback) => {
-    cloudfront.getInvalidation({
-      DistributionId: options.distribution,
-      Id: id
-    }), (err, res) => {
-      if (err) return complain(err, 'Could not check on invalidation', callback)
-
-      if (res.Invalidation.Status === 'Completed') {
-        return callback()
-      } else {
-        setTimeout(() => {
-          check(id, callback)
-        }, 1000)
-      }
-    }
-  }
-
   const processFile = (file, encoding, callback) => {
     if (!file.s3) return callback(null, file)
     if (!file.s3.state) return callback(null, file)
@@ -92,8 +75,6 @@ module.exports = (options) => {
       log('Cloudfront invalidation created: ' + res.Invalidation.Id)
 
       return callback()
-
-      check(res.Invalidation.Id, callback);
     })
   }
   return through.obj(processFile, invalidate);
