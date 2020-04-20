@@ -91,6 +91,8 @@ module.exports = (options) => {
 
       log('Cloudfront invalidation created: ' + res.Invalidation.Id)
 
+      return callback()
+
       check(res.Invalidation.Id, callback);
     })
   }
