@@ -3,11 +3,7 @@ const {
 } = require("gulp")
 const awspublish = require("gulp-awspublish")
 const parallelize = require("concurrent-transform")
-const {
-  cfInvalidation
-} = require("./cfInvalidation")
-
-const cloudfront = require("gulp-cloudfront-invalidate-aws-publish")
+const cfInvalidation = require("./cfInvalidation")
 
 const config = {
   distDir: "dist",
@@ -41,7 +37,7 @@ const deploy = (cb) => {
 
   src("./" + config.distDir + "/**")
     .pipe(parallelize(publisher.publish(config.headers), config.concurrentUploads)) // S3にアップロードする
-    .pipe(cloudfront(cfConfig))
+    .pipe(cfInvalidation(cfConfig))
     .pipe(publisher.sync()) // S3をdist以下のファイルに同期し、古いファイルを削除する
     .pipe(publisher.cache()) // 連続したアップロードを高速化するためにキャッシュファイルを作成する
     .pipe(awspublish.reporter()) // アップロードの更新をコンソールに出力する
