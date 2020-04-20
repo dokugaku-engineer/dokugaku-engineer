@@ -42,19 +42,21 @@ const cfInvalidation = (options) => {
       case 'delete':
         let path = file.s3.path
 
-        // ディレクトリのないファイル、_nuxt/ から始まるファイルはそのまま追加する
-        if (!/.*\/.*/.test(path) || /^_nuxt\//.test(path)) {
-          files.push(path)
-          break
-        }
+        // // ディレクトリのないファイル、_nuxt/ から始まるファイルはそのまま追加する
+        // if (!/.*\/.*/.test(path) || /^_nuxt\//.test(path)) {
+        //   files.push(path)
+        //   break
+        // }
 
-        // ファイル数が多すぎるとCloudFrontのinvalidation数の上限超過エラーになるので、上記以外のファイルは第一ディレクトリ以下をワイルドカードに置換してから追加する
-        // / も置換対象に含めているのは、スラッシュなしのファイルもLambda@EdgeでCloudFrontにキャッシュしているから
-        // 例. course/serverside/lecture/8uHMV/index.html → course*
-        path = path.replace(/\/.*?.*/, '*')
-        if (!files.includes(path)) {
-          files.push(path)
-        }
+        // // ファイル数が多すぎるとCloudFrontのinvalidation数の上限超過エラーになるので、上記以外のファイルは第一ディレクトリ以下をワイルドカードに置換してから追加する
+        // // / も置換対象に含めているのは、スラッシュなしのファイルもLambda@EdgeでCloudFrontにキャッシュしているから
+        // // 例. course/serverside/lecture/8uHMV/index.html → course*
+        // path = path.replace(/\/.*?.*/, '*')
+        // if (!files.includes(path)) {
+        //   files.push(path)
+        // }
+
+        files.push(path)
         break
       case 'cache':
       case 'skip':
