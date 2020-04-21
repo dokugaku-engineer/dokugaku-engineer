@@ -10,7 +10,10 @@
       <div class="header-item">
         <div class="header-menu">
           <button class="header-link" @click="login">ログイン</button>
-          <nui-button class="btn-teal1 btn-xs btn-shadow-all header-link header-btn" @click.native="signup">無料で受講</nui-button>
+          <nui-button
+            class="btn-teal1 btn-xs btn-shadow-all header-link header-btn"
+            @click.native="signup"
+          >無料で受講</nui-button>
         </div>
       </div>
     </header>
@@ -27,11 +30,11 @@
 }
 
 .header {
-  background-color: rgba(255,255,255,0.95);
-  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   display: flex;
   justify-content: flex-end;
-  padding: 1.6rem .8rem 1.2rem 2rem;
+  padding: 1.6rem 0.8rem 1.2rem 2rem;
 }
 
 @media screen and (min-width: 769px) {
@@ -73,8 +76,8 @@
 
 .header-link {
   font-size: $font-size-sm;
-  letter-spacing: .2rem;
-  margin: 0 .8rem;
+  letter-spacing: 0.2rem;
+  margin: 0 0.8rem;
 }
 
 @media screen and (min-width: 769px) {
@@ -124,8 +127,8 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: '/course/serverside'
-        },
+          targetUrl: "/course/serverside"
+        }
       }
       await this.$auth0.loginWithRedirect(options)
     },
@@ -133,12 +136,12 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: '/course/serverside'
+          targetUrl: "/course/serverside"
         },
-        screen_hint: 'signup'
+        screen_hint: "signup"
       }
       await this.$auth0.loginWithRedirect(options)
-    },
+    }
   }
 }
 </script>
