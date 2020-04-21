@@ -2,7 +2,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
     <g fill="none">
       <title>独学エンジニア</title>
-      <desc>実務で自走するできるようになるためのプログラミングスクール</desc>
+      <desc>実務で自走するできるようになるためのプログラミング学習サービス</desc>
       <path
         fill="#FF5252"
         fill-rule="evenodd"
