@@ -2,37 +2,29 @@
   <div class="content">
     <div class="tagline bg-white2">
       <div class="tagline-img-left">
-        <img
-          @click="toggleModal"
-          src="@/assets/images/serverside-hero.png"
-          alt=""
-        />
+        <img @click="toggleModal" src="@/assets/images/serverside-hero.png" alt />
       </div>
       <div class="tagline-content">
         <div>
           <h1>
             実務で自走するための
-            <br>
-            プログラミングロードマップ
-            <br>
+            <br />プログラミングロードマップ
+            <br />
             <span class="tagline-title">「独学エンジニア」</span>
           </h1>
           <div class="tagline-btn">
-            <nui-button @click.native="signup" class="btn-teal1 btn-shadow content-btn">
-              無料で受講する
-            </nui-button>
-            <nui-button @click.native="showModal = true" class="btn-outline-teal1 btn-shadow content-btn">
+            <nui-button @click.native="signup" class="btn-teal1 btn-shadow content-btn">無料で受講する</nui-button>
+            <nui-button
+              @click.native="showModal = true"
+              class="btn-outline-teal1 btn-shadow content-btn"
+            >
               <i class="fas fa-play-circle fa-lg"></i>
               講座をプレビュー
             </nui-button>
           </div>
         </div>
         <div class="tagline-img-right">
-          <img
-            @click="toggleModal"
-            src="@/assets/images/serverside-hero.png"
-            alt=""
-          />
+          <img @click="toggleModal" src="@/assets/images/serverside-hero.png" alt />
         </div>
       </div>
     </div>
@@ -42,7 +34,14 @@
         <div class="video-modal-daialog">
           <div class="video-modal-content">
             <div class="video-modal-embed">
-              <iframe src="https://player.vimeo.com/video/391168857?autoplay=1&color=26a69a" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" data-ready="true"></iframe>
+              <iframe
+                src="https://player.vimeo.com/video/391168857?autoplay=1&color=26a69a"
+                frameborder="0"
+                allow="autoplay; fullscreen"
+                allowfullscreen
+                style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                data-ready="true"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -52,60 +51,43 @@
     <div class="intro bg-white">
       <div class="intro-header">
         <h2>
-          オンラインプログラミング学習スクール
-          <br>
-          『独学エンジニア』
+          オンラインプログラミング学習サービス
+          <br />『独学エンジニア』
         </h2>
         <p>
-          独学エンジニアは実務で自走できるエンジニアになるためのオンラインプログラミング学習スクールです。
-          <br>
-          エンジニアとして就職・転職できるようになるのはもちろん、その後の実務で、未知の課題に出会っても自分で情報収集し解決できる実践的スキルが身に付きます。
+          独学エンジニアは実務で自走できるエンジニアになるためのオンラインプログラミング学習サービスです。
+          <br />エンジニアとして就職・転職できるようになるのはもちろん、その後の実務で、未知の課題に出会っても自分で情報収集し解決できる実践的スキルが身に付きます。
         </p>
       </div>
       <div class="intro-point-container">
         <div class="intro-point">
           <div class="intro-img-container">
-            <img
-              class="intro-img"
-              src="@/assets/images/serverside-feature-illust.png"
-              alt=""
-            />
+            <img class="intro-img" src="@/assets/images/serverside-feature-illust.png" alt />
           </div>
           <h3>図解中心の動画で学ぶ</h3>
           <p>
             図解を中心にした動画解説で、イメージをつかみながら理解できます。
-            <br>
-            動画は1本15分以内の長さで、集中力を切らさずに学習を進めていけます。
+            <br />動画は1本15分以内の長さで、集中力を切らさずに学習を進めていけます。
           </p>
         </div>
         <div class="intro-point">
           <div class="intro-img-container">
-            <img
-              class="intro-img"
-              src="@/assets/images/serverside-feature-roadmap.png"
-              alt=""
-            />
+            <img class="intro-img" src="@/assets/images/serverside-feature-roadmap.png" alt />
           </div>
           <h3>実務で必要スキルを網羅</h3>
           <p>
             WEB系のサーバーサイドエンジニアとして実務で必要なスキルだけを網羅しました。
-            <br>
-            ロードマップに沿って学習していくので、何を学習すればよいか迷うことはもうありません。
+            <br />ロードマップに沿って学習していくので、何を学習すればよいか迷うことはもうありません。
           </p>
         </div>
         <div class="intro-point">
           <div class="intro-img-container">
-            <img
-              class="intro-img"
-              src="@/assets/images/serverside-feature-code.png"
-              alt=""
-            />
+            <img class="intro-img" src="@/assets/images/serverside-feature-code.png" alt />
           </div>
           <h3>実務レベルの演習</h3>
           <p>
             実務で実際にあるような課題を演習として取り組みます。
-            <br>
-            経験年数2〜3年のエンジニアレベルの「実務レベルのスキル」を習得します。
+            <br />経験年数2〜3年のエンジニアレベルの「実務レベルのスキル」を習得します。
           </p>
         </div>
       </div>
@@ -116,35 +98,26 @@
         <h2>サービス名に込めた想い</h2>
         <p>
           プログラミング初学者が自学自習のみで実務レベルの技術力を身に付けるのは難しく、そのための道のりも整備されていません。
-          <br>
-          <br>
-          だからこそ、初学者から実務へのロードマップを整える。
-          <br>
-          「初学者が、自分で学びながら実務でやっていけるエンジニアへ」という想いが込められています。
-          <br>
-          <br>
-          エンジニアとして就職・転職できるのはもちろん、その後の実務で使える実践的スキルを。
+          <br />
+          <br />だからこそ、初学者から実務へのロードマップを整える。
+          <br />「初学者が、自分で学びながら実務でやっていけるエンジニアへ」という想いが込められています。
+          <br />
+          <br />エンジニアとして就職・転職できるのはもちろん、その後の実務で使える実践的スキルを。
         </p>
         <h3 class="philosophy-message">「初学者から実務で自走できるエンジニアへ」</h3>
         <div class="content-single-btn">
-          <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">
-            無料で受講する
-          </nui-button>
+          <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">無料で受講する</nui-button>
         </div>
       </div>
     </div>
 
     <div class="roadmap">
       <div class="roadmap-header">
-        <h2>
-          自走するためのロードマップ
-        </h2>
+        <h2>自走するためのロードマップ</h2>
         <p>
           ロードマップのゴールは、実務で未知の課題に出会っても自力で解決していけるWEB系サーバーサイドエンジニアになることです。
-          <br>
-          そのために、実務で必要なスキルを1ステップずつ学び、プロジェクトの実装を通じて理解を深めます。
-          <br>
-          最後は認定試験として実務で実際にあるようなサービスを構築し、サーバーサイドからデータベース、インフラ、デプロイの実装までを行います。
+          <br />そのために、実務で必要なスキルを1ステップずつ学び、プロジェクトの実装を通じて理解を深めます。
+          <br />最後は認定試験として実務で実際にあるようなサービスを構築し、サーバーサイドからデータベース、インフラ、デプロイの実装までを行います。
         </p>
       </div>
       <div class="rodmap-content-wrap">
@@ -231,24 +204,28 @@
           <h2>よくある質問</h2>
           <ul>
             <li class="qa-question">受講における必要条件はありますか？</li>
-            <li class="qa-answer">何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。</li>
+            <li
+              class="qa-answer"
+            >何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。</li>
           </ul>
           <ul>
             <li class="qa-question">パソコンはWindows、Macのどちらでも大丈夫でしょうか？</li>
-            <li class="qa-answer">Windows、Macのどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。</li>
+            <li
+              class="qa-answer"
+            >Windows、Macのどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。</li>
           </ul>
           <ul>
             <li class="qa-question">なぜプログラミング言語はPHPなのですか？</li>
-            <li class="qa-answer">初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。WEB系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。</li>
+            <li
+              class="qa-answer"
+            >初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。WEB系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。</li>
           </ul>
           <ul>
             <li class="qa-question">料金はかかりますか？</li>
             <li class="qa-answer">現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。</li>
           </ul>
           <div class="content-single-btn">
-            <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">
-              無料で受講する
-            </nui-button>
+            <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">無料で受講する</nui-button>
           </div>
         </div>
       </div>
@@ -269,7 +246,7 @@
   .content {
     letter-spacing: 0.16rem;
     line-height: 1.7142857143;
-  
+
     h2 {
       font-size: 3.2rem;
     }
@@ -308,7 +285,7 @@
 
     h1 {
       font-size: 2.8rem;
-      letter-spacing: .1rem;
+      letter-spacing: 0.1rem;
       line-height: 4.5rem;
       margin-right: 3rem;
     }
@@ -317,7 +294,6 @@
 
 @media screen and (min-width: 1200px) {
   .tagline-content {
-
     h1 {
       font-size: 3.6rem;
       letter-spacing: 1.2rem;
@@ -345,9 +321,9 @@
     margin-top: 3rem;
 
     .btn {
-      margin-right: .5rem;
+      margin-right: 0.5rem;
       margin-top: 0;
-      padding: 1.2rem .6rem;
+      padding: 1.2rem 0.6rem;
       width: 17.5rem !important;
     }
   }
@@ -355,7 +331,6 @@
 
 @media screen and (min-width: 1200px) {
   .tagline-btn {
-
     .btn {
       margin-right: 2rem;
       padding: 1.2rem 2rem;
@@ -368,7 +343,6 @@
   margin-right: -3rem;
   margin-bottom: 3rem;
 }
-
 
 @media screen and (min-width: 769px) {
   .tagline-img-left {
@@ -388,7 +362,7 @@
 }
 
 .video-modal {
-  background-color: rgba(0,0,0,.85);
+  background-color: rgba(0, 0, 0, 0.85);
   height: 100vh;
   left: 0;
   overflow: hidden;
@@ -401,7 +375,7 @@
 .video-modal-daialog {
   align-items: center;
   display: flex;
-  margin: .8rem auto;
+  margin: 0.8rem auto;
   max-width: 80%;
   min-height: calc(100% - 1rem);
   position: relative;
@@ -423,21 +397,25 @@
   }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s ease-out;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease-out;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
-.intro, .roadmap {
+.intro,
+.roadmap {
   margin: 0 auto;
   padding: 6.4rem 2.4rem;
 }
 
 @media screen and (min-width: 769px) {
-  .intro, .roadmap {
+  .intro,
+  .roadmap {
     max-width: 114rem;
     padding: 9.6rem 4.6rem 6.4rem;
   }
@@ -452,14 +430,15 @@
 }
 
 @media screen and (min-width: 769px) {
-  .intro-header, .roadmap-header {
+  .intro-header,
+  .roadmap-header {
     margin-bottom: 6.4rem;
   }
 }
 
-
 @media screen and (min-width: 769px) {
-  .intro-header, .roadmap-header {
+  .intro-header,
+  .roadmap-header {
     text-align: center;
   }
 }
@@ -487,7 +466,7 @@
     flex: 0 0 33.333333%;
     max-width: 33.333333%;
     padding: 0 3.2rem 3.2rem;
-    
+
     h3 {
       font-size: $font-size-xxxl;
       margin: 2.4rem 0 2.4rem;
@@ -507,7 +486,8 @@
   vertical-align: middle;
 }
 
-.philosophy, .qa {
+.philosophy,
+.qa {
   padding: 6.4rem 2.4rem;
 
   h2 {
@@ -517,17 +497,19 @@
 }
 
 @media screen and (min-width: 769px) {
-  .philosophy, .qa {
+  .philosophy,
+  .qa {
     padding: 9.6rem 4.6rem 6.4rem;
     text-align: center;
-  
+
     h2 {
       margin-bottom: 4rem;
     }
   }
 }
 
-.philosophy-container, .qa-container {
+.philosophy-container,
+.qa-container {
   margin-left: auto;
   margin-right: auto;
   max-width: 114rem;
@@ -555,7 +537,6 @@
     width: 100%;
   }
 }
-
 
 @media screen and (min-width: 769px) {
   .content-single-btn {
@@ -592,13 +573,13 @@
   &:after {
     background-color: $color-teal1;
     border-radius: 50%;
-    content: '';
-    height: .9rem;
+    content: "";
+    height: 0.9rem;
     left: 0;
     position: absolute;
     top: 0;
     transform: translateX(-50%);
-    width: .9rem;
+    width: 0.9rem;
   }
 }
 
@@ -623,12 +604,10 @@
 
 @media screen and (min-width: 769px) {
   .roadmap-part {
-    
     h4 {
       font-size: $font-size-lg;
     }
   }
-
 }
 
 .roadmap-project {
@@ -698,7 +677,8 @@
 }
 
 @media screen and (min-width: 769px) {
-  .qa-question, .qa-answer {
+  .qa-question,
+  .qa-answer {
     padding-left: 0;
   }
 }
@@ -724,8 +704,8 @@
 import Logo from "@/components/svg/Logo.vue"
 import NuiButton from "@/components/commons/Button.vue"
 import Footer from "@/components/layouts/Footer.vue"
-import auth0Middleware from '~/middleware/auth0'
-import { mapState } from 'vuex'
+import auth0Middleware from "~/middleware/auth0"
+import { mapState } from "vuex"
 
 export default {
   components: {
@@ -734,11 +714,11 @@ export default {
     Footer
   },
   computed: {
-    ...mapState('auth0', ['user', 'isAuthenticated'])
+    ...mapState("auth0", ["user", "isAuthenticated"])
   },
   middleware: auth0Middleware.protect({
     loginRequired: false,
-    authenticatedRedirectUri: '/course/serverside'
+    authenticatedRedirectUri: "/course/serverside"
   }),
   data() {
     return {
@@ -753,12 +733,12 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: '/course/serverside'
+          targetUrl: "/course/serverside"
         },
-        screen_hint: 'signup'
+        screen_hint: "signup"
       }
       await this.$auth0.loginWithRedirect(options)
-    },
+    }
   }
 }
 </script>

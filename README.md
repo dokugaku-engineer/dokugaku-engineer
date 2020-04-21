@@ -1,10 +1,10 @@
 <p align="center"><img src="https://dokugaku-engineer-public-file.s3-ap-northeast-1.amazonaws.com/logo.png"></p>
 
-[独学エンジニア](https://dokugaku-engineer.com/)はプログラミング初学者が自走できるエンジニアになるためのプログラミングスクールです。
+[独学エンジニア](https://dokugaku-engineer.com/)はプログラミング初学者が自走できるエンジニアになるためのプログラミング学習サービスです。
 
 ## 概要
 
-独学エンジニアはプログラミング初学者のためのオンラインプログラミング学習スクールです。Webベースのアプリケーションで、クライアントサイドはNuxt.jsで、APIはLaravelで書かれています。
+独学エンジニアはプログラミング初学者のためのオンラインプログラミング学習サービスです。Webベースのアプリケーションで、クライアントサイドはNuxt.jsで、APIはLaravelで書かれています。
 
 ### 目的
 
