@@ -1,4 +1,4 @@
-<p align="center"><img src="https://dokugaku-engineer-public-file.s3-ap-northeast-1.amazonaws.com/logo.png"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/dokugaku-engineer/dokugaku-engineer/images/logo.png"></p>
 
 [独学エンジニア](https://dokugaku-engineer.com/)はプログラミング初学者が自走できるエンジニアになるためのプログラミング学習サービスです。
 
