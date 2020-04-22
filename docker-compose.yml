@@ -10,7 +10,6 @@ services:
       - "8081:8081"
     volumes:
       - ./client:/var/www
-      - /var/www/node_modules/
     depends_on:
       - nginx
 
@@ -23,6 +22,7 @@ services:
       - "20022:20022"
     volumes:
       - ./api:/var/www
+      - phpsocket:/var/run
     depends_on:
       - api
     entrypoint:
@@ -37,11 +37,10 @@ services:
       - sh
       - /var/www/docker-entrypoint.sh
     ports:
-      - "9000:9000"
       - "22:22"
     volumes:
       - ./api:/var/www
-      - /var/www/vendor/
+      - phpsocket:/var/run
     environment:
       - APP_ENV=development
     depends_on:
@@ -53,3 +52,6 @@ services:
       - "3306:3306"
     env_file:
       - ./docker/db/db-variables.env
+
+volumes:
+  phpsocket:

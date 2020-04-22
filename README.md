@@ -29,7 +29,6 @@
 
 ```bash
 # 環境変数の設定
-cp docker/nginx/nginx.development.conf docker/nginx/nginx.conf
 cp docker/db/db-variables.development.env docker/db/db-variables.env
 cp api/.env.dev api/.env
 cp client/.env.dev client/.env
