@@ -142,8 +142,8 @@ class Auth0Service
         ));
         $response = curl_exec($curl);
         $err = curl_error($curl);
-        $access_token = '';
         curl_close($curl);
+        $access_token = '';
         if ($err) {
             Log::error("auth0 get access token error #:" . $err);
         } else {
