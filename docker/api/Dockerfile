@@ -1,13 +1,13 @@
-FROM amazonlinux:2.0.20190823.1
+FROM amazonlinux:2.0.20200406.0
 
 WORKDIR /var/www
 
 # install package
-RUN amazon-linux-extras install -y php7.3
+RUN amazon-linux-extras install -y php7.4
 RUN yum install -y git vim sudo procps
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 ## for php and laravel
-RUN yum install -y php-mbstring php-xml php-zip php-fpm php-soap php-bcmath nodejs
+RUN yum install -y php-mbstring php-xml php-zip php-fpm php-soap php-bcmath nodejs unzip
 ## for xdebug
 RUN yum install -y php-pear php-devel pcre-devel gcc make
 
@@ -40,7 +40,7 @@ RUN composer install
 
 RUN chmod -R a+w /var/www/storage/ /var/www/bootstrap/cache/ /var/www/vendor/
 
-# SSHしたいときはコメントアウトする
+# SSHしたいときはコメントアウトを解除する
 RUN yum install -y openssh-server
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i s/PasswordAuthentication.*/PasswordAuthentication\ yes/ /etc/ssh/sshd_config
