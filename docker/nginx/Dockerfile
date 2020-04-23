@@ -1,4 +1,4 @@
-FROM nginx:1.17.3
+FROM nginx:1.17.10
 
 WORKDIR /var/www/public
 
@@ -8,7 +8,7 @@ COPY docker/nginx/nginx.${env}.conf /etc/nginx/nginx.conf
 RUN rm /etc/nginx/conf.d/default.conf
 COPY api/ /var/www/
 
-# SSHしたいときはコメントアウトする
+# SSHしたいときはコメントアウトを解除する
 RUN apt-get update
 RUN apt-get install -y openssh-server
 RUN sed -i 's/#Port 22/Port 20022/' /etc/ssh/sshd_config

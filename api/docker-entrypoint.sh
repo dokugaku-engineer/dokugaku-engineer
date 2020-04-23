@@ -20,7 +20,7 @@ if [ ${APP_ENV} = "production" ]; then
     /etc/php.d/newrelic.ini
 fi
 
-# SSHしたいときはコメントアウトする
+# SSHしたいときはコメントアウトを解除する
 root_pw=${ROOT_PW:-rooot}
 ssh-keygen -A
 echo "root:$root_pw" | chpasswd
