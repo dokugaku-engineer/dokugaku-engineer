@@ -3,13 +3,14 @@ FROM amazonlinux:2.0.20200406.0
 WORKDIR /var/www
 
 # install package
-RUN amazon-linux-extras install -y php7.4
-RUN yum install -y git vim sudo procps
+RUN amazon-linux-extras enable epel \
+  && yum clean metadata \
+  && yum install -y epel-release \
+  && yum install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+  && sed -i 's/priority=10/priority=99/' /etc/yum.repos.d/amzn2-core.repo \
+  && yum install -y --enablerepo=remi-php74 php php-mbstring php-xml php-pecl-zip php-fpm php-soap php-bcmath php-opcache php-pecl-apcu php-pear php-devel php-pdo php-mysqlnd
+RUN yum install -y git vim sudo procps pcre-devel gcc make nodejs unzip
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
-## for php and laravel
-RUN yum install -y php-mbstring php-xml php-zip php-fpm php-soap php-bcmath nodejs unzip
-## for xdebug
-RUN yum install -y php-pear php-devel pcre-devel gcc make
 
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -23,10 +24,11 @@ ENV PATH $PATH:/root/.composer/vendor/bin
 RUN pecl install xdebug
 
 ## for New Relic
-RUN sudo rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
-RUN sudo yum install -y newrelic-php5
+RUN sudo rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm \
+  && sudo yum install -y newrelic-php5
 
 # set php-fpm.conf
+RUN adduser --home-dir /var/lib/nginx --shell /sbin/nologin --comment 'Nginx web server' nginx
 ARG env=development
 COPY docker/api/php-fpm/php-fpm.conf /etc/php-fpm.conf
 COPY docker/api/php-fpm/www.${env}.conf /etc/php-fpm.d/www.conf
