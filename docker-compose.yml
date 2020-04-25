@@ -10,6 +10,7 @@ services:
       - "8081:8081"
     volumes:
       - ./client:/var/www
+      - /var/www/node_modules/
     depends_on:
       - nginx
 
