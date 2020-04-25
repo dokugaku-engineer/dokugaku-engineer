@@ -2,7 +2,7 @@ FROM amazonlinux:2.0.20200406.0
 
 WORKDIR /var/www
 
-# install package
+# パッケージのインストール
 RUN amazon-linux-extras enable epel \
   && yum clean metadata \
   && yum install -y epel-release \
@@ -12,35 +12,34 @@ RUN amazon-linux-extras enable epel \
 RUN yum install -y git vim sudo procps pcre-devel gcc make nodejs unzip
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 
-# install composer
+# composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# install laravel
+# Laravelのインストール
 RUN composer global require laravel/installer
 ENV PATH $PATH:/root/.composer/vendor/bin
 
-# set xdebug
+# xdebugのインストール
 RUN pecl install xdebug
 
-## for New Relic
+## New Relicの設定
 RUN sudo rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm \
   && sudo yum install -y newrelic-php5
 
-# set php-fpm.conf
+# php-fpm.confの設定
 RUN adduser --home-dir /var/lib/nginx --shell /sbin/nologin --comment 'Nginx web server' nginx
 ARG env=development
 COPY docker/api/php-fpm/php-fpm.conf /etc/php-fpm.conf
 COPY docker/api/php-fpm/www.${env}.conf /etc/php-fpm.d/www.conf
 
-# set php.ini
-COPY docker/api/php.${env}.ini  /etc/php.d/php.ini
-
+COPY docker/api/php-ini/php.${env}.ini  /etc/php.d/php.ini
 COPY api/ /var/www/
-
 RUN composer install
-
 RUN chmod -R a+w /var/www/storage/ /var/www/bootstrap/cache/ /var/www/vendor/
+
+# opcacheの設定。preloadする際に vendor/autoload.php がいるので composer install したあとに設定する
+COPY docker/api/php-ini/opcache.${env}.ini /etc/php.d/opcache.ini
 
 # SSHしたいときはコメントアウトを解除する
 RUN yum install -y openssh-server
