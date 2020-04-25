@@ -41,6 +41,7 @@ services:
       - "22:22"
     volumes:
       - ./api:/var/www
+      - /var/www/vendor/
       - phpsocket:/var/run
     environment:
       - APP_ENV=development

@@ -120,6 +120,7 @@ class Preloader
 }
 
 (new Preloader())
+    ->paths(__DIR__ . '/vendor/symfony/console/Terminal.php') // ロードに失敗するので事前にロードしておく
     ->paths(__DIR__ . '/vendor/laravel')
     ->ignore(
         \Illuminate\Filesystem\Cache::class,
