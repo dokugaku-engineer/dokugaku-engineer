@@ -5,6 +5,9 @@ docker/nginx/nginx.conf
 
 api/node_modules
 api/public/storage
+api/public/apcu.php
+api/public/phpinfo.php
+api/public/ocp.php
 api/storage/*.key
 api/vendor
 api/.env
