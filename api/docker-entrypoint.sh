@@ -4,7 +4,7 @@ set -e
 
 if [ ${APP_ENV} = "production" ]; then
   echo "Create autoload_classmap"
-  composer dumpautoload -o
+  composer dump-autoload --optimize
   echo "Cache config"
   php artisan config:cache
   echo "Cache routing"
