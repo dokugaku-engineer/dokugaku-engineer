@@ -99,8 +99,6 @@ class Preloader
         require_once($path);
 
         self::$count++;
-
-        echo "[Preloader] Preloaded `{$class}`" . PHP_EOL;
     }
 
     private function shouldIgnore(?string $name): bool
