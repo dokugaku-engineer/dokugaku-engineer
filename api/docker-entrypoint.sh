@@ -7,6 +7,8 @@ if [ ${APP_ENV} = "production" ]; then
   composer dumpautoload -o
   echo "Cache config"
   php artisan config:cache
+  echo "Cache routing"
+  php artisan route:cache
   echo "Migrate"
   php artisan migrate --force
 
