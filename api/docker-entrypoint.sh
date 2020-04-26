@@ -3,6 +3,8 @@
 set -e
 
 if [ ${APP_ENV} = "production" ]; then
+  echo "Create autoload_classmap"
+  composer dumpautoload -o
   echo "Cache config"
   php artisan config:cache
   echo "Migrate"
