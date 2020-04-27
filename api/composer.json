@@ -12,8 +12,8 @@
         "auth0/login": "^5.3",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
-        "laravel/framework": "^6.0",
-        "laravel/tinker": "^1.0",
+        "laravel/framework": "^6.2",
+        "laravel/tinker": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "sentry/sentry-laravel": "1.7.0"
     },
