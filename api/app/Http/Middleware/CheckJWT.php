@@ -20,6 +20,7 @@ class CheckJWT
      */
     public function handle($request, Closure $next, $scopeRequired = null)
     {
+
         $accessToken = $request->bearerToken();
         if (empty($accessToken)) {
             return $this->respondUnauthorized('Bearer token missing');
@@ -34,7 +35,12 @@ class CheckJWT
 
         try {
             $jwtVerifier = new JWTVerifier($jwtConfig);
-            $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
+            $auth0Cache = app()->make('\Auth0\SDK\Helpers\Cache\CacheHandler');
+            $decodedToken = $auth0Cache->get($accessToken);
+            if (!isset($decodedToken)) {
+                $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
+                $auth0Cache->set($accessToken, $decodedToken);
+            }
         } catch (\Exception $e) {
             return $this->respondUnauthorized($e->getMessage());
         }
