@@ -12,7 +12,8 @@ const useAuth0 = async (store, {
     domain: options.domain,
     client_id: options.clientId,
     audience: options.audience,
-    redirect_uri: redirectUri
+    redirect_uri: redirectUri,
+    useRefreshTokens: true
   })
 
   try {

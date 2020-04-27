@@ -5,10 +5,14 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth0\SDK\JWTVerifier;
 use App\Traits\JsonRespondController;
+use Illuminate\Support\Facades\Cache;
 
 class CheckJWT
 {
     use JsonRespondController;
+
+    # キャッシュの有効期限。Auth0のIDトークンの有効期限と合わせる
+    const EXPIRE_SECONDS = 36000;
 
     /**
      * JWTアクセストークンを検証する
@@ -34,7 +38,9 @@ class CheckJWT
 
         try {
             $jwtVerifier = new JWTVerifier($jwtConfig);
-            $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
+            $decodedToken = Cache::remember($accessToken, self::EXPIRE_SECONDS, function () use ($jwtVerifier, $accessToken) {
+                return $jwtVerifier->verifyAndDecode($accessToken);
+            });
         } catch (\Exception $e) {
             return $this->respondUnauthorized($e->getMessage());
         }
