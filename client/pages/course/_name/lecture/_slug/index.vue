@@ -23,7 +23,7 @@
       <div v-if="auth0User.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
           <nuxt-link
-            :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`"
+            :to="`/course/${this.$route.params.name}/lecture/${lecture.prev_lecture_slug}`"
             class="video-btn-link"
           >
             <i class="fas fa-less-than"></i>
@@ -31,7 +31,7 @@
         </div>
         <div v-if="lecture.next_lecture_slug" class="video-btn video-btn-next">
           <nuxt-link
-            :to="`/course/${course.name}/lecture/${lecture.next_lecture_slug}`"
+            :to="`/course/${this.$route.params.name}/lecture/${lecture.next_lecture_slug}`"
             class="video-btn-link"
           >
             <i class="fas fa-greater-than"></i>
@@ -47,14 +47,14 @@
       <div class="detail-btns">
         <nuxt-link
           v-if="lecture.prev_lecture_slug"
-          :to="`/course/${course.name}/lecture/${lecture.prev_lecture_slug}`"
+          :to="`/course/${this.$route.params.name}/lecture/${lecture.prev_lecture_slug}`"
           class="detail-btn-link detail-btn-prev"
         >
           <i class="fas fa-less-than"></i>
         </nuxt-link>
         <nuxt-link
           v-if="lecture.next_lecture_slug"
-          :to="`/course/${course.name}/lecture/${lecture.next_lecture_slug}`"
+          :to="`/course/${this.$route.params.name}/lecture/${lecture.next_lecture_slug}`"
           class="detail-btn-link"
         >
           <i class="fas fa-greater-than"></i>
@@ -227,7 +227,6 @@ export default {
   },
   data() {
     return {
-      course: {},
       lecture: {},
       loading: true,
       error: null
@@ -235,11 +234,11 @@ export default {
   },
   computed: {
     ...mapState("auth0", ["auth0User"]),
+    ...mapState("course", ["course", "parts", "lessons", "lectures"]),
     ...mapGetters("auth0", ["isAuth0Provider"])
   },
   async created() {
     this.$store.dispatch("course/setLecture", {})
-    this.$store.dispatch("course/setCourse", {})
     this.$store.dispatch("course/setLectureName", "")
     this.$store.dispatch("course/setCourseTop", false)
     const token = await this.$auth0.getTokenSilently()
@@ -248,29 +247,52 @@ export default {
         Authorization: `Bearer ${token}`
       }
     }
-    await Promise.all([
-      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options),
-      this.$axios.$get(`/courses/${this.$route.params.name}`, options),
-      this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
-      this.$axios.$get(`/lessons?course=${this.$route.params.name}`, options),
-      this.$axios.$get(`/lectures?course=${this.$route.params.name}`, options),
-      this.$axios.$get(
-        `/learning_histories/${this.$route.params.name}/lecture_ids`,
-        options
-      )
-    ])
+
+    // レクチャーを取得
+    this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
       .then(res => {
-        // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
         this.loading = false
-        this.lecture = res[0]
-        this.course = res[1]
-        this.$store.dispatch("course/setLecture", res[0])
-        this.$store.dispatch("course/setLectureName", res[0].name)
-        this.$store.dispatch("course/setCourse", res[1])
-        this.$store.dispatch("course/setParts", res[2])
-        this.$store.dispatch("course/setLessons", res[3])
-        this.$store.dispatch("course/setLectures", res[4])
-        this.$store.dispatch("course/setLearnedLectureIds", res[5])
+        this.lecture = res
+        this.$store.dispatch("course/setLecture", res)
+        this.$store.dispatch("course/setLectureName", res.name)
+      })
+      .catch(err => {
+        this.loading = false
+        this.error = err
+        this.$sentry.captureException(err)
+      })
+
+    // コース関連のデータを取得
+    const isEmpty = (obj) => !Object.keys(obj).length;
+    if ([this.course, this.parts, this.lessons, this.lectures].some(isEmpty)) {
+      Promise.all([
+        this.$axios.$get(`/courses/${this.$route.params.name}`, options),
+        this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
+        this.$axios.$get(`/lessons?course=${this.$route.params.name}`, options),
+        this.$axios.$get(`/lectures?course=${this.$route.params.name}`, options),
+      ])
+        .then(res => {
+          // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
+          this.loading = false
+          this.$store.dispatch("course/setCourse", res[0])
+          this.$store.dispatch("course/setParts", res[1])
+          this.$store.dispatch("course/setLessons", res[2])
+          this.$store.dispatch("course/setLectures", res[3])
+        })
+        .catch(err => {
+          this.loading = false
+          this.error = err
+          this.$sentry.captureException(err)
+        })
+    }
+
+    // 受講履歴を取得
+    this.$axios.$get(
+      `/learning_histories/${this.$route.params.name}/lecture_ids`,
+      options
+    )
+      .then(res => {
+        this.$store.dispatch("course/setLearnedLectureIds", res)
       })
       .catch(err => {
         this.loading = false
@@ -298,7 +320,7 @@ export default {
         .catch(err => {
           this.$sentry.captureException(err)
         })
-    }
+    },
   }
 }
 </script>
