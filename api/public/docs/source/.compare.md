@@ -58,14 +58,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=atque" 
+curl -X GET -G "http://localhost:8080/api/categories?except=reprehenderit" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "atque",
+            "except": "reprehenderit",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -309,14 +309,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=earum" 
+curl -X GET -G "http://localhost:8080/api/posts?except=natus" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "earum",
+            "except": "natus",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1007,14 +1007,14 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/parts?course=sit" 
+curl -X GET -G "http://localhost:8080/api/parts?course=nemo" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/parts");
 
     let params = {
-            "course": "sit",
+            "course": "nemo",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1063,14 +1063,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lessons?course=tenetur" 
+curl -X GET -G "http://localhost:8080/api/lessons?course=earum" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lessons");
 
     let params = {
-            "course": "tenetur",
+            "course": "earum",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1118,14 +1118,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lectures?course=ut" 
+curl -X GET -G "http://localhost:8080/api/lectures?course=delectus" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lectures");
 
     let params = {
-            "course": "ut",
+            "course": "delectus",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1235,191 +1235,6 @@ Parameter | Type | Status | Description
     slug | string |  required  | Lecture slug.
 
 <!-- END_5aea6b8a5b275ae465be60b5be677eae -->
-
-<!-- START_582e178ccf3c75a7b53dd90f1baddcf7 -->
-## api/lectures/index/test
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost:8080/api/lectures/index/test" 
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/lectures/index/test");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response:
-
-```json
-null
-```
-
-### HTTP Request
-`GET api/lectures/index/test`
-
-
-<!-- END_582e178ccf3c75a7b53dd90f1baddcf7 -->
-
-<!-- START_fed51e5e5a398f84031b3b873482ca5c -->
-## api/lectures/{slug}/test
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost:8080/api/lectures/1/test" 
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/lectures/1/test");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response:
-
-```json
-null
-```
-
-### HTTP Request
-`GET api/lectures/{slug}/test`
-
-
-<!-- END_fed51e5e5a398f84031b3b873482ca5c -->
-
-<!-- START_8610058ca26734c476db0330d1be7d87 -->
-## api/courses/{name}/test
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost:8080/api/courses/1/test" 
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/courses/1/test");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response:
-
-```json
-null
-```
-
-### HTTP Request
-`GET api/courses/{name}/test`
-
-
-<!-- END_8610058ca26734c476db0330d1be7d87 -->
-
-<!-- START_365790a26a8ee3cdc0d2ee70eb8d4d0d -->
-## api/parts/test
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost:8080/api/parts/test" 
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/parts/test");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response:
-
-```json
-null
-```
-
-### HTTP Request
-`GET api/parts/test`
-
-
-<!-- END_365790a26a8ee3cdc0d2ee70eb8d4d0d -->
-
-<!-- START_b847069a5d4fc615a02476eefd1c81f1 -->
-## api/lessons/test
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost:8080/api/lessons/test" 
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/lessons/test");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response:
-
-```json
-null
-```
-
-### HTTP Request
-`GET api/lessons/test`
-
-
-<!-- END_b847069a5d4fc615a02476eefd1c81f1 -->
 
 #3. Users
 
@@ -1794,43 +1609,6 @@ Parameter | Type | Status | Description
     course_id | integer |  required  | Course id.
 
 <!-- END_942e4d62793db400efd4b9f9f545ea48 -->
-
-<!-- START_03c6fa043931819cb4523f274f58e277 -->
-## api/learning_histories/test
-> Example request:
-
-```bash
-curl -X GET -G "http://localhost:8080/api/learning_histories/test" 
-```
-
-```javascript
-const url = new URL("http://localhost:8080/api/learning_histories/test");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "GET",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-> Example response:
-
-```json
-null
-```
-
-### HTTP Request
-`GET api/learning_histories/test`
-
-
-<!-- END_03c6fa043931819cb4523f274f58e277 -->
 
 #4. Auth0
 
