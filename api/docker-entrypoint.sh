@@ -25,9 +25,9 @@ if [ ${APP_ENV} = "production" ]; then
 fi
 
 # SSHしたいときはコメントアウトを解除する
-root_pw=${ROOT_PW:-rooot}
-ssh-keygen -A
-echo "root:$root_pw" | chpasswd
-/usr/sbin/sshd
+# root_pw=${ROOT_PW:-rooot}
+# ssh-keygen -A
+# echo "root:$root_pw" | chpasswd
+# /usr/sbin/sshd
 
 /usr/sbin/php-fpm -F

@@ -26,9 +26,6 @@ services:
       - phpsocket:/var/run
     depends_on:
       - api
-    entrypoint:
-      - sh
-      - /var/www/nginx-docker-entrypoint.sh
 
   api:
     build:
