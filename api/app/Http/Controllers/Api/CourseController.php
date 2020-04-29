@@ -59,14 +59,4 @@ class CourseController extends ApiController
         $course = Course::with('parts.lessons.lectures')->get();
         return CourseWithLectureResource::collection($course);
     }
-
-
-    public function test(Request $request, $name)
-    {
-        $course = Course::where('name', $name)->first();
-        if (TakingCourse::doesntExist(1, $course->id)) {
-            return $this->respondNotFound('Taking course not found');
-        }
-        return new CourseResource($course);
-    }
 }

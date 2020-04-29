@@ -33,15 +33,4 @@ class LessonController extends ApiController
         $lessons = Lesson::where('course_id', $course->id)->get();
         return MinimumLessonResource::collection($lessons);
     }
-
-    public function test(Request $request)
-    {
-        $user_id = 1;
-        $course = Course::where('name', 'serverside')->first();
-        if (TakingCourse::doesntExist($user_id, $course->id)) {
-            return $this->respondNotFound('Taking course not found');
-        }
-        $lessons = Lesson::where('course_id', $course->id)->get();
-        return MinimumLessonResource::collection($lessons);
-    }
 }

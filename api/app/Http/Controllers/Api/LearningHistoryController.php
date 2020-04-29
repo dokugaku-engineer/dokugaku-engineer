@@ -46,12 +46,4 @@ class LearningHistoryController extends ApiController
         $lecture_ids = LearningHistory::where('user_id', $user_id)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
         return $this->respondWithOK($lecture_ids);
     }
-
-    public function test(Request $request)
-    {
-        $user_id = 1;
-        $course = Course::where('name', 'serverside')->first();
-        $lecture_ids = LearningHistory::where('user_id', $user_id)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
-        return $this->respondWithOK($lecture_ids);
-    }
 }
