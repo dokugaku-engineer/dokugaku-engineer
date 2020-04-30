@@ -1,27 +1,40 @@
 <template>
   <div class="container">
     <div class="heading">
-      <h1 class="heading-title">プロフィール</h1>
+      <h1 class="heading-title">
+        プロフィール
+      </h1>
     </div>
     <main class="main">
       <div v-if="loadingUser" class="loading">
-        <i class="fad fa-spinner fa-spin fa-lg"></i>
+        <i class="fad fa-spinner fa-spin fa-lg" />
       </div>
       <div v-if="error" class="setting-form">
         <error-box>
-          <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+          <p>
+            データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。
+          </p>
         </error-box>
       </div>
-      <div v-if="isAuth0Provider && !auth0User.email_verified" class="setting-form">
+      <div
+        v-if="isAuth0Provider && !auth0User.email_verified"
+        class="setting-form"
+      >
         <verification-email-box />
       </div>
 
       <div v-else>
         <div v-if="!loadingUser && !error">
           <nui-form>
-            <form @submit.prevent="updateUser()" class="setting-form">
+            <form class="setting-form" @submit.prevent="updateUser()">
               <ul v-if="Object.keys(errors).length > 0" class="error-box">
-                <li v-for="(value, key) in errors" :key="key" class="error-box-disc">{{ value[0] }}</li>
+                <li
+                  v-for="(value, key) in errors"
+                  :key="key"
+                  class="error-box-disc"
+                >
+                  {{ value[0] }}
+                </li>
               </ul>
 
               <div class="form-group">
@@ -32,38 +45,62 @@
                   name="users[username]"
                   required
                 />
-                <div v-if="submitError && !$v.user.username.required" class="error-text">ユーザー名は必須です。</div>
+                <div
+                  v-if="submitError && !$v.user.username.required"
+                  class="error-text"
+                >
+                  ユーザー名は必須です。
+                </div>
                 <div
                   v-if="submitError && !$v.user.username.minLength"
                   class="error-text"
-                >ユーザー名は3文字以上で入力してください。</div>
-                <div v-if="!$v.user.username.maxLength" class="error-text">ユーザー名は50文字以下で入力してください。</div>
-                <div
-                  v-if="!$v.user.username.alphaNumName"
-                  class="error-text"
-                >ユーザー名は半角英数字及び_, -で入力してください。</div>
+                >
+                  ユーザー名は3文字以上で入力してください。
+                </div>
+                <div v-if="!$v.user.username.maxLength" class="error-text">
+                  ユーザー名は50文字以下で入力してください。
+                </div>
+              </div>
+              <div v-if="!$v.user.username.alphaNumName" class="error-text">
+                ユーザー名は半角英数字及び_, -で入力してください。
               </div>
 
               <div class="form-group">
                 <label for="users[email]">メールアドレス</label>
-                <input v-model.trim="$v.user.email.$model" type="text" name="users[email]" required />
-                <div v-if="submitError && !$v.user.email.required" class="error-text">メールアドレスは必須です。</div>
+                <input
+                  v-model.trim="$v.user.email.$model"
+                  type="text"
+                  name="users[email]"
+                  required
+                />
+                <div
+                  v-if="submitError && !$v.user.email.required"
+                  class="error-text"
+                >
+                  メールアドレスは必須です。
+                </div>
                 <div
                   v-if="submitError && !$v.user.email.email"
                   class="error-text"
-                >メールアドレスのフォーマットが不適切です。</div>
+                >
+                  メールアドレスのフォーマットが不適切です。
+                </div>
               </div>
 
               <div class="form-btn">
                 <nui-button v-if="submitPending" class="btn-red1">
-                  <i class="fad fa-spinner fa-spin fa-lg"></i>
+                  <i class="fad fa-spinner fa-spin fa-lg" />
                 </nui-button>
-                <nui-button v-else class="btn-red1" :submit="true">変更する</nui-button>
+                <nui-button v-else class="btn-red1" :submit="true">
+                  変更する
+                </nui-button>
               </div>
             </form>
           </nui-form>
-          <nuxt-link to="/settings/quit" class="quit-link">アカウントを削除される場合はこちら</nuxt-link>
         </div>
+        <nuxt-link to="/settings/quit" class="quit-link">
+          アカウントを削除される場合はこちら
+        </nuxt-link>
       </div>
     </main>
   </div>
@@ -127,7 +164,7 @@ import VerificationEmailBox from "@/components/partials/course/VerificationEmail
 import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
 import { mapState, mapGetters } from "vuex"
 
-const alphaNumName = name => {
+const alphaNumName = (name) => {
   if (typeof name === "undefined" || name === null || name === "") {
     return true
   }
@@ -140,17 +177,17 @@ export default {
     NuiButton,
     NuiForm,
     ErrorBox,
-    VerificationEmailBox
+    VerificationEmailBox,
   },
   data() {
     return {
       user: {
         username: "",
-        email: ""
+        email: "",
       },
       submitStatus: "OK",
       loadingUser: false,
-      error: null
+      error: null,
     }
   },
   computed: {
@@ -161,7 +198,7 @@ export default {
     },
     submitPending() {
       return this.submitStatus === "PENDING"
-    }
+    },
   },
   beforeCreate() {
     this.$store.dispatch("setting/setTitle", { title: "プロフィール" })
@@ -171,11 +208,11 @@ export default {
     const options = await this.getOptions()
     await this.$axios
       .$get(`/users/${this.userId}`, options)
-      .then(res => {
+      .then((res) => {
         this.user.username = res.username
         this.user.email = res.email
       })
-      .catch(err => {
+      .catch((err) => {
         this.error = err.response
         this.$sentry.captureException(err)
       })
@@ -194,11 +231,11 @@ export default {
       const options = await this.getOptions()
       await this.$axios
         .$patch(`/users/${this.userId}`, this.user, options)
-        .then(res => {
+        .then(() => {
           this.submitStatus = "OK"
           this.$toast.global.instant_success()
         })
-        .catch(err => {
+        .catch((err) => {
           this.submitStatus = "ERROR"
           this.$sentry.captureException(err)
         })
@@ -207,10 +244,10 @@ export default {
       const token = await this.$auth0.getTokenSilently()
       return {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }
-    }
+    },
   },
   validations: {
     user: {
@@ -218,13 +255,13 @@ export default {
         required,
         minLength: minLength(3),
         maxLength: maxLength(50),
-        alphaNumName
+        alphaNumName,
       },
       email: {
         required,
-        email
-      }
-    }
-  }
+        email,
+      },
+    },
+  },
 }
 </script>

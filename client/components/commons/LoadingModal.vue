@@ -3,7 +3,7 @@
     <transition name="fade">
       <div v-if="showModal" class="modal">
         <div class="loading">
-          <i class="fad fa-spinner fa-spin fa-lg"></i>
+          <i class="fad fa-spinner fa-spin fa-lg" />
         </div>
       </div>
     </transition>
@@ -12,7 +12,7 @@
 
 <style lang="scss" scoped>
 .modal {
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, 0.6);
   height: 100vh;
   left: 0;
   overflow: hidden;
@@ -29,11 +29,13 @@
   top: 40%;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .1s ease-out;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s ease-out;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
@@ -43,8 +45,8 @@ export default {
   props: {
     showModal: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>

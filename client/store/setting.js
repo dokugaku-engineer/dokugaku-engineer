@@ -1,23 +1,17 @@
 export const state = () => ({
-  title: ''
+  title: "",
 })
 
 export const mutations = {
-  SET_TITLE(state, {
-    title
-  }) {
+  SET_TITLE(state, { title }) {
     state.title = title
-  }
+  },
 }
 
 export const actions = {
-  setTitle({
-    commit
-  }, {
-    title
-  }) {
+  setTitle({ commit }, { title }) {
     commit("SET_TITLE", {
-      title
+      title,
     })
-  }
+  },
 }

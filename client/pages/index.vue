@@ -2,7 +2,11 @@
   <div class="content">
     <div class="tagline bg-white2">
       <div class="tagline-img-left">
-        <img @click="toggleModal" src="@/assets/images/serverside-hero.png" alt />
+        <img
+          src="@/assets/images/serverside-hero.png"
+          alt
+          @click="toggleModal"
+        />
       </div>
       <div class="tagline-content">
         <div>
@@ -13,24 +17,33 @@
             <span class="tagline-title">「独学エンジニア」</span>
           </h1>
           <div class="tagline-btn">
-            <nui-button @click.native="signup" class="btn-teal1 btn-shadow content-btn">無料で受講する</nui-button>
             <nui-button
-              @click.native="showModal = true"
-              class="btn-outline-teal1 btn-shadow content-btn"
+              class="btn-teal1 btn-shadow content-btn"
+              @click.native="signup"
             >
-              <i class="fas fa-play-circle fa-lg"></i>
+              無料で受講する
+            </nui-button>
+            <nui-button
+              class="btn-outline-teal1 btn-shadow content-btn"
+              @click.native="showModal = true"
+            >
+              <i class="fas fa-play-circle fa-lg" />
               講座をプレビュー
             </nui-button>
           </div>
         </div>
         <div class="tagline-img-right">
-          <img @click="toggleModal" src="@/assets/images/serverside-hero.png" alt />
+          <img
+            src="@/assets/images/serverside-hero.png"
+            alt
+            @click="toggleModal"
+          />
         </div>
       </div>
     </div>
 
     <transition name="fade">
-      <div v-if="showModal" @click="toggleModal" class="video-modal">
+      <div v-if="showModal" class="video-modal" @click="toggleModal">
         <div class="video-modal-daialog">
           <div class="video-modal-content">
             <div class="video-modal-embed">
@@ -39,9 +52,15 @@
                 frameborder="0"
                 allow="autoplay; fullscreen"
                 allowfullscreen
-                style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                "
                 data-ready="true"
-              ></iframe>
+              />
             </div>
           </div>
         </div>
@@ -62,7 +81,11 @@
       <div class="intro-point-container">
         <div class="intro-point">
           <div class="intro-img-container">
-            <img class="intro-img" src="@/assets/images/serverside-feature-illust.png" alt />
+            <img
+              class="intro-img"
+              src="@/assets/images/serverside-feature-illust.png"
+              alt
+            />
           </div>
           <h3>図解中心の動画で学ぶ</h3>
           <p>
@@ -72,7 +95,11 @@
         </div>
         <div class="intro-point">
           <div class="intro-img-container">
-            <img class="intro-img" src="@/assets/images/serverside-feature-roadmap.png" alt />
+            <img
+              class="intro-img"
+              src="@/assets/images/serverside-feature-roadmap.png"
+              alt
+            />
           </div>
           <h3>実務で必要スキルを網羅</h3>
           <p>
@@ -82,7 +109,11 @@
         </div>
         <div class="intro-point">
           <div class="intro-img-container">
-            <img class="intro-img" src="@/assets/images/serverside-feature-code.png" alt />
+            <img
+              class="intro-img"
+              src="@/assets/images/serverside-feature-code.png"
+              alt
+            />
           </div>
           <h3>実務レベルの演習</h3>
           <p>
@@ -104,9 +135,16 @@
           <br />
           <br />エンジニアとして就職・転職できるのはもちろん、その後の実務で使える実践的スキルを。
         </p>
-        <h3 class="philosophy-message">「初学者から実務で自走できるエンジニアへ」</h3>
+        <h3 class="philosophy-message">
+          「初学者から実務で自走できるエンジニアへ」
+        </h3>
         <div class="content-single-btn">
-          <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">無料で受講する</nui-button>
+          <nui-button
+            class="btn-teal1 btn-shadow content-btn"
+            @click.native="signup"
+          >
+            無料で受講する
+          </nui-button>
         </div>
       </div>
     </div>
@@ -125,13 +163,18 @@
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>アプリケーションの作り方を知ろう</h4>
-              <p>読書管理サービスを作りながら、アプリケーションの組み立て方とWEBサービスの全体像を学びます。また、開発環境（ターミナル、Docker、Visual Studio Code）も整えます。</p>
+              <p>
+                読書管理サービスを作りながら、アプリケーションの組み立て方とWEBサービスの全体像を学びます。また、開発環境（ターミナル、Docker、Visual
+                Studio Code）も整えます。
+              </p>
             </div>
           </li>
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>PHPとオブジェクト指向を学ぼう</h4>
-              <p>PHPとオブジェクト指向の基本を習得します。デバッグの方法といった、エラーのときにどう対処すればよいかも学びます。同時にコードをたくさん書き、プログラミングに慣れることを狙います。</p>
+              <p>
+                PHPとオブジェクト指向の基本を習得します。デバッグの方法といった、エラーのときにどう対処すればよいかも学びます。同時にコードをたくさん書き、プログラミングに慣れることを狙います。
+              </p>
               <ul class="roadmap-project">
                 <li>プロジェクト：ブラックジャックゲーム</li>
               </ul>
@@ -140,13 +183,17 @@
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>Linuxコマンドラインを使いこなそう</h4>
-              <p>Linuxの必須コマンドを手を動かしながら習得します。今後の開発がスムーズにできるよう、ターミナルの操作とLinuxの操作ができるようになります。</p>
+              <p>
+                Linuxの必須コマンドを手を動かしながら習得します。今後の開発がスムーズにできるよう、ターミナルの操作とLinuxの操作ができるようになります。
+              </p>
             </div>
           </li>
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>データベースとSQLを学ぼう</h4>
-              <p>リレーショナルデータベースの概念を学び、基本的な設計方針を身に付けます。またSQLを使い、PHPからデータが操作できるようになります。</p>
+              <p>
+                リレーショナルデータベースの概念を学び、基本的な設計方針を身に付けます。またSQLを使い、PHPからデータが操作できるようになります。
+              </p>
               <ul class="roadmap-project">
                 <li>プロジェクト：ログ解析システム</li>
               </ul>
@@ -155,13 +202,17 @@
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>Gitでバージョン管理しよう</h4>
-              <p>Gitの基本コマンド、ブランチやマージ、コンフリクトの解消方法、GitHubを利用した開発フローなど、チーム開発に必要なGitの基本を学びます。コードがバージョン管理できるようになることに加え、チーム開発の現場でGitが使いこなせるようになります。</p>
+              <p>
+                Gitの基本コマンド、ブランチやマージ、コンフリクトの解消方法、GitHubを利用した開発フローなど、チーム開発に必要なGitの基本を学びます。コードがバージョン管理できるようになることに加え、チーム開発の現場でGitが使いこなせるようになります。
+              </p>
             </div>
           </li>
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>WEBアプリケーションを一から作成しよう</h4>
-              <p>素のPHPを使用してWEBアプリケーションを一から作成します。フルスクラッチで作ることで、WEBアプリケーションの仕組みを理解し、自分でWEBアプリケーションが作れるようになります。</p>
+              <p>
+                素のPHPを使用してWEBアプリケーションを一から作成します。フルスクラッチで作ることで、WEBアプリケーションの仕組みを理解し、自分でWEBアプリケーションが作れるようになります。
+              </p>
               <ul class="roadmap-project">
                 <li>プロジェクト：PHPでブログサービス</li>
               </ul>
@@ -170,13 +221,17 @@
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>読みやすいコードを書こう</h4>
-              <p>理解しやすいコードを書く方法を学びます。名前の付け方やコメントの書き方、コードをわかりやすくするベストプラクティスを学習し、コードが読みやすくなるようにします。</p>
+              <p>
+                理解しやすいコードを書く方法を学びます。名前の付け方やコメントの書き方、コードをわかりやすくするベストプラクティスを学習し、コードが読みやすくなるようにします。
+              </p>
             </div>
           </li>
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>フレームワーク「Laravel」を学ぼう</h4>
-              <p>PHPフレームワークのLaravelを利用して、求人サービスを作成します。現場で実際に使われるような細かい機能が実装できるようになります。また、テストについても学びます。</p>
+              <p>
+                PHPフレームワークのLaravelを利用して、求人サービスを作成します。現場で実際に使われるような細かい機能が実装できるようになります。また、テストについても学びます。
+              </p>
               <ul class="roadmap-project">
                 <li>プロジェクト：Laravelでブログサービス</li>
               </ul>
@@ -185,13 +240,17 @@
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>インフラを構築しよう</h4>
-              <p>AWSでネットワーク・サーバーを構築します。また、監視やアラートの設定といった、インフラの運用に関する知識も学びます。</p>
+              <p>
+                AWSでネットワーク・サーバーを構築します。また、監視やアラートの設定といった、インフラの運用に関する知識も学びます。
+              </p>
             </div>
           </li>
           <li class="roadmap-content">
             <div class="roadmap-part">
               <h4>認定試験を受けよう</h4>
-              <p>実務レベルのサービスを構築し、リリースまで行います。実務水準の技術力の取得を目指すとともに、就職・転職時に活用できるポートフォリオができます。</p>
+              <p>
+                実務レベルのサービスを構築し、リリースまで行います。実務水準の技術力の取得を目指すとともに、就職・転職時に活用できるポートフォリオができます。
+              </p>
             </div>
           </li>
         </ul>
@@ -203,29 +262,44 @@
         <div class="qa-content">
           <h2>よくある質問</h2>
           <ul>
-            <li class="qa-question">受講における必要条件はありますか？</li>
-            <li
-              class="qa-answer"
-            >何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。</li>
+            <li class="qa-question">
+              受講における必要条件はありますか？
+            </li>
+            <li class="qa-answer">
+              何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。
+            </li>
           </ul>
           <ul>
-            <li class="qa-question">パソコンはWindows、Macのどちらでも大丈夫でしょうか？</li>
-            <li
-              class="qa-answer"
-            >Windows、Macのどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。</li>
+            <li class="qa-question">
+              パソコンはWindows、Macのどちらでも大丈夫でしょうか？
+            </li>
+            <li class="qa-answer">
+              Windows、Macのどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。
+            </li>
           </ul>
           <ul>
-            <li class="qa-question">なぜプログラミング言語はPHPなのですか？</li>
-            <li
-              class="qa-answer"
-            >初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。WEB系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。</li>
+            <li class="qa-question">
+              なぜプログラミング言語はPHPなのですか？
+            </li>
+            <li class="qa-answer">
+              初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。WEB系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。
+            </li>
           </ul>
           <ul>
-            <li class="qa-question">料金はかかりますか？</li>
-            <li class="qa-answer">現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。</li>
+            <li class="qa-question">
+              料金はかかりますか？
+            </li>
+            <li class="qa-answer">
+              現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。
+            </li>
           </ul>
           <div class="content-single-btn">
-            <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="signup">無料で受講する</nui-button>
+            <nui-button
+              class="btn-teal1 btn-shadow content-btn"
+              @click.native="signup"
+            >
+              無料で受講する
+            </nui-button>
           </div>
         </div>
       </div>
@@ -701,30 +775,26 @@
 </style>
 
 <script>
-import Logo from "@/components/svg/Logo.vue"
 import NuiButton from "@/components/commons/Button.vue"
-import Footer from "@/components/layouts/Footer.vue"
 import auth0Middleware from "~/middleware/auth0"
 import { mapState } from "vuex"
 
 export default {
   components: {
-    Logo,
     NuiButton,
-    Footer
+  },
+  data() {
+    return {
+      showModal: false,
+    }
   },
   computed: {
-    ...mapState("auth0", ["user", "isAuthenticated"])
+    ...mapState("auth0", ["user", "isAuthenticated"]),
   },
   middleware: auth0Middleware.protect({
     loginRequired: false,
-    authenticatedRedirectUri: "/course/serverside"
+    authenticatedRedirectUri: "/course/serverside",
   }),
-  data() {
-    return {
-      showModal: false
-    }
-  },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
@@ -733,12 +803,12 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: "/course/serverside"
+          targetUrl: "/course/serverside",
         },
-        screen_hint: "signup"
+        screen_hint: "signup",
       }
       await this.$auth0.loginWithRedirect(options)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -151,41 +151,41 @@ import { required, maxLength, numeric, helpers } from "vuelidate/lib/validators"
 
 export default {
   components: {
-    NuiButton
+    NuiButton,
   },
   props: {
     categories: {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     slug: {
       type: String,
-      default: ""
+      default: "",
     },
     name: {
       type: String,
-      default: ""
+      default: "",
     },
     parent: {
       type: Number,
-      default: 0
+      default: 0,
     },
     editing: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       category: {
         slug: this.slug,
         name: this.name,
-        parent: this.parent
+        parent: this.parent,
       },
       submitted: false,
-      isEditing: this.editing
+      isEditing: this.editing,
     }
   },
   methods: {
@@ -212,23 +212,23 @@ export default {
         .catch(() => {
           this.submitted = true
         })
-    }
+    },
   },
   validations: {
     category: {
       slug: {
         required,
         alphaNum: helpers.regex("", /^[a-zA-Z0-9\-_]+$/),
-        maxLength: maxLength(255)
+        maxLength: maxLength(255),
       },
       name: {
         required,
-        maxLength: maxLength(255)
+        maxLength: maxLength(255),
       },
       parent: {
-        numeric
-      }
-    }
-  }
+        numeric,
+      },
+    },
+  },
 }
 </script>

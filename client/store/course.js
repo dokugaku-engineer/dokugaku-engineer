@@ -5,8 +5,8 @@ export const state = () => ({
   lectures: [],
   lecture: {},
   learnedLectureIds: [],
-  lectureName: '',
-  courseTop: false
+  lectureName: "",
+  courseTop: false,
 })
 
 export const mutations = {
@@ -44,64 +44,48 @@ export const mutations = {
 }
 
 export const actions = {
-  setCourse({
-    commit
-  }, $payload) {
+  setCourse({ commit }, $payload) {
     commit("SET_COURSE", $payload)
   },
 
-  setParts({
-    commit
-  }, $payload) {
+  setParts({ commit }, $payload) {
     commit("SET_PARTS", $payload)
   },
 
-  setLessons({
-    commit
-  }, $payload) {
+  setLessons({ commit }, $payload) {
     commit("SET_LESSONS", $payload)
   },
 
-  setLectures({
-    commit
-  }, $payload) {
+  setLectures({ commit }, $payload) {
     commit("SET_LECTURES", $payload)
   },
 
-  setLecture({
-    commit
-  }, $payload) {
+  setLecture({ commit }, $payload) {
     commit("SET_LECTURE", $payload)
   },
 
-  setLearnedLectureIds({
-    commit
-  }, $payload) {
+  setLearnedLectureIds({ commit }, $payload) {
     commit("SET_LEARNED_LECTURE_IDS", $payload)
   },
 
-  setLectureName({
-    commit
-  }, $payload) {
+  setLectureName({ commit }, $payload) {
     commit("SET_LECTURE_NAME", $payload)
   },
 
-  setCourseTop({
-    commit
-  }, $payload) {
+  setCourseTop({ commit }, $payload) {
     commit("SET_COURSE_TOP", $payload)
   },
 }
 
 export const getters = {
   filteredLessons: (state) => (partId) => {
-    return state.lessons.filter(lesson => {
+    return state.lessons.filter((lesson) => {
       return lesson.part_id === partId
     })
   },
 
   filteredLectures: (state) => (lessonId) => {
-    return state.lectures.filter(lecture => {
+    return state.lectures.filter((lecture) => {
       return lecture.lesson_id === lessonId
     })
   },

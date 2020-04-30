@@ -95,11 +95,11 @@ export default {
     ContentHeader,
     ContentBox,
     LinkButton,
-    NuiButton
+    NuiButton,
   },
   data() {
     return {
-      posts: []
+      posts: [],
     }
   },
   async created() {
@@ -109,19 +109,19 @@ export default {
   methods: {
     async publish(postId) {
       const post = await this.$axios.$get(`/posts/${postId}/publish`)
-      const foundIndex = this.posts.findIndex(p => p.id === post.id)
+      const foundIndex = this.posts.findIndex((p) => p.id === post.id)
       this.posts.splice(foundIndex, 1, post)
     },
     async unpublish(postId) {
       const post = await this.$axios.$get(`/posts/${postId}/unpublish`)
-      const foundIndex = this.posts.findIndex(p => p.id === post.id)
+      const foundIndex = this.posts.findIndex((p) => p.id === post.id)
       this.posts.splice(foundIndex, 1, post)
     },
     async destroy(postId) {
       const post = await this.$axios.$delete(`/posts/${postId}`)
-      const foundIndex = this.posts.findIndex(p => p.id === post.id)
+      const foundIndex = this.posts.findIndex((p) => p.id === post.id)
       this.posts.splice(foundIndex, 1)
-    }
-  }
+    },
+  },
 }
 </script>

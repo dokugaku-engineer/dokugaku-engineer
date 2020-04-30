@@ -35,7 +35,7 @@ import Logo from "@/components/svg/Logo.vue"
 
 export default {
   components: {
-    Logo
-  }
+    Logo,
+  },
 }
 </script>

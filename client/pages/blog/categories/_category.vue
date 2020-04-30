@@ -68,7 +68,7 @@ export default {
   components: {
     Breadcrumb,
     Article,
-    Sidebar
-  }
+    Sidebar,
+  },
 }
 </script>

@@ -7,57 +7,92 @@
         </h2>
       </nuxt-link>
       <div>
-        <i @click="toggleMenu" class="far fa-bars bars-regular"></i>
+        <i class="far fa-bars bars-regular" @click="toggleMenu" />
         <transition name="fade">
           <div v-if="showMenu" class="menu">
-            <i @click="toggleMenu" class="fal fa-times fa-lg cross"></i>
+            <i class="fal fa-times fa-lg cross" @click="toggleMenu" />
             <div class="menu-inner">
               <div class="menu-boarder">
                 <div class="menu-item">
-                  <nuxt-link :to="`/course/${course.name}`" @click.native="toggleMenu">
-                    <h2 class="menu-item-title">ホーム</h2>
+                  <nuxt-link
+                    :to="`/course/${course.name}`"
+                    @click.native="toggleMenu"
+                  >
+                    <h2 class="menu-item-title">
+                      ホーム
+                    </h2>
                   </nuxt-link>
                 </div>
               </div>
               <div class="menu-boarder">
-                <div v-for="lesson in lessons" class="menu-item">
+                <div
+                  v-for="(lesson, index) in lessons"
+                  :key="index"
+                  class="menu-item"
+                >
                   <lecture-list
                     :course="course"
                     :lesson="lesson"
                     :lecture="lecture"
                     :lectures="filteredLectures(lesson.id)"
-                    :learnedLectureIds="learnedLectureIds"
+                    :learned-lecture-ids="learnedLectureIds"
                     @hideMenu="toggleMenu"
                   />
                 </div>
               </div>
               <div class="menu-item">
-                <nuxt-link @click.native="toggleMenu" to="/settings/profile">
-                  <h2 class="menu-item-title">プロフィール</h2>
+                <nuxt-link to="/settings/profile" @click.native="toggleMenu">
+                  <h2 class="menu-item-title">
+                    プロフィール
+                  </h2>
                 </nuxt-link>
               </div>
               <div class="menu-item">
-                <nuxt-link @click.native="toggleMenu" to="/settings/password">
-                  <h2 class="menu-item-title">パスワード</h2>
+                <nuxt-link to="/settings/password" @click.native="toggleMenu">
+                  <h2 class="menu-item-title">
+                    パスワード
+                  </h2>
                 </nuxt-link>
               </div>
               <div class="menu-item">
-                <button class="menu-item-title" @click="logout">ログアウト</button>
+                <button class="menu-item-title" @click="logout">
+                  ログアウト
+                </button>
               </div>
             </div>
           </div>
         </transition>
       </div>
-      <h1 class="header-title">{{ lectureName }}</h1>
-      <i @click="toggleSetting" ref="bars" class="fas fa-bars fa-lg bars-solid"></i>
+      <h1 class="header-title">
+        {{ lectureName }}
+      </h1>
+      <i
+        ref="bars"
+        class="fas fa-bars fa-lg bars-solid"
+        @click="toggleSetting"
+      />
       <div
         v-if="showSetting"
         v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }"
         class="setting"
       >
-        <nuxt-link @click.native="closeSetting" to="/settings/profile" class="setting-link">プロフィール</nuxt-link>
-        <nuxt-link @click.native="closeSetting" to="/settings/password" class="setting-link">パスワード</nuxt-link>
-        <button @click="logout" class="setting-link">ログアウト</button>
+        <nuxt-link
+          to="/settings/profile"
+          class="setting-link"
+          @click.native="closeSetting"
+        >
+          プロフィール
+        </nuxt-link>
+        <nuxt-link
+          to="/settings/password"
+          class="setting-link"
+          @click.native="closeSetting"
+        >
+          パスワード
+        </nuxt-link>
+        <button class="setting-link" @click="logout">
+          ログアウト
+        </button>
       </div>
     </header>
 
@@ -66,17 +101,19 @@
         <div class="menu-boarder">
           <div class="lesson">
             <nuxt-link :to="`/course/${course.name}`">
-              <h2 class="menu-item-title" :class="courseTop ? 'play' : ''">コースについて</h2>
+              <h2 class="menu-item-title" :class="courseTop ? 'play' : ''">
+                コースについて
+              </h2>
             </nuxt-link>
           </div>
         </div>
-        <div v-for="lesson in lessons" class="lesson">
+        <div v-for="(lesson, index) in lessons" :key="index" class="lesson">
           <lecture-list
             :course="course"
             :lesson="lesson"
             :lecture="lecture"
             :lectures="filteredLectures(lesson.id)"
-            :learnedLectureIds="learnedLectureIds"
+            :learned-lecture-ids="learnedLectureIds"
           />
         </div>
       </nav>
@@ -298,12 +335,12 @@ export default {
   components: {
     Logo,
     LectureList,
-    Footer
+    Footer,
   },
   data() {
     return {
       showMenu: false,
-      showSetting: false
+      showSetting: false,
     }
   },
   middleware: auth0Middleware.protect(),
@@ -314,9 +351,9 @@ export default {
       "lecture",
       "learnedLectureIds",
       "lectureName",
-      "courseTop"
+      "courseTop",
     ]),
-    ...mapGetters("course", ["filteredLectures"])
+    ...mapGetters("course", ["filteredLectures"]),
   },
   methods: {
     async logout() {
@@ -330,7 +367,7 @@ export default {
     },
     toggleMenu() {
       this.showMenu = !this.showMenu
-    }
-  }
+    },
+  },
 }
 </script>

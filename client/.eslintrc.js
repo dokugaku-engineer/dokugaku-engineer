@@ -21,6 +21,7 @@ module.exports = {
     "semi": [2, "never"],
     "no-console": "off",
     "vue/max-attributes-per-line": "off",
+    "vue/singleline-html-element-content-newline": "off",
     "vue/html-self-closing": ["error", {
       "html": {
         "void": "always",

@@ -1,13 +1,13 @@
 <template>
   <div class="error-box">
     <slot />
-  </div>  
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .error-box {
   background-color: $color-red3;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   color: $color-red1;
   font-size: $font-size-sm;
   font-weight: 700;
@@ -17,6 +17,5 @@
 </style>
 
 <script>
-export default {
-}
+export default {}
 </script>

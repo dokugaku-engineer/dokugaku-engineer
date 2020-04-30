@@ -1,6 +1,4 @@
-const {
-  src
-} = require("gulp")
+const { src } = require("gulp")
 const awspublish = require("gulp-awspublish")
 const parallelize = require("concurrent-transform")
 const cfInvalidation = require("./cfInvalidation")
@@ -15,7 +13,7 @@ const config = {
 
 const awspublishConfig = {
   params: {
-    Bucket: process.env.AWS_CLIENT_BUCKET_NAME
+    Bucket: process.env.AWS_CLIENT_BUCKET_NAME,
   },
   region: process.env.AWS_DEFAULT_REGION,
   cacheFileName: ".awspublish",
@@ -25,7 +23,7 @@ const cfConfig = {
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    signatureVersion: "v3"
+    signatureVersion: "v3",
   },
   distribution: process.env.AWS_CLOUDFRONT, // CloudFront distribution ID
 }
@@ -36,7 +34,9 @@ const deploy = (cb) => {
   const publisher = awspublish.create(awspublishConfig)
 
   src("./" + config.distDir + "/**")
-    .pipe(parallelize(publisher.publish(config.headers), config.concurrentUploads)) // S3にアップロードする
+    .pipe(
+      parallelize(publisher.publish(config.headers), config.concurrentUploads)
+    ) // S3にアップロードする
     .pipe(cfInvalidation(cfConfig))
     .pipe(publisher.sync()) // S3をdist以下のファイルに同期し、古いファイルを削除する
     .pipe(publisher.cache()) // 連続したアップロードを高速化するためにキャッシュファイルを作成する

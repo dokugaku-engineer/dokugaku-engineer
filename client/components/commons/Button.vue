@@ -7,7 +7,7 @@
 <style lang="scss" scoped>
 .btn {
   border: 1px solid transparent;
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   box-sizing: border-box;
   display: inline-block;
   line-height: 1.5;
@@ -27,7 +27,7 @@
 }
 
 .btn-xs {
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   font-size: $font-size-xs;
 }
 
@@ -72,7 +72,8 @@
 }
 
 .btn-shadow-all {
-  box-shadow: 0 0 8px 0 rgba(17, 22, 26, 0.16), 0 4px 8px 0 rgba(17, 22, 26, 0.08), 0 8px 16px 0 rgba(17, 22, 26, 0.08);
+  box-shadow: 0 0 8px 0 rgba(17, 22, 26, 0.16),
+    0 4px 8px 0 rgba(17, 22, 26, 0.08), 0 8px 16px 0 rgba(17, 22, 26, 0.08);
 }
 </style>
 
@@ -81,8 +82,8 @@ export default {
   props: {
     submit: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 }
 </script>

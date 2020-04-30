@@ -1,17 +1,17 @@
 export const state = () => ({
-  errors: {}
+  errors: {},
 })
 
 export const getters = {
   errors(state) {
     return state.errors
-  }
+  },
 }
 
 export const mutations = {
   SET_VALIDATION_ERRORS(state, errors) {
     state.errors = errors
-  }
+  },
 }
 
 export const actions = {
@@ -20,5 +20,5 @@ export const actions = {
   },
   clearErrors({ commit }) {
     commit("SET_VALIDATION_ERRORS", {})
-  }
+  },
 }

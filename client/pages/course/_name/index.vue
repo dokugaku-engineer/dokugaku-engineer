@@ -5,33 +5,45 @@
         <verification-email-box />
         <div v-if="auth0Error">
           <error-box>
-            <p>認証用メール送信時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+            <p>
+              認証用メール送信時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。
+            </p>
           </error-box>
         </div>
       </div>
-      <h3 class="header-title">カリキュラム</h3>
-      <p class="header-text">{{ course.description }}</p>
+      <h3 class="header-title">
+        カリキュラム
+      </h3>
+      <p class="header-text">
+        {{ course.description }}
+      </p>
     </div>
     <div class="main">
       <div v-if="error">
         <error-box>
-          <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+          <p>
+            データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。
+          </p>
         </error-box>
       </div>
       <div v-if="loading" class="loading">
-        <i class="fad fa-spinner fa-spin fa-lg"></i>
+        <i class="fad fa-spinner fa-spin fa-lg" />
       </div>
-      <div class="part" v-for="part in parts">
+      <div v-for="(part, index) in parts" :key="index" class="part">
         <div class="part-inner">
-          <h3 class="part-subtitle">PART {{ part.order }}</h3>
-          <h2 class="part-title">{{ part.name }}</h2>
-          <p class="part-content">{{ part.description }}</p>
-          <div v-for="lesson in filteredLessons(part.id)">
+          <h3 class="part-subtitle">PART{{ part.order }}</h3>
+          <h2 class="part-title">
+            {{ part.name }}
+          </h2>
+          <p class="part-content">
+            {{ part.description }}
+          </p>
+          <div v-for="(lesson, i) in filteredLessons(part.id)" :key="i">
             <lecture-list
               :course="course"
               :lesson="lesson"
               :lectures="filteredLectures(lesson.id)"
-              :learnedLectureIds="learnedLectureIds"
+              :learned-lecture-ids="learnedLectureIds"
             />
           </div>
         </div>
@@ -135,20 +147,20 @@ export default {
   components: {
     ErrorBox,
     LectureList,
-    VerificationEmailBox
+    VerificationEmailBox,
   },
   data() {
     return {
       loading: true,
       error: null,
-      auth0Error: null
+      auth0Error: null,
     }
   },
   computed: {
     ...mapState("auth0", ["auth0User"]),
     ...mapState("course", ["course", "parts", "learnedLectureIds"]),
     ...mapGetters("auth0", ["isAuth0Provider"]),
-    ...mapGetters("course", ["filteredLessons", "filteredLectures"])
+    ...mapGetters("course", ["filteredLessons", "filteredLectures"]),
   },
   async created() {
     this.$store.dispatch("course/setLecture", {})
@@ -157,8 +169,8 @@ export default {
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     }
     await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}`, options),
@@ -168,9 +180,9 @@ export default {
       this.$axios.$get(
         `/learning_histories/${this.$route.params.name}/lecture_ids`,
         options
-      )
+      ),
     ])
-      .then(res => {
+      .then((res) => {
         this.loading = false
         this.$store.dispatch("course/setCourse", res[0])
         this.$store.dispatch("course/setParts", res[1])
@@ -178,11 +190,11 @@ export default {
         this.$store.dispatch("course/setLectures", res[3])
         this.$store.dispatch("course/setLearnedLectureIds", res[4])
       })
-      .catch(err => {
+      .catch((err) => {
         this.loading = false
         this.error = err
         this.$sentry.captureException(err)
       })
-  }
+  },
 }
 </script>
