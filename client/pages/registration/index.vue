@@ -4,13 +4,21 @@
       <div class="box-inner">
         <header class="header">
           <logo />
-          <h1 class="header-title">会員情報入力</h1>
+          <h1 class="header-title">
+            会員情報入力
+          </h1>
         </header>
 
         <main class="register">
-          <form @submit.prevent="createUser()" class="register-form">
+          <form class="register-form" @submit.prevent="createUser()">
             <ul v-if="Object.keys(errors).length > 0" class="error-box">
-              <li v-for="(value, key) in errors" :key="key" class="error-box-disc">{{ value[0] }}</li>
+              <li
+                v-for="(value, key) in errors"
+                :key="key"
+                class="error-box-disc"
+              >
+                {{ value[0] }}
+              </li>
             </ul>
 
             <div class="form-group">
@@ -23,16 +31,24 @@
                 placeholder="例）dokugaku"
                 required
               />
-              <div v-if="submitError && !$v.user.username.required" class="error-text">ユーザー名は必須です。</div>
+              <div
+                v-if="submitError && !$v.user.username.required"
+                class="error-text"
+              >
+                ユーザー名は必須です。
+              </div>
               <div
                 v-if="submitError && !$v.user.username.minLength"
                 class="error-text"
-              >ユーザー名は3文字以上で入力してください。</div>
-              <div v-if="!$v.user.username.maxLength" class="error-text">ユーザー名は50文字以下で入力してください。</div>
-              <div
-                v-if="!$v.user.username.alphaNumName"
-                class="error-text"
-              >ユーザー名は半角英数字及び_, -で入力してください。</div>
+              >
+                ユーザー名は3文字以上で入力してください。
+              </div>
+              <div v-if="!$v.user.username.maxLength" class="error-text">
+                ユーザー名は50文字以下で入力してください。
+              </div>
+            </div>
+            <div v-if="!$v.user.username.alphaNumName" class="error-text">
+              ユーザー名は半角英数字及び_, -で入力してください。
             </div>
 
             <div v-if="!auth0User.email" class="form-group">
@@ -45,15 +61,24 @@
                 placeholder="PC・携帯どちらでも可"
                 required
               />
-              <div v-if="submitError && !$v.user.email.required" class="error-text">メールアドレスは必須です。</div>
+              <div
+                v-if="submitError && !$v.user.email.required"
+                class="error-text"
+              >
+                メールアドレスは必須です。
+              </div>
               <div
                 v-if="submitError && !$v.user.email.email"
                 class="error-text"
-              >メールアドレスのフォーマットが不適切です。</div>
+              >
+                メールアドレスのフォーマットが不適切です。
+              </div>
             </div>
 
             <div class="register-form-btn">
-              <nui-button class="btn-red1" :submit="true">登録する</nui-button>
+              <nui-button class="btn-red1" :submit="true">
+                登録する
+              </nui-button>
             </div>
           </form>
         </main>
@@ -64,7 +89,7 @@
       <Footer />
     </div>
 
-    <LoadingModal :showModal="submitPending" />
+    <LoadingModal :show-modal="submitPending" />
   </div>
 </template>
 
@@ -188,7 +213,7 @@ import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
 import auth0Middleware from "~/middleware/auth0"
 import { mapState } from "vuex"
 
-const alphaNumName = name => {
+const alphaNumName = (name) => {
   if (typeof name === "undefined" || name === null || name === "") {
     return true
   }
@@ -201,17 +226,17 @@ export default {
     NuiButton,
     LoadingModal,
     Logo,
-    Footer
+    Footer,
   },
   data() {
     return {
       user: {
         username: "",
         email: "",
-        auth0Userid: ""
+        auth0Userid: "",
       },
       submitStatus: "OK",
-      state: this.$route.query.state
+      state: this.$route.query.state,
     }
   },
   computed: {
@@ -221,7 +246,7 @@ export default {
     },
     submitPending() {
       return this.submitStatus === "PENDING"
-    }
+    },
   },
   middleware: auth0Middleware.protectRegistration(),
   methods: {
@@ -240,11 +265,11 @@ export default {
       this.submitStatus = "PENDING"
       await this.$axios
         .$post("/users", this.user)
-        .then(res => {
+        .then((res) => {
           this.user.id = res.id
           this.submitStatus = "PENDING"
         })
-        .catch(err => {
+        .catch((err) => {
           this.submitStatus = "ERROR"
           this.$sentry.captureException(err)
         })
@@ -258,9 +283,9 @@ export default {
       await this.$axios
         .$post("/taking_courses", {
           user_id: this.user.id,
-          course_id: SEVERSIDE_COURSE_ID
+          course_id: SEVERSIDE_COURSE_ID,
         })
-        .catch(err => {
+        .catch((err) => {
           this.submitStatus = "ERROR"
           this.$sentry.captureException(err)
         })
@@ -272,7 +297,7 @@ export default {
       this.$store.commit("auth0/SET_AUTH0_USER", await this.$auth0.getUser())
       this.submitStatus = "OK"
       window.location.assign("/course/serverside")
-    }
+    },
   },
   validations: {
     user: {
@@ -280,13 +305,13 @@ export default {
         required,
         minLength: minLength(3),
         maxLength: maxLength(50),
-        alphaNumName
+        alphaNumName,
       },
       email: {
         required,
-        email
-      }
-    }
-  }
+        email,
+      },
+    },
+  },
 }
 </script>

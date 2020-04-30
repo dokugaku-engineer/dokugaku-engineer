@@ -46,21 +46,21 @@ import LinkButton from "@/components/commons/LinkButton.vue"
 
 export default {
   components: {
-    LinkButton
+    LinkButton,
   },
   props: {
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     to: {
       type: String,
-      default: ""
+      default: "",
     },
     buttonText: {
       type: String,
-      default: ""
-    }
-  }
+      default: "",
+    },
+  },
 }
 </script>

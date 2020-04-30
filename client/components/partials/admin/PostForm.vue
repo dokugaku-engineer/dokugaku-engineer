@@ -189,45 +189,45 @@ import { required, maxLength, numeric, helpers } from "vuelidate/lib/validators"
 
 export default {
   components: {
-    NuiButton
+    NuiButton,
   },
   props: {
     posts: {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     categories: {
       type: Array,
       default() {
         return []
-      }
+      },
     },
     slug: {
       type: String,
-      default: ""
+      default: "",
     },
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     content: {
       type: String,
-      default: ""
+      default: "",
     },
     parent: {
       type: Number,
-      default: 0
+      default: 0,
     },
     categoryId: {
       type: Number,
-      default: 1
+      default: 1,
     },
     editing: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -235,13 +235,13 @@ export default {
         slug: this.slug,
         title: this.title,
         content: this.content,
-        parent: this.parent
+        parent: this.parent,
       },
       categoryPost: {
-        category_id: this.categoryId // APIの形式に合わせてスネークケースにする
+        category_id: this.categoryId, // APIの形式に合わせてスネークケースにする
       },
       submitted: false,
-      isEditing: this.editing
+      isEditing: this.editing,
     }
   },
   methods: {
@@ -250,7 +250,7 @@ export default {
       await this.$axios
         .$post("/posts", {
           posts: this.post,
-          category_posts: this.categoryPost
+          category_posts: this.categoryPost,
         })
         .then(() => {
           this.submitted = false
@@ -265,7 +265,7 @@ export default {
       await this.$axios
         .$put(`/posts/${this.$route.params.id}`, {
           posts: this.post,
-          category_posts: this.categoryPost
+          category_posts: this.categoryPost,
         })
         .then(() => {
           this.submitted = false
@@ -274,32 +274,32 @@ export default {
         .catch(() => {
           this.submitted = true
         })
-    }
+    },
   },
   validations: {
     post: {
       slug: {
         required,
         alphaNum: helpers.regex("", /^[a-zA-Z0-9\-_]+$/),
-        maxLength: maxLength(255)
+        maxLength: maxLength(255),
       },
       title: {
         required,
-        maxLength: maxLength(255)
+        maxLength: maxLength(255),
       },
       content: {
-        required
+        required,
       },
       parent: {
-        numeric
-      }
+        numeric,
+      },
     },
     categoryPost: {
       category_id: {
         required,
-        numeric
-      }
-    }
-  }
+        numeric,
+      },
+    },
+  },
 }
 </script>

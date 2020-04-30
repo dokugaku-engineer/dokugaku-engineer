@@ -66,16 +66,16 @@ export default {
   components: {
     ContentHeader,
     ContentBox,
-    LinkButton
+    LinkButton,
   },
   data() {
     return {
-      categories: []
+      categories: [],
     }
   },
   async created() {
     const data = await this.$axios.$get("/categories")
     this.categories = data
-  }
+  },
 }
 </script>

@@ -2,7 +2,9 @@
   <div>
     <div v-if="error" class="error-box-wrap">
       <error-box>
-        <p>データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+        <p>
+          データ取得時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。
+        </p>
       </error-box>
     </div>
     <div class="video-wrap">
@@ -12,13 +14,19 @@
       <div v-if="!isAuth0Provider || auth0User.email_verified" class="video">
         <iframe
           v-if="lecture.video_url"
-          @load="createLearningHistory()"
           :src="`${lecture.video_url}?autoplay=1&color=26a69a`"
           frameborder="0"
           allow="autoplay; fullscreen"
           allowfullscreen
-          style="position:absolute;top:0;left:0;width:100%;height:100%;"
-        ></iframe>
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          "
+          @load="createLearningHistory()"
+        />
       </div>
       <div v-if="auth0User.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
@@ -26,7 +34,7 @@
             :to="`/course/${this.$route.params.name}/lecture/${lecture.prev_lecture_slug}`"
             class="video-btn-link"
           >
-            <i class="fas fa-less-than"></i>
+            <i class="fas fa-less-than" />
           </nuxt-link>
         </div>
         <div v-if="lecture.next_lecture_slug" class="video-btn video-btn-next">
@@ -34,12 +42,12 @@
             :to="`/course/${this.$route.params.name}/lecture/${lecture.next_lecture_slug}`"
             class="video-btn-link"
           >
-            <i class="fas fa-greater-than"></i>
+            <i class="fas fa-greater-than" />
           </nuxt-link>
         </div>
       </div>
       <div v-if="loading" class="loading">
-        <i class="fad fa-spinner fa-spin fa-lg"></i>
+        <i class="fad fa-spinner fa-spin fa-lg" />
       </div>
     </div>
 
@@ -50,18 +58,20 @@
           :to="`/course/${this.$route.params.name}/lecture/${lecture.prev_lecture_slug}`"
           class="detail-btn-link detail-btn-prev"
         >
-          <i class="fas fa-less-than"></i>
+          <i class="fas fa-less-than" />
         </nuxt-link>
         <nuxt-link
           v-if="lecture.next_lecture_slug"
           :to="`/course/${this.$route.params.name}/lecture/${lecture.next_lecture_slug}`"
           class="detail-btn-link"
         >
-          <i class="fas fa-greater-than"></i>
+          <i class="fas fa-greater-than" />
         </nuxt-link>
       </div>
       <div class="detail-content">
-        <h3 class="detail-header">このレクチャーの内容・補足</h3>
+        <h3 class="detail-header">
+          このレクチャーの内容・補足
+        </h3>
         <div class="detail-body">
           <p>{{ lecture.description }}</p>
         </div>
@@ -223,19 +233,19 @@ export default {
   layout: "course",
   components: {
     ErrorBox,
-    VerificationEmailBox
+    VerificationEmailBox,
   },
   data() {
     return {
       lecture: {},
       loading: true,
-      error: null
+      error: null,
     }
   },
   computed: {
     ...mapState("auth0", ["auth0User"]),
     ...mapState("course", ["course", "parts", "lessons", "lectures"]),
-    ...mapGetters("auth0", ["isAuth0Provider"])
+    ...mapGetters("auth0", ["isAuth0Provider"]),
   },
   async created() {
     this.$store.dispatch("course/setLecture", {})
@@ -244,34 +254,38 @@ export default {
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     }
 
     // レクチャーを取得
-    this.$axios.$get(`/lectures/${this.$route.params.slug}`, options)
-      .then(res => {
+    this.$axios
+      .$get(`/lectures/${this.$route.params.slug}`, options)
+      .then((res) => {
         this.loading = false
         this.lecture = res
         this.$store.dispatch("course/setLecture", res)
         this.$store.dispatch("course/setLectureName", res.name)
       })
-      .catch(err => {
+      .catch((err) => {
         this.loading = false
         this.error = err
         this.$sentry.captureException(err)
       })
 
     // コース関連のデータを取得
-    const isEmpty = (obj) => !Object.keys(obj).length;
+    const isEmpty = (obj) => !Object.keys(obj).length
     if ([this.course, this.parts, this.lessons, this.lectures].some(isEmpty)) {
       Promise.all([
         this.$axios.$get(`/courses/${this.$route.params.name}`, options),
         this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
         this.$axios.$get(`/lessons?course=${this.$route.params.name}`, options),
-        this.$axios.$get(`/lectures?course=${this.$route.params.name}`, options),
+        this.$axios.$get(
+          `/lectures?course=${this.$route.params.name}`,
+          options
+        ),
       ])
-        .then(res => {
+        .then((res) => {
           // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
           this.loading = false
           this.$store.dispatch("course/setCourse", res[0])
@@ -279,7 +293,7 @@ export default {
           this.$store.dispatch("course/setLessons", res[2])
           this.$store.dispatch("course/setLectures", res[3])
         })
-        .catch(err => {
+        .catch((err) => {
           this.loading = false
           this.error = err
           this.$sentry.captureException(err)
@@ -287,14 +301,15 @@ export default {
     }
 
     // 受講履歴を取得
-    this.$axios.$get(
-      `/learning_histories/${this.$route.params.name}/lecture_ids`,
-      options
-    )
-      .then(res => {
+    this.$axios
+      .$get(
+        `/learning_histories/${this.$route.params.name}/lecture_ids`,
+        options
+      )
+      .then((res) => {
         this.$store.dispatch("course/setLearnedLectureIds", res)
       })
-      .catch(err => {
+      .catch((err) => {
         this.loading = false
         this.error = err
         this.$sentry.captureException(err)
@@ -308,8 +323,8 @@ export default {
       const token = await this.$auth0.getTokenSilently()
       const options = {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }
       await this.$axios
         .$post(
@@ -317,10 +332,10 @@ export default {
           { course_id: this.lecture.course_id, lecture_id: this.lecture.id },
           options
         )
-        .catch(err => {
+        .catch((err) => {
           this.$sentry.captureException(err)
         })
     },
-  }
+  },
 }
 </script>

@@ -1,7 +1,7 @@
 require("dotenv").config()
 
 import axios from "axios"
-import qs from 'qs'
+import qs from "qs"
 
 export default {
   mode: "spa",
@@ -10,38 +10,41 @@ export default {
    */
   head: {
     title: process.env.npm_package_name || "",
-    meta: [{
-        charset: "utf-8"
+    meta: [
+      {
+        charset: "utf-8",
       },
       {
         name: "viewport",
-        content: "width=device-width, initial-scale=1, minimum-scale=1"
+        content: "width=device-width, initial-scale=1, minimum-scale=1",
       },
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
+        content: process.env.npm_package_description || "",
       },
       {
         "http-equiv": "X-UA-Compatible",
-        content: "IE=edge"
+        content: "IE=edge",
       },
       {
         name: "twitter:card",
-        content: "summary_large_image"
-      }
+        content: "summary_large_image",
+      },
     ],
-    script: [{
-      src: "https://kit.fontawesome.com/381734123f.js",
-      crossorigin: "anonymous"
-    }],
-    link: []
+    script: [
+      {
+        src: "https://kit.fontawesome.com/381734123f.js",
+        crossorigin: "anonymous",
+      },
+    ],
+    link: [],
   },
   /*
    ** Customize the progress-bar color
    */
   loading: {
-    color: "#fff"
+    color: "#fff",
   },
   /*
    ** Plugins to load before mounting the App
@@ -64,8 +67,8 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/style-resources",
-    '@nuxtjs/toast',
-    '@nuxtjs/sentry',
+    "@nuxtjs/toast",
+    "@nuxtjs/sentry",
   ],
   /*
    ** Build configuration
@@ -80,12 +83,12 @@ export default {
    ** Env for client side
    */
   env: {
-    'AUTH0_AUDIENCE': process.env.AUTH0_AUDIENCE,
-    'AUTH0_CLIENT_ID': process.env.AUTH0_CLIENT_ID,
-    'AUTH0_DOMAIN': process.env.AUTH0_DOMAIN,
-    'AUTH0_NAMESPACE': process.env.AUTH0_NAMESPACE,
-    'ORIGIN': process.env.ORIGIN,
-    'SENTRY_DSN': process.env.SENTRY_DSN,
+    AUTH0_AUDIENCE: process.env.AUTH0_AUDIENCE,
+    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+    AUTH0_NAMESPACE: process.env.AUTH0_NAMESPACE,
+    ORIGIN: process.env.ORIGIN,
+    SENTRY_DSN: process.env.SENTRY_DSN,
   },
   /*
    ** Generate configuration
@@ -94,58 +97,65 @@ export default {
     async routes() {
       // Machine to mechine用のアクセストークンを取得する
       const data = {
-        grant_type: 'client_credentials',
+        grant_type: "client_credentials",
         client_id: process.env.AUTH0_MANAGEMENT_API_CLIENT_ID,
         client_secret: process.env.AUTH0_MANAGEMENT_API_CLIENT_SECRET,
-        audience: process.env.AUTH0_MANAGEMENT_API_AUDIENCE
-      };
+        audience: process.env.AUTH0_MANAGEMENT_API_AUDIENCE,
+      }
       const options = {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'content-type': 'application/x-www-form-urlencoded'
+          "content-type": "application/x-www-form-urlencoded",
         },
         data: qs.stringify(data),
         url: `https://${process.env.AUTH0_DOMAIN}/oauth/token`,
       }
-      const access_token = await axios(options)
-        .then((res) => {
-          return res['data']['access_token']
-        })
+      const access_token = await axios(options).then((res) => {
+        return res["data"]["access_token"]
+      })
 
       const authorizationOptions = {
         headers: {
-          Authorization: `Bearer ${access_token}`
-        }
+          Authorization: `Bearer ${access_token}`,
+        },
       }
 
-      let courses = axios.get(`${process.env.API_URL}/courses`, authorizationOptions)
+      let courses = axios
+        .get(`${process.env.API_URL}/courses`, authorizationOptions)
         .then((res) => {
           return res.data.map((course) => {
-            return '/course/' + course.name
+            return "/course/" + course.name
           })
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err.response)
         })
 
-      let lectures = axios.get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
+      let lectures = axios
+        .get(`${process.env.API_URL}/courses/lectures`, authorizationOptions)
         .then((res) => {
           let courseLectures = []
-          res.data.forEach(course => {
-            course.parts.forEach(part => part.lessons.forEach(lesson => lesson.lectures.forEach(lecture => {
-              courseLectures.push('/course/' + course.name + '/lecture/' + lecture.slug)
-            })))
+          res.data.forEach((course) => {
+            course.parts.forEach((part) =>
+              part.lessons.forEach((lesson) =>
+                lesson.lectures.forEach((lecture) => {
+                  courseLectures.push(
+                    "/course/" + course.name + "/lecture/" + lecture.slug
+                  )
+                })
+              )
+            )
           })
           return courseLectures
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err.response)
         })
 
-      return Promise.all([courses, lectures]).then(values => {
+      return Promise.all([courses, lectures]).then((values) => {
         return [...values[0], ...values[1]]
       })
-    }
+    },
   },
   /*
    ** Global CSS
@@ -155,7 +165,7 @@ export default {
    ** Global CSS variables
    */
   styleResources: {
-    scss: ["~assets/styles/variables.scss"]
+    scss: ["~assets/styles/variables.scss"],
   },
   /*
    * Axios settings
@@ -169,19 +179,21 @@ export default {
    * Toast settings
    */
   toast: {
-    position: 'top-right',
-    register: [{
-      name: 'instant_success',
-      message: payload => {
-        if (!payload.message) return '保存しました'
-        return payload.message
+    position: "top-right",
+    register: [
+      {
+        name: "instant_success",
+        message: (payload) => {
+          if (!payload.message) return "保存しました"
+          return payload.message
+        },
+        options: {
+          type: "success",
+          duration: 3000,
+          className: ["toast-success"],
+        },
       },
-      options: {
-        type: 'success',
-        duration: 3000,
-        className: ['toast-success']
-      }
-    }]
+    ],
   },
   /*
    * Sentry settings
@@ -191,6 +203,6 @@ export default {
     disabled: false,
     disableClientSide: false,
     disableServerSide: true,
-    publishRelease: false
-  }
+    publishRelease: false,
+  },
 }

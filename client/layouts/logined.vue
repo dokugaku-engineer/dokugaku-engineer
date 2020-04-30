@@ -7,57 +7,98 @@
         </h2>
       </nuxt-link>
       <div>
-        <i @click="toggleMenu" class="far fa-bars bars-regular"></i>
+        <i class="far fa-bars bars-regular" @click="toggleMenu" />
         <transition name="fade">
           <div v-if="showMenu" class="menu">
-            <i @click="toggleMenu" class="fal fa-times fa-lg cross"></i>
+            <i class="fal fa-times fa-lg cross" @click="toggleMenu" />
             <div class="menu-inner">
               <div class="menu-boarder">
                 <div class="menu-item">
-                  <nuxt-link
-                    to="/course/serverside"
-                    @click.native="toggleMenu"
-                  >
-                    <h2 class="menu-item-title">ホーム</h2>
+                  <nuxt-link to="/course/serverside" @click.native="toggleMenu">
+                    <h2 class="menu-item-title">
+                      ホーム
+                    </h2>
                   </nuxt-link>
                 </div>
               </div>
               <div class="menu-item">
-                <nuxt-link @click.native="toggleMenu" to="/settings/profile">
-                  <h2 class="menu-item-title">プロフィール</h2>
+                <nuxt-link to="/settings/profile" @click.native="toggleMenu">
+                  <h2 class="menu-item-title">
+                    プロフィール
+                  </h2>
                 </nuxt-link>
               </div>
               <div class="menu-item">
-                <nuxt-link @click.native="toggleMenu" to="/settings/password">
-                  <h2 class="menu-item-title">パスワード</h2>
+                <nuxt-link to="/settings/password" @click.native="toggleMenu">
+                  <h2 class="menu-item-title">
+                    パスワード
+                  </h2>
                 </nuxt-link>
               </div>
               <div class="menu-item">
-                <button class="menu-item-title" @click="logout">ログアウト</button>
+                <button class="menu-item-title" @click="logout">
+                  ログアウト
+                </button>
               </div>
             </div>
           </div>
         </transition>
       </div>
-      <h1 class="header-title">{{ title }}</h1>
-      <i @click="toggleSetting" ref="bars" class="fas fa-bars fa-lg bars-solid"></i>
-      <div v-if="showSetting" v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }" class="setting">
-        <nuxt-link to="/settings/profile" @click.native="closeSetting" class="setting-link">プロフィール</nuxt-link>
-        <nuxt-link to="/settings/password" @click.native="closeSetting" class="setting-link">パスワード</nuxt-link>
-        <button @click="logout" class="setting-link">ログアウト</button>
+      <h1 class="header-title">
+        {{ title }}
+      </h1>
+      <i
+        ref="bars"
+        class="fas fa-bars fa-lg bars-solid"
+        @click="toggleSetting"
+      />
+      <div
+        v-if="showSetting"
+        v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }"
+        class="setting"
+      >
+        <nuxt-link
+          to="/settings/profile"
+          class="setting-link"
+          @click.native="closeSetting"
+        >
+          プロフィール
+        </nuxt-link>
+        <nuxt-link
+          to="/settings/password"
+          class="setting-link"
+          @click.native="closeSetting"
+        >
+          パスワード
+        </nuxt-link>
+        <button class="setting-link" @click="logout">
+          ログアウト
+        </button>
       </div>
     </header>
-    
+
     <div class="main">
       <div class="main-inner">
         <nav class="sidebar">
-          <h4 class="sidebar-header-text">設定</h4>
+          <h4 class="sidebar-header-text">
+            設定
+          </h4>
           <ul>
             <li>
-              <nuxt-link to="/settings/profile" :class="sidebarLinkClass('プロフィール')">プロフィール</nuxt-link>
+              <nuxt-link
+                to="/settings/profile"
+                :class="sidebarLinkClass('プロフィール')"
+              >
+                プロフィール
+              </nuxt-link>
             </li>
             <li>
-              <nuxt-link to="/settings/password" :class="sidebarLinkClass('パスワード')">パスワード</nuxt-link>
+              <nuxt-link
+                to="/settings/password"
+                :class="sidebarLinkClass('パスワード')"
+              >
+                パスワード
+              </nuxt-link>
             </li>
           </ul>
         </nav>
@@ -113,7 +154,7 @@
 .bars-regular {
   color: $color-red1;
   display: block;
-  margin: .6rem 1rem .6rem 0;
+  margin: 0.6rem 1rem 0.6rem 0;
 }
 
 @media screen and (min-width: 769px) {
@@ -131,13 +172,13 @@
     color: $color-gray3;
     cursor: pointer;
     display: block;
-    margin: .6rem 1rem .6rem 0;
+    margin: 0.6rem 1rem 0.6rem 0;
   }
 }
 
 .cross {
   color: $color-red1;
-  margin: 1.5rem 1rem .5rem;
+  margin: 1.5rem 1rem 0.5rem;
 }
 
 .menu {
@@ -165,18 +206,19 @@
 .menu-item-title {
   align-items: center;
   background-color: $color-white2;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   display: flex;
   font-weight: 700;
   margin-bottom: 1rem;
-  padding: .8rem 1.6rem;
+  padding: 0.8rem 1.6rem;
   width: 100%;
 
   &:focus {
     outline: 0;
   }
 
-  h2, i {
+  h2,
+  i {
     display: inline-block;
   }
 
@@ -189,11 +231,13 @@
   }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s ease-out;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-out;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
@@ -203,8 +247,8 @@
 
 .setting {
   background-color: rgb(255, 255, 255);
-  border-radius: .2rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 .3rem 1rem;
+  border-radius: 0.2rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 0.3rem 1rem;
   min-width: 16.5rem;
   position: absolute;
   right: 0;
@@ -263,7 +307,7 @@
     margin-right: 1.5rem;
     overflow: auto;
     padding: 0 1.4rem;
-    transition: all .2s;
+    transition: all 0.2s;
     width: 25%;
   }
 
@@ -273,7 +317,7 @@
   }
 
   .sidebar-link {
-    border-radius: .2rem;
+    border-radius: 0.2rem;
     display: block;
     padding: 1.1rem 1.5rem;
   }
@@ -286,7 +330,7 @@
 
 .content {
   background-color: $color-white1;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   box-shadow: 0 1px 20px 0 $color-gray-shadow;
   flex: 1;
 }
@@ -305,23 +349,23 @@
 <script>
 import Logo from "@/components/svg/Logo.vue"
 import Footer from "@/components/layouts/Footer.vue"
-import auth0Middleware from '~/middleware/auth0'
-import { mapState } from 'vuex'
+import auth0Middleware from "~/middleware/auth0"
+import { mapState } from "vuex"
 
 export default {
   components: {
     Logo,
-    Footer
+    Footer,
   },
   data() {
     return {
       showMenu: false,
-      showSetting: false
+      showSetting: false,
     }
   },
   middleware: auth0Middleware.protect(),
   computed: {
-    ...mapState('setting', ['title']),
+    ...mapState("setting", ["title"]),
   },
   methods: {
     async logout() {
@@ -338,11 +382,11 @@ export default {
     },
     sidebarLinkClass(name) {
       if (this.title == name) {
-        return 'sidebar-link sidebar-link-focus'
+        return "sidebar-link sidebar-link-focus"
       } else {
-        return 'sidebar-link'
+        return "sidebar-link"
       }
-    }
-  }
+    },
+  },
 }
 </script>

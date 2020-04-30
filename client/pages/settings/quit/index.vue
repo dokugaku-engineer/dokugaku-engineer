@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="heading">
-      <h1 class="heading-title">アカウント削除</h1>
+      <h1 class="heading-title">
+        アカウント削除
+      </h1>
     </div>
     <main class="main">
       <div v-if="isAuth0Provider && !auth0User.email_verified" class="setting">
@@ -11,22 +13,30 @@
       <div v-else>
         <div class="setting">
           <error-box>
-            <p>アカウント削除は即時反映され、一度削除すると復活できません。これまでのデータはすべて削除されます。</p>
+            <p>
+              アカウント削除は即時反映され、一度削除すると復活できません。これまでのデータはすべて削除されます。
+            </p>
             <p>削除しますか？</p>
           </error-box>
 
           <div v-if="error">
             <error-box>
-              <p>アカウント削除時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。</p>
+              <p>
+                アカウント削除時にエラーが発生しました。時間をおいた後、ログインし直してから再度お試しください。
+              </p>
             </error-box>
           </div>
 
           <div class="two-btns">
-            <link-button to="/course/serverside" class="btn-outline-teal1">いいえ</link-button>
+            <link-button to="/course/serverside" class="btn-outline-teal1">
+              いいえ
+            </link-button>
             <nui-button v-if="submitPending" class="btn-red1">
-              <i class="fad fa-spinner fa-spin fa-lg"></i>
+              <i class="fad fa-spinner fa-spin fa-lg" />
             </nui-button>
-            <nui-button v-else @click.native="deleteUser" class="btn-red1">はい</nui-button>
+            <nui-button v-else class="btn-red1" @click.native="deleteUser">
+              はい
+            </nui-button>
           </div>
         </div>
       </div>
@@ -77,7 +87,6 @@
 
 <script>
 import NuiButton from "@/components/commons/Button.vue"
-import NuiForm from "@/components/commons/Form.vue"
 import ErrorBox from "@/components/commons/ErrorBox.vue"
 import LinkButton from "@/components/commons/LinkButton.vue"
 import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
@@ -87,15 +96,14 @@ export default {
   layout: "logined",
   components: {
     NuiButton,
-    NuiForm,
     ErrorBox,
     LinkButton,
-    VerificationEmailBox
+    VerificationEmailBox,
   },
   data() {
     return {
       submitStatus: "OK",
-      error: null
+      error: null,
     }
   },
   computed: {
@@ -103,7 +111,7 @@ export default {
     ...mapGetters("auth0", ["userId", "isAuth0Provider"]),
     submitPending() {
       return this.submitStatus === "PENDING"
-    }
+    },
   },
   methods: {
     async deleteUser() {
@@ -111,13 +119,13 @@ export default {
       const options = await this.getOptions()
       await this.$axios
         .$delete(`/users/${this.userId}`, options)
-        .then(res => {
+        .then(() => {
           this.submitStatus = "OK"
           this.$toast.global.instant_success({
-            message: "アカウントを削除しました"
+            message: "アカウントを削除しました",
           })
         })
-        .catch(err => {
+        .catch((err) => {
           this.submitStatus = "ERROR"
           this.error = err.response
           this.$sentry.captureException(err)
@@ -133,10 +141,10 @@ export default {
       const token = await this.$auth0.getTokenSilently()
       return {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }
-    }
-  }
+    },
+  },
 }
 </script>

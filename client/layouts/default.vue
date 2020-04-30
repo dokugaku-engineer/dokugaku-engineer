@@ -9,11 +9,15 @@
       </nuxt-link>
       <div class="header-item">
         <div class="header-menu">
-          <button class="header-link" @click="login">ログイン</button>
+          <button class="header-link" @click="login">
+            ログイン
+          </button>
           <nui-button
             class="btn-teal1 btn-xs btn-shadow-all header-link header-btn"
             @click.native="signup"
-          >無料で受講</nui-button>
+          >
+            無料で受講
+          </nui-button>
         </div>
       </div>
     </header>
@@ -120,15 +124,15 @@ export default {
     Logo,
     LogoShort,
     NuiButton,
-    Footer
+    Footer,
   },
   methods: {
     async login() {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: "/course/serverside"
-        }
+          targetUrl: "/course/serverside",
+        },
       }
       await this.$auth0.loginWithRedirect(options)
     },
@@ -136,12 +140,12 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: "/course/serverside"
+          targetUrl: "/course/serverside",
         },
-        screen_hint: "signup"
+        screen_hint: "signup",
       }
       await this.$auth0.loginWithRedirect(options)
-    }
-  }
+    },
+  },
 }
 </script>

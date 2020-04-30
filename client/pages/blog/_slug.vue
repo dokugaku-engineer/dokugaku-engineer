@@ -263,7 +263,7 @@ export default {
   layout: "blog",
   components: {
     Breadcrumb,
-    Sidebar
-  }
+    Sidebar,
+  },
 }
 </script>

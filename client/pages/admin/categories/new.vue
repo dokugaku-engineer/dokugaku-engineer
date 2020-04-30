@@ -21,16 +21,16 @@ export default {
   components: {
     ContentHeader,
     ContentBox,
-    CategoryForm
+    CategoryForm,
   },
   data() {
     return {
-      categories: []
+      categories: [],
     }
   },
   async created() {
     const data = await this.$axios.$get("/categories")
     this.categories = data
-  }
+  },
 }
 </script>

@@ -1,21 +1,25 @@
 <template>
   <div>
-    <div @click="showLecture = !showLecture" class="lesson-title" :class="playLesson ? 'play' : ''">
+    <div
+      class="lesson-title"
+      :class="playLesson ? 'play' : ''"
+      @click="showLecture = !showLecture"
+    >
       <h2>
         レッスン{{ lesson.order }}：
         <span class="lesson-title-detail">{{ lesson.name }}</span>
       </h2>
-      <i :class="cheveron"></i>
+      <i :class="cheveron" />
     </div>
     <ol v-if="showLecture" class="lecture">
-      <li v-for="lec in lectures">
+      <li v-for="(lec, index) in lectures" :key="index">
         <nuxt-link
           :to="`/course/${course.name}/lecture/${lec.slug}`"
-          @click.native="$emit('hideMenu')"
           class="lecture-link"
           :class="playLecture(lec) ? 'play' : ''"
+          @click.native="$emit('hideMenu')"
         >
-          <i :class="learned(lec.id) ? 'far fa-check' : 'fas fa-circle'"></i>
+          <i :class="learned(lec.id) ? 'far fa-check' : 'fas fa-circle'" />
           {{ lec.order }}. {{ lec.name }}
         </nuxt-link>
       </li>
@@ -111,28 +115,28 @@ export default {
   props: {
     course: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     lesson: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     lecture: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     lectures: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     learnedLectureIds: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data() {
     return {
-      showLecture: false
+      showLecture: false,
     }
   },
   computed: {
@@ -148,7 +152,7 @@ export default {
         return false
       }
       return this.lesson.id === this.lecture.lesson_id
-    }
+    },
   },
   methods: {
     learned(lectureId) {
@@ -159,7 +163,7 @@ export default {
         return false
       }
       return this.lecture.id === lecture.id
-    }
-  }
+    },
+  },
 }
 </script>

@@ -28,13 +28,13 @@ export default {
   components: {
     ContentHeader,
     ContentBox,
-    PostForm
+    PostForm,
   },
   data() {
     return {
       categories: [],
       posts: [],
-      post: {}
+      post: {},
     }
   },
   async created() {
@@ -43,11 +43,11 @@ export default {
     const [posts, post, categories] = await Promise.all([
       this.$axios.$get(`/posts?except=${this.$route.params.id}`),
       this.$axios.$get(`/posts/${this.$route.params.id}`),
-      this.$axios.$get("/categories")
+      this.$axios.$get("/categories"),
     ])
     this.posts = posts
     this.post = post
     this.categories = categories
-  }
+  },
 }
 </script>
