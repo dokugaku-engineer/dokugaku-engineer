@@ -18,6 +18,10 @@
     padding-top: 8rem;
     margin-bottom: 4rem;
     text-align: center;
+
+    &:first-child {
+      padding-top: 11rem;
+    }
   }
 
   h3 {
@@ -59,6 +63,12 @@
 }
 
 @media screen and (min-width: 769px) {
+  .static-page {
+    h1:first-child {
+      padding-top: 6rem;
+    }
+  }
+
   .static-wrapper {
     padding-top: 12rem;
   }
@@ -67,6 +77,12 @@
     background-color: $color-white1;
     padding: 0 5.6rem 5.6rem;
   }
+}
+
+.revision {
+  margin: 40px 0 0;
+  text-align: right;
+  list-style-type: none;
 }
 </style>
 

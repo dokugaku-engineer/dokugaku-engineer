@@ -504,14 +504,6 @@
   </static-page>
 </template>
 
-<style lang="scss" scoped>
-.revision {
-  margin: 40px 0 0;
-  text-align: right;
-  list-style-type: none;
-}
-</style>
-
 <script>
 import StaticPage from "@/components/partials/static/StaticPage.vue"
 
