@@ -8,9 +8,19 @@
 .form-group {
   margin-bottom: 2.4rem;
 
+  .asterix {
+    color: $color-red1;
+    display: block;
+    float: left;
+    padding-left: 0;
+    padding-right: 0.5rem;
+  }
+
   label {
+    display: block;
     font-size: $font-size-sm;
     font-weight: 600;
+    line-height: 1.2em !important;
   }
 
   input {
@@ -21,6 +31,40 @@
     max-height: 3.2rem;
     padding: 2rem 0.8rem 2rem;
     width: 100%;
+  }
+}
+
+.form-textarea {
+  border: 1px solid $color-gray1;
+  border-radius: 0.25rem;
+  color: $color-black;
+  margin-top: 0.8rem;
+  padding: 8px;
+  width: 100%;
+}
+
+.form-radio-list {
+  clear: left;
+  float: none;
+  padding: 0.3em;
+
+  input {
+    clear: left;
+    float: left;
+    margin-top: 0.1rem;
+    margin-right: 0.8rem;
+    width: auto;
+  }
+
+  label {
+    display: block;
+    font-weight: 400;
+    margin-top: 0.8rem;
+    text-align: left;
+  }
+
+  span {
+    line-height: 1.2em;
   }
 }
 
