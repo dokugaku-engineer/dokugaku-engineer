@@ -100,7 +100,7 @@
     <LoadingModal :show-modal="submitPending" />
 
     <div class="footer_wrap">
-      <Footer />
+      <simple-footer />
     </div>
   </div>
 </template>
@@ -141,7 +141,6 @@
 
 .register {
   background-color: $color-white1;
-  margin-bottom: 2rem;
 }
 
 .register-form {
@@ -181,7 +180,7 @@ import NuiButton from "@/components/commons/Button.vue"
 import NuiForm from "@/components/commons/Form.vue"
 import LoadingModal from "@/components/commons/LoadingModal.vue"
 import Logo from "@/components/svg/Logo.vue"
-import Footer from "@/components/layouts/Footer.vue"
+import SimpleFooter from "@/components/layouts/SimpleFooter.vue"
 import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
 import auth0Middleware from "~/middleware/auth0"
 import { mapState } from "vuex"
@@ -200,7 +199,7 @@ export default {
     NuiForm,
     LoadingModal,
     Logo,
-    Footer,
+    SimpleFooter,
   },
   data() {
     return {

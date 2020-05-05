@@ -31,13 +31,13 @@
 <style lang="scss" scoped>
 .footer {
   background: $color-white1;
-  margin: 3rem 0 2rem;
+  padding: 3rem 0 2rem;
   text-align: center;
 }
 
 @media screen and (min-width: 769px) {
   .footer {
-    margin: 5rem 0;
+    padding: 5rem 0;
   }
 }
 
