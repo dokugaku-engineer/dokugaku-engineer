@@ -193,6 +193,10 @@ hr {
 }
 
 .contact-form {
+  label {
+    display: block;
+  }
+
   input,
   textarea {
     background-color: $color-white1;

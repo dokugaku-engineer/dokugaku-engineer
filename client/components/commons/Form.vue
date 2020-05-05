@@ -17,7 +17,6 @@
   }
 
   label {
-    display: block;
     font-size: $font-size-sm;
     font-weight: 600;
     line-height: 1.2em !important;
