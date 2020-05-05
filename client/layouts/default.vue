@@ -24,12 +24,17 @@
 
     <nuxt />
 
-    <Footer />
+    <div class="footer_wrap">
+      <Footer />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
@@ -110,6 +115,10 @@
   right: 0;
   left: 0;
   z-index: 10;
+}
+
+.footer_wrap {
+  margin-top: auto;
 }
 </style>
 

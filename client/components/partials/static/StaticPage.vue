@@ -11,6 +11,9 @@
 <style lang="scss" scoped>
 .static-page {
   background-color: $color-white2;
+  display: flex;
+  flex-direction: column;
+  min-height: 96vh;
 
   h1 {
     font-size: $font-size-xxxl;
