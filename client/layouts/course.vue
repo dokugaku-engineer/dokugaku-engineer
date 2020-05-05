@@ -123,7 +123,7 @@
     </div>
 
     <div class="footer_wrap">
-      <Footer />
+      <nui-footer />
     </div>
   </div>
 </template>
@@ -327,7 +327,7 @@
 <script>
 import Logo from "@/components/svg/Logo.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
-import Footer from "@/components/layouts/Footer.vue"
+import NuiFooter from "@/components/layouts/Footer.vue"
 import auth0Middleware from "~/middleware/auth0"
 import { mapState, mapGetters } from "vuex"
 
@@ -335,7 +335,7 @@ export default {
   components: {
     Logo,
     LectureList,
-    Footer,
+    NuiFooter,
   },
   data() {
     return {

@@ -3,7 +3,7 @@
     <Header />
     <nuxt />
     <div class="footer_wrap">
-      <Footer />
+      <nui-footer />
     </div>
   </div>
 </template>
@@ -22,12 +22,12 @@
 
 <script>
 import Header from "@/components/layouts/Header.vue"
-import Footer from "@/components/layouts/Footer.vue"
+import NuiFooter from "@/components/layouts/Footer.vue"
 
 export default {
   components: {
     Header,
-    Footer,
+    NuiFooter,
   },
 }
 </script>

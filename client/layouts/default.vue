@@ -25,7 +25,7 @@
     <nuxt />
 
     <div class="footer_wrap">
-      <Footer />
+      <nui-footer />
     </div>
   </div>
 </template>
@@ -126,14 +126,14 @@
 import Logo from "@/components/svg/Logo.vue"
 import LogoShort from "@/components/svg/LogoShort.vue"
 import NuiButton from "@/components/commons/Button.vue"
-import Footer from "@/components/layouts/Footer.vue"
+import NuiFooter from "@/components/layouts/Footer.vue"
 
 export default {
   components: {
     Logo,
     LogoShort,
     NuiButton,
-    Footer,
+    NuiFooter,
   },
   methods: {
     async login() {
