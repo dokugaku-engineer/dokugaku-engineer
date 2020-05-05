@@ -75,6 +75,16 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <p class="single-text">
+                「登録する」のボタンを押すことにより、
+                <nuxt-link to="/term" target="_blank">
+                  利用規約
+                </nuxt-link>
+                に同意したものとみなします。
+              </p>
+            </div>
+
             <div class="register-form-btn">
               <nui-button class="btn-red1" :submit="true">
                 登録する
@@ -85,11 +95,11 @@
       </div>
     </div>
 
+    <LoadingModal :show-modal="submitPending" />
+
     <div class="footer_wrap">
       <Footer />
     </div>
-
-    <LoadingModal :show-modal="submitPending" />
   </div>
 </template>
 
@@ -189,6 +199,15 @@
   color: $color-red1;
   font-size: $font-size-sm;
   margin-top: 0.8rem;
+}
+
+.single-text {
+  font-size: $font-size-sm;
+  text-align: center;
+
+  a {
+    color: $color-blue;
+  }
 }
 
 .register-form-btn {
