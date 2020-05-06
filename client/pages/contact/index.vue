@@ -237,6 +237,9 @@ export default {
       submitStatus: null,
     }
   },
+  beforeCreate() {
+    this.$store.dispatch("setTitle", "お問い合わせ")
+  },
   validations: {
     about: {
       required,

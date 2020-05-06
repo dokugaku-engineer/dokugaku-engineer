@@ -1,9 +1,15 @@
 export const state = () => ({
-  counter: 0,
+  title: "",
 })
 
 export const mutations = {
-  increment(state) {
-    state.counter++
+  SET_TITLE(state, title) {
+    state.title = title
+  },
+}
+
+export const actions = {
+  setTitle({ commit }, title) {
+    commit("SET_TITLE", title)
   },
 }

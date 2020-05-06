@@ -93,7 +93,7 @@ import VerificationEmailBox from "@/components/partials/course/VerificationEmail
 import { mapState, mapGetters } from "vuex"
 
 export default {
-  layout: "logined",
+  layout: "setting",
   components: {
     NuiButton,
     ErrorBox,
@@ -112,6 +112,9 @@ export default {
     submitPending() {
       return this.submitStatus === "PENDING"
     },
+  },
+  beforeCreate() {
+    this.$store.dispatch("setTitle", "アカウント削除")
   },
   methods: {
     async deleteUser() {

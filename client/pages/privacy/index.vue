@@ -174,5 +174,8 @@ export default {
   components: {
     StaticPage,
   },
+  beforeCreate() {
+    this.$store.dispatch("setTitle", "プライバシーポリシー")
+  },
 }
 </script>

@@ -511,5 +511,8 @@ export default {
   components: {
     StaticPage,
   },
+  beforeCreate() {
+    this.$store.dispatch("setTitle", "利用規約")
+  },
 }
 </script>

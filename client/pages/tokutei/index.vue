@@ -108,5 +108,8 @@ export default {
   components: {
     StaticPage,
   },
+  beforeCreate() {
+    this.$store.dispatch("setTitle", "特定商取引に関する表記")
+  },
 }
 </script>

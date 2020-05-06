@@ -13,7 +13,7 @@
       </li>
       <li>
         <nuxt-link to="/tokutei">
-          特定商取引法に基づく表示
+          特定商取引に関する表記
         </nuxt-link>
       </li>
       <li>
