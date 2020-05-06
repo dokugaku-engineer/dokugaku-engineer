@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <logged-in-header v-if="isAuthenticated" :title="title" />
-    <logged-out-header v-else />
+    <nui-header v-else />
 
     <nuxt />
 
@@ -26,14 +26,14 @@
 
 <script>
 import LoggedInHeader from "@/components/layouts/LoggedInHeader.vue"
-import LoggedOutHeader from "@/components/layouts/LoggedOutHeader.vue"
+import NuiHeader from "@/components/layouts/Header.vue"
 import NuiFooter from "@/components/layouts/Footer.vue"
 import { mapState } from "vuex"
 
 export default {
   components: {
     LoggedInHeader,
-    LoggedOutHeader,
+    NuiHeader,
     NuiFooter,
   },
   computed: {
