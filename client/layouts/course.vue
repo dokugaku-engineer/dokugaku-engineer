@@ -1,102 +1,14 @@
 <template>
   <div class="wrap">
-    <header class="header">
-      <nuxt-link :to="`/course/${course.name}`">
-        <h2 class="header-logo">
-          <logo />
-        </h2>
-      </nuxt-link>
-      <div>
-        <i class="far fa-bars bars-regular" @click="toggleMenu" />
-        <transition name="fade">
-          <div v-if="showMenu" class="menu">
-            <i class="fal fa-times fa-lg cross" @click="toggleMenu" />
-            <div class="menu-inner">
-              <div class="menu-boarder">
-                <div class="menu-item">
-                  <nuxt-link
-                    :to="`/course/${course.name}`"
-                    @click.native="toggleMenu"
-                  >
-                    <h2 class="menu-item-title">
-                      ホーム
-                    </h2>
-                  </nuxt-link>
-                </div>
-              </div>
-              <div class="menu-boarder">
-                <div
-                  v-for="(lesson, index) in lessons"
-                  :key="index"
-                  class="menu-item"
-                >
-                  <lecture-list
-                    :course="course"
-                    :lesson="lesson"
-                    :lecture="lecture"
-                    :lectures="filteredLectures(lesson.id)"
-                    :learned-lecture-ids="learnedLectureIds"
-                    @hideMenu="toggleMenu"
-                  />
-                </div>
-              </div>
-              <div class="menu-item">
-                <nuxt-link to="/settings/profile" @click.native="toggleMenu">
-                  <h2 class="menu-item-title">
-                    プロフィール
-                  </h2>
-                </nuxt-link>
-              </div>
-              <div class="menu-item">
-                <nuxt-link to="/settings/password" @click.native="toggleMenu">
-                  <h2 class="menu-item-title">
-                    パスワード
-                  </h2>
-                </nuxt-link>
-              </div>
-              <div class="menu-item">
-                <button class="menu-item-title" @click="logout">
-                  ログアウト
-                </button>
-              </div>
-            </div>
-          </div>
-        </transition>
-      </div>
-      <h1 class="header-title">
-        {{ lectureName }}
-      </h1>
-      <i
-        ref="bars"
-        class="fas fa-bars fa-lg bars-solid"
-        @click="toggleSetting"
-      />
-      <div
-        v-if="showSetting"
-        v-click-outside="{ exclude: ['bars'], handler: 'closeSetting' }"
-        class="setting"
-      >
-        <nuxt-link
-          to="/settings/profile"
-          class="setting-link"
-          @click.native="closeSetting"
-        >
-          プロフィール
-        </nuxt-link>
-        <nuxt-link
-          to="/settings/password"
-          class="setting-link"
-          @click.native="closeSetting"
-        >
-          パスワード
-        </nuxt-link>
-        <button class="setting-link" @click="logout">
-          ログアウト
-        </button>
-      </div>
-    </header>
-
-    <div class="main">
+    <logged-in-header
+      ref="header"
+      :title="title"
+      :course="course"
+      :lessons="lessons"
+      :lecture="lecture"
+      :learned-lecture-ids="learnedLectureIds"
+    />
+    <div class="main" :style="marginTop">
       <nav class="sidebar">
         <div class="menu-boarder">
           <div class="lesson">
@@ -123,7 +35,7 @@
     </div>
 
     <div class="footer_wrap">
-      <Footer />
+      <nui-footer />
     </div>
   </div>
 </template>
@@ -315,7 +227,8 @@
   border-radius: 0.5rem;
   box-shadow: 0 1px 20px 0 $color-gray-shadow;
   flex: 1;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 1024px;
 }
 
@@ -325,26 +238,29 @@
 </style>
 
 <script>
-import Logo from "@/components/svg/Logo.vue"
+import LoggedInHeader from "@/components/layouts/LoggedInHeader.vue"
 import LectureList from "@/components/partials/course/LectureList.vue"
-import Footer from "@/components/layouts/Footer.vue"
+import NuiFooter from "@/components/layouts/Footer.vue"
 import auth0Middleware from "~/middleware/auth0"
 import { mapState, mapGetters } from "vuex"
+import debounce from "lodash/debounce"
 
 export default {
   components: {
-    Logo,
+    LoggedInHeader,
     LectureList,
-    Footer,
+    NuiFooter,
   },
   data() {
     return {
       showMenu: false,
       showSetting: false,
+      headerHeight: 0,
     }
   },
   middleware: auth0Middleware.protect(),
   computed: {
+    ...mapState(["title"]),
     ...mapState("course", [
       "course",
       "lessons",
@@ -354,6 +270,16 @@ export default {
       "courseTop",
     ]),
     ...mapGetters("course", ["filteredLectures"]),
+    marginTop() {
+      return `margin-top: ${this.headerHeight}px;`
+    },
+  },
+  mounted() {
+    this.headerHeight = this.$refs.header.$el.clientHeight
+    window.addEventListener("resize", this.handleResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.handleResize)
   },
   methods: {
     async logout() {
@@ -368,6 +294,9 @@ export default {
     toggleMenu() {
       this.showMenu = !this.showMenu
     },
+    handleResize: debounce(function () {
+      this.headerHeight = this.$refs.header.$el.clientHeight
+    }, 300),
   },
 }
 </script>

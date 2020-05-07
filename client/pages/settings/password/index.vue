@@ -96,7 +96,7 @@ import NuiButton from "@/components/commons/Button.vue"
 import { mapState, mapGetters } from "vuex"
 
 export default {
-  layout: "logined",
+  layout: "setting",
   components: {
     ErrorBox,
     NuiButton,
@@ -111,7 +111,7 @@ export default {
     ...mapGetters("auth0", ["providers", "isAuth0Provider"]),
   },
   beforeCreate() {
-    this.$store.dispatch("setting/setTitle", { title: "パスワード" })
+    this.$store.dispatch("setTitle", "パスワード")
   },
   methods: {
     async sendChangePasswordEmail() {

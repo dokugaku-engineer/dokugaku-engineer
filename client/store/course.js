@@ -5,7 +5,6 @@ export const state = () => ({
   lectures: [],
   lecture: {},
   learnedLectureIds: [],
-  lectureName: "",
   courseTop: false,
 })
 
@@ -32,10 +31,6 @@ export const mutations = {
 
   SET_LEARNED_LECTURE_IDS(state, $payload) {
     state.learnedLectureIds = $payload
-  },
-
-  SET_LECTURE_NAME(state, $payload) {
-    state.lectureName = $payload
   },
 
   SET_COURSE_TOP(state, $payload) {
@@ -66,10 +61,6 @@ export const actions = {
 
   setLearnedLectureIds({ commit }, $payload) {
     commit("SET_LEARNED_LECTURE_IDS", $payload)
-  },
-
-  setLectureName({ commit }, $payload) {
-    commit("SET_LECTURE_NAME", $payload)
   },
 
   setCourseTop({ commit }, $payload) {

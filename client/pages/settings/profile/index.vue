@@ -172,7 +172,7 @@ const alphaNumName = (name) => {
 }
 
 export default {
-  layout: "logined",
+  layout: "setting",
   components: {
     NuiButton,
     NuiForm,
@@ -201,7 +201,7 @@ export default {
     },
   },
   beforeCreate() {
-    this.$store.dispatch("setting/setTitle", { title: "プロフィール" })
+    this.$store.dispatch("setTitle", "プロフィール")
   },
   async created() {
     this.loadingUser = true

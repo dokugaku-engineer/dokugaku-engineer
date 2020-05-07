@@ -10,86 +10,98 @@
         </header>
 
         <main class="register">
-          <form class="register-form" @submit.prevent="createUser()">
-            <ul v-if="Object.keys(errors).length > 0" class="error-box">
-              <li
-                v-for="(value, key) in errors"
-                :key="key"
-                class="error-box-disc"
-              >
-                {{ value[0] }}
-              </li>
-            </ul>
+          <nui-form>
+            <form class="register-form" @submit.prevent="createUser()">
+              <ul v-if="Object.keys(errors).length > 0" class="error-box">
+                <li
+                  v-for="(value, key) in errors"
+                  :key="key"
+                  class="error-box-disc"
+                >
+                  {{ value[0] }}
+                </li>
+              </ul>
 
-            <div class="form-group">
-              <label for="users[username]">ユーザー名</label>
-              <span class="form-require">必須</span>
-              <input
-                v-model.trim="$v.user.username.$model"
-                type="text"
-                name="users[username]"
-                placeholder="例）dokugaku"
-                required
-              />
-              <div
-                v-if="submitError && !$v.user.username.required"
-                class="error-text"
-              >
-                ユーザー名は必須です。
+              <div class="form-group">
+                <label for="users[username]">ユーザー名</label>
+                <span class="form-require">必須</span>
+                <input
+                  v-model.trim="$v.user.username.$model"
+                  type="text"
+                  name="users[username]"
+                  placeholder="例）dokugaku"
+                  required
+                />
+                <div
+                  v-if="submitError && !$v.user.username.required"
+                  class="error-text"
+                >
+                  ユーザー名は必須です。
+                </div>
+                <div
+                  v-if="submitError && !$v.user.username.minLength"
+                  class="error-text"
+                >
+                  ユーザー名は3文字以上で入力してください。
+                </div>
+                <div v-if="!$v.user.username.maxLength" class="error-text">
+                  ユーザー名は50文字以下で入力してください。
+                </div>
               </div>
-              <div
-                v-if="submitError && !$v.user.username.minLength"
-                class="error-text"
-              >
-                ユーザー名は3文字以上で入力してください。
+              <div v-if="!$v.user.username.alphaNumName" class="error-text">
+                ユーザー名は半角英数字及び_, -で入力してください。
               </div>
-              <div v-if="!$v.user.username.maxLength" class="error-text">
-                ユーザー名は50文字以下で入力してください。
-              </div>
-            </div>
-            <div v-if="!$v.user.username.alphaNumName" class="error-text">
-              ユーザー名は半角英数字及び_, -で入力してください。
-            </div>
 
-            <div v-if="!auth0User.email" class="form-group">
-              <label for="users[email]">メールアドレス</label>
-              <span class="form-require">必須</span>
-              <input
-                v-model.trim="$v.user.email.$model"
-                type="text"
-                name="users[email]"
-                placeholder="PC・携帯どちらでも可"
-                required
-              />
-              <div
-                v-if="submitError && !$v.user.email.required"
-                class="error-text"
-              >
-                メールアドレスは必須です。
+              <div v-if="!auth0User.email" class="form-group">
+                <label for="users[email]">メールアドレス</label>
+                <span class="form-require">必須</span>
+                <input
+                  v-model.trim="$v.user.email.$model"
+                  type="text"
+                  name="users[email]"
+                  placeholder="PC・携帯どちらでも可"
+                  required
+                />
+                <div
+                  v-if="submitError && !$v.user.email.required"
+                  class="error-text"
+                >
+                  メールアドレスは必須です。
+                </div>
+                <div
+                  v-if="submitError && !$v.user.email.email"
+                  class="error-text"
+                >
+                  メールアドレスのフォーマットが不適切です。
+                </div>
               </div>
-              <div
-                v-if="submitError && !$v.user.email.email"
-                class="error-text"
-              >
-                メールアドレスのフォーマットが不適切です。
-              </div>
-            </div>
 
-            <div class="register-form-btn">
-              <nui-button class="btn-red1" :submit="true">
-                登録する
-              </nui-button>
-            </div>
-          </form>
+              <div class="form-group">
+                <p class="single-text">
+                  「登録する」のボタンを押すことにより、
+                  <nuxt-link to="/term" target="_blank">
+                    利用規約
+                  </nuxt-link>
+                  に同意したものとみなします。
+                </p>
+              </div>
+
+              <div class="register-form-btn">
+                <nui-button class="btn-red1" :submit="true">
+                  登録する
+                </nui-button>
+              </div>
+            </form>
+          </nui-form>
         </main>
       </div>
     </div>
 
-    <div class="footer_wrap">
-      <Footer />
-    </div>
-
     <LoadingModal :show-modal="submitPending" />
+
+    <div class="footer_wrap">
+      <simple-footer />
+    </div>
   </div>
 </template>
 
@@ -129,7 +141,6 @@
 
 .register {
   background-color: $color-white1;
-  margin-bottom: 2rem;
 }
 
 .register-form {
@@ -142,53 +153,13 @@
   }
 }
 
-.form-group {
-  margin-bottom: 2.4rem;
-
-  label {
-    font-size: $font-size-sm;
-    font-weight: 600;
-  }
-
-  input {
-    border: 1px solid $color-gray1;
-    border-radius: 0.4rem;
-    color: $color-black;
-    margin-top: 0.8rem;
-    max-height: 3.2rem;
-    padding: 2rem 0.8rem 2rem;
-    width: 100%;
-  }
-}
-
-.form-require {
-  background: $color-red1;
-  margin: 0 0 0 0.8rem;
-  padding: 0.2rem 0.4rem;
-  border-radius: 0.2rem;
-  color: #fff;
-  font-size: $font-size-xs;
-  vertical-align: top;
-}
-
-.error-box {
-  background-color: $color-red3;
-  border-radius: 0.4rem;
-  color: $color-red1;
+.single-text {
   font-size: $font-size-sm;
-  font-weight: 700;
-  margin-bottom: 3.5rem;
-  padding: 1.5rem 3rem;
-}
+  text-align: center;
 
-.error-box-disc {
-  list-style-type: disc;
-}
-
-.error-text {
-  color: $color-red1;
-  font-size: $font-size-sm;
-  margin-top: 0.8rem;
+  a {
+    color: $color-blue;
+  }
 }
 
 .register-form-btn {
@@ -206,9 +177,10 @@
 
 <script>
 import NuiButton from "@/components/commons/Button.vue"
+import NuiForm from "@/components/commons/Form.vue"
 import LoadingModal from "@/components/commons/LoadingModal.vue"
 import Logo from "@/components/svg/Logo.vue"
-import Footer from "@/components/layouts/Footer.vue"
+import SimpleFooter from "@/components/layouts/SimpleFooter.vue"
 import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
 import auth0Middleware from "~/middleware/auth0"
 import { mapState } from "vuex"
@@ -224,9 +196,10 @@ export default {
   layout: "none",
   components: {
     NuiButton,
+    NuiForm,
     LoadingModal,
     Logo,
-    Footer,
+    SimpleFooter,
   },
   data() {
     return {
