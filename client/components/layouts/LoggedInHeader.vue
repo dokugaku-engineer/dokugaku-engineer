@@ -20,6 +20,24 @@
                 </nuxt-link>
               </div>
             </div>
+
+            <div v-if="lessons" class="menu-boarder">
+              <div
+                v-for="(lesson, index) in lessons"
+                :key="index"
+                class="menu-item"
+              >
+                <lecture-list
+                  :course="course"
+                  :lesson="lesson"
+                  :lecture="lecture"
+                  :lectures="filteredLectures(lesson.id)"
+                  :learned-lecture-ids="learnedLectureIds"
+                  @hideMenu="toggleMenu"
+                />
+              </div>
+            </div>
+
             <div class="menu-item">
               <nuxt-link to="/settings/profile" @click.native="toggleMenu">
                 <h2 class="menu-item-title">
@@ -27,6 +45,7 @@
                 </h2>
               </nuxt-link>
             </div>
+
             <div class="menu-item">
               <nuxt-link to="/settings/password" @click.native="toggleMenu">
                 <h2 class="menu-item-title">
@@ -34,6 +53,7 @@
                 </h2>
               </nuxt-link>
             </div>
+
             <div class="menu-item">
               <button class="menu-item-title" @click="logout">
                 ログアウト
@@ -233,15 +253,34 @@
 
 <script>
 import Logo from "@/components/svg/Logo.vue"
+import LectureList from "@/components/partials/course/LectureList.vue"
+import { mapGetters } from "vuex"
 
 export default {
   components: {
     Logo,
+    LectureList,
   },
   props: {
     title: {
       type: String,
       default: "",
+    },
+    course: {
+      type: Object,
+      default: () => ({}),
+    },
+    lessons: {
+      type: Array,
+      default: () => [],
+    },
+    lecture: {
+      type: Object,
+      default: () => ({}),
+    },
+    learnedLectureIds: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {
@@ -249,6 +288,9 @@ export default {
       showMenu: false,
       showSetting: false,
     }
+  },
+  computed: {
+    ...mapGetters("course", ["filteredLectures"]),
   },
   methods: {
     async logout() {

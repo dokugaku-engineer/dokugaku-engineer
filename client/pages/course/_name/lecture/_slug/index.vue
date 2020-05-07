@@ -249,7 +249,7 @@ export default {
   },
   async created() {
     this.$store.dispatch("course/setLecture", {})
-    this.$store.dispatch("course/setLectureName", "")
+    this.$store.dispatch("setTitle", "")
     this.$store.dispatch("course/setCourseTop", false)
     const token = await this.$auth0.getTokenSilently()
     const options = {
@@ -265,7 +265,7 @@ export default {
         this.loading = false
         this.lecture = res
         this.$store.dispatch("course/setLecture", res)
-        this.$store.dispatch("course/setLectureName", res.name)
+        this.$store.dispatch("setTitle", res.name)
       })
       .catch((err) => {
         this.loading = false

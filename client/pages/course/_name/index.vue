@@ -164,7 +164,7 @@ export default {
   },
   async created() {
     this.$store.dispatch("course/setLecture", {})
-    this.$store.dispatch("course/setLectureName", "ホーム")
+    this.$store.dispatch("setTitle", "ホーム")
     this.$store.dispatch("course/setCourseTop", true)
     const token = await this.$auth0.getTokenSilently()
     const options = {
