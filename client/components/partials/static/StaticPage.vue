@@ -8,23 +8,19 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .static-page {
   background-color: $color-white2;
   display: flex;
   flex-direction: column;
-  min-height: 96vh;
+  min-height: 90vh;
 
   h1 {
     font-size: $font-size-xxxl;
     font-weight: 700;
-    padding-top: 8rem;
+    margin-top: 4rem;
     margin-bottom: 4rem;
     text-align: center;
-
-    &:first-child {
-      padding-top: 11rem;
-    }
   }
 
   h3 {
@@ -67,18 +63,18 @@
 
 @media screen and (min-width: 769px) {
   .static-page {
-    h1:first-child {
-      padding-top: 6rem;
+    h1 {
+      margin-top: 0;
     }
   }
 
   .static-wrapper {
-    padding-top: 12rem;
+    padding-top: 4rem;
   }
 
   .static-content {
     background-color: $color-white1;
-    padding: 0 5.6rem 5.6rem;
+    padding: 5.6rem;
   }
 }
 

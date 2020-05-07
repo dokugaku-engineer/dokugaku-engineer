@@ -351,7 +351,7 @@
       </section>
     </section>
 
-    <section>
+    <section class="next-term">
       <h1>独学エンジニア有料会員利用規約</h1>
 
       <section>
@@ -503,6 +503,12 @@
     </ul>
   </static-page>
 </template>
+
+<style lang="scss" scoped>
+.next-term {
+  margin-top: 10rem;
+}
+</style>
 
 <script>
 import StaticPage from "@/components/partials/static/StaticPage.vue"

@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header fixed-top">
     <nuxt-link to="/course/serverside">
       <h2 class="header-logo">
         <logo />
@@ -87,14 +87,16 @@
 .header {
   align-items: center;
   background-color: $color-white1;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   display: flex;
-  padding: 1rem 1rem;
+  padding: 1.2rem 0.8rem 1rem 2rem;
   text-align: left;
 }
 
 @media screen and (min-width: 769px) {
   .header {
     justify-content: space-between;
+    padding: 2rem 0.8rem 1.6rem 2rem;
   }
 }
 
@@ -102,6 +104,13 @@
   font-weight: 700;
   text-align: center;
   width: 100%;
+}
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .bars-regular {

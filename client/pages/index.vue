@@ -329,12 +329,12 @@
 
 .tagline {
   align-items: center;
-  padding-top: 10rem;
+  padding-top: 4rem;
 }
 
 @media screen and (min-width: 769px) {
   .tagline {
-    padding-top: 0;
+    padding-top: 5rem;
   }
 }
 
@@ -355,7 +355,6 @@
     padding-bottom: 4rem;
     padding-left: 3%;
     padding-right: 7%;
-    padding-top: 12rem;
 
     h1 {
       font-size: 2.8rem;

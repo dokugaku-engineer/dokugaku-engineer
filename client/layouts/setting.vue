@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
-    <logged-in-header :title="title" />
-    <div class="main">
+    <logged-in-header ref="header" :title="title" />
+    <div class="main" :style="marginTop">
       <div class="main-inner">
         <nav class="sidebar">
           <h4 class="sidebar-header-text">
@@ -128,15 +128,31 @@ import LoggedInHeader from "@/components/layouts/LoggedInHeader.vue"
 import NuiFooter from "@/components/layouts/Footer.vue"
 import auth0Middleware from "~/middleware/auth0"
 import { mapState } from "vuex"
+import debounce from "lodash/debounce"
 
 export default {
   components: {
     LoggedInHeader,
     NuiFooter,
   },
+  data() {
+    return {
+      headerHeight: 0,
+    }
+  },
   middleware: auth0Middleware.protect(),
   computed: {
     ...mapState(["title"]),
+    marginTop() {
+      return `margin-top: ${this.headerHeight}px;`
+    },
+  },
+  mounted() {
+    this.headerHeight = this.$refs.header.$el.clientHeight
+    window.addEventListener("resize", this.handleResize)
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.handleResize)
   },
   methods: {
     sidebarLinkClass(name) {
@@ -146,6 +162,9 @@ export default {
         return "sidebar-link"
       }
     },
+    handleResize: debounce(function () {
+      this.headerHeight = this.$refs.header.$el.clientHeight
+    }, 300),
   },
 }
 </script>
