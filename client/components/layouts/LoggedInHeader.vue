@@ -21,7 +21,7 @@
               </div>
             </div>
 
-            <div v-if="lessons" class="menu-boarder">
+            <div v-if="!!Object.keys(lessons).length" class="menu-boarder">
               <div
                 v-for="(lesson, index) in lessons"
                 :key="index"
