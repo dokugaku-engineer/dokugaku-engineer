@@ -63,7 +63,7 @@
         <h3>動作環境</h3>
         <ul class="disc">
           <li>
-            OS：Microsoft Windows 10 以降、Mac OS X 10.10 以降
+            OS：Microsoft Windows 10 ビルド 19041 以降、Mac OS X 10.13 以降
           </li>
           <li>
             Webブラウザ：GoogleChrome（最新版）
