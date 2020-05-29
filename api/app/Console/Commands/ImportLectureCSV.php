@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Carbon;
+use League\Csv\Reader;
 
 class ImportLectureCSV extends Command
 {
@@ -68,6 +69,8 @@ class ImportLectureCSV extends Command
         Schema::rename("${name}s", "${name}s_tmp");
         Schema::rename("${name}s_olds", "${name}s");
         Schema::rename("${name}s_tmp", "${name}s_olds");
+
+        Storage::deleteDirectory('tmp');
     }
 
     /**
@@ -75,30 +78,24 @@ class ImportLectureCSV extends Command
      */
     private function getCsv($name)
     {
-        $csv_data = Storage::disk(env('FILE_DISK', 'local'))->get("lecture/${name}.csv");
-        $csv_lines = explode(PHP_EOL, $csv_data);
-        $csv = [];
-        foreach ($csv_lines as $line) {
-            $csv[] = str_getcsv($line);
-        }
+        $csv_data = Storage::disk(env('FILE_DISK', 'public'))->get("lecture/${name}.csv");
+        $local = Storage::disk('local');
+        $local->put("./tmp/{$name}.csv", $csv_data);
 
+        $reader = Reader::createFromPath(base_path("storage/app/tmp/{$name}.csv", 'r'));
+        $reader->setHeaderOffset(0);
+        $records = $reader->getRecords();
         $data = [];
-        $header = array_shift($csv);
-        foreach ($csv as $row) {
-            if (empty($row[0])) {
-                continue;
+        foreach ($records as $record) {
+            foreach ($record as $k => $v) {
+                if ($v === '') {
+                    $record[$k] = NULL;
+                }
             }
 
-            $row_data = [];
-            foreach ($row as $k => $v) {
-                if ($v === '') {
-                    $v = NULL;
-                }
-                $row_data[$header[$k]] = $v;
-                $row_data['created_at'] = Carbon::now()->toDateTimeString();
-                $row_data['updated_at'] = Carbon::now()->toDateTimeString();
-            }
-            $data[] = $row_data;
+            $record['created_at'] = Carbon::now()->toDateTimeString();
+            $record['updated_at'] = Carbon::now()->toDateTimeString();
+            $data[] = $record;
         }
         return $data;
     }
@@ -121,7 +118,7 @@ class ImportLectureCSV extends Command
         foreach ($deleted_lectures as $lecture) {
             $lecture['slug'] = NULL;
             $lecture['prev_lecture_slug'] = NULL;
-            $lecture['next)lecture_slug'] = NULL;
+            $lecture['next_lecture_slug'] = NULL;
             $processed_deleted_lectures[] = $lecture;
         }
 

@@ -9,18 +9,116 @@ id,course_id,lesson_id,order,name,video_url,description,premium,deleted_at
 8,1,1,8,【クイズ】コースの受講ペースを決めよう,https://player.vimeo.com/video/391168857,最初にコースの受講ペースを決めておくことで、最初だけ頑張りすぎて疲れてしまったり、途中で挫折するのを防ぎます。プログラミングを習得するには長く続けられるようにしておくことが一番です。,0,
 9,1,1,9,ご利用環境について,https://player.vimeo.com/video/391168857,お手元のPC環境については、MacOSはOS X 10.10 以降、WindowsはWindows 7以降をサポートしますが、基本的にはMacOSをご利用なさることを推奨します。閲覧に関しては、Google Chromeの最新版をサポートしています。,0,
 10,1,1,10,このレッスンのまとめ,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
-11,1,2,1,このレッスンのゴール,https://player.vimeo.com/video/391168857,パートのゴールを最初に見ておきます。,0,
-12,1,2,2,プログラムを作れるようになるにはどうすればいいの？,https://player.vimeo.com/video/391168857,プログラミング言語の文法を学ぶことと、プログラムを作れるようになることは別です。プログラムを作れるようになるにはどうすればいいかを学びます。,0,
-13,1,2,3,PHPの概要,https://player.vimeo.com/video/391168857,PHPの概要、特徴について学びます。,0,
-14,1,2,4,このレッスンのまとめ,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
-15,1,3,1,このレッスンのゴール,https://player.vimeo.com/video/391168857,レッスンのゴールを最初に見ておきます。,0,
-16,1,3,2,おすすめのテキストエディタ,https://player.vimeo.com/video/391168857,おすすめのテキストエディタを紹介します。PHPを書くのであれば、Visual Studio CodeかPhpStormがイチオシです。,0,
-17,1,3,3,テキストエディタ「Visual Studio Code」をインストールしよう,https://player.vimeo.com/video/391168857,本講座ではVisual Studio Codeを使用します。Visual Studio Codeをインストールしましょう。,0,
-18,1,3,4,Visual Studio Codeの初期設定をしよう,https://player.vimeo.com/video/391168857,Visual Studio CodeでPHPの開発を行うための初期設定をします。,0,
-19,1,3,5,Visual Studio Codeを使ってみよう,https://player.vimeo.com/video/391168857,Visual Studio Codeの基本的な使い方を習得します。,0,
-20,1,3,6,Dockerで開発しよう,https://player.vimeo.com/video/391168857,ローカルでの開発にはDockerを使用します。Dockerとは何かをまずは知りましょう。,0,
-21,1,3,7,Dockerをインストールしよう（Mac）,https://player.vimeo.com/video/391168857,Macの方向けに、Dockerをインストールします。,0,
-22,1,3,8,Dockerをインストールしよう（Windows）,https://player.vimeo.com/video/391168857,Windowsの方向けに、Dockerをインストールします。,0,
-23,1,3,9,PHP用の開発環境を用意しよう,https://player.vimeo.com/video/391168857,DockerでPHP用の開発環境を構築します。,0,
-24,1,3,10,コンテナを起動・終了させよう,https://player.vimeo.com/video/391168857,Dockerの基本的な使い方を学びます。,0,
-25,1,3,11,このレッスンのゴール,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+11,1,2,1,パートのゴール,https://player.vimeo.com/video/391168857,"パートのゴールを最初に把握しましょう！このパートでは3つのことを目指します。
+
+・開発環境を整えます
+・動くアプリケーションを作れるようなります
+・Webサービスの仕組みの全体像を把握します
+",0,
+12,1,2,2,【クイズ】身につけたいスキルを書き出そう,https://player.vimeo.com/video/391168857,"【クイズ】身につけたいスキルを書き出そう
+
+このパートで身につけたいスキルを Google スプレッドシートや Excel に書き出しましょう！
+
+1. 最初に、前回の動画で挙げた「身につける全般的スキル」と「身につける個別技術スキル」を書き出します
+2. 加えて、自分で「これは身につけたい」と思っているスキルを考え、あれば追加します
+3. 講義を進めている中で定期的に見返して、スキルがちゃんと身についているか確認します。身についたと思ったらチェック印を入れましょう
+4. このパートが終わったら最後に見返して、身についたスキルにチェック印を入れます。チェック印が入っていない項目があれば、再度動画を見返すか、以降のパートで身につけるようにしましょう
+",0,
+13,1,2,3,開発環境を整えよう,https://player.vimeo.com/video/391168857,"開発環境を整えましょう！開発環境を整えているかいないかで、開発の効率が全く変わってきます。開発するにあたって、何はともあれそのための環境を整えましょう！
+
+今回準備するのはこの４つです。
+
+・エディタ
+・コードのバージョン管理
+・仮想コンテナ
+・ターミナル
+",0,
+14,1,2,4,おすすめのテキストエディタ「Visual Studio Code」,https://player.vimeo.com/video/391168857,"プログラミングのコードを書く時は専用のテキストエディタを使用します。
+
+オススメは Visual Studio Code です！無料で高機能、軽量で人気のテキストエディタです。講義ではこちらを使用します。
+",0,
+15,1,2,5,Visual Studio Codeをインストールしよう（Mac）,https://player.vimeo.com/video/391168857,"Visual Studio Code をインストールします。
+今回はMacが対象です。
+
+下記リンクからダウンロードします。
+
+https://code.visualstudio.com/download
+",0,
+16,1,2,6,Visual Studio Codeをインストールしよう（Windows）,https://player.vimeo.com/video/391168857,おすすめのテキストエディタを紹介します。PHPを書くのであれば、Visual Studio CodeかPhpStormがイチオシです。,0,
+17,1,2,7,Visual Studio Codeの初期設定をしよう（1）,https://player.vimeo.com/video/391168857,"Visual Studio Codeの拡張機能をインストールします。
+
+今回インストールする拡張機能は以下の通りです。
+
+◯日本語化
+
+・Japanese Language Pack for Visual Studio Code
+Vusial Studio Code 内の表記を日本語化します。
+
+◯整形
+
+・Bracket Pair Colorizer 2
+括弧の色付けをします。
+
+・indent-rainbow
+インデントの色付けをします。
+
+・Code Spell Checker
+コードのスペルチェックをします。
+
+◯言語特有
+
+・HTML CSS Support
+HTMLドキュメントに対するCSSのサポートを行います。
+
+・PHP Intelephense
+PHPのコード補完をします。
+
+・Docker
+Dockerの操作をサポートします。
+
+◯表示
+
+・Material Icon Theme
+アイコンをマテリアルアイコンに変更します。
+
+・GitHub Theme
+GitHub公式のテーマです。講義では GitHub Dark テーマを使用します。こちらはお好きなものを入れてください。
+
+※補足
+
+拡張機能を探すときは、awesome-vscode にコミュニティが厳選した拡張機能がまとまっているので、そちらから探すと便利です。
+https://github.com/viatsko/awesome-vscode
+",0,
+18,1,2,8,Visual Studio Codeの初期設定をしよう（2）,https://player.vimeo.com/video/391168857,"Visual Studio Codeの設定を行います。
+
+今回設定する項目は以下の通りです。
+
+・フォントサイズ
+・行の折り返し
+・ファイル末尾に新しい行を追加
+・行末のスペースを削除
+・プレビュー表示をオフに
+・タブのサイズの設定。デフォルトは2、CSSとSCSSは2、PHPは4
+・（Mac専用）code コマンドにパスを通す
+
+※補足
+
+キーボードのショートカットの設定は、下記公式ドキュメントを参考にしてください。
+https://code.visualstudio.com/docs/getstarted/keybindings
+",0,
+19,1,2,9,Visual Studio Codeを使ってみよう,https://player.vimeo.com/video/391168857,Visual Studio Codeの基本的な使い方を習得します。,0,
+20,1,2,10,ターミナルを使おう,https://player.vimeo.com/video/391168857,ローカルでの開発にはDockerを使用します。Dockerとは何かをまずは知りましょう。,0,
+21,1,2,11,ターミナルをインストールしよう（Mac）,https://player.vimeo.com/video/391168857,Macの方向けに、Dockerをインストールします。,0,
+22,1,2,12,ターミナルをインストールしよう（Windows）,https://player.vimeo.com/video/391168857,Windowsの方向けに、Dockerをインストールします。,0,
+23,1,2,13,ターミナルで簡単な操作をしよう,https://player.vimeo.com/video/391168857,DockerでPHP用の開発環境を構築します。,0,
+24,1,2,14,コードをバージョン管理「Git・GitHub」,https://player.vimeo.com/video/391168857,Dockerの基本的な使い方を学びます。,0,
+25,1,2,15,Gitをインストールしよう（Mac）,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+26,1,2,16,Gitをインストールしよう（Windows）,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+27,1,2,17,Gitの初期設定をしよう,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+28,1,2,18,GitHubに登録しよう,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+29,1,2,19,仮想コンテナで開発するための「Docker」,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+30,1,2,20,Dockerをインストールしよう（Mac）,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+31,1,2,21,Dockerをインストールしよう（Windows）,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+32,1,2,22,コンテナを起動・終了させよう（Mac）,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+33,1,2,23,コンテナを起動・終了させよう（Windows）,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
+34,1,2,24,レッスンのまとめ,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
