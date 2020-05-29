@@ -73,7 +73,7 @@
           このレクチャーの内容・補足
         </h3>
         <div class="detail-body">
-          <p>{{ lecture.description }}</p>
+          <div v-if="lecture.description" v-html="$md.render(lecture.description)"></div>
         </div>
       </div>
     </div>

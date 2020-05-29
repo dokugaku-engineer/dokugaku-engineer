@@ -69,6 +69,7 @@ export default {
     "@nuxtjs/style-resources",
     "@nuxtjs/toast",
     "@nuxtjs/sentry",
+    "@nuxtjs/markdownit",
   ],
   /*
    ** Build configuration
@@ -205,4 +206,13 @@ export default {
     disableServerSide: true,
     publishRelease: false,
   },
+  /*
+   * Markdownit settings
+   */
+  markdownit: {
+    injected: true,
+    breaks: true,
+    linkify: true,
+    typography: true,
+  }
 }
