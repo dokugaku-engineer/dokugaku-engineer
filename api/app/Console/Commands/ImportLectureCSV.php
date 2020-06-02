@@ -78,6 +78,7 @@ class ImportLectureCSV extends Command
      */
     private function getCsv($name)
     {
+        // CSVファイルをローカルに保存する
         $csv_data = Storage::disk(env('FILE_DISK', 'public'))->get("lecture/${name}.csv");
         $local = Storage::disk('local');
         $local->put("./tmp/{$name}.csv", $csv_data);
