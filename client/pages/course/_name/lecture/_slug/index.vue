@@ -73,7 +73,10 @@
           このレクチャーの内容・補足
         </h3>
         <div class="detail-body">
-          <div v-if="lecture.description" v-html="$md.render(lecture.description)"></div>
+          <div
+            v-if="lecture.description"
+            v-html="$md.render(lecture.description)"
+          />
         </div>
       </div>
     </div>
@@ -200,9 +203,6 @@
   }
 }
 
-.detail-body {
-}
-
 @media screen and (min-width: 769px) {
   .detail-body {
     margin: 0 1.6rem;
@@ -221,6 +221,42 @@
 
 .error-box-wrap {
   margin: 4rem;
+}
+</style>
+
+<style lang="scss">
+.detail-body {
+  p {
+    margin-bottom: 3rem;
+  }
+
+  a {
+    color: $color-blue;
+  }
+
+  ol,
+  ul {
+    padding: 0 0 0 2rem;
+  }
+
+  ol {
+    counter-reset: count;
+    list-style: decimal;
+  }
+
+  ol > li {
+    &:before {
+      counter-increment: count;
+    }
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  li {
+    padding: 0.6rem 0;
+  }
 }
 </style>
 
