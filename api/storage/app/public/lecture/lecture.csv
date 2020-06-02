@@ -11,9 +11,9 @@ id,course_id,lesson_id,order,name,video_url,description,premium,deleted_at
 10,1,1,10,このレッスンのまとめ,https://player.vimeo.com/video/391168857,レッスンでやったことを振り返ります。,0,
 11,1,2,1,パートのゴール,https://player.vimeo.com/video/391168857,"パートのゴールを最初に把握しましょう！このパートでは3つのことを目指します。
 
-・開発環境を整えます
-・動くアプリケーションを作れるようなります
-・Webサービスの仕組みの全体像を把握します
+* 開発環境を整えます
+* 動くアプリケーションを作れるようなります
+* Webサービスの仕組みの全体像を把握します
 ",0,
 12,1,2,2,【クイズ】身につけたいスキルを書き出そう,https://player.vimeo.com/video/391168857,"【クイズ】身につけたいスキルを書き出そう
 
@@ -35,6 +35,8 @@ id,course_id,lesson_id,order,name,video_url,description,premium,deleted_at
 ",0,
 14,1,2,4,おすすめのテキストエディタ「Visual Studio Code」,https://player.vimeo.com/video/391168857,"プログラミングのコードを書く時は専用のテキストエディタを使用します。
 
+![スクリーンショット](https://dokugaku-engineer-public-file.s3-ap-northeast-1.amazonaws.com/16.05.03.png)
+
 オススメは Visual Studio Code です！無料で高機能、軽量で人気のテキストエディタです。講義ではこちらを使用します。
 ",0,
 15,1,2,5,Visual Studio Codeをインストールしよう（Mac）,https://player.vimeo.com/video/391168857,"Visual Studio Code をインストールします。
@@ -42,8 +44,7 @@ id,course_id,lesson_id,order,name,video_url,description,premium,deleted_at
 
 下記リンクからダウンロードします。
 
-https://code.visualstudio.com/download
-",0,
+[https://code.visualstudio.com/download](https://code.visualstudio.com/download)",0,
 16,1,2,6,Visual Studio Codeをインストールしよう（Windows）,https://player.vimeo.com/video/391168857,おすすめのテキストエディタを紹介します。PHPを書くのであれば、Visual Studio CodeかPhpStormがイチオシです。,0,
 17,1,2,7,Visual Studio Codeの初期設定をしよう（1）,https://player.vimeo.com/video/391168857,"Visual Studio Codeの拡張機能をインストールします。
 
