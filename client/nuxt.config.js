@@ -56,6 +56,7 @@ export default {
     "./plugins/auth0.js",
     "./plugins/click-outside.js",
     "./plugins/sentry.js",
+    "./plugins/markdownit",
   ],
   /*
    ** Nuxt.js dev-modules
@@ -206,13 +207,4 @@ export default {
     disableServerSide: true,
     publishRelease: false,
   },
-  /*
-   * Markdownit settings
-   */
-  markdownit: {
-    injected: true,
-    breaks: true,
-    linkify: true,
-    typography: true,
-  }
 }
