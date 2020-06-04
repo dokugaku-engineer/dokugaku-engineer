@@ -107,7 +107,30 @@ https://github.com/viatsko/awesome-vscode
 キーボードのショートカットの設定は、下記公式ドキュメントを参考にしてください。
 https://code.visualstudio.com/docs/getstarted/keybindings
 ",0,
-19,1,2,9,Visual Studio Codeを使ってみよう,https://player.vimeo.com/video/391168857,Visual Studio Codeの基本的な使い方を習得します。,0,
+19,1,2,9,Visual Studio Codeを使ってみよう,https://player.vimeo.com/video/391168857,"Git の初期設定をします。
+
+今回した使用したコマンドです。
+
+```
+# ユーザー名を設定
+$ git config --global user.name ""github user name""
+
+# メールアドレスを設定
+$ git config --global user.email github@example.com
+
+# Git で使用するエディタに Visual Studio Code を指定
+$ git config --global core.editor 'code --wait'
+
+# マージする時にファストフォワードされないようにする
+$ git config --global merge.ff false
+
+# プルの挙動をリベース型にする
+$ git config --global pull.rebase merges
+
+# 設定を確認する
+$ git config --list
+```
+",0,
 20,1,2,10,ターミナルを使おう,https://player.vimeo.com/video/391168857,ローカルでの開発にはDockerを使用します。Dockerとは何かをまずは知りましょう。,0,
 21,1,2,11,ターミナルをインストールしよう（Mac）,https://player.vimeo.com/video/391168857,Macの方向けに、Dockerをインストールします。,0,
 22,1,2,12,ターミナルをインストールしよう（Windows）,https://player.vimeo.com/video/391168857,Windowsの方向けに、Dockerをインストールします。,0,
