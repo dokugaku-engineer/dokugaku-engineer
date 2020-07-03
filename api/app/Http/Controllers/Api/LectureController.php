@@ -21,7 +21,7 @@ class LectureController extends ApiController
      * @queryParam course Course name
      * @responsefile responses/lecture.index.json
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      *
      */
     public function index(Request $request)
@@ -51,7 +51,7 @@ class LectureController extends ApiController
      * @responsefile responses/lecture.show.json
      *
      * @param string $slug
-     * @return LectureWithLearnedResource
+     * @return LectureWithLearnedResource|\Illuminate\Http\JsonResponse
      */
     public function show(Request $request, string $slug)
     {

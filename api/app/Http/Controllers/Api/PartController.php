@@ -20,7 +20,7 @@ class PartController extends ApiController
      * @queryParam course Course name
      * @responsefile responses/part.index.json
      *
-     * @return MinimumPartResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
      *
      */
     public function index(Request $request)
