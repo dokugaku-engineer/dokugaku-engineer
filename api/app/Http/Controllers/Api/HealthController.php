@@ -6,7 +6,14 @@ use App\Http\Controllers\Api\ApiController;
 
 class HealthController extends ApiController
 {
-    // TODO: DB疎通させたほうがよい
+    /**
+     * レスポンス200を返す
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * TODO: DB疎通させたほうがよい
+     *
+     */
     public function index()
     {
         return response()->json(

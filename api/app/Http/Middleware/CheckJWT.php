@@ -6,6 +6,7 @@ use Closure;
 use Auth0\SDK\JWTVerifier;
 use App\Traits\JsonRespondController;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
 
 class CheckJWT
 {
@@ -19,10 +20,11 @@ class CheckJWT
      *
      * @param  \Illuminate\Http\Request  $request - Illuminate HTTP Request object.
      * @param  \Closure  $next - Function to call when middleware is complete.
+     * @param string $scopeRequired - Scope to check for.
      *
      * @return mixed
      */
-    public function handle($request, Closure $next, $scopeRequired = null)
+    public function handle(Request $request, Closure $next, string $scopeRequired = null)
     {
         $accessToken = $request->bearerToken();
         if (empty($accessToken)) {
@@ -65,7 +67,7 @@ class CheckJWT
      *
      * @return bool
      */
-    protected function tokenHasScope($token, $scopeRequired)
+    protected function tokenHasScope($token, string $scopeRequired)
     {
         if (empty($token->scope)) {
             return false;

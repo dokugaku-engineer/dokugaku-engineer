@@ -22,7 +22,7 @@ class PostController extends ApiController
      * @queryParam except Category id to except
      * @responsefile responses/post.index.json
      *
-     * @return PostResourceCollection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      */
     public function index(Request $request)

@@ -133,7 +133,13 @@ trait JsonRespondController
         ]);
     }
 
-    public function respondWithOK($data)
+    /**
+     * JSONを送信
+     *
+     * @param  array $data
+     * @return JsonResponse
+     */
+    public function respondWithOK(array $data)
     {
         return $this->setHTTPStatusCode(200)
             ->respond($data);

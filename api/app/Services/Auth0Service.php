@@ -6,6 +6,13 @@ use Log;
 
 class Auth0Service
 {
+    /**
+     * 複数代入しない属性
+     *
+     * @var string
+     */
+    protected $access_token = '';
+
     public function __construct()
     {
         $this->access_token = $this->getAccessToken();
@@ -20,7 +27,7 @@ class Auth0Service
      * @return string
      *
      */
-    public function updateUser($user_id, $data)
+    public function updateUser(string $user_id, string $data): string
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -53,10 +60,10 @@ class Auth0Service
      *
      * @param string $user_id Auth0のユーザーID
      *
-     * @return array
+     * @return bool|string
      *
      */
-    public function deleteUser($user_id)
+    public function deleteUser(string $user_id)
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -90,7 +97,7 @@ class Auth0Service
      * @return array
      *
      */
-    public function sendVerificationEmail($data)
+    public function sendVerificationEmail(string $data): array
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -124,7 +131,7 @@ class Auth0Service
      * @return string
      *
      */
-    private function getAccessToken()
+    private function getAccessToken(): string
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(

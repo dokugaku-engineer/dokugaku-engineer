@@ -13,10 +13,19 @@ use App\Models\LearningHistory;
 
 class ImportTestUserData extends Command
 {
-    // 一度にINSERTするユーザー数
-    const ONCE_INSERT_NUM = 100;
-    // INSERTを行う回数
-    const INSERT_LOOP_NUM = 100;
+    /**
+     * 一度にINSERTするユーザー数
+     *
+     * @var int
+     */
+    const ONCE_INSERT_NUM = 10;
+
+    /**
+     * INSERTを行う回数
+     *
+     * @var int
+     */
+    const INSERT_LOOP_NUM = 10;
 
     /**
      * The name and signature of the console command.
@@ -59,9 +68,14 @@ class ImportTestUserData extends Command
         }
     }
 
-    private function insertUsers()
+    /**
+     * ユーザーを登録する
+     *
+     * @return array
+     */
+    private function insertUsers(): array
     {
-        if (User::all()->count() > 0) {
+        if (User::count() > 0) {
             $lastId = User::orderBy('id', 'desc')->first()->id;
         } else {
             $lastId = 0;
@@ -81,9 +95,15 @@ class ImportTestUserData extends Command
         return $users;
     }
 
-    private function insertTakingCourses($users)
+    /**
+     * 受講コースを登録する
+     *
+     * @param array $users
+     * @return array
+     */
+    private function insertTakingCourses(array $users): array
     {
-        if (TakingCourse::all()->count() > 0) {
+        if (TakingCourse::count() > 0) {
             $lastId = TakingCourse::orderBy('id', 'desc')->first()->id;
         } else {
             $lastId = 0;
@@ -103,9 +123,15 @@ class ImportTestUserData extends Command
         return $takingCourses;
     }
 
-    private function insertLearningHistories($users)
+    /**
+     * 受講履歴を登録する
+     *
+     * @param array $users
+     * @return void
+     */
+    private function insertLearningHistories($users): void
     {
-        if (LearningHistory::all()->count() > 0) {
+        if (LearningHistory::count() > 0) {
             $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
         } else {
             $lastId = 0;

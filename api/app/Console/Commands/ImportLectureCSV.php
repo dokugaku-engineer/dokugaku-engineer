@@ -10,6 +10,11 @@ use Illuminate\Support\Carbon;
 
 class ImportLectureCSV extends Command
 {
+    /**
+     * alphaID の文字数
+     *
+     * @var int
+     */
     const PAD_UP = 5;
 
     /**
@@ -53,8 +58,11 @@ class ImportLectureCSV extends Command
 
     /**
      * CSVデータを保存する
+     *
+     * @param string $name
+     * @return void
      */
-    private function insert($name)
+    private function insert(string $name): void
     {
         DB::table("${name}s_olds")->truncate();
         $csv = $this->getCsv($name);
@@ -72,8 +80,11 @@ class ImportLectureCSV extends Command
 
     /**
      * コースのCSVデータを取得する
+     *
+     * @param string $name
+     * @return array
      */
-    private function getCsv($name)
+    private function getCsv(string $name): array
     {
         $csv_data = Storage::disk(env('FILE_DISK', 'local'))->get("lecture/${name}.csv");
         $csv_lines = explode(PHP_EOL, $csv_data);
@@ -105,8 +116,11 @@ class ImportLectureCSV extends Command
 
     /**
      * CSVデータにslug, prev_lecture_slug, next_lecture_slugカラムを追加する
+     *
+     * @param array $csv
+     * @return array
      */
-    private function addSlugs($csv)
+    private function addSlugs(array $csv): array
     {
         # 削除されているかで列を分割
         $existing_lectures = array_filter($csv, function ($row) {
@@ -174,12 +188,11 @@ class ImportLectureCSV extends Command
      * 3文字以上のalphaIDが必要な場合は、下記を使用する
      * $pad_up = 3 argument
      *
-     * @param int $id
+     * @param int $in
      * @param mixed $pad_up  Number or boolean padds the result up to a specified length
-     *
      * @return mixed string or long
      */
-    private function alphaID($in, $pad_up = false)
+    private function alphaID(int $in, $pad_up = false)
     {
         // 数値をスクランブルする
         $in *= 0x1ca7bc5b; // 奇数その1の乗算
@@ -205,7 +218,7 @@ class ImportLectureCSV extends Command
         }
 
         for ($t = ($in != 0 ? floor(log($in, $base)) : 0); $t >= 0; $t--) {
-            $bcp = bcpow($base, $t);
+            $bcp = (float) bcpow((string) $base, (string) $t);
             $a = floor($in / $bcp) % $base;
             $out = $out . substr($index, $a, 1);
             $in = $in - ($a * $bcp);

@@ -39,7 +39,17 @@ class LearningHistoryController extends ApiController
         return new LearningHistoryResource($learning_history);
     }
 
-    public function getLectureIds(Request $request, $course_name)
+    /**
+     * レクチャーIDを取得
+     *
+     * @bodyParam course_name string required Course name. Example: serverside
+     *
+     * @responsefile responses/learning_history.store.json
+     *
+     * @param string $course_name
+     * @return LearningHistoryResource|\Illuminate\Http\JsonResponse
+     */
+    public function getLectureIds(Request $request, string $course_name)
     {
         $user_id = $request['user_id'];
         $course = Course::where('name', $course_name)->first();

@@ -20,7 +20,7 @@ class LessonController extends ApiController
      * @queryParam course Course name
      * @responsefile responses/lesson.index.json
      *
-     * @return MinimumLessonResource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
      *
      */
     public function index(Request $request)

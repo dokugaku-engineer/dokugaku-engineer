@@ -22,7 +22,7 @@ class CheckM2MJWT
      *
      * @return mixed
      */
-    public function handle($request, Closure $next, $scopeRequired = null)
+    public function handle($request, Closure $next)
     {
         $accessToken = $request->bearerToken();
         if (empty($accessToken)) {
@@ -38,7 +38,7 @@ class CheckM2MJWT
 
         try {
             $jwtVerifier = new JWTVerifier($jwtConfig);
-            $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
+            $jwtVerifier->verifyAndDecode($accessToken);
         } catch (\Exception $e) {
             return $this->respondUnauthorized($e->getMessage());
         }

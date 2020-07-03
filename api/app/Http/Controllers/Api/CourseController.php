@@ -19,7 +19,7 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.index.json
      *
-     * @return CourseResourceCollection
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      *
      */
     public function index(Request $request)
@@ -33,10 +33,11 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.show.json
      *
-     * @return CourseResource
+     * @param string $name
+     * @return CourseResource|\Illuminate\Http\JsonResponse
      *
      */
-    public function show(Request $request, $name)
+    public function show(Request $request, string $name)
     {
         $user_id = $request['user_id'];
         $course = Course::where('name', $name)->first();
@@ -51,7 +52,7 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.getAllLectures.json
      *
-     * @return CourseWithLectureResourceCollection
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      *
      */
     public function getAllLectures(Request $request)
