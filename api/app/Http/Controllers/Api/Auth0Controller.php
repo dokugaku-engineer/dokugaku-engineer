@@ -14,7 +14,7 @@ class Auth0Controller extends ApiController
     /**
      * 認証用メールを送信
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\JsonResponse
      *
      */
     public function sendVerificationEmail(Request $request)

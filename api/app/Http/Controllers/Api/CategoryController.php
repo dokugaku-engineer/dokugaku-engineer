@@ -20,7 +20,7 @@ class CategoryController extends ApiController
      * @queryParam except Category id to except
      * @responsefile responses/category.index.json
      *
-     * @return CategoryResourceCollection
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      *
      */
     public function index(Request $request)
