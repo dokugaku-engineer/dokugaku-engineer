@@ -18,6 +18,10 @@
     <exclude-pattern>resources</exclude-pattern>
     <exclude-pattern>database/</exclude-pattern>
     <exclude-pattern>storage/</exclude-pattern>
+    <exclude-pattern>public/index.php</exclude-pattern>
+    <exclude-pattern>public/apcu.php</exclude-pattern>
+    <exclude-pattern>public/ocp.php</exclude-pattern>
     <exclude-pattern>node_modules/</exclude-pattern>
     <exclude-pattern>bootstrap/cache/</exclude-pattern>
+    <exclude-pattern>preload.php</exclude-pattern>
 </ruleset>
