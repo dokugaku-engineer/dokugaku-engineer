@@ -78,7 +78,7 @@ class PostController extends ApiController
      */
     public function show(int $id)
     {
-        $post = Post::with('category_post')->find($id);
+        $post = Post::with('categoryPost')->find($id);
         return new PostResource($post);
     }
 

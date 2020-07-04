@@ -31,7 +31,7 @@ class User extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function learning_histories()
+    public function learningHistories()
     {
         return $this->hasMany('App\Models\LearningHistory');
     }

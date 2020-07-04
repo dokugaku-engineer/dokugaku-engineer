@@ -34,7 +34,7 @@ class PostRequest extends ApiRequest
             'posts.title' => 'required|max:255',
             'posts.content' => 'required',
             'posts.parent' => 'required|numeric',
-            'category_posts.category_id' => 'required|numeric',
+            'categoryPosts.category_id' => 'required|numeric',
         ];
     }
 }

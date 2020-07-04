@@ -23,7 +23,7 @@ class Post extends JsonResource
             'content' => $this->content,
             'parent' => $this->parent,
             'status' => $this->status,
-            'category_post' => new CategoryPostResource($this->category_post),
+            'categoryPost' => new CategoryPostResource($this->categoryPost),
             'deleted_at' => DateHelper::getTimestamp($this->deleted_at),
             'created_at' => DateHelper::getTimestamp($this->created_at),
             'updated_at' => DateHelper::getTimestamp($this->updated_at),
