@@ -2,6 +2,7 @@ php:
   preset: laravel
   disabled:
     - phpdoc_to_comment
+    - phpdoc_trim
   finder:
     not-name:
       - index.php
