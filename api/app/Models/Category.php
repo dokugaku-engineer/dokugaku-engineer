@@ -27,7 +27,7 @@ class Category extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function category_post()
+    public function categoryPost()
     {
         return $this->hasOne('App\Models\CategoryPost');
     }

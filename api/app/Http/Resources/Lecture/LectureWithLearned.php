@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Lecture;
 
-use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LectureWithLearned extends JsonResource
@@ -27,7 +26,7 @@ class LectureWithLearned extends JsonResource
             'next_lecture_slug' => $this->next_lecture_slug,
             'locked' => $this->locked,
             'premium' => $this->premium,
-            'learned' => !$this->learning_histories->isEmpty()
+            'learned' => !$this->learningHistories->isEmpty()
         ];
     }
 }

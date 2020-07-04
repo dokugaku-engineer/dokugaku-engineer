@@ -42,7 +42,7 @@ class Lecture extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function learning_histories()
+    public function learningHistories()
     {
         return $this->hasMany('App\Models\LearningHistory');
     }
@@ -54,9 +54,9 @@ class Lecture extends Model
      * @param int $course_id
      * @return $this
      */
-    public function load_learning_histories(int $user_id, int $course_id)
+    public function loadLearningHistories(int $user_id, int $course_id)
     {
-        return $this->load(['learning_histories' => function ($query) use ($user_id, $course_id) {
+        return $this->load(['learningHistories' => function ($query) use ($user_id, $course_id) {
             $query->where('learning_histories.user_id', $user_id)->where('course_id', $course_id);
         }]);
     }

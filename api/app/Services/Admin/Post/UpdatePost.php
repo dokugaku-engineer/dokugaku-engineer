@@ -20,7 +20,7 @@ class UpdatePost
 
         try {
             $post->update($inputs['posts']);
-            $post->category_post()->update($inputs['category_posts']);
+            $post->categoryPost()->update($inputs['category_posts']);
         } catch (Exception $e) {
             DB::rollback();
             return back()->withInput();

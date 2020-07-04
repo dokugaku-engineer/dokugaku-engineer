@@ -24,8 +24,8 @@ class CreatePost
             $post->status = 'private';
             $post->save();
 
-            $category_post = new CategoryPost($inputs['category_posts']);
-            $post->category_post()->save($category_post);
+            $categoryPost = new CategoryPost($inputs['category_posts']);
+            $post->categoryPost()->save($categoryPost);
         } catch (Exception $e) {
             DB::rollback();
             return back()->withInput();

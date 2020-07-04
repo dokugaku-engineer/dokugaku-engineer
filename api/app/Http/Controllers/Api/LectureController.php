@@ -21,6 +21,7 @@ class LectureController extends ApiController
      * @queryParam course Course name
      * @responsefile responses/lecture.index.json
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      *
      */
@@ -50,7 +51,8 @@ class LectureController extends ApiController
      *
      * @responsefile responses/lecture.show.json
      *
-     * @param string $slug
+     * @param Request $request
+     * @param string  $slug
      * @return LectureWithLearnedResource|\Illuminate\Http\JsonResponse
      */
     public function show(Request $request, string $slug)
@@ -58,7 +60,7 @@ class LectureController extends ApiController
         $user_id = $request['user_id'];
         $lecture = Lecture::whereSlug($slug)->withTrashed()->whereExistence(true)->first();
         $course_id = $lecture->course_id;
-        $lecture->load_learning_histories($user_id, $course_id);
+        $lecture->loadLearningHistories($user_id, $course_id);
         if (TakingCourse::doesntExist($user_id, $course_id)) {
             return $this->respondNotFound('Taking course not found');
         }

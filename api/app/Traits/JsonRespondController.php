@@ -136,7 +136,7 @@ trait JsonRespondController
     /**
      * JSONを送信
      *
-     * @param  array $data
+     * @param array $data
      * @return JsonResponse
      */
     public function respondWithOK(array $data)
@@ -148,8 +148,8 @@ trait JsonRespondController
     /**
      * JSONを送信
      *
-     * @param  array $data
-     * @param  array  $headers
+     * @param array $data
+     * @param array $headers
      * @return JsonResponse
      */
     public function respond(array $data, array $headers = []): JsonResponse
