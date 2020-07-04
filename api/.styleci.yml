@@ -1,7 +1,7 @@
 php:
   preset: laravel
   disabled:
-    - unused_use
+    - phpdoc_to_comment
   finder:
     not-name:
       - index.php
