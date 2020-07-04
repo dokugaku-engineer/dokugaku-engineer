@@ -22,7 +22,7 @@ class CourseController extends ApiController
      * @return \Illuminate\Http\Resources\Json\ResourceCollection
      *
      */
-    public function index(Request $request)
+    public function index()
     {
         $courses = Course::all();
         return CourseResource::collection($courses);
@@ -33,7 +33,8 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.show.json
      *
-     * @param string $name
+     * @param Request $request
+     * @param string  $name
      * @return CourseResource|\Illuminate\Http\JsonResponse
      *
      */
@@ -55,7 +56,7 @@ class CourseController extends ApiController
      * @return \Illuminate\Http\Resources\Json\ResourceCollection
      *
      */
-    public function getAllLectures(Request $request)
+    public function getAllLectures()
     {
         $course = Course::with('parts.lessons.lectures')->get();
         return CourseWithLectureResource::collection($course);
