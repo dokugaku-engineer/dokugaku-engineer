@@ -18,6 +18,12 @@ composer phpstan
 composer phpcs
 ```
 
+自動整形するには下記コマンドを実行します。
+
+```sh
+composer phpcbf
+```
+
 ## APIのドキュメンテーション
 
 APIのドキュメントは下記コマンドを実行することで確認できます。
