@@ -95,7 +95,7 @@ class PostController extends ApiController
      * @responsefile responses/post.store.json
      *
      * @param PostRequest $request
-     * @param Post $post
+     * @param Post        $post
      * @return PostResource|\Illuminate\Http\JsonResponse
      */
     public function update(PostRequest $request, Post $post)

@@ -18,9 +18,9 @@ class CheckJWT
     /**
      * JWTアクセストークンを検証する
      *
-     * @param  \Illuminate\Http\Request  $request - Illuminate HTTP Request object.
-     * @param  \Closure  $next - Function to call when middleware is complete.
-     * @param string $scopeRequired - Scope to check for.
+     * @param \Illuminate\Http\Request $request       - Illuminate HTTP Request object.
+     * @param \Closure                 $next          - Function to call when middleware is complete.
+     * @param string                   $scopeRequired - Scope to check for.
      *
      * @return mixed
      */
@@ -62,8 +62,8 @@ class CheckJWT
     /**
      * トークンにスコープが設定されている場合はチェックする
      *
-     * @param \stdClass $token - JWT access token to check.
-     * @param string $scopeRequired - Scope to check for.
+     * @param \stdClass $token         - JWT access token to check.
+     * @param string    $scopeRequired - Scope to check for.
      *
      * @return bool
      */

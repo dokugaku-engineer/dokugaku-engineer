@@ -110,7 +110,7 @@ class CategoryController extends ApiController
      * }
      *
      * @param CategoryRequest $request
-     * @param Category $category
+     * @param Category        $category
      * @return CategoryResource|\Illuminate\Http\JsonResponse
      */
     public function update(CategoryRequest $request, Category $category)

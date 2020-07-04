@@ -103,7 +103,7 @@ class ImportLectureCSV extends Command
             $row_data = [];
             foreach ($row as $k => $v) {
                 if ($v === '') {
-                    $v = NULL;
+                    $v = null;
                 }
                 $row_data[$header[$k]] = $v;
                 $row_data['created_at'] = Carbon::now()->toDateTimeString();
@@ -124,18 +124,18 @@ class ImportLectureCSV extends Command
     {
         # 削除されているかで列を分割
         $existing_lectures = array_filter($csv, function ($row) {
-            return $row['deleted_at'] === NULL;
+            return $row['deleted_at'] === null;
         });
         $deleted_lectures = array_filter($csv, function ($row) {
-            return $row['deleted_at'] !== NULL;
+            return $row['deleted_at'] !== null;
         });
 
         # 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
         $processed_deleted_lectures = [];
         foreach ($deleted_lectures as $lecture) {
-            $lecture['slug'] = NULL;
-            $lecture['prev_lecture_slug'] = NULL;
-            $lecture['next)lecture_slug'] = NULL;
+            $lecture['slug'] = null;
+            $lecture['prev_lecture_slug'] = null;
+            $lecture['next)lecture_slug'] = null;
             $processed_deleted_lectures[] = $lecture;
         }
 
@@ -159,8 +159,8 @@ class ImportLectureCSV extends Command
         # prev_lecture_slug、next_lecture_slugカラムを追加
         $processed_lectures = [];
         foreach ($lectures as $index => $lecture) {
-            $prev_lecture_slug = NULL;
-            $next_lecture_slug = NULL;
+            $prev_lecture_slug = null;
+            $next_lecture_slug = null;
 
             if ($index > 0) {
                 $prev_lecture_slug = $lectures[$index - 1]['slug'];
@@ -188,8 +188,8 @@ class ImportLectureCSV extends Command
      * 3文字以上のalphaIDが必要な場合は、下記を使用する
      * $pad_up = 3 argument
      *
-     * @param int $in
-     * @param mixed $pad_up  Number or boolean padds the result up to a specified length
+     * @param int   $in
+     * @param mixed $pad_up Number or boolean padds the result up to a specified length
      * @return mixed string or long
      */
     private function alphaID(int $in, $pad_up = false)
