@@ -2,6 +2,21 @@ php:
   preset: laravel
   disabled:
     - align_phpdoc
+    - heredoc_to_nowdoc
+    - no_blank_lines_after_phpdoc
+    - no_empty_phpdoc
+    - phpdoc_indent
+    - phpdoc_inline_tag
+    - phpdoc_no_access
+    - phpdoc_no_package
+    - phpdoc_no_useless_inheritdoc
+    - phpdoc_scalar
+    - phpdoc_single_line_var_spacing
+    - phpdoc_summary
+    - phpdoc_trim
+    - phpdoc_type_to_var
+    - phpdoc_types
+    - phpdoc_var_without_name
   finder:
     not-name:
       - index.php
