@@ -1,4 +1,8 @@
-<p align="center"><img src="https://raw.githubusercontent.com/dokugaku-engineer/dokugaku-engineer/images/logo.png"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/dokugaku-engineer/dokugaku-engineer/images/logo_long.png"></p>
+
+<p align="center">
+<a href="https://github.styleci.io/repos/269288112?branch=master"><img src="https://github.styleci.io/repos/269288112/shield?branch=master" alt="StyleCI"></a>
+</p>
 
 [独学エンジニア](https://dokugaku-engineer.com/)はプログラミング初学者が自走できるエンジニアになるためのプログラミング学習サービスです。
 
@@ -169,4 +173,4 @@ AUTH0_NAMESPACE=https://dokugaku-engineer.com/
 
 プログラミングを習得する上で、実際に運用しているWebサービスのソースコードを読むことは大変勉強になります。一方で、運用しているWebサービスのソースコードは公開してないものが多く、プログラミング初学者が参考にしやすいものは少ないです。そこで独学エンジニアではソースコードを公開し、プログラミング初学者が実際に運用中のWebサービスのソースコードに触れる機会を提供することで、プログラミング初学者の学習の参考になればと願っています。
 
-また、オープンソースにコミットすることは最初はハードルが高いです。独学エンジニアで学習された方がオープンソースにコミットする練習の場として機能し、プログラミング初学者がオープンソースに触れるきっかけになればと思っています。
+また、オープンソースにすることで多くの開発者の力でサービスをより良いものにしていければと思っています。プログラミング初学者がオープンソースにコミットするきっかけになることも期待しています。
