@@ -1,5 +1,9 @@
 <p align="center"><img src="https://raw.githubusercontent.com/dokugaku-engineer/dokugaku-engineer/images/logo.png"></p>
 
+<p align="center">
+<a href="https://github.styleci.io/repos/269288112?branch=master"><img src="https://github.styleci.io/repos/269288112/shield?branch=master" alt="StyleCI"></a>
+</p>
+
 [独学エンジニア](https://dokugaku-engineer.com/)はプログラミング初学者が自走できるエンジニアになるためのプログラミング学習サービスです。
 
 ## 概要
