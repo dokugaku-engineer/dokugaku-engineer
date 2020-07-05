@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Auth0\SDK\JWTVerifier;
 use App\Traits\JsonRespondController;
+use Auth0\SDK\JWTVerifier;
+use Closure;
 
 /**
  * Machine to machine用のアクセストークンを検証する

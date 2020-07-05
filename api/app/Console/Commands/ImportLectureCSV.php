@@ -3,10 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class ImportLectureCSV extends Command
 {
@@ -111,6 +111,7 @@ class ImportLectureCSV extends Command
             }
             $data[] = $row_data;
         }
+
         return $data;
     }
 
@@ -122,7 +123,7 @@ class ImportLectureCSV extends Command
      */
     private function addSlugs(array $csv): array
     {
-        # 削除されているかで列を分割
+        // 削除されているかで列を分割
         $existing_lectures = array_filter($csv, function ($row) {
             return $row['deleted_at'] === null;
         });
@@ -130,7 +131,7 @@ class ImportLectureCSV extends Command
             return $row['deleted_at'] !== null;
         });
 
-        # 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
+        // 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
         $processed_deleted_lectures = [];
         foreach ($deleted_lectures as $lecture) {
             $lecture['slug'] = null;
@@ -139,8 +140,8 @@ class ImportLectureCSV extends Command
             $processed_deleted_lectures[] = $lecture;
         }
 
-        # 存在している列にslug, prev_lecture_slug, next_lecture_slugカラムを追加する
-        # lesson_id, orderをキーとしてソートする
+        // 存在している列にslug, prev_lecture_slug, next_lecture_slugカラムを追加する
+        // lesson_id, orderをキーとしてソートする
         $lesson_id_sort_key = [];
         $order_sort_key = [];
         foreach ($existing_lectures as $index => $lecture) {
@@ -149,14 +150,14 @@ class ImportLectureCSV extends Command
         }
         array_multisort($lesson_id_sort_key, SORT_ASC, $order_sort_key, SORT_ASC, $existing_lectures);
 
-        # slugカラムを追加
+        // slugカラムを追加
         $lectures = [];
         foreach ($existing_lectures as $lecture) {
             $lecture['slug'] = $this->alphaID($lecture['id'], self::PAD_UP);
             $lectures[] = $lecture;
         }
 
-        # prev_lecture_slug、next_lecture_slugカラムを追加
+        // prev_lecture_slug、next_lecture_slugカラムを追加
         $processed_lectures = [];
         foreach ($lectures as $index => $lecture) {
             $prev_lecture_slug = null;
@@ -220,7 +221,7 @@ class ImportLectureCSV extends Command
         for ($t = ($in != 0 ? floor(log($in, $base)) : 0); $t >= 0; $t--) {
             $bcp = (float) bcpow((string) $base, (string) $t);
             $a = floor($in / $bcp) % $base;
-            $out = $out . substr($index, $a, 1);
+            $out = $out.substr($index, $a, 1);
             $in = $in - ($a * $bcp);
         }
 

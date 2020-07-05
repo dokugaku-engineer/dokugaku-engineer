@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryPost extends Model
 {
-
     /**
      * 複数代入しない属性
      *

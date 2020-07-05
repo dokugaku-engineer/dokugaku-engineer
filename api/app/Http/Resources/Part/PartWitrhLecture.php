@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\Part;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Lesson\LessonWithLecture as LessonWithLectureResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class PartWitrhLecture extends JsonResource
 {
@@ -19,7 +19,7 @@ class PartWitrhLecture extends JsonResource
             'order' => $this->order,
             'name' => $this->name,
             'description' => $this->description,
-            'lessons' => LessonWithLectureResource::collection($this->lessons)
+            'lessons' => LessonWithLectureResource::collection($this->lessons),
         ];
     }
 }

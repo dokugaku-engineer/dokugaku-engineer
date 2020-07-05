@@ -2,9 +2,9 @@
 
 namespace App\Services\Admin\Post;
 
+use App\Models\Post;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use App\Models\Post;
 
 class UpdatePost
 {
@@ -23,6 +23,7 @@ class UpdatePost
             $post->categoryPost()->update($inputs['category_posts']);
         } catch (Exception $e) {
             DB::rollback();
+
             return back()->withInput();
         }
 

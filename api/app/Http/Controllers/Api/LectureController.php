@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Resources\Lecture\LectureWithLearned as LectureWithLearnedResource;
 use App\Models\Course;
 use App\Models\Lecture;
 use App\Models\TakingCourse;
-use App\Http\Resources\Lecture\LectureWithLearned as LectureWithLearnedResource;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @group 2. Courses
@@ -23,7 +22,6 @@ class LectureController extends ApiController
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
-     *
      */
     public function index(Request $request)
     {
@@ -41,6 +39,7 @@ class LectureController extends ApiController
             ->orderBy('order')
             ->get()
             ->toArray();
+
         return $this->respondWithOK($lectures);
     }
 

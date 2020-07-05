@@ -4,7 +4,6 @@ namespace App\Http\Resources\Lesson;
 
 use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Lecture\Lecture as LectureResource;
 
 class Lesson extends JsonResource
 {

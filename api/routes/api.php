@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,7 +16,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::middleware(['jwt.m2m'])->group(function () {
         // Course-related routes
         Route::resource('courses', 'CourseController')->only([
-            'index'
+            'index',
         ]);
         Route::get('courses/lectures', 'CourseController@getAllLectures');
     });
@@ -27,25 +25,25 @@ Route::group(['namespace' => 'Api'], function () {
     Route::middleware(['jwt', 'sentry.context'])->group(function () {
         // User routes
         Route::resource('users', 'UserController')->only([
-            'show', 'update', 'destroy'
+            'show', 'update', 'destroy',
         ]);
 
         // Course-related routes
         Route::get('courses/{name}', 'CourseController@show');
         Route::resource('parts', 'PartController')->only([
-            'index'
+            'index',
         ]);
         Route::resource('lessons', 'LessonController')->only([
-            'index'
+            'index',
         ]);
         Route::resource('lectures', 'LectureController')->only([
-            'index'
+            'index',
         ]);
         Route::get('lectures/{slug}', 'LectureController@show');
 
         // Learning history routes
         Route::resource('learning_histories', 'LearningHistoryController')->only([
-            'store'
+            'store',
         ]);
         Route::get('learning_histories/{course_name}/lecture_ids', 'LearningHistoryController@getLectureIds');
 
@@ -58,20 +56,20 @@ Route::group(['namespace' => 'Api'], function () {
 
     // User routes
     Route::resource('users', 'UserController')->only([
-        'store'
+        'store',
     ]);
 
     // Taking course routes
     Route::resource('taking_courses', 'TakingCourseController')->only([
-        'store'
+        'store',
     ]);
 
     // Post-related routes
     Route::resource('categories', 'CategoryController')->only([
-        'index', 'store', 'show', 'update'
+        'index', 'store', 'show', 'update',
     ]);
     Route::resource('posts', 'PostController')->only([
-        'index', 'store', 'show', 'update', 'destroy'
+        'index', 'store', 'show', 'update', 'destroy',
     ]);
     Route::get('/posts/{post}/publish', 'PostController@publish')->name('posts.publish');
     Route::get('/posts/{post}/unpublish', 'PostController@unpublish')->name('posts.unpublish');

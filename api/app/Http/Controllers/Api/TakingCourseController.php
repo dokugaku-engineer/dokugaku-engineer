@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\TakingCourseRequest;
 use App\Http\Resources\TakingCourse\TakingCourse as TakingCourseResource;
 use App\Models\TakingCourse;
