@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/dokugaku-engineer/dokugaku-engineer/images/logo.png"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/dokugaku-engineer/dokugaku-engineer/images/logo_long.png"></p>
 
 <p align="center">
 <a href="https://github.styleci.io/repos/269288112?branch=master"><img src="https://github.styleci.io/repos/269288112/shield?branch=master" alt="StyleCI"></a>
