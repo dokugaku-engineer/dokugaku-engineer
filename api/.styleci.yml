@@ -105,7 +105,7 @@ php:
     - unalign_equals
     - unary_operator_spaces
     - unix_line_endings
-whitespace_after_comma_in_array
+    - whitespace_after_comma_in_array
   finder:
     not-name:
       - api/index.php
