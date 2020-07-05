@@ -1,9 +1,0 @@
-{
-  "name": "dokugaku-engineer",
-  "scripts": {
-    "dev": "nuxt"
-  },
-  "dependencies": {
-    "nuxt": "^2.10.1"
-  }
-}
