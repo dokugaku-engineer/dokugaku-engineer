@@ -42,6 +42,6 @@ class TakingCourse extends Model
      */
     public static function doesntExist(int $user_id, int $course_id): bool
     {
-        return TakingCourse::where([['user_id', $user_id], ['course_id', $course_id]])->doesntExist();
+        return self::where([['user_id', $user_id], ['course_id', $course_id]])->doesntExist();
     }
 }

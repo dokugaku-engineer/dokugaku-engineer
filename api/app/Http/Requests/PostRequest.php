@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\ApiRequest;
 use Illuminate\Validation\Rule;
 
 class PostRequest extends ApiRequest
@@ -29,7 +28,7 @@ class PostRequest extends ApiRequest
                 'required',
                 'max:255',
                 'regex:/^[a-zA-Z0-9\-_]+$/',
-                Rule::unique('posts', 'slug')->ignore($this->post)
+                Rule::unique('posts', 'slug')->ignore($this->post),
             ],
             'posts.title' => 'required|max:255',
             'posts.content' => 'required',

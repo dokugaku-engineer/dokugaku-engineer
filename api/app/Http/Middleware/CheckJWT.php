@@ -2,17 +2,17 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Auth0\SDK\JWTVerifier;
 use App\Traits\JsonRespondController;
-use Illuminate\Support\Facades\Cache;
+use Auth0\SDK\JWTVerifier;
+use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CheckJWT
 {
     use JsonRespondController;
 
-    # キャッシュの有効期限。Auth0のIDトークンの有効期限と合わせる
+    // キャッシュの有効期限。Auth0のIDトークンの有効期限と合わせる
     const EXPIRE_SECONDS = 36000;
 
     /**
@@ -47,15 +47,16 @@ class CheckJWT
             return $this->respondUnauthorized($e->getMessage());
         }
 
-        if ($scopeRequired && !$this->tokenHasScope($decodedToken, $scopeRequired)) {
+        if ($scopeRequired && ! $this->tokenHasScope($decodedToken, $scopeRequired)) {
             return $this->respondInsufficientScope('Insufficient scope');
         }
 
-        $USERID_NAMESPACE = env('AUTH0_NAMESPACE') . 'user_id';
+        $USERID_NAMESPACE = env('AUTH0_NAMESPACE').'user_id';
         $request->merge([
             'user_id' => $decodedToken->$USERID_NAMESPACE,
-            'auth0_user_id' => $decodedToken->sub
+            'auth0_user_id' => $decodedToken->sub,
         ]);
+
         return $next($request);
     }
 
@@ -74,6 +75,7 @@ class CheckJWT
         }
 
         $tokenScopes = explode(' ', $token->scope);
+
         return in_array($scopeRequired, $tokenScopes);
     }
 }

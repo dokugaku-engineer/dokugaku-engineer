@@ -3,7 +3,7 @@
 // https://github.com/brendt/laravel-preload/blob/master/preload.php
 // https://stitcher.io/blog/preloading-in-php-74
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__.'/vendor/autoload.php';
 
 class Preloader
 {
@@ -20,12 +20,12 @@ class Preloader
         $this->paths = $paths;
 
         // ファイル名でクラスをautoloadできるよう、composerのclassmapを使う
-        $classMap = require __DIR__ . '/vendor/composer/autoload_classmap.php';
+        $classMap = require __DIR__.'/vendor/composer/autoload_classmap.php';
 
         $this->fileMap = array_flip($classMap);
     }
 
-    public function paths(string ...$paths): Preloader
+    public function paths(string ...$paths): self
     {
         $this->paths = array_merge(
             $this->paths,
@@ -35,7 +35,7 @@ class Preloader
         return $this;
     }
 
-    public function ignore(string ...$names): Preloader
+    public function ignore(string ...$names): self
     {
         $this->ignores = array_merge(
             $this->ignores,
@@ -54,7 +54,7 @@ class Preloader
 
         $count = self::$count;
 
-        echo "[Preloader] Preloaded {$count} classes" . PHP_EOL;
+        echo "[Preloader] Preloaded {$count} classes".PHP_EOL;
     }
 
     private function loadPath(string $path): void
@@ -96,7 +96,7 @@ class Preloader
         }
 
         // 最終的にパスをrequireし、依存関係もロードする
-        require_once($path);
+        require_once $path;
 
         self::$count++;
     }
@@ -118,8 +118,8 @@ class Preloader
 }
 
 (new Preloader())
-    ->paths(__DIR__ . '/vendor/symfony/console/Terminal.php') // ロードに失敗するので事前にロードしておく
-    ->paths(__DIR__ . '/vendor/laravel')
+    ->paths(__DIR__.'/vendor/symfony/console/Terminal.php') // ロードに失敗するので事前にロードしておく
+    ->paths(__DIR__.'/vendor/laravel')
     ->ignore(
         \Illuminate\Filesystem\Cache::class,
         \Illuminate\Log\LogManager::class,

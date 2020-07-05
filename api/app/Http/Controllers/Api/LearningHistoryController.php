@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\LearningHistoryRequest;
 use App\Http\Resources\LearningHistory\LearningHistory as LearningHistoryResource;
 use App\Models\Course;
@@ -55,6 +54,7 @@ class LearningHistoryController extends ApiController
         $user_id = $request['user_id'];
         $course = Course::where('name', $course_name)->first();
         $lecture_ids = LearningHistory::where('user_id', $user_id)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
+
         return $this->respondWithOK($lecture_ids);
     }
 }

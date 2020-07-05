@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
-use Illuminate\Http\Request;
+use App\Http\Resources\Part\MinimumPart as MinimumPartResource;
 use App\Models\Course;
 use App\Models\Part;
 use App\Models\TakingCourse;
-use App\Http\Resources\Part\MinimumPart as MinimumPartResource;
+use Illuminate\Http\Request;
 
 /**
  * @group 2. Courses
@@ -21,7 +20,6 @@ class PartController extends ApiController
      * @responsefile responses/part.index.json
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
-     *
      */
     public function index(Request $request)
     {
@@ -31,6 +29,7 @@ class PartController extends ApiController
             return $this->respondNotFound('Taking course not found');
         }
         $parts = Part::where('course_id', $course->id)->get();
+
         return MinimumPartResource::collection($parts);
     }
 }
