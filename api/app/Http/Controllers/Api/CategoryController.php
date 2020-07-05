@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\CategoryRequest;
-use App\Models\Category;
 use App\Http\Resources\Category\Category as CategoryResource;
+use App\Models\Category;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -21,7 +20,6 @@ class CategoryController extends ApiController
      * @responsefile responses/category.index.json
      *
      * @return \Illuminate\Http\Resources\Json\ResourceCollection
-     *
      */
     public function index(Request $request)
     {

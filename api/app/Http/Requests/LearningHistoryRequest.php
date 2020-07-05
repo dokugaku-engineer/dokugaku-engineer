@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\ApiRequest;
 use Illuminate\Validation\Rule;
 
 class LearningHistoryRequest extends ApiRequest
@@ -32,8 +31,8 @@ class LearningHistoryRequest extends ApiRequest
                 'integer',
                 Rule::unique('learning_histories')->where(function ($query) {
                     return $query->where('user_id', $this->input('user_id'));
-                })
-            ]
+                }),
+            ],
         ];
     }
 }

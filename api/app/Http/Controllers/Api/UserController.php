@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\User\User as UserResource;
 use App\Models\User;
 use App\Services\Auth0Service;
-use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
 /**
  * @group 3. Users
@@ -89,7 +88,7 @@ class UserController extends ApiController
                 $auth0_client = new Auth0Service();
                 $auth0_client->updateUser($request['auth0_user_id'], json_encode([
                     'email' => $user->email,
-                    'email_verified' => true
+                    'email_verified' => true,
                 ]));
             }
         } catch (QueryException $e) {

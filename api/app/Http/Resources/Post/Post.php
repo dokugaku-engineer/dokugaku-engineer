@@ -3,8 +3,8 @@
 namespace App\Http\Resources\Post;
 
 use App\Helpers\DateHelper;
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CategoryPost\CategoryPost as CategoryPostResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class Post extends JsonResource
 {

@@ -2,14 +2,14 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
-use App\Models\User;
-use App\Models\TakingCourse;
 use App\Models\Course;
-use App\Models\Lecture;
 use App\Models\LearningHistory;
+use App\Models\Lecture;
+use App\Models\TakingCourse;
+use App\Models\User;
+use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ImportTestUserData extends Command
 {
@@ -91,7 +91,8 @@ class ImportTestUserData extends Command
             ];
             array_push($users, $user);
         }
-        DB::table("users")->insert($users);
+        DB::table('users')->insert($users);
+
         return $users;
     }
 
@@ -119,7 +120,8 @@ class ImportTestUserData extends Command
             ];
             array_push($takingCourses, $takingCourse);
         }
-        DB::table("taking_courses")->insert($takingCourses);
+        DB::table('taking_courses')->insert($takingCourses);
+
         return $takingCourses;
     }
 
@@ -152,7 +154,7 @@ class ImportTestUserData extends Command
                 ];
                 array_push($learningHistories, $learningHistory);
             }
-            DB::table("learning_histories")->insert($learningHistories);
+            DB::table('learning_histories')->insert($learningHistories);
         }
     }
 }

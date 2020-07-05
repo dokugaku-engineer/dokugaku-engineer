@@ -2,10 +2,10 @@
 
 namespace App\Services\Admin\Post;
 
+use App\Models\CategoryPost;
+use App\Models\Post;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use App\Models\Post;
-use App\Models\CategoryPost;
 
 class CreatePost
 {
@@ -28,6 +28,7 @@ class CreatePost
             $post->categoryPost()->save($categoryPost);
         } catch (Exception $e) {
             DB::rollback();
+
             return back()->withInput();
         }
 
