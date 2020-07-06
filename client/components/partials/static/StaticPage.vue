@@ -44,13 +44,13 @@
 
     &::before {
       counter-increment: count;
-      content: counter(count) ". ";
+      content: counter(count) '. ';
     }
   }
 
   ol.brackets-num > li::before {
     counter-increment: count;
-    content: "(" counter(count) ") ";
+    content: '(' counter(count) ') ';
   }
 }
 

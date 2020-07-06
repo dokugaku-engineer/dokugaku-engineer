@@ -168,14 +168,14 @@
 </template>
 
 <script>
-import StaticPage from "@/components/partials/static/StaticPage.vue"
+import StaticPage from '@/components/partials/static/StaticPage.vue'
 
 export default {
   components: {
     StaticPage,
   },
   beforeCreate() {
-    this.$store.dispatch("setTitle", "プライバシーポリシー")
+    this.$store.dispatch('setTitle', 'プライバシーポリシー')
   },
 }
 </script>

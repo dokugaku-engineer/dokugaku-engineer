@@ -28,7 +28,7 @@
       <div v-else class="profile">
         <div class="profile-notice">
           <h3 class="profile-message">
-            このアカウントは{{ providers.join("、") }}と連携しています
+            このアカウントは{{ providers.join('、') }}と連携しています
           </h3>
           <p>メールアドレスでログインする場合、パスワードを設定できます。</p>
         </div>
@@ -91,12 +91,12 @@
 </style>
 
 <script>
-import ErrorBox from "@/components/commons/ErrorBox.vue"
-import NuiButton from "@/components/commons/Button.vue"
-import { mapState, mapGetters } from "vuex"
+import ErrorBox from '@/components/commons/ErrorBox.vue'
+import NuiButton from '@/components/commons/Button.vue'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
-  layout: "setting",
+  layout: 'setting',
   components: {
     ErrorBox,
     NuiButton,
@@ -107,22 +107,22 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth0", ["auth0User"]),
-    ...mapGetters("auth0", ["providers", "isAuth0Provider"]),
+    ...mapState('auth0', ['auth0User']),
+    ...mapGetters('auth0', ['providers', 'isAuth0Provider']),
   },
   beforeCreate() {
-    this.$store.dispatch("setTitle", "パスワード")
+    this.$store.dispatch('setTitle', 'パスワード')
   },
   methods: {
     async sendChangePasswordEmail() {
       const data = {
         client_id: process.env.AUTH0_CLIENT_ID,
         email: this.auth0User.email,
-        connection: "Username-Password-Authentication",
+        connection: 'Username-Password-Authentication',
       }
       const options = {
         headers: {
-          "content-type": "application/json",
+          'content-type': 'application/json',
         },
       }
       await this.$axios
@@ -133,7 +133,7 @@ export default {
         )
         .then(() => {
           this.$toast.global.instant_success({
-            message: "メールを送信しました",
+            message: 'メールを送信しました',
           })
         })
         .catch((err) => {

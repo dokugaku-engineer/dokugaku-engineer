@@ -99,9 +99,9 @@
 </style>
 
 <script>
-import Logo from "@/components/svg/Logo.vue"
-import LogoShort from "@/components/svg/LogoShort.vue"
-import NuiButton from "@/components/commons/Button.vue"
+import Logo from '@/components/svg/Logo.vue'
+import LogoShort from '@/components/svg/LogoShort.vue'
+import NuiButton from '@/components/commons/Button.vue'
 
 export default {
   components: {
@@ -114,7 +114,7 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: "/course/serverside",
+          targetUrl: '/course/serverside',
         },
       }
       await this.$auth0.loginWithRedirect(options)
@@ -123,9 +123,9 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: "/course/serverside",
+          targetUrl: '/course/serverside',
         },
-        screen_hint: "signup",
+        screen_hint: 'signup',
       }
       await this.$auth0.loginWithRedirect(options)
     },

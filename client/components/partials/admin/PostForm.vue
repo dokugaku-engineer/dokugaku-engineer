@@ -154,9 +154,9 @@
   &::after {
     bottom: 0;
     color: $color-gray2;
-    content: "\f0d7";
+    content: '\f0d7';
     display: block;
-    font-family: "Font Awesome 5 Pro";
+    font-family: 'Font Awesome 5 Pro';
     font-size: 0.8em;
     font-weight: 900;
     height: 1em;
@@ -184,8 +184,8 @@
 </style>
 
 <script>
-import NuiButton from "@/components/commons/Button.vue"
-import { required, maxLength, numeric, helpers } from "vuelidate/lib/validators"
+import NuiButton from '@/components/commons/Button.vue'
+import { required, maxLength, numeric, helpers } from 'vuelidate/lib/validators'
 
 export default {
   components: {
@@ -206,15 +206,15 @@ export default {
     },
     slug: {
       type: String,
-      default: "",
+      default: '',
     },
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     content: {
       type: String,
-      default: "",
+      default: '',
     },
     parent: {
       type: Number,
@@ -248,13 +248,13 @@ export default {
     async createPost() {
       this.submitted = true
       await this.$axios
-        .$post("/posts", {
+        .$post('/posts', {
           posts: this.post,
           category_posts: this.categoryPost,
         })
         .then(() => {
           this.submitted = false
-          this.$router.push("/admin/posts/")
+          this.$router.push('/admin/posts/')
         })
         .catch(() => {
           this.submitted = true
@@ -269,7 +269,7 @@ export default {
         })
         .then(() => {
           this.submitted = false
-          this.$router.push("/admin/posts/")
+          this.$router.push('/admin/posts/')
         })
         .catch(() => {
           this.submitted = true
@@ -280,7 +280,7 @@ export default {
     post: {
       slug: {
         required,
-        alphaNum: helpers.regex("", /^[a-zA-Z0-9\-_]+$/),
+        alphaNum: helpers.regex('', /^[a-zA-Z0-9\-_]+$/),
         maxLength: maxLength(255),
       },
       title: {

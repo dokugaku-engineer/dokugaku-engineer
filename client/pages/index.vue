@@ -465,7 +465,7 @@
   overflow: hidden;
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     padding-top: 56.25%;
   }
@@ -637,7 +637,7 @@
   &::after {
     background-color: $color-teal1;
     border-radius: 50%;
-    content: "";
+    content: '';
     height: 0.9rem;
     left: 0;
     position: absolute;
@@ -709,7 +709,7 @@
   &::before {
     background-color: $color-black;
     border-radius: 50%;
-    content: "Q";
+    content: 'Q';
     color: $color-white1;
     display: inline-block;
     font-weight: 700;
@@ -728,7 +728,7 @@
   &::before {
     background-color: $color-red1;
     border-radius: 50%;
-    content: "A";
+    content: 'A';
     color: $color-white1;
     display: inline-block;
     font-weight: 700;
@@ -765,9 +765,9 @@
 </style>
 
 <script>
-import NuiButton from "@/components/commons/Button.vue"
-import auth0Middleware from "~/middleware/auth0"
-import { mapState } from "vuex"
+import NuiButton from '@/components/commons/Button.vue'
+import auth0Middleware from '~/middleware/auth0'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -779,11 +779,11 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth0", ["user", "isAuthenticated"]),
+    ...mapState('auth0', ['user', 'isAuthenticated']),
   },
   middleware: auth0Middleware.protect({
     loginRequired: false,
-    authenticatedRedirectUri: "/course/serverside",
+    authenticatedRedirectUri: '/course/serverside',
   }),
   methods: {
     toggleModal() {
@@ -793,9 +793,9 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: "/course/serverside",
+          targetUrl: '/course/serverside',
         },
-        screen_hint: "signup",
+        screen_hint: 'signup',
       }
       await this.$auth0.loginWithRedirect(options)
     },

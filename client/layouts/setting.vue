@@ -124,11 +124,11 @@
 </style>
 
 <script>
-import LoggedInHeader from "@/components/layouts/LoggedInHeader.vue"
-import NuiFooter from "@/components/layouts/Footer.vue"
-import auth0Middleware from "~/middleware/auth0"
-import { mapState } from "vuex"
-import debounce from "lodash/debounce"
+import LoggedInHeader from '@/components/layouts/LoggedInHeader.vue'
+import NuiFooter from '@/components/layouts/Footer.vue'
+import auth0Middleware from '~/middleware/auth0'
+import { mapState } from 'vuex'
+import debounce from 'lodash/debounce'
 
 export default {
   components: {
@@ -142,24 +142,24 @@ export default {
   },
   middleware: auth0Middleware.protect(),
   computed: {
-    ...mapState(["title"]),
+    ...mapState(['title']),
     marginTop() {
       return `margin-top: ${this.headerHeight}px;`
     },
   },
   mounted() {
     this.headerHeight = this.$refs.header.$el.clientHeight
-    window.addEventListener("resize", this.handleResize)
+    window.addEventListener('resize', this.handleResize)
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.handleResize)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     sidebarLinkClass(name) {
       if (this.title == name) {
-        return "sidebar-link sidebar-link-focus"
+        return 'sidebar-link sidebar-link-focus'
       } else {
-        return "sidebar-link"
+        return 'sidebar-link'
       }
     },
     handleResize: debounce(function () {

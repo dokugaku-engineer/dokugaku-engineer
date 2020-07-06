@@ -9,7 +9,7 @@
     "generate": "nuxt generate",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue .",
-    "lint:fix": "eslint --fix --ext .js,.vue .",
+    "lintfix": "eslint --fix --ext .js,.vue .",
     "lint:css": "stylelint './**/*.vue'",
     "http-server": "http-server ./dist -p 8081"
   },

@@ -84,13 +84,13 @@
 </style>
 
 <script>
-import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
-import ContentBox from "@/components/partials/admin/ContentBox.vue"
-import LinkButton from "@/components/commons/LinkButton.vue"
-import NuiButton from "@/components/commons/Button.vue"
+import ContentHeader from '@/components/partials/admin/ContentHeader.vue'
+import ContentBox from '@/components/partials/admin/ContentBox.vue'
+import LinkButton from '@/components/commons/LinkButton.vue'
+import NuiButton from '@/components/commons/Button.vue'
 
 export default {
-  layout: "admin",
+  layout: 'admin',
   components: {
     ContentHeader,
     ContentBox,
@@ -103,7 +103,7 @@ export default {
     }
   },
   async created() {
-    const posts = await this.$axios.$get("/posts")
+    const posts = await this.$axios.$get('/posts')
     this.posts = posts
   },
   methods: {

@@ -1,5 +1,5 @@
-import intersection from "lodash/intersection"
-import merge from "lodash/merge"
+import intersection from 'lodash/intersection'
+import merge from 'lodash/merge'
 
 export default {
   protect(options) {
@@ -7,7 +7,7 @@ export default {
       {
         loginRequired: true,
         requiredPermissions: [],
-        authenticatedRedirectUri: "",
+        authenticatedRedirectUri: '',
       },
       options
     )
@@ -18,12 +18,12 @@ export default {
 
       // 未ログインの場合
       if (options.loginRequired && !isAuthenticated) {
-        return redirect("/")
+        return redirect('/')
       }
 
       // 会員情報が未登録の場合
-      if (isAuthenticated && !!user && !user[env.AUTH0_NAMESPACE + "user_id"]) {
-        return redirect("/registration")
+      if (isAuthenticated && !!user && !user[env.AUTH0_NAMESPACE + 'user_id']) {
+        return redirect('/registration')
       }
 
       // 権限がない場合
@@ -34,7 +34,7 @@ export default {
             store.state.auth0.permissions
           ).length !== options.requiredPermissions.length
         ) {
-          return redirect("/")
+          return redirect('/')
         }
       }
 
@@ -52,12 +52,12 @@ export default {
 
       // 未ログインの場合
       if (!isAuthenticated) {
-        return redirect("/")
+        return redirect('/')
       }
 
       // 登録済みの場合
-      if (!!user && !!user[env.AUTH0_NAMESPACE + "user_id"]) {
-        return redirect("/course/serverside")
+      if (!!user && !!user[env.AUTH0_NAMESPACE + 'user_id']) {
+        return redirect('/course/serverside')
       }
     }
   },

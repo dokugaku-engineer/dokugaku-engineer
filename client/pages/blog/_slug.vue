@@ -161,7 +161,7 @@
   h2::before {
     background: $color-teal1;
     bottom: 0;
-    content: "";
+    content: '';
     left: 0;
     min-height: 50px;
     position: absolute;
@@ -256,11 +256,11 @@
 </style>
 
 <script>
-import Breadcrumb from "@/components/partials/blog/Breadcrumb.vue"
-import Sidebar from "@/components/partials/blog/Sidebar.vue"
+import Breadcrumb from '@/components/partials/blog/Breadcrumb.vue'
+import Sidebar from '@/components/partials/blog/Sidebar.vue'
 
 export default {
-  layout: "blog",
+  layout: 'blog',
   components: {
     Breadcrumb,
     Sidebar,

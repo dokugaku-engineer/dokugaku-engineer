@@ -47,8 +47,8 @@
 </style>
 
 <script>
-import Logo from "@/components/svg/Logo.vue"
-import NuiFooter from "@/components/layouts/Footer.vue"
+import Logo from '@/components/svg/Logo.vue'
+import NuiFooter from '@/components/layouts/Footer.vue'
 
 export default {
   components: {

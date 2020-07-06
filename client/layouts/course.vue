@@ -238,12 +238,12 @@
 </style>
 
 <script>
-import LoggedInHeader from "@/components/layouts/LoggedInHeader.vue"
-import LectureList from "@/components/partials/course/LectureList.vue"
-import NuiFooter from "@/components/layouts/Footer.vue"
-import auth0Middleware from "~/middleware/auth0"
-import { mapState, mapGetters } from "vuex"
-import debounce from "lodash/debounce"
+import LoggedInHeader from '@/components/layouts/LoggedInHeader.vue'
+import LectureList from '@/components/partials/course/LectureList.vue'
+import NuiFooter from '@/components/layouts/Footer.vue'
+import auth0Middleware from '~/middleware/auth0'
+import { mapState, mapGetters } from 'vuex'
+import debounce from 'lodash/debounce'
 
 export default {
   components: {
@@ -260,26 +260,26 @@ export default {
   },
   middleware: auth0Middleware.protect(),
   computed: {
-    ...mapState(["title"]),
-    ...mapState("course", [
-      "course",
-      "lessons",
-      "lecture",
-      "learnedLectureIds",
-      "lectureName",
-      "courseTop",
+    ...mapState(['title']),
+    ...mapState('course', [
+      'course',
+      'lessons',
+      'lecture',
+      'learnedLectureIds',
+      'lectureName',
+      'courseTop',
     ]),
-    ...mapGetters("course", ["filteredLectures"]),
+    ...mapGetters('course', ['filteredLectures']),
     marginTop() {
       return `margin-top: ${this.headerHeight}px;`
     },
   },
   mounted() {
     this.headerHeight = this.$refs.header.$el.clientHeight
-    window.addEventListener("resize", this.handleResize)
+    window.addEventListener('resize', this.handleResize)
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.handleResize)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     async logout() {

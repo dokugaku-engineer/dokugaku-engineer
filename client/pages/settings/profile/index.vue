@@ -157,22 +157,22 @@
 </style>
 
 <script>
-import NuiButton from "@/components/commons/Button.vue"
-import NuiForm from "@/components/commons/Form.vue"
-import ErrorBox from "@/components/commons/ErrorBox.vue"
-import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
-import { mapState, mapGetters } from "vuex"
+import NuiButton from '@/components/commons/Button.vue'
+import NuiForm from '@/components/commons/Form.vue'
+import ErrorBox from '@/components/commons/ErrorBox.vue'
+import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
+import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
+import { mapState, mapGetters } from 'vuex'
 
 const alphaNumName = (name) => {
-  if (typeof name === "undefined" || name === null || name === "") {
+  if (typeof name === 'undefined' || name === null || name === '') {
     return true
   }
   return /^[a-z0-9\-_]+$/.test(name)
 }
 
 export default {
-  layout: "setting",
+  layout: 'setting',
   components: {
     NuiButton,
     NuiForm,
@@ -182,26 +182,26 @@ export default {
   data() {
     return {
       user: {
-        username: "",
-        email: "",
+        username: '',
+        email: '',
       },
-      submitStatus: "OK",
+      submitStatus: 'OK',
       loadingUser: false,
       error: null,
     }
   },
   computed: {
-    ...mapState("auth0", ["auth0User"]),
-    ...mapGetters("auth0", ["userId", "isAuth0Provider"]),
+    ...mapState('auth0', ['auth0User']),
+    ...mapGetters('auth0', ['userId', 'isAuth0Provider']),
     submitError() {
-      return this.submitStatus === "ERROR"
+      return this.submitStatus === 'ERROR'
     },
     submitPending() {
-      return this.submitStatus === "PENDING"
+      return this.submitStatus === 'PENDING'
     },
   },
   beforeCreate() {
-    this.$store.dispatch("setTitle", "プロフィール")
+    this.$store.dispatch('setTitle', 'プロフィール')
   },
   async created() {
     this.loadingUser = true
@@ -221,10 +221,10 @@ export default {
   },
   methods: {
     async updateUser() {
-      this.submitStatus = "PENDING"
+      this.submitStatus = 'PENDING'
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = "ERROR"
+        this.submitStatus = 'ERROR'
         return
       }
 
@@ -232,11 +232,11 @@ export default {
       await this.$axios
         .$patch(`/users/${this.userId}`, this.user, options)
         .then(() => {
-          this.submitStatus = "OK"
+          this.submitStatus = 'OK'
           this.$toast.global.instant_success()
         })
         .catch((err) => {
-          this.submitStatus = "ERROR"
+          this.submitStatus = 'ERROR'
           this.$sentry.captureException(err)
         })
     },

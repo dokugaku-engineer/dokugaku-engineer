@@ -143,9 +143,9 @@ export default {
   computed: {
     cheveron() {
       if (this.showLecture) {
-        return "far fa-chevron-up"
+        return 'far fa-chevron-up'
       } else {
-        return "far fa-chevron-down"
+        return 'far fa-chevron-down'
       }
     },
     playLesson() {

@@ -148,11 +148,11 @@
 </style>
 
 <script>
-import Article from "@/components/partials/blog/Article.vue"
-import Sidebar from "@/components/partials/blog/Sidebar.vue"
+import Article from '@/components/partials/blog/Article.vue'
+import Sidebar from '@/components/partials/blog/Sidebar.vue'
 
 export default {
-  layout: "blog",
+  layout: 'blog',
   components: {
     Article,
     Sidebar,

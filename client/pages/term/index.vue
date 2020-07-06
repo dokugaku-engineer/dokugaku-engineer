@@ -511,14 +511,14 @@
 </style>
 
 <script>
-import StaticPage from "@/components/partials/static/StaticPage.vue"
+import StaticPage from '@/components/partials/static/StaticPage.vue'
 
 export default {
   components: {
     StaticPage,
   },
   beforeCreate() {
-    this.$store.dispatch("setTitle", "利用規約")
+    this.$store.dispatch('setTitle', '利用規約')
   },
 }
 </script>

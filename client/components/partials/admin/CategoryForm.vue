@@ -116,9 +116,9 @@
   &::after {
     bottom: 0;
     color: $color-gray2;
-    content: "\f0d7";
+    content: '\f0d7';
     display: block;
-    font-family: "Font Awesome 5 Pro";
+    font-family: 'Font Awesome 5 Pro';
     font-size: 0.8em;
     font-weight: 900;
     height: 1em;
@@ -146,8 +146,8 @@
 </style>
 
 <script>
-import NuiButton from "@/components/commons/Button.vue"
-import { required, maxLength, numeric, helpers } from "vuelidate/lib/validators"
+import NuiButton from '@/components/commons/Button.vue'
+import { required, maxLength, numeric, helpers } from 'vuelidate/lib/validators'
 
 export default {
   components: {
@@ -162,11 +162,11 @@ export default {
     },
     slug: {
       type: String,
-      default: "",
+      default: '',
     },
     name: {
       type: String,
-      default: "",
+      default: '',
     },
     parent: {
       type: Number,
@@ -192,10 +192,10 @@ export default {
     async createCategory() {
       this.submitted = true
       await this.$axios
-        .$post("/categories", this.category)
+        .$post('/categories', this.category)
         .then(() => {
           this.submitted = false
-          this.$router.push("/admin/categories/")
+          this.$router.push('/admin/categories/')
         })
         .catch(() => {
           this.submitted = true
@@ -207,7 +207,7 @@ export default {
         .$put(`/categories/${this.$route.params.id}`, this.category)
         .then(() => {
           this.submitted = false
-          this.$router.push("/admin/categories/")
+          this.$router.push('/admin/categories/')
         })
         .catch(() => {
           this.submitted = true
@@ -218,7 +218,7 @@ export default {
     category: {
       slug: {
         required,
-        alphaNum: helpers.regex("", /^[a-zA-Z0-9\-_]+$/),
+        alphaNum: helpers.regex('', /^[a-zA-Z0-9\-_]+$/),
         maxLength: maxLength(255),
       },
       name: {

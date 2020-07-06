@@ -253,9 +253,9 @@
 </style>
 
 <script>
-import Logo from "@/components/svg/Logo.vue"
-import LectureList from "@/components/partials/course/LectureList.vue"
-import { mapGetters } from "vuex"
+import Logo from '@/components/svg/Logo.vue'
+import LectureList from '@/components/partials/course/LectureList.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -265,7 +265,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     course: {
       type: Object,
@@ -291,7 +291,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("course", ["filteredLectures"]),
+    ...mapGetters('course', ['filteredLectures']),
   },
   methods: {
     async logout() {
