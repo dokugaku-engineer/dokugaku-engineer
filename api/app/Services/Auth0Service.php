@@ -30,7 +30,7 @@ class Auth0Service
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://' . env('AUTH0_DOMAIN') . '/api/v2/users/' . $userId,
+            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/api/v2/users/'.$userId,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -48,7 +48,7 @@ class Auth0Service
         curl_close($curl);
 
         if ($err) {
-            Log::error('auth0 update a user error #:' . $err);
+            Log::error('auth0 update a user error #:'.$err);
         }
 
         return $auth0User;
@@ -65,7 +65,7 @@ class Auth0Service
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://' . env('AUTH0_DOMAIN') . '/api/v2/users/' . $userId,
+            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/api/v2/users/'.$userId,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -81,7 +81,7 @@ class Auth0Service
         curl_close($curl);
 
         if ($err) {
-            Log::error('auth0 delete a user error #:' . $err);
+            Log::error('auth0 delete a user error #:'.$err);
         }
 
         return $response;
@@ -98,7 +98,7 @@ class Auth0Service
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://' . env('AUTH0_DOMAIN') . '/api/v2/jobs/verification-email',
+            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/api/v2/jobs/verification-email',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -116,7 +116,7 @@ class Auth0Service
         curl_close($curl);
 
         if ($err) {
-            Log::error('auth0 send a verification email error #:' . $err);
+            Log::error('auth0 send a verification email error #:'.$err);
         }
 
         return json_decode($response, true);
@@ -131,14 +131,14 @@ class Auth0Service
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://' . env('AUTH0_DOMAIN') . '/oauth/token',
+            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/oauth/token',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => 'grant_type=client_credentials&client_id=' . env('AUTH0_MANAGEMENT_API_CLIENT_ID') . '&client_secret=' . env('AUTH0_MANAGEMENT_API_CLIENT_SECRET') . '&audience=' . env('AUTH0_MANAGEMENT_API_AUDIENCE'),
+            CURLOPT_POSTFIELDS => 'grant_type=client_credentials&client_id='.env('AUTH0_MANAGEMENT_API_CLIENT_ID').'&client_secret='.env('AUTH0_MANAGEMENT_API_CLIENT_SECRET').'&audience='.env('AUTH0_MANAGEMENT_API_AUDIENCE'),
             CURLOPT_HTTPHEADER => [
                 'content-type: application/x-www-form-urlencoded',
             ],
@@ -148,7 +148,7 @@ class Auth0Service
         curl_close($curl);
         $accessToken = '';
         if ($err) {
-            Log::error('auth0 get access token error #:' . $err);
+            Log::error('auth0 get access token error #:'.$err);
         } else {
             $accessToken = json_decode($response, true)['access_token'];
         }

@@ -221,7 +221,7 @@ class ImportLectureCSV extends Command
         for ($t = ($in != 0 ? floor(log($in, $base)) : 0); $t >= 0; $t--) {
             $bcp = (float) bcpow((string) $base, (string) $t);
             $a = floor($in / $bcp) % $base;
-            $out = $out . substr($index, $a, 1);
+            $out = $out.substr($index, $a, 1);
             $in = $in - ($a * $bcp);
         }
 
