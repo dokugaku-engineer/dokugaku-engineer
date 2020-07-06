@@ -60,7 +60,10 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ["@nuxtjs/dotenv"],
+  buildModules: [
+    "@nuxtjs/dotenv",
+    '@nuxtjs/stylelint-module',
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -205,4 +208,10 @@ export default {
     disableServerSide: true,
     publishRelease: false,
   },
+  /*
+   * Stylelint settings
+   */
+  stylelint: {
+    fix: true
+  }
 }
