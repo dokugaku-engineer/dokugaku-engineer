@@ -105,14 +105,14 @@
 
 .menu {
   background-color: rgb(255, 255, 255) !important;
-  bottom: 0px !important;
+  bottom: 0 !important;
   height: 100% !important;
-  left: 0px !important;
+  left: 0 !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   position: fixed !important;
-  right: 0px !important;
-  top: 0px !important;
+  right: 0 !important;
+  top: 0 !important;
   z-index: 10 !important;
 }
 

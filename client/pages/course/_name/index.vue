@@ -93,7 +93,7 @@
 .part {
   margin-bottom: 4.2rem;
 
-  &:not(:last-child):after {
+  &:not(:last-child)::after {
     content: "";
     border-bottom: 1px solid $color-gray1;
     display: block;

@@ -68,12 +68,14 @@
 }
 
 .btn-shadow {
-  box-shadow: 8px 10px 20px 0px rgba(46, 61, 73, 0.15);
+  box-shadow: 8px 10px 20px 0 rgba(46, 61, 73, 0.15);
 }
 
 .btn-shadow-all {
-  box-shadow: 0 0 8px 0 rgba(17, 22, 26, 0.16),
-    0 4px 8px 0 rgba(17, 22, 26, 0.08), 0 8px 16px 0 rgba(17, 22, 26, 0.08);
+  box-shadow:
+    0 0 8px 0 rgba(17, 22, 26, 0.16),
+    0 4px 8px 0 rgba(17, 22, 26, 0.08),
+    0 8px 16px 0 rgba(17, 22, 26, 0.08);
 }
 </style>
 

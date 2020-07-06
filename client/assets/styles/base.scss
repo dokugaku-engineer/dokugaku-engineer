@@ -6,7 +6,7 @@
 a {
   color: inherit;
   text-decoration: none;
-  transition: all ease-in-out .3s;
+  transition: all ease-in-out 0.3s;
   vertical-align: baseline;
 }
 
@@ -56,7 +56,7 @@ i {
   vertical-align: middle;
 }
 
-.clearfix:after {
+.clearfix::after {
   content: "";
   clear: both;
   display: block;

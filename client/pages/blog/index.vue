@@ -4,7 +4,7 @@
       class="p-blog-hero"
       style="
         background-image: url('https://saruwakakun.com/wp-content/uploads/2017/06/dadadada-09-886x600.png');
-      "
+"
     >
       <div class="p-blog-hero__cover">
         <div class="p-blog-hero__inner">
@@ -124,7 +124,7 @@
   .p-blog-hero__title {
     font-size: 2.8rem;
     max-width: 80%;
-    margin: 0px auto;
+    margin: 0 auto;
   }
 }
 

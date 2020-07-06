@@ -58,7 +58,7 @@
                   left: 0;
                   width: 100%;
                   height: 100%;
-                "
+"
                 data-ready="true"
               />
             </div>
@@ -464,7 +464,7 @@
   position: relative;
   overflow: hidden;
 
-  &:before {
+  &::before {
     content: "";
     display: block;
     padding-top: 56.25%;
@@ -644,7 +644,7 @@
   padding: 0 0 1.6rem 2.4rem;
   position: relative;
 
-  &:after {
+  &::after {
     background-color: $color-teal1;
     border-radius: 50%;
     content: "";
@@ -716,7 +716,7 @@
   margin-bottom: 1.6rem;
   padding-left: 1rem;
 
-  &:before {
+  &::before {
     background-color: $color-black;
     border-radius: 50%;
     content: "Q";
@@ -735,7 +735,7 @@
   margin-bottom: 1.6rem;
   padding-left: 1rem;
 
-  &:before {
+  &::before {
     background-color: $color-red1;
     border-radius: 50%;
     content: "A";

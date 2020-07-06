@@ -158,7 +158,7 @@
     position: relative;
   }
 
-  h2:before {
+  h2::before {
     background: $color-teal1;
     bottom: 0;
     content: "";
@@ -199,7 +199,7 @@
       padding: 14px 12px 14px 20px;
     }
 
-    h2:before {
+    h2::before {
       width: 5px;
     }
 
