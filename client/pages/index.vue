@@ -622,16 +622,6 @@
   }
 }
 
-.roadmap-header {
-  margin-bottom: 3.2rem;
-}
-
-@media screen and (min-width: 769px) {
-  .roadmap-header {
-    margin-bottom: 6.4rem;
-  }
-}
-
 .rodmap-content-wrap {
   margin-left: auto;
   margin-right: auto;

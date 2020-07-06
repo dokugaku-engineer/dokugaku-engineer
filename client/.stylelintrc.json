@@ -2,5 +2,15 @@
   "extends": "stylelint-config-standard",
   "plugins": [
     "stylelint-scss"
-  ]
+  ],
+  "rules": {
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      {
+        "ignoreFontFamilies": [
+          "Font Awesome 5 Pro"
+        ]
+      }
+    ]
+  }
 }

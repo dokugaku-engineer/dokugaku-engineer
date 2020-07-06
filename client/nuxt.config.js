@@ -60,10 +60,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [
-    "@nuxtjs/dotenv",
-    '@nuxtjs/stylelint-module',
-  ],
+  buildModules: ["@nuxtjs/dotenv", "@nuxtjs/stylelint-module"],
   /*
    ** Nuxt.js modules
    */
@@ -212,6 +209,6 @@ export default {
    * Stylelint settings
    */
   stylelint: {
-    fix: true
-  }
+    fix: true,
+  },
 }

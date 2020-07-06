@@ -9,8 +9,6 @@
   </div>
 </template>
 
-<style lang="scss" scoped></style>
-
 <script>
 import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
 import ContentBox from "@/components/partials/admin/ContentBox.vue"

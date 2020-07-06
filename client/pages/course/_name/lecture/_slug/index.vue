@@ -81,18 +81,6 @@
 </template>
 
 <style lang="scss" scoped>
-.video-wrap {
-  border-radius: 0.5rem 0.5rem 0 0;
-  overflow: hidden;
-  position: relative;
-
-  &:hover {
-    .video-btns {
-      opacity: 1;
-    }
-  }
-}
-
 .video {
   padding: 56.25% 0 0 0;
   position: relative;
@@ -135,6 +123,18 @@
 
   i {
     color: $color-white1;
+  }
+}
+
+.video-wrap {
+  border-radius: 0.5rem 0.5rem 0 0;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    .video-btns {
+      opacity: 1;
+    }
   }
 }
 
@@ -198,9 +198,6 @@
     margin-bottom: 2.4rem;
     padding: 2rem 1.6rem;
   }
-}
-
-.detail-body {
 }
 
 @media screen and (min-width: 769px) {
