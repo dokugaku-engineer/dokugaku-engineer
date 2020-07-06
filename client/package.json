@@ -8,9 +8,9 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "lint": "eslint --ext .js,.vue .",
-    "lintfix": "eslint --fix --ext .js,.vue .",
-    "lint:css": "stylelint './**/*.vue'",
+    "eslint": "eslint --ext .js,.vue .",
+    "eslintfix": "eslint --fix --ext .js,.vue .",
+    "stylelint": "stylelint './**/*.vue'",
     "http-server": "http-server ./dist -p 8081"
   },
   "dependencies": {
