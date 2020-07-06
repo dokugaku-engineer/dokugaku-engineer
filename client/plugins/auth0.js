@@ -1,5 +1,5 @@
-import Vue from "vue"
-import createAuth0Client from "@auth0/auth0-spa-js"
+import Vue from 'vue'
+import createAuth0Client from '@auth0/auth0-spa-js'
 
 let instance
 
@@ -17,8 +17,8 @@ const useAuth0 = async (
 
   try {
     if (
-      window.location.search.includes("code=") &&
-      window.location.search.includes("state=")
+      window.location.search.includes('code=') &&
+      window.location.search.includes('state=')
     ) {
       const { appState } = await auth0Client.handleRedirectCallback()
       onRedirectCallback(appState)
@@ -27,11 +27,11 @@ const useAuth0 = async (
     this.error = e
   } finally {
     store.commit(
-      "auth0/SET_IS_AUTHENTICATED",
+      'auth0/SET_IS_AUTHENTICATED',
       await auth0Client.isAuthenticated()
     )
-    store.commit("auth0/SET_AUTH0_USER", await auth0Client.getUser())
-    store.commit("auth0/SET_LOADING", false)
+    store.commit('auth0/SET_AUTH0_USER', await auth0Client.getUser())
+    store.commit('auth0/SET_LOADING', false)
   }
 
   instance = new Vue({
@@ -46,27 +46,27 @@ const useAuth0 = async (
     },
     methods: {
       async loginWithPopup(options) {
-        store.commit("auth0/SET_POPUP_OPEN", true)
+        store.commit('auth0/SET_POPUP_OPEN', true)
 
         try {
           await this.auth0Client.loginWithPopup(options)
         } finally {
-          store.commit("auth0/SET_POPUP_OPEN", false)
+          store.commit('auth0/SET_POPUP_OPEN', false)
         }
 
-        store.commit("auth0/SET_AUTH0_USER", await this.auth0Client.getUser())
-        store.commit("auth0/SET_IS_AUTHENTICATED", true)
+        store.commit('auth0/SET_AUTH0_USER', await this.auth0Client.getUser())
+        store.commit('auth0/SET_IS_AUTHENTICATED', true)
       },
       async handleRedirectCallback() {
-        store.commit("auth0/SET_LOADING", true)
+        store.commit('auth0/SET_LOADING', true)
         try {
           await this.auth0Client.handleRedirectCallback()
-          store.commit("auth0/SET_AUTH0_USER", await this.auth0Client.getUser())
-          store.commit("auth0/SET_IS_AUTHENTICATED", true)
+          store.commit('auth0/SET_AUTH0_USER', await this.auth0Client.getUser())
+          store.commit('auth0/SET_IS_AUTHENTICATED', true)
         } catch (e) {
           this.error = e
         } finally {
-          store.commit("auth0/SET_LOADING", false)
+          store.commit('auth0/SET_LOADING', false)
         }
       },
       loginWithRedirect(options) {
@@ -79,17 +79,17 @@ const useAuth0 = async (
         return this.auth0Client.getTokenSilently(options)
       },
       async getTokenWithPopup(options) {
-        store.commit("auth0/SET_POPUP_OPEN", true)
+        store.commit('auth0/SET_POPUP_OPEN', true)
 
         try {
           const token = await this.auth0Client.getTokenWithPopup(options)
           return token
         } finally {
-          store.commit("auth0/SET_POPUP_OPEN", false)
+          store.commit('auth0/SET_POPUP_OPEN', false)
         }
       },
       logout(options) {
-        store.commit("auth0/SET_IS_AUTHENTICATED", false)
+        store.commit('auth0/SET_IS_AUTHENTICATED', false)
         return this.auth0Client.logout(options)
       },
       getUser() {
@@ -116,5 +116,5 @@ export default async function (context, inject) {
   }
 
   const auth0 = await useAuth0(context.store, options)
-  inject("auth0", auth0)
+  inject('auth0', auth0)
 }

@@ -104,6 +104,7 @@
 .fade-leave-active {
   transition: opacity 0.2s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
@@ -142,9 +143,9 @@ export default {
   computed: {
     cheveron() {
       if (this.showLecture) {
-        return "far fa-chevron-up"
+        return 'far fa-chevron-up'
       } else {
-        return "far fa-chevron-down"
+        return 'far fa-chevron-down'
       }
     },
     playLesson() {

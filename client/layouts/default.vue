@@ -27,11 +27,11 @@
 </style>
 
 <script>
-import LoggedInHeader from "@/components/layouts/LoggedInHeader.vue"
-import NuiHeader from "@/components/layouts/Header.vue"
-import NuiFooter from "@/components/layouts/Footer.vue"
-import { mapState } from "vuex"
-import debounce from "lodash/debounce"
+import LoggedInHeader from '@/components/layouts/LoggedInHeader.vue'
+import NuiHeader from '@/components/layouts/Header.vue'
+import NuiFooter from '@/components/layouts/Footer.vue'
+import { mapState } from 'vuex'
+import debounce from 'lodash/debounce'
 
 export default {
   components: {
@@ -45,18 +45,18 @@ export default {
     }
   },
   computed: {
-    ...mapState(["title"]),
-    ...mapState("auth0", ["isAuthenticated"]),
+    ...mapState(['title']),
+    ...mapState('auth0', ['isAuthenticated']),
     marginTop() {
       return `margin-top: ${this.headerHeight}px;`
     },
   },
   mounted() {
     this.headerHeight = this.$refs.header.$el.clientHeight
-    window.addEventListener("resize", this.handleResize)
+    window.addEventListener('resize', this.handleResize)
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.handleResize)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     handleResize: debounce(function () {

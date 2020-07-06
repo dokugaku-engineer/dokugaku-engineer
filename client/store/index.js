@@ -1,5 +1,5 @@
 export const state = () => ({
-  title: "",
+  title: '',
 })
 
 export const mutations = {
@@ -10,6 +10,6 @@ export const mutations = {
 
 export const actions = {
   setTitle({ commit }, title) {
-    commit("SET_TITLE", title)
+    commit('SET_TITLE', title)
   },
 }

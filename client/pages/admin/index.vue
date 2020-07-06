@@ -1,7 +1,7 @@
 <script>
 export default {
   fetch({ redirect }) {
-    redirect("/admin/categories")
+    redirect('/admin/categories')
   },
 }
 </script>

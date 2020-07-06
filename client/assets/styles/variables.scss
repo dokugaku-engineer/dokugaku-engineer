@@ -1,9 +1,9 @@
 //Font-size
 $font-size-base: 1.6rem;
-$font-size-xxxl: $font-size-base+0.8rem;
-$font-size-xxl: $font-size-base+0.6rem;
-$font-size-xl: $font-size-base+0.4rem;
-$font-size-lg: $font-size-base+0.2rem;
+$font-size-xxxl: $font-size-base + 0.8rem;
+$font-size-xxl: $font-size-base + 0.6rem;
+$font-size-xl: $font-size-base + 0.4rem;
+$font-size-lg: $font-size-base + 0.2rem;
 $font-size-sm: $font-size-base - 0.2rem;
 $font-size-xs: $font-size-base - 0.4rem;
 
@@ -22,7 +22,7 @@ $color-red2: #c50e29;
 // Colors Secondary
 $color-teal1: #26a69a;
 $color-teal2: #00766c;
-$color-teal3: #64D8CB;
+$color-teal3: #64d8cb;
 
 // Colors Accent
 $color-blue: #29b6f6;
@@ -40,4 +40,4 @@ $color-disabled1: rgba(0, 0, 0, 0.12);
 $color-disabled2: rgba(0, 0, 0, 0.26);
 
 // Colors Shadow
-$color-gray-shadow: rgba(46, 61, 73, .2);
+$color-gray-shadow: rgba(46, 61, 73, 0.2);

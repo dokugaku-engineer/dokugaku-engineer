@@ -42,15 +42,15 @@
     line-height: 1.5;
     margin-bottom: 1rem;
 
-    &:before {
+    &::before {
       counter-increment: count;
-      content: counter(count) ". ";
+      content: counter(count) '. ';
     }
   }
 
-  ol.brackets-num > li:before {
+  ol.brackets-num > li::before {
     counter-increment: count;
-    content: "(" counter(count) ") ";
+    content: '(' counter(count) ') ';
   }
 }
 

@@ -8,8 +8,9 @@
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "lint": "eslint --ext .js,.vue .",
-    "lintfix": "eslint --fix --ext .js,.vue .",
+    "eslint": "eslint --ext .js,.vue .",
+    "eslintfix": "eslint --fix --ext .js,.vue .",
+    "stylelint": "stylelint './**/*.vue'",
     "http-server": "http-server ./dist -p 8081"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
   "license": "ISC",
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/stylelint-module": "^4.0.0",
     "aws-sdk": "^2.666.0",
     "babel-eslint": "^10.1.0",
     "concurrent-transform": "^1.0.0",
@@ -44,6 +46,12 @@
     "node-sass": "^4.14.0",
     "prettier": "^2.0.5",
     "sass-loader": "^8.0.2",
+    "stylelint": "^13.6.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-scss": "^3.18.0",
     "through2": "^3.0.1"
   }
 }

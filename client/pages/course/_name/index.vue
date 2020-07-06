@@ -93,8 +93,8 @@
 .part {
   margin-bottom: 4.2rem;
 
-  &:not(:last-child):after {
-    content: "";
+  &:not(:last-child)::after {
+    content: '';
     border-bottom: 1px solid $color-gray1;
     display: block;
   }
@@ -137,13 +137,13 @@
 </style>
 
 <script>
-import ErrorBox from "@/components/commons/ErrorBox.vue"
-import LectureList from "@/components/partials/course/LectureList.vue"
-import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { mapState, mapGetters } from "vuex"
+import ErrorBox from '@/components/commons/ErrorBox.vue'
+import LectureList from '@/components/partials/course/LectureList.vue'
+import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
-  layout: "course",
+  layout: 'course',
   components: {
     ErrorBox,
     LectureList,
@@ -157,15 +157,15 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth0", ["auth0User"]),
-    ...mapState("course", ["course", "parts", "learnedLectureIds"]),
-    ...mapGetters("auth0", ["isAuth0Provider"]),
-    ...mapGetters("course", ["filteredLessons", "filteredLectures"]),
+    ...mapState('auth0', ['auth0User']),
+    ...mapState('course', ['course', 'parts', 'learnedLectureIds']),
+    ...mapGetters('auth0', ['isAuth0Provider']),
+    ...mapGetters('course', ['filteredLessons', 'filteredLectures']),
   },
   async created() {
-    this.$store.dispatch("course/setLecture", {})
-    this.$store.dispatch("setTitle", "ホーム")
-    this.$store.dispatch("course/setCourseTop", true)
+    this.$store.dispatch('course/setLecture', {})
+    this.$store.dispatch('setTitle', 'ホーム')
+    this.$store.dispatch('course/setCourseTop', true)
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
@@ -184,11 +184,11 @@ export default {
     ])
       .then((res) => {
         this.loading = false
-        this.$store.dispatch("course/setCourse", res[0])
-        this.$store.dispatch("course/setParts", res[1])
-        this.$store.dispatch("course/setLessons", res[2])
-        this.$store.dispatch("course/setLectures", res[3])
-        this.$store.dispatch("course/setLearnedLectureIds", res[4])
+        this.$store.dispatch('course/setCourse', res[0])
+        this.$store.dispatch('course/setParts', res[1])
+        this.$store.dispatch('course/setLessons', res[2])
+        this.$store.dispatch('course/setLectures', res[3])
+        this.$store.dispatch('course/setLearnedLectureIds', res[4])
       })
       .catch((err) => {
         this.loading = false

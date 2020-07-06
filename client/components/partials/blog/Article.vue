@@ -67,7 +67,7 @@
     flex-wrap: wrap;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    margin: 0 -1% 0px;
+    margin: 0 -1% 0;
   }
 }
 

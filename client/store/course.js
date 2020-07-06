@@ -40,31 +40,31 @@ export const mutations = {
 
 export const actions = {
   setCourse({ commit }, $payload) {
-    commit("SET_COURSE", $payload)
+    commit('SET_COURSE', $payload)
   },
 
   setParts({ commit }, $payload) {
-    commit("SET_PARTS", $payload)
+    commit('SET_PARTS', $payload)
   },
 
   setLessons({ commit }, $payload) {
-    commit("SET_LESSONS", $payload)
+    commit('SET_LESSONS', $payload)
   },
 
   setLectures({ commit }, $payload) {
-    commit("SET_LECTURES", $payload)
+    commit('SET_LECTURES', $payload)
   },
 
   setLecture({ commit }, $payload) {
-    commit("SET_LECTURE", $payload)
+    commit('SET_LECTURE', $payload)
   },
 
   setLearnedLectureIds({ commit }, $payload) {
-    commit("SET_LEARNED_LECTURE_IDS", $payload)
+    commit('SET_LEARNED_LECTURE_IDS', $payload)
   },
 
   setCourseTop({ commit }, $payload) {
-    commit("SET_COURSE_TOP", $payload)
+    commit('SET_COURSE_TOP', $payload)
   },
 }
 

@@ -7,11 +7,11 @@
 3. 除外したい要素に ref="item" を追加する（buttonやi要素など）
 */
 
-import Vue from "vue"
+import Vue from 'vue'
 
 let handleOutsideClick
 
-Vue.directive("click-outside", {
+Vue.directive('click-outside', {
   bind(el, binding, vnode) {
     handleOutsideClick = (e) => {
       e.stopPropagation()
@@ -30,12 +30,12 @@ Vue.directive("click-outside", {
       }
     }
 
-    document.addEventListener("click", handleOutsideClick)
-    document.addEventListener("touchstart", handleOutsideClick)
+    document.addEventListener('click', handleOutsideClick)
+    document.addEventListener('touchstart', handleOutsideClick)
   },
 
   unbind() {
-    document.removeEventListener("click", handleOutsideClick)
-    document.removeEventListener("touchstart", handleOutsideClick)
+    document.removeEventListener('click', handleOutsideClick)
+    document.removeEventListener('touchstart', handleOutsideClick)
   },
 })

@@ -26,12 +26,12 @@ export const mutations = {
 
 export const getters = {
   providers(state) {
-    return state.auth0User[process.env.AUTH0_NAMESPACE + "providers"].map(
+    return state.auth0User[process.env.AUTH0_NAMESPACE + 'providers'].map(
       (provider) => {
-        if (provider == "github") {
-          return "GitHub"
-        } else if (provider == "twitter") {
-          return "Twitter"
+        if (provider == 'github') {
+          return 'GitHub'
+        } else if (provider == 'twitter') {
+          return 'Twitter'
         } else {
           return provider
         }
@@ -39,14 +39,14 @@ export const getters = {
     )
   },
   userId(state) {
-    return state.auth0User[process.env.AUTH0_NAMESPACE + "user_id"]
+    return state.auth0User[process.env.AUTH0_NAMESPACE + 'user_id']
   },
   isAuth0Provider(state) {
     const providers = state.auth0User[
-      process.env.AUTH0_NAMESPACE + "providers"
+      process.env.AUTH0_NAMESPACE + 'providers'
     ].map((provider) => {
       return provider
     })
-    return providers.indexOf("auth0") >= 0
+    return providers.indexOf('auth0') >= 0
   },
 }

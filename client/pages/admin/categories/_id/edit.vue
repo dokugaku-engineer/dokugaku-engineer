@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
-import ContentBox from "@/components/partials/admin/ContentBox.vue"
-import CategoryForm from "@/components/partials/admin/CategoryForm.vue"
+import ContentHeader from '@/components/partials/admin/ContentHeader.vue'
+import ContentBox from '@/components/partials/admin/ContentBox.vue'
+import CategoryForm from '@/components/partials/admin/CategoryForm.vue'
 
 export default {
-  layout: "admin",
+  layout: 'admin',
   components: {
     ContentHeader,
     ContentBox,

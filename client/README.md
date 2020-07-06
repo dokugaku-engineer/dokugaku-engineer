@@ -13,3 +13,23 @@ docker-compose exec client npm run http-server
 ```
 
 実行後、`http://localhost:8081/`にアクセスすると、プリレンダリングしたファイルの挙動をhttp-serverを利用して確認できます。
+
+## Lint
+
+ESLintを実行します。
+
+```bash
+npm run eslint
+```
+
+ESLintで自動修正します。
+
+```bash
+npm run eslintfix
+```
+
+Stylelintを実行します。
+
+```bash
+npm run stylelint
+```

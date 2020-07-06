@@ -1,6 +1,6 @@
-const through = require("through2")
-const aws = require("aws-sdk")
-const log = require("fancy-log")
+const through = require('through2')
+const aws = require('aws-sdk')
+const log = require('fancy-log')
 
 // CloudFront のキャッシュを削除する
 // https://github.com/lpender/gulp-cloudfront-invalidate-aws-publish/blob/master/index.js
@@ -13,7 +13,7 @@ module.exports = (options) => {
 
   const complain = (err, msg, callback) => {
     callback(false)
-    throw new Error("gulp-cloudfront-invalidate", msg + ": " + err)
+    throw new Error('gulp-cloudfront-invalidate', msg + ': ' + err)
   }
 
   const processFile = (file, encoding, callback) => {
@@ -23,9 +23,9 @@ module.exports = (options) => {
       return callback(null, file)
 
     switch (file.s3.state) {
-      case "update":
-      case "create":
-      case "delete": {
+      case 'update':
+      case 'create':
+      case 'delete': {
         let path = file.s3.path
 
         // ディレクトリのないファイル、_nuxt/ から始まるファイルはそのまま追加する
@@ -37,17 +37,17 @@ module.exports = (options) => {
         // ファイル数が多すぎるとCloudFrontのinvalidation数の上限超過エラーになるので、上記以外のファイルは第一ディレクトリ以下をワイルドカードに置換してから追加する
         // / も置換対象に含めているのは、スラッシュなしのファイルもLambda@EdgeでCloudFrontにキャッシュしているから
         // 例. course/serverside/lecture/8uHMV/index.html → course*
-        path = path.replace(/\/.*?.*/, "*")
+        path = path.replace(/\/.*?.*/, '*')
         if (!files.includes(path)) {
           files.push(path)
         }
         break
       }
-      case "cache":
-      case "skip":
+      case 'cache':
+      case 'skip':
         break
       default:
-        log("Unknown state: " + file.s3.state)
+        log('Unknown state: ' + file.s3.state)
         break
     }
 
@@ -58,7 +58,7 @@ module.exports = (options) => {
     if (files.length == 0) return callback()
 
     files = files.map((file) => {
-      return "/" + file
+      return '/' + file
     })
 
     cloudfront.createInvalidation(
@@ -74,9 +74,9 @@ module.exports = (options) => {
       },
       (err, res) => {
         if (err)
-          return complain(err, "Could not invalidate cloudfront", callback)
+          return complain(err, 'Could not invalidate cloudfront', callback)
 
-        log("Cloudfront invalidation created: " + res.Invalidation.Id)
+        log('Cloudfront invalidation created: ' + res.Invalidation.Id)
 
         return callback()
       }

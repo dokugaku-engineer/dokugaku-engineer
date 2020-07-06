@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
-import ContentBox from "@/components/partials/admin/ContentBox.vue"
-import PostForm from "@/components/partials/admin/PostForm.vue"
+import ContentHeader from '@/components/partials/admin/ContentHeader.vue'
+import ContentBox from '@/components/partials/admin/ContentBox.vue'
+import PostForm from '@/components/partials/admin/PostForm.vue'
 
 export default {
-  layout: "admin",
+  layout: 'admin',
   components: {
     ContentHeader,
     ContentBox,
@@ -43,7 +43,7 @@ export default {
     const [posts, post, categories] = await Promise.all([
       this.$axios.$get(`/posts?except=${this.$route.params.id}`),
       this.$axios.$get(`/posts/${this.$route.params.id}`),
-      this.$axios.$get("/categories"),
+      this.$axios.$get('/categories'),
     ])
     this.posts = posts
     this.post = post
