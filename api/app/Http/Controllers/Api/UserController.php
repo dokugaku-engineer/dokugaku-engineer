@@ -27,15 +27,15 @@ class UserController extends ApiController
      */
     public function store(UserRequest $request)
     {
-        $auth0_user_id = $request->input('auth0Userid');
+        $auth0UserId = $request->input('auth0Userid');
         try {
             $validated = $request->validated();
             $user = new User($validated);
             $user->save();
 
             // 本来はClient側でAuth0ユーザーの情報を更新する処理を行いたかったが、SPA上ではCORS preflight requestエラーになったため、APIで実行
-            $auth0_client = new Auth0Service();
-            $auth0_client->updateUser($auth0_user_id, json_encode(['user_metadata' => ['id' => $user->id]]));
+            $auth0Client = new Auth0Service();
+            $auth0Client->updateUser($auth0UserId, json_encode(['user_metadata' => ['id' => $user->id]]));
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }
@@ -77,16 +77,16 @@ class UserController extends ApiController
             return $this->respondInvalidQuery('Invalid user');
         }
 
-        $old_email = $user->email;
+        $oldEmail = $user->email;
         try {
             $validated = $request->validated();
             $user->fill($validated);
             $user->save();
 
             // メールアドレスが変更された時、Auth0のメールアドレスを更新
-            if ($user->email !== $old_email) {
-                $auth0_client = new Auth0Service();
-                $auth0_client->updateUser($request['auth0_user_id'], json_encode([
+            if ($user->email !== $oldEmail) {
+                $auth0Client = new Auth0Service();
+                $auth0Client->updateUser($request['auth0_user_id'], json_encode([
                     'email' => $user->email,
                     'email_verified' => true,
                 ]));
@@ -112,13 +112,13 @@ class UserController extends ApiController
             return $this->respondInvalidQuery('Invalid user');
         }
 
-        $auth0_user_id = $request->input('auth0_user_id');
+        $auth0UserId = $request->input('auth0_user_id');
 
         try {
             $user->delete();
             // Auth0のユーザーを削除
-            $auth0_client = new Auth0Service();
-            $auth0_client->deleteUser($auth0_user_id);
+            $auth0Client = new Auth0Service();
+            $auth0Client->deleteUser($auth0UserId);
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }

@@ -38,9 +38,9 @@ class CourseController extends ApiController
      */
     public function show(Request $request, string $name)
     {
-        $user_id = $request['user_id'];
+        $userId = $request['user_id'];
         $course = Course::where('name', $name)->first();
-        if (TakingCourse::doesntExist($user_id, $course->id)) {
+        if (TakingCourse::doesntExist($userId, $course->id)) {
             return $this->respondNotFound('Taking course not found');
         }
 

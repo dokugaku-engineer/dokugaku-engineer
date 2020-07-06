@@ -23,9 +23,9 @@ class PartController extends ApiController
      */
     public function index(Request $request)
     {
-        $user_id = $request['user_id'];
+        $userId = $request['user_id'];
         $course = Course::where('name', $request->query('course'))->first();
-        if (TakingCourse::doesntExist($user_id, $course->id)) {
+        if (TakingCourse::doesntExist($userId, $course->id)) {
             return $this->respondNotFound('Taking course not found');
         }
         $parts = Part::where('course_id', $course->id)->get();

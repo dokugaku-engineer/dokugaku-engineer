@@ -27,12 +27,12 @@ class TakingCourseController extends ApiController
     {
         try {
             $validated = $request->validated();
-            $taking_course = new TakingCourse($validated);
-            $taking_course->save();
+            $takingCourse = new TakingCourse($validated);
+            $takingCourse->save();
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }
 
-        return new TakingCourseResource($taking_course);
+        return new TakingCourseResource($takingCourse);
     }
 }

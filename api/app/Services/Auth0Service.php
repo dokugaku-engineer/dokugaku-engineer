@@ -11,26 +11,26 @@ class Auth0Service
      *
      * @var string
      */
-    protected $access_token = '';
+    protected $accessToken = '';
 
     public function __construct()
     {
-        $this->access_token = $this->getAccessToken();
+        $this->accessToken = $this->getAccessToken();
     }
 
     /**
      * ユーザー情報を更新する
      *
-     * @param string $user_id Auth0のユーザーID
+     * @param string $userId Auth0のユーザーID
      * @param string $data    JSON形式の文字列
      *
      * @return string
      */
-    public function updateUser(string $user_id, string $data): string
+    public function updateUser(string $userId, string $data): string
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/api/v2/users/'.$user_id,
+            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/api/v2/users/'.$userId,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -39,11 +39,11 @@ class Auth0Service
             CURLOPT_CUSTOMREQUEST => 'PATCH',
             CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => [
-                "authorization: Bearer {$this->access_token}",
+                "authorization: Bearer {$this->accessToken}",
                 'content-type: application/json',
             ],
         ]);
-        $auth0_user = curl_exec($curl);
+        $auth0User = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
 
@@ -51,21 +51,21 @@ class Auth0Service
             Log::error('auth0 update a user error #:'.$err);
         }
 
-        return $auth0_user;
+        return $auth0User;
     }
 
     /**
      * ユーザーを削除する
      *
-     * @param string $user_id Auth0のユーザーID
+     * @param string $userId Auth0のユーザーID
      *
      * @return bool|string
      */
-    public function deleteUser(string $user_id)
+    public function deleteUser(string $userId)
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/api/v2/users/'.$user_id,
+            CURLOPT_URL => 'https://'.env('AUTH0_DOMAIN').'/api/v2/users/'.$userId,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -73,7 +73,7 @@ class Auth0Service
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'DELETE',
             CURLOPT_HTTPHEADER => [
-                "authorization: Bearer {$this->access_token}",
+                "authorization: Bearer {$this->accessToken}",
             ],
         ]);
         $response = curl_exec($curl);
@@ -107,7 +107,7 @@ class Auth0Service
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => $data,
             CURLOPT_HTTPHEADER => [
-                "authorization: Bearer {$this->access_token}",
+                "authorization: Bearer {$this->accessToken}",
                 'content-type: application/json',
             ],
         ]);
@@ -146,13 +146,13 @@ class Auth0Service
         $response = curl_exec($curl);
         $err = curl_error($curl);
         curl_close($curl);
-        $access_token = '';
+        $accessToken = '';
         if ($err) {
             Log::error('auth0 get access token error #:'.$err);
         } else {
-            $access_token = json_decode($response, true)['access_token'];
+            $accessToken = json_decode($response, true)['access_token'];
         }
 
-        return $access_token;
+        return $accessToken;
     }
 }
