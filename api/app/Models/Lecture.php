@@ -50,14 +50,14 @@ class Lecture extends Model
     /**
      * レクチャーに紐づく受講履歴をロードする
      *
-     * @param int $user_id
-     * @param int $course_id
+     * @param int $userId
+     * @param int $courseId
      * @return $this
      */
-    public function loadLearningHistories(int $user_id, int $course_id)
+    public function loadLearningHistories(int $userId, int $courseId)
     {
-        return $this->load(['learningHistories' => function ($query) use ($user_id, $course_id) {
-            $query->where('learning_histories.user_id', $user_id)->where('course_id', $course_id);
+        return $this->load(['learningHistories' => function ($query) use ($userId, $courseId) {
+            $query->where('learning_histories.user_id', $userId)->where('course_id', $courseId);
         }]);
     }
 }

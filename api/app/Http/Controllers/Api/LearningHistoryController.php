@@ -29,13 +29,13 @@ class LearningHistoryController extends ApiController
     {
         try {
             $validated = $request->validated();
-            $learning_history = new LearningHistory($validated);
-            $learning_history->save();
+            $learningHistory = new LearningHistory($validated);
+            $learningHistory->save();
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }
 
-        return new LearningHistoryResource($learning_history);
+        return new LearningHistoryResource($learningHistory);
     }
 
     /**
@@ -51,10 +51,10 @@ class LearningHistoryController extends ApiController
      */
     public function getLectureIds(Request $request, string $course_name)
     {
-        $user_id = $request['user_id'];
+        $userId = $request['user_id'];
         $course = Course::where('name', $course_name)->first();
-        $lecture_ids = LearningHistory::where('user_id', $user_id)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
+        $lectureIds = LearningHistory::where('user_id', $userId)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
 
-        return $this->respondWithOK($lecture_ids);
+        return $this->respondWithOK($lectureIds);
     }
 }

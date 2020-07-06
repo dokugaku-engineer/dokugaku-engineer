@@ -26,10 +26,10 @@ class CategoryController extends ApiController
         $categories = Category::all();
 
         // 除外指定されたIDを除外する
-        $except_id = (int) $request->input('except');
-        if ($except_id) {
-            $categories = $categories->reject(function ($item) use (&$except_id) {
-                return $item->id === $except_id;
+        $exceptId = (int) $request->input('except');
+        if ($exceptId) {
+            $categories = $categories->reject(function ($item) use (&$exceptId) {
+                return $item->id === $exceptId;
             });
         }
 

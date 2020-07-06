@@ -36,12 +36,12 @@ class TakingCourse extends Model
     /**
      * パートの親のコースを取得
      *
-     * @param int $user_id
-     * @param int $course_id
+     * @param int $userId
+     * @param int $courseId
      * @return bool
      */
-    public static function doesntExist(int $user_id, int $course_id): bool
+    public static function doesntExist(int $userId, int $courseId): bool
     {
-        return self::where([['user_id', $user_id], ['course_id', $course_id]])->doesntExist();
+        return self::where([['user_id', $userId], ['course_id', $courseId]])->doesntExist();
     }
 }
