@@ -22,8 +22,6 @@ class Lecture extends Model
      * @var array
      */
     protected $attributes = [
-        'public' => 1,
-        'locked' => 0,
         'premium' => 0,
     ];
 
