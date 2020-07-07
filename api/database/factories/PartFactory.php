@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Part;
 use App\Models\Course;
+use App\Models\Part;
 use Faker\Generator as Faker;
 
 /** @var Faker $faker */

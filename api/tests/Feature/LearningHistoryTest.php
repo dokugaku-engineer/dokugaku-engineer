@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Lecture;
 use App\Models\LearningHistory;
+use App\Models\Lecture;
 use App\Models\TakingCourse;
 
 class LearningHistoryTest extends TestCase
@@ -23,7 +23,7 @@ class LearningHistoryTest extends TestCase
         $response = $this->postJson('/api/learning_histories', [
             'user_id' => $takingCourse->user_id,
             'course_id' => $takingCourse->course_id,
-            'lecture_id' => $lecture->id
+            'lecture_id' => $lecture->id,
         ]);
 
         $response
@@ -41,7 +41,7 @@ class LearningHistoryTest extends TestCase
         $response = $this->postJson('/api/learning_histories', [
             'user_id' => $takingCourse->user_id,
             'course_id' => $takingCourse->course_id,
-            'lecture_id' => $lecture->id
+            'lecture_id' => $lecture->id,
         ]);
 
         $response->assertUnauthorized();
@@ -56,7 +56,7 @@ class LearningHistoryTest extends TestCase
         $lecture = Lecture::where('course_id', $takingCourse->course_id)->first();
         $response = $this->postJson('/api/learning_histories', [
             'user_id' => $takingCourse->user_id,
-            'lecture_id' => $lecture->id
+            'lecture_id' => $lecture->id,
         ]);
 
         $response->assertStatus(422);
