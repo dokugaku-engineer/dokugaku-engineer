@@ -14,7 +14,7 @@ trait CreatesApplication
     public function createApplication()
     {
         /** @var Application $app */
-        $app = require __DIR__ . '/../../bootstrap/app.php';
+        $app = require __DIR__.'/../../bootstrap/app.php';
 
         $this->artisan = $app->make(Artisan::class);
         $this->artisan->bootstrap();
