@@ -4,12 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Course;
 use App\Models\TakingCourse;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CourseTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function setUp(): void
     {
         parent::setUp();
