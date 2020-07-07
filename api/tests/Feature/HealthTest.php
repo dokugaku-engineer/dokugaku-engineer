@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-
 class HealthTest extends TestCase
 {
     /** @test */
