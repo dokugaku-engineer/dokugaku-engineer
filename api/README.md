@@ -24,6 +24,20 @@ composer phpcs
 composer phpcbf
 ```
 
+## テスト
+
+マイグレーションを実行する。
+
+```sh
+docker-compose exec api php artisan migrate --env=testing
+```
+
+テストを実行する。
+
+```sh
+docker-compose exec api ./vendor/bin/phpunit
+```
+
 ## APIのドキュメンテーション
 
 APIのドキュメントは下記コマンドを実行することで確認できます。

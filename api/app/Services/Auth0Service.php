@@ -22,7 +22,7 @@ class Auth0Service
      * ユーザー情報を更新する
      *
      * @param string $userId Auth0のユーザーID
-     * @param string $data    JSON形式の文字列
+     * @param string $data   JSON形式の文字列
      *
      * @return string
      */

@@ -51,6 +51,9 @@ services:
       - "3306:3306"
     env_file:
       - ./docker/db/db-variables.env
+    volumes:
+      - ./docker/db/sql:/docker-entrypoint-initdb.d
+      - ./docker/db/mysql_data:/var/lib/mysql
 
 volumes:
   phpsocket:
