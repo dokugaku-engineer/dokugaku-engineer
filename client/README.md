@@ -33,3 +33,17 @@ Stylelintを実行します。
 ```bash
 npm run stylelint
 ```
+
+## Test
+
+テストを実行します。
+
+```bash
+npm run test
+```
+
+テストのスナップショットを更新します。
+
+```bash
+npm run test:updateSnapshot
+```

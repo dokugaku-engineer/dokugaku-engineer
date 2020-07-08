@@ -13,6 +13,7 @@
     "stylelint": "stylelint './**/*.vue'",
     "http-server": "http-server ./dist -p 8081",
     "test": "jest --config jest.config.js",
+    "test:updateSnapshot": "jest --config jest.config.js --updateSnapshot",
     "test:coverage": "jest --coverage --config jest.config.js"
   },
   "dependencies": {
