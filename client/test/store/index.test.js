@@ -14,7 +14,7 @@ describe('store/index.js', () => {
   })
 
   describe('actions', () => {
-    test('setTitle アクションを dispatch すると、 title が設定される', async () => {
+    test('setTitle アクションを dispatch すると、 title ステートが設定される', async () => {
       expect(store.state.title).toEqual('')
       await store.dispatch('setTitle', 'ページタイトル')
       expect(store.state.title).toEqual('ページタイトル')

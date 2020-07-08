@@ -15,5 +15,8 @@ module.exports = {
   "collectCoverageFrom": [
     "**/*.{js,vue}",
     "!**/node_modules/**",
+  ],
+  "setupFiles": [
+    "dotenv/config"
   ]
 }

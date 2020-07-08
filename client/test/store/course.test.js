@@ -14,43 +14,43 @@ describe('store/course.js', () => {
   })
 
   describe('actions', () => {
-    test('setCourse アクションを dispatch すると、 course が設定される', async () => {
+    test('setCourse アクションを dispatch すると、 course ステートが設定される', async () => {
       expect(store.state.course).toEqual({})
       await store.dispatch('setCourse', { 'name': 'serverside' })
       expect(store.state.course).toEqual({ 'name': 'serverside' })
     })
 
-    test('setParts アクションを dispatch すると、 parts が設定される', async () => {
+    test('setParts アクションを dispatch すると、 parts ステートが設定される', async () => {
       expect(store.state.parts.length).toBe(0)
       await store.dispatch('setParts', [ { 'name': 'first part' } ])
       expect(store.state.parts.length).toBe(1)
     })
 
-    test('setLessons アクションを dispatch すると、 lessons が設定される', async () => {
+    test('setLessons アクションを dispatch すると、 lessons ステートが設定される', async () => {
       expect(store.state.lessons.length).toBe(0)
       await store.dispatch('setLessons', [ { 'name': 'first lesson' } ])
       expect(store.state.lessons.length).toBe(1)
     })
 
-    test('setLectures アクションを dispatch すると、 lectures が設定される', async () => {
+    test('setLectures アクションを dispatch すると、 lectures ステートが設定される', async () => {
       expect(store.state.lectures.length).toBe(0)
       await store.dispatch('setLectures', [ { 'name': 'first lecture' } ])
       expect(store.state.lectures.length).toBe(1)
     })
 
-    test('setLecture アクションを dispatch すると、 lecture が設定される', async () => {
+    test('setLecture アクションを dispatch すると、 lecture ステートが設定される', async () => {
       expect(store.state.lecture).toEqual({})
       await store.dispatch('setLecture', { 'name': 'first lecture' })
       expect(store.state.lecture).toEqual({ 'name': 'first lecture' })
     })
 
-    test('setLearnedLectureIds アクションを dispatch すると、 learnedLectureIds が設定される', async () => {
+    test('setLearnedLectureIds アクションを dispatch すると、 learnedLectureIds ステートが設定される', async () => {
       expect(store.state.learnedLectureIds.length).toBe(0)
       await store.dispatch('setLearnedLectureIds', [ 1 ])
       expect(store.state.learnedLectureIds.length).toBe(1)
     })
 
-    test('setCourseTop アクションを dispatch すると、 courseTop が設定される', async () => {
+    test('setCourseTop アクションを dispatch すると、 courseTop ステートが設定される', async () => {
       expect(store.state.courseTop).toBe(false)
       await store.dispatch('setCourseTop', true)
       expect(store.state.courseTop).toBe(true)
