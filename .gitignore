@@ -18,11 +18,13 @@ api/storage/*.key
 api/yarn-error.log
 api/vendor
 
-client/node_modules
-client/.nuxt
-client/.vscode
+client/.awspublish
+client/.awspublish-dokugaku-engineer-client
 client/.env
 client/.env.production
-client/.awspublish
+client/.nuxt
+client/.vscode
+client/coverage
 client/dist
-client/.awspublish-dokugaku-engineer-client
+client/node_modules
+
