@@ -12,7 +12,8 @@ phases:
       docker: 18
   pre_build:
     commands:
-      - echo Setting db-variables.env...
+      - echo Setting .env...
+      - cp api/.env.testing api/.env
       - cp docker/db/db-variables.development.env docker/db/db-variables.env
   build:
     commands:
