@@ -3,7 +3,6 @@ import * as auth0 from '../../store/auth0'
 import { createLocalVue } from '@vue/test-utils'
 import cloneDeep from 'lodash/cloneDeep'
 
-
 describe('store/auth0.js', () => {
   let store
 
@@ -28,8 +27,8 @@ describe('store/auth0.js', () => {
 
     test('SET_AUTH0_USER ミューテーションがコミットされると、 auth0User ステートが設定される', () => {
       expect(store.state.auth0User).toEqual({})
-      store.commit('SET_AUTH0_USER', { 'id': 1 })
-      expect(store.state.auth0User).toEqual({ 'id': 1 })
+      store.commit('SET_AUTH0_USER', { id: 1 })
+      expect(store.state.auth0User).toEqual({ id: 1 })
     })
 
     test('SET_POPUP_OPEN ミューテーションがコミットされると、 popupOpen ステートが設定される', () => {
