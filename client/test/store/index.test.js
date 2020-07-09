@@ -3,7 +3,6 @@ import * as index from '../../store/index'
 import { createLocalVue } from '@vue/test-utils'
 import cloneDeep from 'lodash/cloneDeep'
 
-
 describe('store/index.js', () => {
   let store
 

@@ -1,4 +1,4 @@
-import {  mount, RouterLinkStub } from '@vue/test-utils'
+import { mount, RouterLinkStub } from '@vue/test-utils'
 import LinkButton from '~/components/commons/LinkButton.vue'
 
 describe('components/commons/LinkButton.vue', () => {
