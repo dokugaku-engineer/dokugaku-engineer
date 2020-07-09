@@ -13,7 +13,7 @@ phases:
   pre_build:
     commands:
       - echo Setting .env...
-      - cp api/.env.dev api/.env
+      - cp api/.env.testing api/.env
       - cp docker/db/db-variables.development.env docker/db/db-variables.env
   build:
     commands:
