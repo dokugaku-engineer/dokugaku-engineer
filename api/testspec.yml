@@ -10,6 +10,10 @@ phases:
   install:
     runtime-versions:
       docker: 18
+  pre_build:
+    commands:
+      - echo Setting db-variables.env...
+      - cp docker/db/db-variables.development.env docker/db/db-variables.env
   build:
     commands:
       - echo Building the Docker images...
