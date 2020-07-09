@@ -19,14 +19,14 @@ phases:
       - echo Building the Docker images...
       - docker-compose build api db
       - echo Running the Docker containers...
-      - docker-compose up -d api
+      - docker-compose up -d api db
       - echo Migrating database...
-      - docker-compose exec api php artisan migrate --env=testing
+      - docker-compose exec -T api php artisan migrate --env=testing
   post_build:
     commands:
       - echo Running PHPStan...
-      - docker-compose exec api composer phpstan
+      - docker-compose exec -T api composer phpstan
       - echo Running phpcs...
-      - docker-compose exec api composer phpcs
+      - docker-compose exec -T api composer phpcs
       - echo Running phpunit...
-      - docker-compose exec api ./vendor/bin/phpunit
+      - docker-compose exec -T api ./vendor/bin/phpunit
