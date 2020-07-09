@@ -12,23 +12,23 @@ docker-compose exec client npm run build
 docker-compose exec client npm run http-server
 ```
 
-実行後、`http://localhost:8081/` にアクセスすると、ビルドしたファイルの挙動を `http-server` を利用して確認できます。
+実行後、`http://localhost:8081/` にアクセスすると、ビルドしたファイルの挙動を http-server を利用して確認できます。
 
 ## Lint
 
-ESLintを実行します。
+ESLint を実行します。
 
 ```bash
 npm run eslint
 ```
 
-ESLintで自動修正します。
+ESLint で自動修正します。
 
 ```bash
 npm run eslintfix
 ```
 
-Stylelintを実行します。
+Stylelint を実行します。
 
 ```bash
 npm run stylelint
