@@ -12,7 +12,7 @@ docker-compose exec client npm run build
 docker-compose exec client npm run http-server
 ```
 
-実行後、`http://localhost:8081/` にアクセスすると、プリレンダリングしたファイルの挙動を `http-server` を利用して確認できます。
+実行後、`http://localhost:8081/` にアクセスすると、ビルドしたファイルの挙動を `http-server` を利用して確認できます。
 
 ## Lint
 
