@@ -2,6 +2,8 @@
 
 <p align="center">
 <a href="https://github.styleci.io/repos/269288112?branch=master"><img src="https://github.styleci.io/repos/269288112/shield?branch=master" alt="StyleCI"></a>
+<a href="https://codebuild.ap-northeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiUU80N3IraHgxOFVnKzVlZ2h1Q3Z3QkZBalA0Q0lJakVtUmVsK2J3ZCtMSFRHdUgySlZSaFAvZnBuTk50QWhSR2F2TUgzUU5wNFIzQUplTTJRM1VGRUwwPSIsIml2UGFyYW1ldGVyU3BlYyI6InpyVUN4WFZnZTE2TndmZjYiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master"><img src="https://codebuild.ap-northeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiUU80N3IraHgxOFVnKzVlZ2h1Q3Z3QkZBalA0Q0lJakVtUmVsK2J3ZCtMSFRHdUgySlZSaFAvZnBuTk50QWhSR2F2TUgzUU5wNFIzQUplTTJRM1VGRUwwPSIsIml2UGFyYW1ldGVyU3BlYyI6InpyVUN4WFZnZTE2TndmZjYiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master" alt="Client CI"></a>
+<a href="https://codebuild.ap-northeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiQ29QV2ZDTDFocjZLL3h2bHQ4cFNCT3RQOXplTStwb0dqYkVpM3lhTENkMTJ0Q0ZRZEFKNUtqUmFrdW9MQnNubC91c2YrR0E5cGhnL2JtMzNZanRJZE1nPSIsIml2UGFyYW1ldGVyU3BlYyI6IjBXdUkxdlhKSm42QWloWlAiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master"><img src="https://codebuild.ap-northeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiQ29QV2ZDTDFocjZLL3h2bHQ4cFNCT3RQOXplTStwb0dqYkVpM3lhTENkMTJ0Q0ZRZEFKNUtqUmFrdW9MQnNubC91c2YrR0E5cGhnL2JtMzNZanRJZE1nPSIsIml2UGFyYW1ldGVyU3BlYyI6IjBXdUkxdlhKSm42QWloWlAiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master" alt="Api CI"></a>
 </p>
 
 [独学エンジニア](https://dokugaku-engineer.com/)はプログラミング初学者が自走できるエンジニアになるためのプログラミング学習サービスです。
