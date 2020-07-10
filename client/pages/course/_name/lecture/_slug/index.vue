@@ -76,7 +76,7 @@
           <!-- eslint-disable vue/no-v-html -->
           <div
             v-if="lecture.description"
-            v-html="$md.render(lecture.description)"
+            v-html="lectureDescription"
           />
           <!-- eslint-enable vue/no-v-html -->
         </div>
@@ -284,6 +284,9 @@ export default {
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'lessons', 'lectures']),
     ...mapGetters('auth0', ['isAuth0Provider']),
+    lectureDescription() {
+      return this.$md.render(this.lecture.description)
+    }
   },
   async created() {
     this.$store.dispatch('course/setLecture', {})
