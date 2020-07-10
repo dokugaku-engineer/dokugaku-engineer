@@ -13,7 +13,7 @@ export default (context, inject) => {
     linkify: true,
     typography: true,
     breaks: true,
-    highlight (str, lang) {
+    highlight(str, lang) {
       let hl
 
       try {
@@ -24,9 +24,8 @@ export default (context, inject) => {
       }
 
       return `<pre class="language-${lang}"><code class="language-${lang}">${hl}</code></pre>`
-    }
-  })
-  .use(sanitizer)
+    },
+  }).use(sanitizer)
 
   const linkRender =
     md.renderer.rules.link_open ||
@@ -56,13 +55,13 @@ export default (context, inject) => {
   // img タグに loading="lazy" 属性を付けて遅延ロードする
   const imageRender =
     md.renderer.rules.image ||
-    function(tokens, idx, options, env, self) {
-      return self.renderToken(tokens, idx, options);
+    function (tokens, idx, options, env, self) {
+      return self.renderToken(tokens, idx, options)
     }
 
-  md.renderer.rules.image = function(tokens, idx, options, env, self) {
-    tokens[idx].attrPush(["loading", "lazy"]);
-    return imageRender(tokens, idx, options, env, self);
+  md.renderer.rules.image = function (tokens, idx, options, env, self) {
+    tokens[idx].attrPush(['loading', 'lazy'])
+    return imageRender(tokens, idx, options, env, self)
   }
 
   inject('md', md)

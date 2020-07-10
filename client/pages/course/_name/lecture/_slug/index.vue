@@ -74,10 +74,7 @@
         </h3>
         <div class="detail-body">
           <!-- eslint-disable vue/no-v-html -->
-          <div
-            v-if="lecture.description"
-            v-html="lectureDescription"
-          />
+          <div v-if="lecture.description" v-html="lectureDescription" />
           <!-- eslint-enable vue/no-v-html -->
         </div>
       </div>
@@ -290,7 +287,7 @@ export default {
     ...mapGetters('auth0', ['isAuth0Provider']),
     lectureDescription() {
       return this.$md.render(this.lecture.description)
-    }
+    },
   },
   async created() {
     this.$store.dispatch('course/setLecture', {})
@@ -361,6 +358,7 @@ export default {
       })
   },
   mounted() {
+    // eslint-disable-next-line no-undef
     Prism.highlightAll()
   },
   methods: {

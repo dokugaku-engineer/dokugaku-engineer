@@ -40,9 +40,9 @@ export default {
     ],
     link: [
       {
-        href: "https://myCDN.com/prism@v1.x/themes/prism.css",
-        rel: "stylesheet"
-      }
+        href: 'https://myCDN.com/prism@v1.x/themes/prism.css',
+        rel: 'stylesheet',
+      },
     ],
   },
   /*
