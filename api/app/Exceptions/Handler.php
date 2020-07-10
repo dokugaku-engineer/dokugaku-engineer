@@ -2,9 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Traits\JsonRespondController;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use App\Traits\JsonRespondController;
 
 class Handler extends ExceptionHandler
 {
@@ -32,7 +32,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -47,20 +47,21 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception               $exception
+     *
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
-        if (!config('app.debug') && ($request->ajax() || $request->is('api/*'))) {
+        if (! config('app.debug') && ($request->ajax() || $request->is('api/*'))) {
             $status = 400;
             if ($this->isHttpException($exception)) {
                 $status = $exception->getStatusCode();
             }
 
             // 非HTTPアクセスの場合は500エラーにする
-            if ($this->shouldReport($exception) && !$this->isHttpException($exception)) {
+            if ($this->shouldReport($exception) && ! $this->isHttpException($exception)) {
                 $status = 500;
             }
 
@@ -68,6 +69,7 @@ class Handler extends ExceptionHandler
                 ->setErrorCode(40)
                 ->respondWithError($exception->getMessage());
         }
+
         return parent::render($request, $exception);
     }
 }

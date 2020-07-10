@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
-import ContentBox from "@/components/partials/admin/ContentBox.vue"
-import PostForm from "@/components/partials/admin/PostForm.vue"
+import ContentHeader from '@/components/partials/admin/ContentHeader.vue'
+import ContentBox from '@/components/partials/admin/ContentBox.vue'
+import PostForm from '@/components/partials/admin/PostForm.vue'
 
 export default {
-  layout: "admin",
+  layout: 'admin',
   components: {
     ContentHeader,
     ContentBox,
@@ -29,8 +29,8 @@ export default {
   },
   async created() {
     const [posts, categories] = await Promise.all([
-      this.$axios.$get("/posts"),
-      this.$axios.$get("/categories"),
+      this.$axios.$get('/posts'),
+      this.$axios.$get('/categories'),
     ])
     this.posts = posts
     this.categories = categories

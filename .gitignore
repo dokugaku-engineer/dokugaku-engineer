@@ -2,25 +2,29 @@
 
 docker/db/db-variables.env
 docker/nginx/nginx.conf
+docker/db/mysql_data
 
+api/.env
+api/.env.production
+api/.phpunit.result.cache
+api/.vscode
 api/node_modules
+api/npm-debug.log
 api/public/storage
 api/public/apcu.php
 api/public/phpinfo.php
 api/public/ocp.php
 api/storage/*.key
-api/vendor
-api/.env
-api/.env.production
-api/npm-debug.log
 api/yarn-error.log
-api/.vscode
+api/vendor
 
-client/node_modules
-client/.nuxt
-client/.vscode
+client/.awspublish
+client/.awspublish-dokugaku-engineer-client
 client/.env
 client/.env.production
-client/.awspublish
+client/.nuxt
+client/.vscode
+client/coverage
 client/dist
-client/.awspublish-dokugaku-engineer-client
+client/node_modules
+

@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 abstract class ApiRequest extends FormRequest
 {
@@ -22,7 +22,7 @@ abstract class ApiRequest extends FormRequest
             'error' => [
                 'message' => $validator->errors()->toArray(),
                 'code' => 30,
-            ]
+            ],
         ];
 
         throw new HttpResponseException(response()->json($data, 422));

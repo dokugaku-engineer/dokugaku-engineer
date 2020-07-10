@@ -9,20 +9,40 @@ class Post extends Model
 {
     use SoftDeletes;
 
+    /**
+     * 複数代入しない属性
+     *
+     * @var array
+     */
     protected $guarded = ['id'];
 
-    public function category_post()
+    /**
+     * 投稿に紐づく CategoryPost を取得
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function categoryPost()
     {
         return $this->hasOne('App\Models\CategoryPost');
     }
 
-    public function publish()
+    /**
+     * 公開する
+     *
+     * @return void
+     */
+    public function publish(): void
     {
         $this->status = 'publish';
         $this->save();
     }
 
-    public function unpublish()
+    /**
+     * 非公開にする
+     *
+     * @return void
+     */
+    public function unpublish(): void
     {
         $this->status = 'private';
         $this->save();

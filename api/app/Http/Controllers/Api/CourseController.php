@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
-use Illuminate\Http\Request;
-use App\Models\Course;
-use App\Models\TakingCourse;
 use App\Http\Resources\Course\Course as CourseResource;
 use App\Http\Resources\Course\CourseWithLecture as CourseWithLectureResource;
+use App\Models\Course;
+use App\Models\TakingCourse;
+use Illuminate\Http\Request;
 
 /**
  * @group 2. Courses
@@ -19,12 +18,12 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.index.json
      *
-     * @return CourseResourceCollection
-     *
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      */
-    public function index(Request $request)
+    public function index()
     {
         $courses = Course::all();
+
         return CourseResource::collection($courses);
     }
 
@@ -33,16 +32,18 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.show.json
      *
-     * @return CourseResource
-     *
+     * @param Request $request
+     * @param string  $name
+     * @return CourseResource|\Illuminate\Http\JsonResponse
      */
-    public function show(Request $request, $name)
+    public function show(Request $request, string $name)
     {
-        $user_id = $request['user_id'];
+        $userId = $request['user_id'];
         $course = Course::where('name', $name)->first();
-        if (TakingCourse::doesntExist($user_id, $course->id)) {
+        if (TakingCourse::doesntExist($userId, $course->id)) {
             return $this->respondNotFound('Taking course not found');
         }
+
         return new CourseResource($course);
     }
 
@@ -51,12 +52,12 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.getAllLectures.json
      *
-     * @return CourseWithLectureResourceCollection
-     *
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      */
-    public function getAllLectures(Request $request)
+    public function getAllLectures()
     {
         $course = Course::with('parts.lessons.lectures')->get();
+
         return CourseWithLectureResource::collection($course);
     }
 }

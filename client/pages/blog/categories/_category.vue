@@ -59,12 +59,12 @@
 </style>
 
 <script>
-import Breadcrumb from "@/components/partials/blog/Breadcrumb.vue"
-import Article from "@/components/partials/blog/Article.vue"
-import Sidebar from "@/components/partials/blog/Sidebar.vue"
+import Breadcrumb from '@/components/partials/blog/Breadcrumb.vue'
+import Article from '@/components/partials/blog/Article.vue'
+import Sidebar from '@/components/partials/blog/Sidebar.vue'
 
 export default {
-  layout: "blog",
+  layout: 'blog',
   components: {
     Breadcrumb,
     Article,

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\CategoryRequest;
-use App\Models\Category;
 use App\Http\Resources\Category\Category as CategoryResource;
+use App\Models\Category;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -20,18 +19,17 @@ class CategoryController extends ApiController
      * @queryParam except Category id to except
      * @responsefile responses/category.index.json
      *
-     * @return CategoryResourceCollection
-     *
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      */
     public function index(Request $request)
     {
         $categories = Category::all();
 
         // 除外指定されたIDを除外する
-        $except_id = (int) $request->input('except');
-        if ($except_id) {
-            $categories = $categories->reject(function ($item) use (&$except_id) {
-                return $item->id === $except_id;
+        $exceptId = (int) $request->input('except');
+        if ($exceptId) {
+            $categories = $categories->reject(function ($item) use (&$exceptId) {
+                return $item->id === $exceptId;
             });
         }
 
@@ -110,7 +108,7 @@ class CategoryController extends ApiController
      * }
      *
      * @param CategoryRequest $request
-     * @param Category $category
+     * @param Category        $category
      * @return CategoryResource|\Illuminate\Http\JsonResponse
      */
     public function update(CategoryRequest $request, Category $category)

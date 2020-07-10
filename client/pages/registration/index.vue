@@ -176,24 +176,24 @@
 </style>
 
 <script>
-import NuiButton from "@/components/commons/Button.vue"
-import NuiForm from "@/components/commons/Form.vue"
-import LoadingModal from "@/components/commons/LoadingModal.vue"
-import Logo from "@/components/svg/Logo.vue"
-import SimpleFooter from "@/components/layouts/SimpleFooter.vue"
-import { required, minLength, maxLength, email } from "vuelidate/lib/validators"
-import auth0Middleware from "~/middleware/auth0"
-import { mapState } from "vuex"
+import NuiButton from '@/components/commons/Button.vue'
+import NuiForm from '@/components/commons/Form.vue'
+import LoadingModal from '@/components/commons/LoadingModal.vue'
+import Logo from '@/components/svg/Logo.vue'
+import SimpleFooter from '@/components/layouts/SimpleFooter.vue'
+import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
+import auth0Middleware from '~/middleware/auth0'
+import { mapState } from 'vuex'
 
 const alphaNumName = (name) => {
-  if (typeof name === "undefined" || name === null || name === "") {
+  if (typeof name === 'undefined' || name === null || name === '') {
     return true
   }
   return /^[a-z0-9\-_]+$/.test(name)
 }
 
 export default {
-  layout: "none",
+  layout: 'none',
   components: {
     NuiButton,
     NuiForm,
@@ -204,21 +204,21 @@ export default {
   data() {
     return {
       user: {
-        username: "",
-        email: "",
-        auth0Userid: "",
+        username: '',
+        email: '',
+        auth0Userid: '',
       },
-      submitStatus: "OK",
+      submitStatus: 'OK',
       state: this.$route.query.state,
     }
   },
   computed: {
-    ...mapState("auth0", ["auth0User", "isAuthenticated"]),
+    ...mapState('auth0', ['auth0User', 'isAuthenticated']),
     submitError() {
-      return this.submitStatus === "ERROR"
+      return this.submitStatus === 'ERROR'
     },
     submitPending() {
-      return this.submitStatus === "PENDING"
+      return this.submitStatus === 'PENDING'
     },
   },
   middleware: auth0Middleware.protectRegistration(),
@@ -230,46 +230,46 @@ export default {
       this.user.auth0Userid = this.auth0User.sub
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = "ERROR"
+        this.submitStatus = 'ERROR'
         return
       }
 
       // ユーザーを登録する
-      this.submitStatus = "PENDING"
+      this.submitStatus = 'PENDING'
       await this.$axios
-        .$post("/users", this.user)
+        .$post('/users', this.user)
         .then((res) => {
           this.user.id = res.id
-          this.submitStatus = "PENDING"
+          this.submitStatus = 'PENDING'
         })
         .catch((err) => {
-          this.submitStatus = "ERROR"
+          this.submitStatus = 'ERROR'
           this.$sentry.captureException(err)
         })
 
-      if (this.submitStatus === "ERROR") {
+      if (this.submitStatus === 'ERROR') {
         return
       }
 
       // 受講情報を登録する
       const SEVERSIDE_COURSE_ID = 1
       await this.$axios
-        .$post("/taking_courses", {
+        .$post('/taking_courses', {
           user_id: this.user.id,
           course_id: SEVERSIDE_COURSE_ID,
         })
         .catch((err) => {
-          this.submitStatus = "ERROR"
+          this.submitStatus = 'ERROR'
           this.$sentry.captureException(err)
         })
 
-      if (this.submitStatus === "ERROR") {
+      if (this.submitStatus === 'ERROR') {
         return
       }
 
-      this.$store.commit("auth0/SET_AUTH0_USER", await this.$auth0.getUser())
-      this.submitStatus = "OK"
-      window.location.assign("/course/serverside")
+      this.$store.commit('auth0/SET_AUTH0_USER', await this.$auth0.getUser())
+      this.submitStatus = 'OK'
+      window.location.assign('/course/serverside')
     },
   },
   validations: {

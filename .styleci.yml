@@ -1,0 +1,8 @@
+preset: laravel
+risky: true
+disabled:
+  - phpdoc_summary
+finder:
+  path:
+    - "api"
+

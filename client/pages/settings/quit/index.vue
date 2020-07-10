@@ -86,14 +86,14 @@
 </style>
 
 <script>
-import NuiButton from "@/components/commons/Button.vue"
-import ErrorBox from "@/components/commons/ErrorBox.vue"
-import LinkButton from "@/components/commons/LinkButton.vue"
-import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { mapState, mapGetters } from "vuex"
+import NuiButton from '@/components/commons/Button.vue'
+import ErrorBox from '@/components/commons/ErrorBox.vue'
+import LinkButton from '@/components/commons/LinkButton.vue'
+import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
-  layout: "setting",
+  layout: 'setting',
   components: {
     NuiButton,
     ErrorBox,
@@ -102,39 +102,39 @@ export default {
   },
   data() {
     return {
-      submitStatus: "OK",
+      submitStatus: 'OK',
       error: null,
     }
   },
   computed: {
-    ...mapState("auth0", ["auth0User"]),
-    ...mapGetters("auth0", ["userId", "isAuth0Provider"]),
+    ...mapState('auth0', ['auth0User']),
+    ...mapGetters('auth0', ['userId', 'isAuth0Provider']),
     submitPending() {
-      return this.submitStatus === "PENDING"
+      return this.submitStatus === 'PENDING'
     },
   },
   beforeCreate() {
-    this.$store.dispatch("setTitle", "アカウント削除")
+    this.$store.dispatch('setTitle', 'アカウント削除')
   },
   methods: {
     async deleteUser() {
-      this.submitStatus = "PENDING"
+      this.submitStatus = 'PENDING'
       const options = await this.getOptions()
       await this.$axios
         .$delete(`/users/${this.userId}`, options)
         .then(() => {
-          this.submitStatus = "OK"
+          this.submitStatus = 'OK'
           this.$toast.global.instant_success({
-            message: "アカウントを削除しました",
+            message: 'アカウントを削除しました',
           })
         })
         .catch((err) => {
-          this.submitStatus = "ERROR"
+          this.submitStatus = 'ERROR'
           this.error = err.response
           this.$sentry.captureException(err)
         })
 
-      if (this.submitStatus != "OK") {
+      if (this.submitStatus != 'OK') {
         return
       }
 

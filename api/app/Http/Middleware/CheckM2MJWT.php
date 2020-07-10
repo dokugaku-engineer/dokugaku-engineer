@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Auth0\SDK\JWTVerifier;
 use App\Traits\JsonRespondController;
+use Auth0\SDK\JWTVerifier;
+use Closure;
 
 /**
  * Machine to machine用のアクセストークンを検証する
@@ -17,12 +17,12 @@ class CheckM2MJWT
     /**
      * JWTアクセストークンを検証する
      *
-     * @param  \Illuminate\Http\Request  $request - Illuminate HTTP Request object.
-     * @param  \Closure  $next - Function to call when middleware is complete.
+     * @param  \Illuminate\Http\Request $request - Illuminate HTTP Request object.
+     * @param  \Closure                 $next    - Function to call when middleware is complete.
      *
      * @return mixed
      */
-    public function handle($request, Closure $next, $scopeRequired = null)
+    public function handle($request, Closure $next)
     {
         $accessToken = $request->bearerToken();
         if (empty($accessToken)) {
@@ -38,7 +38,7 @@ class CheckM2MJWT
 
         try {
             $jwtVerifier = new JWTVerifier($jwtConfig);
-            $decodedToken = $jwtVerifier->verifyAndDecode($accessToken);
+            $jwtVerifier->verifyAndDecode($accessToken);
         } catch (\Exception $e) {
             return $this->respondUnauthorized($e->getMessage());
         }

@@ -1,5 +1,43 @@
 # 独学エンジニア - API
 
+## Lint
+
+### PHPStan
+
+下記のコマンドを実行することで、構文エラーがないかを確認できます。
+
+```sh
+composer phpstan
+```
+
+### PHP_CodeSniffer
+
+下記のコマンドを実行することで、コーディング規約に沿って書いているかを確認できます。
+
+```sh
+composer phpcs
+```
+
+自動整形するには下記コマンドを実行します。
+
+```sh
+composer phpcbf
+```
+
+## テスト
+
+マイグレーションを実行する。
+
+```sh
+docker-compose exec api php artisan migrate --env=testing
+```
+
+テストを実行する。
+
+```sh
+docker-compose exec api ./vendor/bin/phpunit
+```
+
 ## APIのドキュメンテーション
 
 APIのドキュメントは下記コマンドを実行することで確認できます。

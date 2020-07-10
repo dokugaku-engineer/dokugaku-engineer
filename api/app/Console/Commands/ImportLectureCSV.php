@@ -3,14 +3,19 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use League\Csv\Reader;
 
 class ImportLectureCSV extends Command
 {
+    /**
+     * alphaID の文字数
+     *
+     * @var int
+     */
     const PAD_UP = 5;
 
     /**
@@ -54,8 +59,11 @@ class ImportLectureCSV extends Command
 
     /**
      * CSVデータを保存する
+     *
+     * @param string $name
+     * @return void
      */
-    private function insert($name)
+    private function insert(string $name): void
     {
         DB::table("${name}s_olds")->truncate();
         $csv = $this->getCsv($name);
@@ -75,13 +83,16 @@ class ImportLectureCSV extends Command
 
     /**
      * コースのCSVデータを取得する
+     *
+     * @param string $name
+     * @return array
      */
-    private function getCsv($name)
+    private function getCsv(string $name): array
     {
         // CSVファイルをローカルに保存する
-        $csv_data = Storage::disk(env('FILE_DISK', 'public'))->get("lecture/${name}.csv");
+        $csvData = Storage::disk(env('FILE_DISK', 'public'))->get("lecture/${name}.csv");
         $local = Storage::disk('local');
-        $local->put("./tmp/{$name}.csv", $csv_data);
+        $local->put("./tmp/{$name}.csv", $csvData);
 
         $reader = Reader::createFromPath(base_path("storage/app/tmp/{$name}.csv", 'r'));
         $reader->setHeaderOffset(0);
@@ -98,68 +109,72 @@ class ImportLectureCSV extends Command
             $record['updated_at'] = Carbon::now()->toDateTimeString();
             $data[] = $record;
         }
+
         return $data;
     }
 
     /**
      * CSVデータにslug, prev_lecture_slug, next_lecture_slugカラムを追加する
+     *
+     * @param array $csv
+     * @return array
      */
-    private function addSlugs($csv)
+    private function addSlugs(array $csv): array
     {
-        # 削除されているかで列を分割
-        $existing_lectures = array_filter($csv, function ($row) {
-            return $row['deleted_at'] === NULL;
+        // 削除されているかで列を分割
+        $existingLectures = array_filter($csv, function ($row) {
+            return $row['deleted_at'] === null;
         });
-        $deleted_lectures = array_filter($csv, function ($row) {
-            return $row['deleted_at'] !== NULL;
+        $deletedLectures = array_filter($csv, function ($row) {
+            return $row['deleted_at'] !== null;
         });
 
         # 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
-        $processed_deleted_lectures = [];
-        foreach ($deleted_lectures as $lecture) {
+        $processedDeletedLectures = [];
+        foreach ($deletedLectures as $lecture) {
             $lecture['slug'] = NULL;
             $lecture['prev_lecture_slug'] = NULL;
             $lecture['next_lecture_slug'] = NULL;
-            $processed_deleted_lectures[] = $lecture;
+            $processedDeletedLectures[] = $lecture;
         }
 
-        # 存在している列にslug, prev_lecture_slug, next_lecture_slugカラムを追加する
-        # lesson_id, orderをキーとしてソートする
-        $lesson_id_sort_key = [];
-        $order_sort_key = [];
-        foreach ($existing_lectures as $index => $lecture) {
-            $lesson_id_sort_key[$index] = $lecture['lesson_id'];
-            $order_sort_key[$index] = $lecture['order'];
+        // 存在している列にslug, prev_lecture_slug, next_lecture_slugカラムを追加する
+        // lesson_id, orderをキーとしてソートする
+        $lessonIdSortKey = [];
+        $orderSortKey = [];
+        foreach ($existingLectures as $index => $lecture) {
+            $lessonIdSortKey[$index] = $lecture['lesson_id'];
+            $orderSortKey[$index] = $lecture['order'];
         }
-        array_multisort($lesson_id_sort_key, SORT_ASC, $order_sort_key, SORT_ASC, $existing_lectures);
+        array_multisort($lessonIdSortKey, SORT_ASC, $orderSortKey, SORT_ASC, $existingLectures);
 
-        # slugカラムを追加
+        // slugカラムを追加
         $lectures = [];
-        foreach ($existing_lectures as $lecture) {
+        foreach ($existingLectures as $lecture) {
             $lecture['slug'] = $this->alphaID($lecture['id'], self::PAD_UP);
             $lectures[] = $lecture;
         }
 
-        # prev_lecture_slug、next_lecture_slugカラムを追加
-        $processed_lectures = [];
+        // prev_lecture_slug、next_lecture_slugカラムを追加
+        $processedLectures = [];
         foreach ($lectures as $index => $lecture) {
-            $prev_lecture_slug = NULL;
-            $next_lecture_slug = NULL;
+            $prevLectureSlug = null;
+            $nextLectureSlug = null;
 
             if ($index > 0) {
-                $prev_lecture_slug = $lectures[$index - 1]['slug'];
+                $prevLectureSlug = $lectures[$index - 1]['slug'];
             }
 
             if ($index < count($lectures) - 1) {
-                $next_lecture_slug = $lectures[$index + 1]['slug'];
+                $nextLectureSlug = $lectures[$index + 1]['slug'];
             }
 
-            $lecture['prev_lecture_slug'] = $prev_lecture_slug;
-            $lecture['next_lecture_slug'] = $next_lecture_slug;
-            $processed_lectures[] = $lecture;
+            $lecture['prev_lecture_slug'] = $prevLectureSlug;
+            $lecture['next_lecture_slug'] = $nextLectureSlug;
+            $processedLectures[] = $lecture;
         }
 
-        return array_merge($processed_lectures, $processed_deleted_lectures);
+        return array_merge($processedLectures, $processedDeletedLectures);
     }
 
     /**
@@ -170,14 +185,13 @@ class ImportLectureCSV extends Command
      * https://q.hatena.ne.jp/1377468971
      *
      * 3文字以上のalphaIDが必要な場合は、下記を使用する
-     * $pad_up = 3 argument
+     * $padUp = 3 argument
      *
-     * @param int $id
-     * @param mixed $pad_up  Number or boolean padds the result up to a specified length
-     *
+     * @param int   $in
+     * @param mixed $padUp Number or boolean padds the result up to a specified length
      * @return mixed string or long
      */
-    private function alphaID($in, $pad_up = false)
+    private function alphaID(int $in, $padUp = false)
     {
         // 数値をスクランブルする
         $in *= 0x1ca7bc5b; // 奇数その1の乗算
@@ -194,16 +208,16 @@ class ImportLectureCSV extends Command
         $index = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $base = strlen($index);
 
-        if (is_numeric($pad_up)) {
-            $pad_up--;
+        if (is_numeric($padUp)) {
+            $padUp--;
 
-            if ($pad_up > 0) {
-                $in += pow($base, $pad_up);
+            if ($padUp > 0) {
+                $in += pow($base, $padUp);
             }
         }
 
         for ($t = ($in != 0 ? floor(log($in, $base)) : 0); $t >= 0; $t--) {
-            $bcp = bcpow($base, $t);
+            $bcp = (float) bcpow((string) $base, (string) $t);
             $a = floor($in / $bcp) % $base;
             $out = $out . substr($index, $a, 1);
             $in = $in - ($a * $bcp);

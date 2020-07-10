@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\ApiRequest;
 use Illuminate\Validation\Rule;
 
 class TakingCourseRequest extends ApiRequest
@@ -31,8 +30,8 @@ class TakingCourseRequest extends ApiRequest
                 'integer',
                 Rule::unique('taking_courses')->where(function ($query) {
                     return $query->where('user_id', $this->input('user_id'));
-                })
-            ]
+                }),
+            ],
         ];
     }
 }

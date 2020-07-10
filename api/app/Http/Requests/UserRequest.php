@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\ApiRequest;
 use Illuminate\Validation\Rule;
 
 class UserRequest extends ApiRequest
@@ -31,15 +30,15 @@ class UserRequest extends ApiRequest
                 'max:50',
                 Rule::unique('users')->ignore($this->user)->where(function ($query) {
                     return $query->where('existence', 1);
-                })
+                }),
             ],
             'email' => [
                 'required',
                 'max:255',
                 Rule::unique('users')->ignore($this->user)->where(function ($query) {
                     return $query->where('existence', 1);
-                })
-            ]
+                }),
+            ],
         ];
     }
 

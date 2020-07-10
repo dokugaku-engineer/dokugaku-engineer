@@ -124,7 +124,7 @@
   .p-blog-hero__title {
     font-size: 2.8rem;
     max-width: 80%;
-    margin: 0px auto;
+    margin: 0 auto;
   }
 }
 
@@ -148,11 +148,11 @@
 </style>
 
 <script>
-import Article from "@/components/partials/blog/Article.vue"
-import Sidebar from "@/components/partials/blog/Sidebar.vue"
+import Article from '@/components/partials/blog/Article.vue'
+import Sidebar from '@/components/partials/blog/Sidebar.vue'
 
 export default {
-  layout: "blog",
+  layout: 'blog',
   components: {
     Article,
     Sidebar,

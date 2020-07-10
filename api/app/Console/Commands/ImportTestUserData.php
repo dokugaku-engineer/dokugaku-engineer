@@ -2,21 +2,30 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
-use App\Models\User;
-use App\Models\TakingCourse;
 use App\Models\Course;
-use App\Models\Lecture;
 use App\Models\LearningHistory;
+use App\Models\Lecture;
+use App\Models\TakingCourse;
+use App\Models\User;
+use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ImportTestUserData extends Command
 {
-    // 一度にINSERTするユーザー数
-    const ONCE_INSERT_NUM = 100;
-    // INSERTを行う回数
-    const INSERT_LOOP_NUM = 100;
+    /**
+     * 一度にINSERTするユーザー数
+     *
+     * @var int
+     */
+    const ONCE_INSERT_NUM = 10;
+
+    /**
+     * INSERTを行う回数
+     *
+     * @var int
+     */
+    const INSERT_LOOP_NUM = 10;
 
     /**
      * The name and signature of the console command.
@@ -59,9 +68,14 @@ class ImportTestUserData extends Command
         }
     }
 
-    private function insertUsers()
+    /**
+     * ユーザーを登録する
+     *
+     * @return array
+     */
+    private function insertUsers(): array
     {
-        if (User::all()->count() > 0) {
+        if (User::count() > 0) {
             $lastId = User::orderBy('id', 'desc')->first()->id;
         } else {
             $lastId = 0;
@@ -77,13 +91,20 @@ class ImportTestUserData extends Command
             ];
             array_push($users, $user);
         }
-        DB::table("users")->insert($users);
+        DB::table('users')->insert($users);
+
         return $users;
     }
 
-    private function insertTakingCourses($users)
+    /**
+     * 受講コースを登録する
+     *
+     * @param array $users
+     * @return array
+     */
+    private function insertTakingCourses(array $users): array
     {
-        if (TakingCourse::all()->count() > 0) {
+        if (TakingCourse::count() > 0) {
             $lastId = TakingCourse::orderBy('id', 'desc')->first()->id;
         } else {
             $lastId = 0;
@@ -99,13 +120,20 @@ class ImportTestUserData extends Command
             ];
             array_push($takingCourses, $takingCourse);
         }
-        DB::table("taking_courses")->insert($takingCourses);
+        DB::table('taking_courses')->insert($takingCourses);
+
         return $takingCourses;
     }
 
-    private function insertLearningHistories($users)
+    /**
+     * 受講履歴を登録する
+     *
+     * @param array $users
+     * @return void
+     */
+    private function insertLearningHistories($users): void
     {
-        if (LearningHistory::all()->count() > 0) {
+        if (LearningHistory::count() > 0) {
             $lastId = LearningHistory::orderBy('id', 'desc')->first()->id;
         } else {
             $lastId = 0;
@@ -126,7 +154,7 @@ class ImportTestUserData extends Command
                 ];
                 array_push($learningHistories, $learningHistory);
             }
-            DB::table("learning_histories")->insert($learningHistories);
+            DB::table('learning_histories')->insert($learningHistories);
         }
     }
 }

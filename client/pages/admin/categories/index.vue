@@ -57,12 +57,12 @@
 </style>
 
 <script>
-import ContentHeader from "@/components/partials/admin/ContentHeader.vue"
-import ContentBox from "@/components/partials/admin/ContentBox.vue"
-import LinkButton from "@/components/commons/LinkButton.vue"
+import ContentHeader from '@/components/partials/admin/ContentHeader.vue'
+import ContentBox from '@/components/partials/admin/ContentBox.vue'
+import LinkButton from '@/components/commons/LinkButton.vue'
 
 export default {
-  layout: "admin",
+  layout: 'admin',
   components: {
     ContentHeader,
     ContentBox,
@@ -74,7 +74,7 @@ export default {
     }
   },
   async created() {
-    const data = await this.$axios.$get("/categories")
+    const data = await this.$axios.$get('/categories')
     this.categories = data
   },
 }

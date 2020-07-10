@@ -1,0 +1,9 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+parameters:
+    level: 6
+    paths:
+        - app
+    ignoreErrors:
+        - '#Call to an undefined method Exception::getStatusCode().#'
+    checkMissingIterableValueType: false

@@ -274,7 +274,8 @@
               パソコンはWindows、Macのどちらでも大丈夫でしょうか？
             </li>
             <li class="qa-answer">
-              Windows（Windows 10 ビルド 19041 以降）、Mac（OS X 10.13 以降）のどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。
+              Windows（Windows 10 ビルド 19041 以降）、Mac（OS X 10.13
+              以降）のどちらもサポートしております。ただし、もしこれから購入される場合はMacをお勧めします。Macの方が開発環境を整えやすく、開発のためのツール類も充実しているためです。そのため講座ではMacを使用して撮影しております。
             </li>
           </ul>
           <ul>
@@ -463,8 +464,8 @@
   position: relative;
   overflow: hidden;
 
-  &:before {
-    content: "";
+  &::before {
+    content: '';
     display: block;
     padding-top: 56.25%;
   }
@@ -621,16 +622,6 @@
   }
 }
 
-.roadmap-header {
-  margin-bottom: 3.2rem;
-}
-
-@media screen and (min-width: 769px) {
-  .roadmap-header {
-    margin-bottom: 6.4rem;
-  }
-}
-
 .rodmap-content-wrap {
   margin-left: auto;
   margin-right: auto;
@@ -643,10 +634,10 @@
   padding: 0 0 1.6rem 2.4rem;
   position: relative;
 
-  &:after {
+  &::after {
     background-color: $color-teal1;
     border-radius: 50%;
-    content: "";
+    content: '';
     height: 0.9rem;
     left: 0;
     position: absolute;
@@ -715,10 +706,10 @@
   margin-bottom: 1.6rem;
   padding-left: 1rem;
 
-  &:before {
+  &::before {
     background-color: $color-black;
     border-radius: 50%;
-    content: "Q";
+    content: 'Q';
     color: $color-white1;
     display: inline-block;
     font-weight: 700;
@@ -734,10 +725,10 @@
   margin-bottom: 1.6rem;
   padding-left: 1rem;
 
-  &:before {
+  &::before {
     background-color: $color-red1;
     border-radius: 50%;
-    content: "A";
+    content: 'A';
     color: $color-white1;
     display: inline-block;
     font-weight: 700;
@@ -774,9 +765,9 @@
 </style>
 
 <script>
-import NuiButton from "@/components/commons/Button.vue"
-import auth0Middleware from "~/middleware/auth0"
-import { mapState } from "vuex"
+import NuiButton from '@/components/commons/Button.vue'
+import auth0Middleware from '~/middleware/auth0'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -788,11 +779,11 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth0", ["user", "isAuthenticated"]),
+    ...mapState('auth0', ['user', 'isAuthenticated']),
   },
   middleware: auth0Middleware.protect({
     loginRequired: false,
-    authenticatedRedirectUri: "/course/serverside",
+    authenticatedRedirectUri: '/course/serverside',
   }),
   methods: {
     toggleModal() {
@@ -802,9 +793,9 @@ export default {
       const options = {
         redirect_uri: `${process.env.ORIGIN}/course/serverside`,
         appState: {
-          targetUrl: "/course/serverside",
+          targetUrl: '/course/serverside',
         },
-        screen_hint: "signup",
+        screen_hint: 'signup',
       }
       await this.$auth0.loginWithRedirect(options)
     },

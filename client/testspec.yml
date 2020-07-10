@@ -1,0 +1,39 @@
+version: 0.2
+
+env:
+  parameter-store:
+    API_URL: "/Prod/DokugakuEngineer/Client/API_URL"
+    API_URL_BROWSER: "/Prod/DokugakuEngineer/Client/API_URL_BROWSER"
+    AUTH0_AUDIENCE: "/Prod/DokugakuEngineer/Client/AUTH0_AUDIENCE"
+    AUTH0_CLIENT_ID: "/Prod/DokugakuEngineer/Client/AUTH0_CLIENT_ID"
+    AUTH0_DOMAIN: "/Prod/DokugakuEngineer/Client/AUTH0_DOMAIN"
+    AUTH0_MANAGEMENT_API_AUDIENCE: "/Prod/DokugakuEngineer/Client/AUTH0_MANAGEMENT_API_AUDIENCE"
+    AUTH0_MANAGEMENT_API_CLIENT_ID: "/Prod/DokugakuEngineer/Client/AUTH0_MANAGEMENT_API_CLIENT_ID"
+    AUTH0_MANAGEMENT_API_CLIENT_SECRET: "/Prod/DokugakuEngineer/Client/AUTH0_MANAGEMENT_API_CLIENT_SECRET"
+    AUTH0_NAMESPACE: "/Prod/DokugakuEngineer/Client/AUTH0_NAMESPACE"
+    AWS_ACCESS_KEY_ID: "/Prod/DokugakuEngineer/Client/AWS_ACCESS_KEY_ID"
+    AWS_CLIENT_BUCKET_NAME: "/Prod/DokugakuEngineer/Client/AWS_CLIENT_BUCKET_NAME"
+    AWS_CLOUDFRONT: "/Prod/DokugakuEngineer/Client/AWS_CLOUDFRONT"
+    AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Client/AWS_DEFAULT_REGION"
+    AWS_SECRET_ACCESS_KEY: "/Prod/DokugakuEngineer/Client/AWS_SECRET_ACCESS_KEY"
+    ORIGIN: "/Prod/DokugakuEngineer/Client/ORIGIN"
+    SENTRY_DSN: "/Prod/DokugakuEngineer/Client/SENTRY_DSN"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+  build:
+    commands:
+      - echo 'Build docker image'
+      - docker image build -t dokugaku_engineer_client:latest -f docker/client/Dockerfile . --build-arg env=testing
+      - echo 'Start docker container'
+      - docker container run --name dokugaku_engineer_client -d dokugaku_engineer_client:latest
+  post_build:
+    commands:
+      - echo 'Run eslint'
+      - docker container exec dokugaku_engineer_client npm run eslint
+      - echo 'Run stylelint'
+      - docker container exec dokugaku_engineer_client npm run stylelint
+      - echo 'Run test'
+      - docker container exec dokugaku_engineer_client npm run test

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\TakingCourseRequest;
 use App\Http\Resources\TakingCourse\TakingCourse as TakingCourseResource;
 use App\Models\TakingCourse;
@@ -28,12 +27,12 @@ class TakingCourseController extends ApiController
     {
         try {
             $validated = $request->validated();
-            $taking_course = new TakingCourse($validated);
-            $taking_course->save();
+            $takingCourse = new TakingCourse($validated);
+            $takingCourse->save();
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }
 
-        return new TakingCourseResource($taking_course);
+        return new TakingCourseResource($takingCourse);
     }
 }

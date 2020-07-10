@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\Post\Post as PostResource;
 use App\Models\Post;
 use App\Services\Admin\Post\CreatePost;
 use App\Services\Admin\Post\UpdatePost;
-use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
 /**
  * @group 1. Posts
@@ -22,18 +21,17 @@ class PostController extends ApiController
      * @queryParam except Category id to except
      * @responsefile responses/post.index.json
      *
-     * @return PostResourceCollection
-     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
     {
         $posts = Post::all();
 
         // 除外指定されたIDを除外する
-        $except_id = (int) $request->input('except');
-        if ($except_id) {
-            $posts = $posts->reject(function ($item) use (&$except_id) {
-                return $item->id === $except_id;
+        $exceptId = (int) $request->input('except');
+        if ($exceptId) {
+            $posts = $posts->reject(function ($item) use (&$exceptId) {
+                return $item->id === $exceptId;
             });
         }
 
@@ -78,7 +76,8 @@ class PostController extends ApiController
      */
     public function show(int $id)
     {
-        $post = Post::with('category_post')->find($id);
+        $post = Post::with('categoryPost')->find($id);
+
         return new PostResource($post);
     }
 
@@ -95,7 +94,7 @@ class PostController extends ApiController
      * @responsefile responses/post.store.json
      *
      * @param PostRequest $request
-     * @param Post $post
+     * @param Post        $post
      * @return PostResource|\Illuminate\Http\JsonResponse
      */
     public function update(PostRequest $request, Post $post)
@@ -123,6 +122,7 @@ class PostController extends ApiController
     public function destroy(Post $post)
     {
         $post->delete();
+
         return new PostResource($post);
     }
 
@@ -139,6 +139,7 @@ class PostController extends ApiController
     public function publish(Post $post)
     {
         $post->publish();
+
         return new PostResource($post);
     }
 
@@ -155,6 +156,7 @@ class PostController extends ApiController
     public function unpublish(Post $post)
     {
         $post->unpublish();
+
         return new PostResource($post);
     }
 }

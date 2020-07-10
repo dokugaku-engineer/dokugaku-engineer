@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\LearningHistoryRequest;
 use App\Http\Resources\LearningHistory\LearningHistory as LearningHistoryResource;
 use App\Models\Course;
@@ -30,20 +29,32 @@ class LearningHistoryController extends ApiController
     {
         try {
             $validated = $request->validated();
-            $learning_history = new LearningHistory($validated);
-            $learning_history->save();
+            $learningHistory = new LearningHistory($validated);
+            $learningHistory->save();
         } catch (QueryException $e) {
             return $this->respondInvalidQuery($e);
         }
 
-        return new LearningHistoryResource($learning_history);
+        return new LearningHistoryResource($learningHistory);
     }
 
-    public function getLectureIds(Request $request, $course_name)
+    /**
+     * レクチャーIDを取得
+     *
+     * @bodyParam course_name string required Course name. Example: serverside
+     *
+     * @responsefile responses/learning_history.store.json
+     *
+     * @param Request $request
+     * @param string  $course_name
+     * @return LearningHistoryResource|\Illuminate\Http\JsonResponse
+     */
+    public function getLectureIds(Request $request, string $course_name)
     {
-        $user_id = $request['user_id'];
+        $userId = $request['user_id'];
         $course = Course::where('name', $course_name)->first();
-        $lecture_ids = LearningHistory::where('user_id', $user_id)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
-        return $this->respondWithOK($lecture_ids);
+        $lectureIds = LearningHistory::where('user_id', $userId)->where('course_id', $course->id)->pluck('lecture_id')->toArray();
+
+        return $this->respondWithOK($lectureIds);
     }
 }

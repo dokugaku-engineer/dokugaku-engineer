@@ -42,7 +42,7 @@
 </style>
 
 <script>
-import LinkButton from "@/components/commons/LinkButton.vue"
+import LinkButton from '@/components/commons/LinkButton.vue'
 
 export default {
   components: {
@@ -51,15 +51,15 @@ export default {
   props: {
     title: {
       type: String,
-      default: "",
+      default: '',
     },
     to: {
       type: String,
-      default: "",
+      default: '',
     },
     buttonText: {
       type: String,
-      default: "",
+      default: '',
     },
   },
 }

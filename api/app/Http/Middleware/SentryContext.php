@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Sentry\State\Scope;
 use function Sentry\configureScope;
+use Sentry\State\Scope;
 
 class SentryContext
 {
@@ -12,7 +12,7 @@ class SentryContext
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
+     * @param \Closure                 $next
      *
      * @return mixed
      */

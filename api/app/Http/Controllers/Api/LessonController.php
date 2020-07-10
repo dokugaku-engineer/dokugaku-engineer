@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiController;
-use Illuminate\Http\Request;
+use App\Http\Resources\Lesson\MinimumLesson as MinimumLessonResource;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\TakingCourse;
-use App\Http\Resources\Lesson\MinimumLesson as MinimumLessonResource;
+use Illuminate\Http\Request;
 
 /**
  * @group 2. Courses
@@ -20,17 +19,17 @@ class LessonController extends ApiController
      * @queryParam course Course name
      * @responsefile responses/lesson.index.json
      *
-     * @return MinimumLessonResource
-     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
-        $user_id = $request['user_id'];
+        $userId = $request['user_id'];
         $course = Course::where('name', $request->query('course'))->first();
-        if (TakingCourse::doesntExist($user_id, $course->id)) {
+        if (TakingCourse::doesntExist($userId, $course->id)) {
             return $this->respondNotFound('Taking course not found');
         }
         $lessons = Lesson::where('course_id', $course->id)->get();
+
         return MinimumLessonResource::collection($lessons);
     }
 }

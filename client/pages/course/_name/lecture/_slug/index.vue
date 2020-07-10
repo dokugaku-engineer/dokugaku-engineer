@@ -84,18 +84,6 @@
 </template>
 
 <style lang="scss" scoped>
-.video-wrap {
-  border-radius: 0.5rem 0.5rem 0 0;
-  overflow: hidden;
-  position: relative;
-
-  &:hover {
-    .video-btns {
-      opacity: 1;
-    }
-  }
-}
-
 .video {
   padding: 56.25% 0 0 0;
   position: relative;
@@ -138,6 +126,18 @@
 
   i {
     color: $color-white1;
+  }
+}
+
+.video-wrap {
+  border-radius: 0.5rem 0.5rem 0 0;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    .video-btns {
+      opacity: 1;
+    }
   }
 }
 
@@ -261,12 +261,12 @@
 </style>
 
 <script>
-import ErrorBox from "@/components/commons/ErrorBox.vue"
-import VerificationEmailBox from "@/components/partials/course/VerificationEmailBox.vue"
-import { mapState, mapGetters } from "vuex"
+import ErrorBox from '@/components/commons/ErrorBox.vue'
+import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
-  layout: "course",
+  layout: 'course',
   components: {
     ErrorBox,
     VerificationEmailBox,
@@ -279,14 +279,14 @@ export default {
     }
   },
   computed: {
-    ...mapState("auth0", ["auth0User"]),
-    ...mapState("course", ["course", "parts", "lessons", "lectures"]),
-    ...mapGetters("auth0", ["isAuth0Provider"]),
+    ...mapState('auth0', ['auth0User']),
+    ...mapState('course', ['course', 'parts', 'lessons', 'lectures']),
+    ...mapGetters('auth0', ['isAuth0Provider']),
   },
   async created() {
-    this.$store.dispatch("course/setLecture", {})
-    this.$store.dispatch("setTitle", "")
-    this.$store.dispatch("course/setCourseTop", false)
+    this.$store.dispatch('course/setLecture', {})
+    this.$store.dispatch('setTitle', '')
+    this.$store.dispatch('course/setCourseTop', false)
     const token = await this.$auth0.getTokenSilently()
     const options = {
       headers: {
@@ -300,8 +300,8 @@ export default {
       .then((res) => {
         this.loading = false
         this.lecture = res
-        this.$store.dispatch("course/setLecture", res)
-        this.$store.dispatch("setTitle", res.name)
+        this.$store.dispatch('course/setLecture', res)
+        this.$store.dispatch('setTitle', res.name)
       })
       .catch((err) => {
         this.loading = false
@@ -324,10 +324,10 @@ export default {
         .then((res) => {
           // TODO: lectureが別のコースのデータの場合、404かTOPにリダイレクトさせる
           this.loading = false
-          this.$store.dispatch("course/setCourse", res[0])
-          this.$store.dispatch("course/setParts", res[1])
-          this.$store.dispatch("course/setLessons", res[2])
-          this.$store.dispatch("course/setLectures", res[3])
+          this.$store.dispatch('course/setCourse', res[0])
+          this.$store.dispatch('course/setParts', res[1])
+          this.$store.dispatch('course/setLessons', res[2])
+          this.$store.dispatch('course/setLectures', res[3])
         })
         .catch((err) => {
           this.loading = false
@@ -343,7 +343,7 @@ export default {
         options
       )
       .then((res) => {
-        this.$store.dispatch("course/setLearnedLectureIds", res)
+        this.$store.dispatch('course/setLearnedLectureIds', res)
       })
       .catch((err) => {
         this.loading = false
@@ -364,7 +364,7 @@ export default {
       }
       await this.$axios
         .$post(
-          "learning_histories",
+          'learning_histories',
           { course_id: this.lecture.course_id, lecture_id: this.lecture.id },
           options
         )

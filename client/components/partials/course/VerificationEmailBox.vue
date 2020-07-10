@@ -20,15 +20,15 @@
 </style>
 
 <script>
-import ErrorBox from "@/components/commons/ErrorBox.vue"
-import { mapState } from "vuex"
+import ErrorBox from '@/components/commons/ErrorBox.vue'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     ErrorBox,
   },
   computed: {
-    ...mapState("auth0", ["user"]),
+    ...mapState('auth0', ['user']),
   },
   methods: {
     async sendVerificationEmail() {
@@ -42,7 +42,7 @@ export default {
         },
       }
       await this.$axios
-        .$post("/auth0/send_verification_email", data, options)
+        .$post('/auth0/send_verification_email', data, options)
         .catch((error) => {
           this.auth0Error = error.response
         })

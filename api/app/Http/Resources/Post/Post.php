@@ -3,8 +3,8 @@
 namespace App\Http\Resources\Post;
 
 use App\Helpers\DateHelper;
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CategoryPost\CategoryPost as CategoryPostResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class Post extends JsonResource
 {
@@ -23,7 +23,7 @@ class Post extends JsonResource
             'content' => $this->content,
             'parent' => $this->parent,
             'status' => $this->status,
-            'category_post' => new CategoryPostResource($this->category_post),
+            'categoryPost' => new CategoryPostResource($this->categoryPost),
             'deleted_at' => DateHelper::getTimestamp($this->deleted_at),
             'created_at' => DateHelper::getTimestamp($this->created_at),
             'updated_at' => DateHelper::getTimestamp($this->updated_at),

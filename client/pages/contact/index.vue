@@ -215,10 +215,10 @@ hr {
 </style>
 
 <script>
-import StaticPage from "@/components/partials/static/StaticPage.vue"
-import NuiButton from "@/components/commons/Button.vue"
-import NuiForm from "@/components/commons/Form.vue"
-import { required, maxLength, email } from "vuelidate/lib/validators"
+import StaticPage from '@/components/partials/static/StaticPage.vue'
+import NuiButton from '@/components/commons/Button.vue'
+import NuiForm from '@/components/commons/Form.vue'
+import { required, maxLength, email } from 'vuelidate/lib/validators'
 
 const touchMap = new WeakMap()
 
@@ -230,15 +230,15 @@ export default {
   },
   data() {
     return {
-      about: "",
-      name: "",
-      email: "",
-      detail: "",
+      about: '',
+      name: '',
+      email: '',
+      detail: '',
       submitStatus: null,
     }
   },
   beforeCreate() {
-    this.$store.dispatch("setTitle", "お問い合わせ")
+    this.$store.dispatch('setTitle', 'お問い合わせ')
   },
   validations: {
     about: {
@@ -266,14 +266,14 @@ export default {
       touchMap.set($v, setTimeout($v.$touch, 1000))
     },
     submit() {
-      this.submitStatus = "PENDING"
+      this.submitStatus = 'PENDING'
       this.$toast.global.instant_success({
-        message: "お問い合わせを受け付けました",
+        message: 'お問い合わせを受け付けました',
       })
       setTimeout(this.redirectTop, 1000)
     },
     redirectTop() {
-      this.$router.push("/")
+      this.$router.push('/')
     },
   },
 }

@@ -26,7 +26,6 @@ trait JsonRespondController
         return $this->httpStatusCode;
     }
 
-
     /**
      * レスポンスのHTTPステータスコードを設定
      *
@@ -36,6 +35,7 @@ trait JsonRespondController
     public function setHTTPStatusCode(int $statusCode): self
     {
         $this->httpStatusCode = $statusCode;
+
         return $this;
     }
 
@@ -58,6 +58,7 @@ trait JsonRespondController
     public function setErrorCode(int $errorCode): self
     {
         $this->errorCode = $errorCode;
+
         return $this;
     }
 
@@ -127,13 +128,19 @@ trait JsonRespondController
     {
         return $this->respond([
             'error' => [
-                'message' => $message ?? config('api.error_codes.' . $this->getErrorCode()),
+                'message' => $message ?? config('api.error_codes.'.$this->getErrorCode()),
                 'code' => $this->getErrorCode(),
             ],
         ]);
     }
 
-    public function respondWithOK($data)
+    /**
+     * JSONを送信
+     *
+     * @param array $data
+     * @return JsonResponse
+     */
+    public function respondWithOK(array $data)
     {
         return $this->setHTTPStatusCode(200)
             ->respond($data);
@@ -142,8 +149,8 @@ trait JsonRespondController
     /**
      * JSONを送信
      *
-     * @param  array $data
-     * @param  array  $headers
+     * @param array $data
+     * @param array $headers
      * @return JsonResponse
      */
     public function respond(array $data, array $headers = []): JsonResponse

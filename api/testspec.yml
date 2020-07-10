@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  parameter-store:
+    AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Api/AWS_DEFAULT_REGION"
+    AWS_NGINX_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_NGINX_REPOSITORY_URI"
+    AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_API_REPOSITORY_URI"
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Setting .env...
+      - cp api/.env.testing api/.env
+      - cp docker/db/db-variables.development.env docker/db/db-variables.env
+  build:
+    commands:
+      - echo Building the Docker images...
+      - docker-compose build api db
+      - echo Running the Docker containers...
+      - docker-compose up -d api db
+  post_build:
+    commands:
+      - echo Running PHPStan...
+      - docker-compose exec -T api composer phpstan
+      - echo Running phpcs...
+      - docker-compose exec -T api composer phpcs
+      - echo Running phpunit...
+      - docker-compose exec -T api ./vendor/bin/phpunit

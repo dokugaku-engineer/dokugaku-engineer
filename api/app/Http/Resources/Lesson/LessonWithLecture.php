@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\Lesson;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Lecture\MinimumLecture as MinimumLectureResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class LessonWithLecture extends JsonResource
 {
@@ -18,7 +18,7 @@ class LessonWithLecture extends JsonResource
         return [
             'order' => $this->order,
             'name' => $this->name,
-            'lectures' => MinimumLectureResource::collection($this->lectures)
+            'lectures' => MinimumLectureResource::collection($this->lectures),
         ];
     }
 }
