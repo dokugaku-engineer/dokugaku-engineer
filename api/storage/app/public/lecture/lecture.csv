@@ -1,17 +1,17 @@
 id,course_id,lesson_id,order,name,video_url,description,premium,deleted_at
-1,1,1,1,コースへようこそ！,https://player.vimeo.com/391168857,"独学エンジニアへようこそ！
+1,1,1,1,コースへようこそ！,https://player.vimeo.com/video/391168857,"独学エンジニアへようこそ！
 
 独学エンジニアは「独学でもエンジニアになれる」をテーマに、実務で自走できるWeb系エンジニアになるためのオンラインプログラミング学習サービスです。
 
 プロのエンジニアに、実務で自走できる「ちゃんとした技術力」を持ったエンジニアに、一緒になっていきましょう！",0,
-2,1,1,2,コースのゴール,https://player.vimeo.com/433223851,コースを受講後にできるようになっていることを解説します。コースを完了すれば、みなさんのキャリアが変わっています！,0,
-3,1,1,3,【コラム】知っておきたいIT業界の用語集,https://player.vimeo.com/433224070,講義を進める上で前提となるIT業界の用語について解説します。,0,
-4,1,1,4,コースを通じて作るもの,https://player.vimeo.com/433227912,コースを通じて、3つのプロジェクトを行った上で、最後に認定試験を行います。最終的に計4つのポートフォリオができあがっています！,0,
-5,1,1,5,自走できるようになるためのロードマップ,https://player.vimeo.com/433228059,"自走できるようになるためのロードマップです。講座で習得するスキルのコアとなる部分ですので、是非定期的に見返してください。
+2,1,1,2,コースのゴール,https://player.vimeo.com/video/433223851,コースを受講後にできるようになっていることを解説します。コースを完了すれば、みなさんのキャリアが変わっています！,0,
+3,1,1,3,【コラム】知っておきたいIT業界の用語集,https://player.vimeo.com/video/433224070,講義を進める上で前提となるIT業界の用語について解説します。,0,
+4,1,1,4,コースを通じて作るもの,https://player.vimeo.com/video/433227912,コースを通じて、3つのプロジェクトを行った上で、最後に認定試験を行います。最終的に計4つのポートフォリオができあがっています！,0,
+5,1,1,5,自走できるようになるためのロードマップ,https://player.vimeo.com/video/433228059,"自走できるようになるためのロードマップです。講座で習得するスキルのコアとなる部分ですので、是非定期的に見返してください。
 
 ![スキルシート・ロードマップ](https://dokugaku-engineer-public-file.s3-ap-northeast-1.amazonaws.com/rodemap.png)",0,
-6,1,1,6,学習にあたっての心構え,https://player.vimeo.com/433228389,プログラミングを学習するにあたって重要なことがいくつかあります。学習に入る前に知っておいたほうが良いことをお伝えします！,0,
-7,1,1,7,【クイズ】受講後になっていたい姿を書き出そう,https://player.vimeo.com/433230327,"【クイズ】受講後になっていたい姿を書き出そう
+6,1,1,6,学習にあたっての心構え,https://player.vimeo.com/video/433228389,プログラミングを学習するにあたって重要なことがいくつかあります。学習に入る前に知っておいたほうが良いことをお伝えします！,0,
+7,1,1,7,【クイズ】受講後になっていたい姿を書き出そう,https://player.vimeo.com/video/433230327,"【クイズ】受講後になっていたい姿を書き出そう
 
 プログラミング学習を成功させる大きなポイントの一つは、学習を継続することです。
 
@@ -41,8 +41,8 @@ id,course_id,lesson_id,order,name,video_url,description,premium,deleted_at
 
 3つの視点から目標を書き出したら、定期的に見返しましょう。
 目標は書くだけでも効果はあるのですが、放置するとどうしても内容を忘れがちです。1ヶ月に1回で大丈夫なので、定期的に見返して、常にモチベーション高い状態で学習していきましょう。",0,
-8,1,1,8,コースの進め方,https://player.vimeo.com/433417199,おすすめの学習方法について紹介します！,0,
-9,1,1,9,【クイズ】コースの受講ペースを決めよう,https://player.vimeo.com/433418068,"【クイズ】コースの受講ペースを決めよう
+8,1,1,8,コースの進め方,https://player.vimeo.com/video/433417199,おすすめの学習方法について紹介します！,0,
+9,1,1,9,【クイズ】コースの受講ペースを決めよう,https://player.vimeo.com/video/433418068,"【クイズ】コースの受講ペースを決めよう
 
 コースの受講ペースを最初に決めておきましょう。
 
@@ -61,7 +61,7 @@ id,course_id,lesson_id,order,name,video_url,description,premium,deleted_at
 一週間の学習時間を決めたら、毎日何時間確保するかを決めます。
 平日と休日、それぞれで取る時間を決めましょう。
 なお、特定の曜日に固めるよりは、毎日少しでも良いので時間を確保したほうが良いです。例えば平日が忙しい方で休日だけやろうとすると、どうしても毎週記憶が飛んでしまいます。それを避けるために毎日30分は確保してください。",0,
-10,1,1,10,ご利用環境について,https://player.vimeo.com/433491490,"本コースは、以下の環境にてご利用いただくことができます。
+10,1,1,10,ご利用環境について,https://player.vimeo.com/video/433491490,"本コースは、以下の環境にてご利用いただくことができます。
 
 記載とは異なる環境では、一部の表示や動作が正常に行われない場合がございますのでご注意ください。
 
@@ -95,14 +95,14 @@ Windowsでも動作できるようサポートはしておりますが、Macを�
 
 * メモリ：8GB以上
 * ハードディスクの空き容量：10GB以上",0,
-11,1,1,11,レッスンのまとめ,https://player.vimeo.com/433515372,レッスンでやったことを振り返りましょう！,0,
-12,1,1,12,【コラム】エンジニアにとって欠かせない資質,https://player.vimeo.com/433515732,コラムで、「エンジニアにとって欠かせないある一つの資質」について話します。,0,
-13,1,2,1,パートのゴール,https://player.vimeo.com/433867069,"パートのゴールを最初に把握しましょう！このパートでは3つのことを目指します。
+11,1,1,11,レッスンのまとめ,https://player.vimeo.com/video/433515372,レッスンでやったことを振り返りましょう！,0,
+12,1,1,12,【コラム】エンジニアにとって欠かせない資質,https://player.vimeo.com/video/433515732,コラムで、「エンジニアにとって欠かせないある一つの資質」について話します。,0,
+13,1,2,1,パートのゴール,https://player.vimeo.com/video/433867069,"パートのゴールを最初に把握しましょう！このパートでは3つのことを目指します。
 
 * 開発環境を整えます
 * 動くアプリケーションを作れるようなります
 * Webサービスの仕組みの全体像を把握します",0,
-14,1,2,2,【クイズ】身につけたいスキルを書き出そう,https://player.vimeo.com/433867228,"【クイズ】身につけたいスキルを書き出そう
+14,1,2,2,【クイズ】身につけたいスキルを書き出そう,https://player.vimeo.com/video/433867228,"【クイズ】身につけたいスキルを書き出そう
 
 このパートで身につけたいスキルを Google スプレッドシートや Excel に書き出しましょう！
 
@@ -110,7 +110,7 @@ Windowsでも動作できるようサポートはしておりますが、Macを�
 2. 加えて、自分で「これは身につけたい」と思っているスキルを考え、あれば追加します
 3. 講義を進めている中で定期的に見返して、スキルがちゃんと身についているか確認します。身についたと思ったらチェック印を入れましょう
 4. このパートが終わったら最後に見返して、身についたスキルにチェック印を入れます。チェック印が入っていない項目があれば、再度動画を見返すか、以降のパートで身につけるようにしましょう",0,
-15,1,2,3,開発環境を整えよう,https://player.vimeo.com/433867638,"開発環境を整えましょう！開発環境を整えているかいないかで、開発の効率が全く変わってきます。開発するにあたって、何はともあれそのための環境を整えましょう！
+15,1,2,3,開発環境を整えよう,https://player.vimeo.com/video/433867638,"開発環境を整えましょう！開発環境を整えているかいないかで、開発の効率が全く変わってきます。開発するにあたって、何はともあれそのための環境を整えましょう！
 
 今回準備するのはこの４つです。
 
@@ -118,20 +118,20 @@ Windowsでも動作できるようサポートはしておりますが、Macを�
 * コードのバージョン管理
 * 仮想コンテナ
 * ターミナル",0,
-16,1,2,4,おすすめのテキストエディタ「Visual Studio Code」,https://player.vimeo.com/433867746,"プログラミングのコードを書く時は専用のテキストエディタを使用します。
+16,1,2,4,おすすめのテキストエディタ「Visual Studio Code」,https://player.vimeo.com/video/433867746,"プログラミングのコードを書く時は専用のテキストエディタを使用します。
 
 オススメは Visual Studio Code です！無料で高機能、軽量で人気のテキストエディタです。講義ではこちらを使用します。",0,
-17,1,2,5,Visual Studio Codeをインストールしよう（Mac）,https://player.vimeo.com/433867993,"Visual Studio Code をインストールします。
+17,1,2,5,Visual Studio Codeをインストールしよう（Mac）,https://player.vimeo.com/video/433867993,"Visual Studio Code をインストールします。
 今回はMacが対象です。
 
 下記リンクからダウンロードします。
 https://code.visualstudio.com/download",0,
-18,1,2,6,Visual Studio Codeをインストールしよう（Windows）,https://player.vimeo.com/433868151,"Visual Studio Code をインストールします。
+18,1,2,6,Visual Studio Codeをインストールしよう（Windows）,https://player.vimeo.com/video/433868151,"Visual Studio Code をインストールします。
 今回はWindowsが対象です。
 
 下記リンクからダウンロードします。
 https://code.visualstudio.com/download",0,
-19,1,2,7,Visual Studio Codeの初期設定をしよう（1）,https://player.vimeo.com/433868314,"Visual Studio Codeの拡張機能をインストールします。
+19,1,2,7,Visual Studio Codeの初期設定をしよう（1）,https://player.vimeo.com/video/433868314,"Visual Studio Codeの拡張機能をインストールします。
 
 今回インストールする拡張機能は以下の通りです。
 
@@ -174,7 +174,7 @@ GitHub公式のテーマです。講義では GitHub Dark テーマを使用し�
 
 拡張機能を探すときは、awesome-vscode にコミュニティが厳選した拡張機能がまとまっているので、そちらから探すと便利です。
 https://github.com/viatsko/awesome-vscode",0,
-20,1,2,8,Visual Studio Codeの初期設定をしよう（2）,https://player.vimeo.com/433868525,"Visual Studio Codeの設定を行います。
+20,1,2,8,Visual Studio Codeの初期設定をしよう（2）,https://player.vimeo.com/video/433868525,"Visual Studio Codeの設定を行います。
 
 今回設定する項目は以下の通りです。
 
@@ -190,7 +190,7 @@ https://github.com/viatsko/awesome-vscode",0,
 
 キーボードのショートカットの設定は、下記公式ドキュメントを参考にしてください。
 https://code.visualstudio.com/docs/getstarted/keybindings",0,
-21,1,2,9,Visual Studio Codeを使ってみよう,https://player.vimeo.com/433868888,"Visual Studio Code の基本的な使い方を身に付けましょう。
+21,1,2,9,Visual Studio Codeを使ってみよう,https://player.vimeo.com/video/433868888,"Visual Studio Code の基本的な使い方を身に付けましょう。
 次の2つのことをやっていきます。
 
 * ファイルの作成、保存、削除
@@ -199,11 +199,11 @@ https://code.visualstudio.com/docs/getstarted/keybindings",0,
 ※Visual Studio Code の公式ドキュメントを読むと、VSCodeの使い方が一通り分かります。
 中でも「SETUP」「GET STARTED」「USER GUIDE」には必ず目を通しておきましょう。
 https://code.visualstudio.com/docs",0,
-22,1,2,10,ターミナルを使おう,https://player.vimeo.com/433869261,"ターミナルを使って、シェルからコマンドでコンピュータを操作することができます。
+22,1,2,10,ターミナルを使おう,https://player.vimeo.com/video/433869261,"ターミナルを使って、シェルからコマンドでコンピュータを操作することができます。
 本番環境のサーバーの操作や、開発環境のDockerの操作などにターミナルを使用します。
 
 ターミナルとシェルの概要を把握しましょう。",0,
-23,1,2,11,ターミナルをインストールしよう（Mac）,https://player.vimeo.com/433870716,"Mac対象に、iTerm 2 を公式ドキュメントからインストールします。
+23,1,2,11,ターミナルをインストールしよう（Mac）,https://player.vimeo.com/video/433870716,"Mac対象に、iTerm 2 を公式ドキュメントからインストールします。
 https://www.iterm2.com/
 
 講義で紹介したショートカットキーをまとめます。
@@ -224,25 +224,25 @@ https://www.iterm2.com/
 
 ※ 便利な設定として、デスクトップ上にフルスクリーンで表示させることができます。講義では解説していませんが、作業効率が上がるのでオススメです
 * [iTerm2のおすすめ設定〜ターミナル作業を効率化する〜](https://qiita.com/ruwatana/items/8d9c174250061721ad11)",0,
-24,1,2,12,ターミナルをインストールしよう（Windows）,https://player.vimeo.com/433871215,"Windows対象に、Windows Terminal をインストールします。
+24,1,2,12,ターミナルをインストールしよう（Windows）,https://player.vimeo.com/video/433871215,"Windows対象に、Windows Terminal をインストールします。
 https://www.microsoft.com/ja-jp/p/windows-terminal/9n0dx20hk701",0,
-25,1,2,13,ターミナルで簡単な操作をしよう,https://player.vimeo.com/433871337,"ターミナルで簡単な操作をしてみましょう。
+25,1,2,13,ターミナルで簡単な操作をしよう,https://player.vimeo.com/video/433871337,"ターミナルで簡単な操作をしてみましょう。
 これから講義を進めていく上で必須となるコマンドを紹介します。",0,
-26,1,2,14,コードをバージョン管理「Git・GitHub」,https://player.vimeo.com/433899896,"開発を行う際はコードをバージョン管理しましょう。講義ではGitとGitHubを使ってバージョン管理していきます。
+26,1,2,14,コードをバージョン管理「Git・GitHub」,https://player.vimeo.com/video/433899896,"開発を行う際はコードをバージョン管理しましょう。講義ではGitとGitHubを使ってバージョン管理していきます。
 
 Git：コードのバージョン管理システム
 GitHub：コードのホスティングサービス",0,
-27,1,2,15,GitHubに登録しよう,https://player.vimeo.com/433900272,"GitHub に登録しましょう。
+27,1,2,15,GitHubに登録しよう,https://player.vimeo.com/video/433900272,"GitHub に登録しましょう。
 https://github.com/",0,
-28,1,2,16,Gitをインストールしよう（Mac）,https://player.vimeo.com/433900505,"Mac 対象に、Git をインストールします。
+28,1,2,16,Gitをインストールしよう（Mac）,https://player.vimeo.com/video/433900505,"Mac 対象に、Git をインストールします。
 
 Git の公式ドキュメントからインストールしましょう。
 https://git-scm.com/",0,
-29,1,2,17,Gitをインストールしよう（Windows）,https://player.vimeo.com/433900792,"Windows 対象に、Git をインストールします。
+29,1,2,17,Gitをインストールしよう（Windows）,https://player.vimeo.com/video/433900792,"Windows 対象に、Git をインストールします。
 
 Git の公式ドキュメントからインストールしましょう。
 https://git-scm.com/",0,
-30,1,2,18,Gitの初期設定をしよう,https://player.vimeo.com/433901029,"Git の初期設定をします。
+30,1,2,18,Gitの初期設定をしよう,https://player.vimeo.com/video/433901029,"Git の初期設定をします。
 
 今回した使用したコマンドです。
 
@@ -265,21 +265,21 @@ $ git config --global pull.rebase merges
 # 設定を確認する
 $ git config --list
 ```",0,
-31,1,2,19,仮想コンテナで開発「Docker」,https://player.vimeo.com/433901394,"講義では仮想環境上で開発していきます。そこで使用するツールが Docker です。
+31,1,2,19,仮想コンテナで開発「Docker」,https://player.vimeo.com/video/433901394,"講義では仮想環境上で開発していきます。そこで使用するツールが Docker です。
 今回は Docker の概要を学びます。",0,
-32,1,2,20,Dockerの基本的な仕組みを学ぼう,https://player.vimeo.com/433901638,"Docker の基本的な仕組みを学びます。
+32,1,2,20,Dockerの基本的な仕組みを学ぼう,https://player.vimeo.com/video/433901638,"Docker の基本的な仕組みを学びます。
 コンテナのライフサイクルとそれに対応するコマンドをおさえておきましょう。",0,
-33,1,2,21,Dockerをインストールしよう（Mac）,https://player.vimeo.com/433901925,"Mac 対象に、Docker のインストールをしましょう。
+33,1,2,21,Dockerをインストールしよう（Mac）,https://player.vimeo.com/video/433901925,"Mac 対象に、Docker のインストールをしましょう。
 
 Docker の公式ドキュメント
 https://www.docker.com/",0,
-34,1,2,22,Dockerをインストールしよう（Windows①）,https://player.vimeo.com/433902169,"Windows 対象に、Docker のインストールをしましょう。
+34,1,2,22,Dockerをインストールしよう（Windows①）,https://player.vimeo.com/video/433902169,"Windows 対象に、Docker のインストールをしましょう。
 
 * [Install Docker Desktop on Windows Home](https://docs.docker.com/docker-for-windows/install-windows-home/)
 * [Windows Subsystem for Linux Installation Guide for Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)",0,
-35,1,2,23,Dockerをインストールしよう（Windows②）,https://player.vimeo.com/433902454,"Windows 対象に、Docker のインストールの続きをしましょう。
+35,1,2,23,Dockerをインストールしよう（Windows②）,https://player.vimeo.com/video/433902454,"Windows 対象に、Docker のインストールの続きをしましょう。
 [Install Docker Desktop on Windows Home](https://docs.docker.com/docker-for-windows/install-windows-home/)",0,
-36,1,2,24,コンテナを起動させよう,https://player.vimeo.com/433902697,"Docker コンテナの起動をしていきましょう。
+36,1,2,24,コンテナを起動させよう,https://player.vimeo.com/video/433902697,"Docker コンテナの起動をしていきましょう。
 
 公式ドキュメントの [Quicstart](https://docs.docker.com/get-started/) を参考にやっていきます。
 
@@ -301,17 +301,17 @@ docker container rm <コンテナID>
 # イメージを削除する
 docker image rm hello-world
 ```",0,
-37,1,2,25,【クイズ】Quickstartをやってみよう,https://player.vimeo.com/433903046,"【クイズ】Quickstart をやってみよう
+37,1,2,25,【クイズ】Quickstartをやってみよう,https://player.vimeo.com/video/433903046,"【クイズ】Quickstart をやってみよう
 
 Docker の公式ドキュメントの [Quickstart Part 2](https://docs.docker.com/get-started/part2/) をやってみましょう。
 こちらでは自分でイメージをビルドして、コンテナを起動させます。
 Docker の理解を深めるのが狙いです。
 https://docs.docker.com/get-started/part2/",0,
-38,1,2,26,DockerでPHP環境を作ろう,https://player.vimeo.com/433903285,"このパートで使用する Docker 環境を構築します。
+38,1,2,26,DockerでPHP環境を作ろう,https://player.vimeo.com/video/433903285,"このパートで使用する Docker 環境を構築します。
 
 git clone したリポジトリは以下のものを使用しています。
 [dokugaku-engineer/server-side](https://github.com/dokugaku-engineer/server-side)",0,
-39,1,2,27,Dockerでトラブルが起きたら,https://player.vimeo.com/433904011,"Docker を使っててトラブルが起きた時の対処方法を記載します。エラー等が起きたら参考にしてみてください。
+39,1,2,27,Dockerでトラブルが起きたら,https://player.vimeo.com/video/433904011,"Docker を使っててトラブルが起きた時の対処方法を記載します。エラー等が起きたら参考にしてみてください。
 
 #### コンテナがうまく起動しないとき
 
@@ -382,6 +382,6 @@ Docker 関連のファイルを初期状態に戻した上で、src ディレク
 # Docker の不要なイメージ、コンテナなどを削除する
 docker system prune
 ```",0,
-40,1,2,28,レッスンのまとめ,https://player.vimeo.com/433904391,"このレッスンのまとめです！
+40,1,2,28,レッスンのまとめ,https://player.vimeo.com/video/433904391,"このレッスンのまとめです！
 できるようになったことを整理して、その上で次に進んでいきましょう！",0,
-41,1,2,29,【コラム】公式ドキュメントを読もう,https://player.vimeo.com/433904649,コラムで、公式ドキュメントを読もうという話をしています。,0,
+41,1,2,29,【コラム】公式ドキュメントを読もう,https://player.vimeo.com/video/433904649,コラムで、公式ドキュメントを読もうという話をしています。,0,
