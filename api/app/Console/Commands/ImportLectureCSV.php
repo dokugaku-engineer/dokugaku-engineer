@@ -101,7 +101,7 @@ class ImportLectureCSV extends Command
         foreach ($records as $record) {
             foreach ($record as $k => $v) {
                 if ($v === '') {
-                    $record[$k] = NULL;
+                    $record[$k] = null;
                 }
             }
 
@@ -129,12 +129,12 @@ class ImportLectureCSV extends Command
             return $row['deleted_at'] !== null;
         });
 
-        # 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
+        // 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
         $processedDeletedLectures = [];
         foreach ($deletedLectures as $lecture) {
-            $lecture['slug'] = NULL;
-            $lecture['prev_lecture_slug'] = NULL;
-            $lecture['next_lecture_slug'] = NULL;
+            $lecture['slug'] = null;
+            $lecture['prev_lecture_slug'] = null;
+            $lecture['next_lecture_slug'] = null;
             $processedDeletedLectures[] = $lecture;
         }
 
@@ -219,7 +219,7 @@ class ImportLectureCSV extends Command
         for ($t = ($in != 0 ? floor(log($in, $base)) : 0); $t >= 0; $t--) {
             $bcp = (float) bcpow((string) $base, (string) $t);
             $a = floor($in / $bcp) % $base;
-            $out = $out . substr($index, $a, 1);
+            $out = $out.substr($index, $a, 1);
             $in = $in - ($a * $bcp);
         }
 
