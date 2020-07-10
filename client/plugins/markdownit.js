@@ -28,7 +28,7 @@ export default (context, inject) => {
   })
   .use(sanitizer)
 
-  const defaultRender =
+  const linkRender =
     md.renderer.rules.link_open ||
     function (tokens, idx, options, env, self) {
       return self.renderToken(tokens, idx, options)
@@ -50,7 +50,19 @@ export default (context, inject) => {
       tokens[idx].attrs[relIndex][1] = 'noopener'
     }
 
-    return defaultRender(tokens, idx, options, env, self)
+    return linkRender(tokens, idx, options, env, self)
+  }
+
+  // img タグに loading="lazy" 属性を付けて遅延ロードする
+  const imageRender =
+    md.renderer.rules.image ||
+    function(tokens, idx, options, env, self) {
+      return self.renderToken(tokens, idx, options);
+    }
+
+  md.renderer.rules.image = function(tokens, idx, options, env, self) {
+    tokens[idx].attrPush(["loading", "lazy"]);
+    return imageRender(tokens, idx, options, env, self);
   }
 
   inject('md', md)
