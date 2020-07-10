@@ -94,14 +94,14 @@ class ImportLectureCSV extends Command
         $local = Storage::disk('local');
         $local->put("./tmp/{$name}.csv", $csvData);
 
-        $reader = Reader::createFromPath(base_path("storage/app/tmp/{$name}.csv", 'r'));
+        $reader = Reader::createFromPath(base_path("storage/app/tmp/{$name}.csv"), 'r');
         $reader->setHeaderOffset(0);
         $records = $reader->getRecords();
         $data = [];
         foreach ($records as $record) {
             foreach ($record as $k => $v) {
                 if ($v === '') {
-                    $record[$k] = NULL;
+                    $record[$k] = null;
                 }
             }
 
@@ -132,9 +132,9 @@ class ImportLectureCSV extends Command
         # 削除されている列はslug, prev_lecture_slug, next_lecture_slugカラムをNULLにする
         $processedDeletedLectures = [];
         foreach ($deletedLectures as $lecture) {
-            $lecture['slug'] = NULL;
-            $lecture['prev_lecture_slug'] = NULL;
-            $lecture['next_lecture_slug'] = NULL;
+            $lecture['slug'] = null;
+            $lecture['prev_lecture_slug'] = null;
+            $lecture['next_lecture_slug'] = null;
             $processedDeletedLectures[] = $lecture;
         }
 

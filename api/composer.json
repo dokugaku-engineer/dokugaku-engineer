@@ -75,6 +75,9 @@
         ],
         "phpcbf": [
             "./vendor/bin/phpcbf --standard=phpcs.xml --extensions=php ./"
+        ],
+        "phpunit": [
+            "./vendor/bin/phpunit"
         ]
     }
 }
