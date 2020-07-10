@@ -73,10 +73,12 @@
           このレクチャーの内容・補足
         </h3>
         <div class="detail-body">
+          <!-- eslint-disable vue/no-v-html -->
           <div
             v-if="lecture.description"
             v-html="$md.render(lecture.description)"
           />
+          <!-- eslint-enable vue/no-v-html -->
         </div>
       </div>
     </div>

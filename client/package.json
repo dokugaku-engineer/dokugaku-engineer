@@ -26,6 +26,7 @@
     "core-js": "^2.6.11",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "markdown-it-sanitizer": "^0.4.3",
     "nuxt": "^2.13.3",
     "ress": "^2.0.4",
     "vuelidate": "^0.7.5"
