@@ -73,7 +73,9 @@
           このレクチャーの内容・補足
         </h3>
         <div class="detail-body">
-          <p>{{ lecture.description }}</p>
+          <!-- eslint-disable vue/no-v-html -->
+          <div v-if="lecture.description" v-html="lectureDescription" />
+          <!-- eslint-enable vue/no-v-html -->
         </div>
       </div>
     </div>
@@ -221,6 +223,46 @@
 }
 </style>
 
+<style lang="scss">
+.detail-body {
+  h4 {
+    margin-bottom: 3rem;
+  }
+
+  p {
+    margin-bottom: 3rem;
+  }
+
+  a {
+    color: $color-blue;
+  }
+
+  ol,
+  ul {
+    padding: 0 0 3rem 2rem;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  li {
+    padding: 0.6rem 0;
+  }
+
+  ol {
+    counter-reset: count;
+    list-style: decimal;
+  }
+
+  ol > li {
+    &:before {
+      counter-increment: count;
+    }
+  }
+}
+</style>
+
 <script>
 import ErrorBox from '@/components/commons/ErrorBox.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
@@ -243,6 +285,9 @@ export default {
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'lessons', 'lectures']),
     ...mapGetters('auth0', ['isAuth0Provider']),
+    lectureDescription() {
+      return this.$md.render(this.lecture.description)
+    },
   },
   async created() {
     this.$store.dispatch('course/setLecture', {})
@@ -311,6 +356,10 @@ export default {
         this.error = err
         this.$sentry.captureException(err)
       })
+  },
+  mounted() {
+    // eslint-disable-next-line no-undef
+    Prism.highlightAll()
   },
   methods: {
     async createLearningHistory() {

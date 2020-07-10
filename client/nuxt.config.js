@@ -38,7 +38,12 @@ export default {
         crossorigin: 'anonymous',
       },
     ],
-    link: [],
+    link: [
+      {
+        href: 'https://myCDN.com/prism@v1.x/themes/prism.css',
+        rel: 'stylesheet',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -56,6 +61,8 @@ export default {
     './plugins/auth0.js',
     './plugins/click-outside.js',
     './plugins/sentry.js',
+    './plugins/markdownit',
+    './plugins/prism',
   ],
   /*
    ** Nuxt.js dev-modules
@@ -69,6 +76,7 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/toast',
     '@nuxtjs/sentry',
+    '@nuxtjs/markdownit',
   ],
   /*
    ** Build configuration

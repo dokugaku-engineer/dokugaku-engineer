@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
+use League\Csv\Reader;
 
 class ImportLectureCSV extends Command
 {
@@ -76,6 +77,8 @@ class ImportLectureCSV extends Command
         Schema::rename("${name}s", "${name}s_tmp");
         Schema::rename("${name}s_olds", "${name}s");
         Schema::rename("${name}s_tmp", "${name}s_olds");
+
+        Storage::deleteDirectory('tmp');
     }
 
     /**
@@ -86,30 +89,25 @@ class ImportLectureCSV extends Command
      */
     private function getCsv(string $name): array
     {
-        $csvData = Storage::disk(env('FILE_DISK', 'local'))->get("lecture/${name}.csv");
-        $csvLines = explode(PHP_EOL, $csvData);
-        $csv = [];
-        foreach ($csvLines as $line) {
-            $csv[] = str_getcsv($line);
-        }
+        // CSVファイルをローカルに保存する
+        $csvData = Storage::disk(env('FILE_DISK', 'public'))->get("lecture/${name}.csv");
+        $local = Storage::disk('local');
+        $local->put("./tmp/{$name}.csv", $csvData);
 
+        $reader = Reader::createFromPath(base_path("storage/app/tmp/{$name}.csv"), 'r');
+        $reader->setHeaderOffset(0);
+        $records = $reader->getRecords();
         $data = [];
-        $header = array_shift($csv);
-        foreach ($csv as $row) {
-            if (empty($row[0])) {
-                continue;
+        foreach ($records as $record) {
+            foreach ($record as $k => $v) {
+                if ($v === '') {
+                    $record[$k] = null;
+                }
             }
 
-            $rowData = [];
-            foreach ($row as $k => $v) {
-                if ($v === '') {
-                    $v = null;
-                }
-                $rowData[$header[$k]] = $v;
-                $rowData['created_at'] = Carbon::now()->toDateTimeString();
-                $rowData['updated_at'] = Carbon::now()->toDateTimeString();
-            }
-            $data[] = $rowData;
+            $record['created_at'] = Carbon::now()->toDateTimeString();
+            $record['updated_at'] = Carbon::now()->toDateTimeString();
+            $data[] = $record;
         }
 
         return $data;
