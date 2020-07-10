@@ -28,6 +28,7 @@
     "lodash": "^4.17.15",
     "markdown-it-sanitizer": "^0.4.3",
     "nuxt": "^2.13.3",
+    "prismjs": "^1.20.0",
     "ress": "^2.0.4",
     "vuelidate": "^0.7.5"
   },

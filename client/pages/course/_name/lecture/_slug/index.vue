@@ -228,6 +228,10 @@
 
 <style lang="scss">
 .detail-body {
+  h4 {
+    margin-bottom: 3rem;
+  }
+
   p {
     margin-bottom: 3rem;
   }
@@ -238,7 +242,7 @@
 
   ol,
   ul {
-    padding: 0 0 0 2rem;
+    padding: 0 0 3rem 2rem;
   }
 
   ul {
@@ -355,6 +359,9 @@ export default {
         this.error = err
         this.$sentry.captureException(err)
       })
+  },
+  mounted() {
+    Prism.highlightAll()
   },
   methods: {
     async createLearningHistory() {

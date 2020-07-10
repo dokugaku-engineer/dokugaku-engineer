@@ -1,5 +1,11 @@
 import MarkdownIt from 'markdown-it'
 import sanitizer from 'markdown-it-sanitizer'
+import Prism from 'prismjs'
+import 'prismjs/components/prism-bash.min.js'
+import 'prismjs/components/prism-docker.min.js'
+import 'prismjs/components/prism-sql.min.js'
+import 'prismjs/components/prism-php.min.js'
+import 'prismjs/components/prism-markup-templating.js'
 
 export default (context, inject) => {
   const md = new MarkdownIt({
@@ -7,7 +13,20 @@ export default (context, inject) => {
     linkify: true,
     typography: true,
     breaks: true,
-  }).use(sanitizer)
+    highlight (str, lang) {
+      let hl
+
+      try {
+        hl = Prism.highlight(str, Prism.languages[lang])
+      } catch (error) {
+        console.error(error)
+        hl = md.utils.escapeHtml(str)
+      }
+
+      return `<pre class="language-${lang}"><code class="language-${lang}">${hl}</code></pre>`
+    }
+  })
+  .use(sanitizer)
 
   const defaultRender =
     md.renderer.rules.link_open ||

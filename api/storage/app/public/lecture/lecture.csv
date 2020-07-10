@@ -99,9 +99,9 @@ Windowsでも動作できるようサポートはしておりますが、Macを�
 12,1,1,12,【コラム】エンジニアにとって欠かせない資質,https://vimeo.com/433515732,コラムで、「エンジニアにとって欠かせないある一つの資質」について話します。,0,
 13,1,2,1,パートのゴール,https://vimeo.com/433867069,"パートのゴールを最初に把握しましょう！このパートでは3つのことを目指します。
 
-・開発環境を整えます
-・動くアプリケーションを作れるようなります
-・Webサービスの仕組みの全体像を把握します",0,
+* 開発環境を整えます
+* 動くアプリケーションを作れるようなります
+* Webサービスの仕組みの全体像を把握します",0,
 14,1,2,2,【クイズ】身につけたいスキルを書き出そう,https://vimeo.com/433867228,"【クイズ】身につけたいスキルを書き出そう
 
 このパートで身につけたいスキルを Google スプレッドシートや Excel に書き出しましょう！
@@ -125,24 +125,22 @@ Windowsでも動作できるようサポートはしておりますが、Macを�
 今回はMacが対象です。
 
 下記リンクからダウンロードします。
-
 https://code.visualstudio.com/download",0,
 18,1,2,6,Visual Studio Codeをインストールしよう（Windows）,https://vimeo.com/433868151,"Visual Studio Code をインストールします。
 今回はWindowsが対象です。
 
 下記リンクからダウンロードします。
-
 https://code.visualstudio.com/download",0,
 19,1,2,7,Visual Studio Codeの初期設定をしよう（1）,https://vimeo.com/433868314,"Visual Studio Codeの拡張機能をインストールします。
 
 今回インストールする拡張機能は以下の通りです。
 
-◯日本語化
+#### 日本語化
 
 ・Japanese Language Pack for Visual Studio Code
-Vusial Studio Code 内の表記を日本語化します。
+Vusial Studio Code 内の表記を日本語化します
 
-◯整形
+#### 整形
 
 ・Bracket Pair Colorizer 2
 括弧の色付けをします。
@@ -153,7 +151,7 @@ Vusial Studio Code 内の表記を日本語化します。
 ・Code Spell Checker
 コードのスペルチェックをします。
 
-◯言語特有
+#### 言語特有
 
 ・HTML CSS Support
 HTMLドキュメントに対するCSSのサポートを行います。
@@ -164,7 +162,7 @@ PHPのコード補完をします。
 ・Docker
 Dockerの操作をサポートします。
 
-◯表示
+#### 表示
 
 ・Material Icon Theme
 アイコンをマテリアルアイコンに変更します。
@@ -205,7 +203,7 @@ https://code.visualstudio.com/docs",0,
 本番環境のサーバーの操作や、開発環境のDockerの操作などにターミナルを使用します。
 
 ターミナルとシェルの概要を把握しましょう。",0,
-23,1,2,11,ターミナルをインストールしよう（Mac）,https://vimeo.com/433870716,"Macの方対象に、iTerm 2 を公式ドキュメントからインストールします。
+23,1,2,11,ターミナルをインストールしよう（Mac）,https://vimeo.com/433870716,"Mac対象に、iTerm 2 を公式ドキュメントからインストールします。
 https://www.iterm2.com/
 
 講義で紹介したショートカットキーをまとめます。
@@ -221,15 +219,12 @@ https://www.iterm2.com/
 検索にHitした単語から選択範囲を広げる：tab（Shift + Tab）
 
 ※ ターミナルの使用に慣れてきたら下記の公式ドキュメントに目を通してみましょう
-
 * [Highlights for New Users](https://www.iterm2.com/documentation-highlights.html)
 * [General Usage](https://www.iterm2.com/documentation-general-usage.html)
 
 ※ 便利な設定として、デスクトップ上にフルスクリーンで表示させることができます。講義では解説していませんが、作業効率が上がるのでオススメです
-
 * [iTerm2のおすすめ設定〜ターミナル作業を効率化する〜](https://qiita.com/ruwatana/items/8d9c174250061721ad11)",0,
-24,1,2,12,ターミナルをインストールしよう（Windows）,https://vimeo.com/433871215,"Windowsの方対象に、Windows Terminal をインストールします。
-
+24,1,2,12,ターミナルをインストールしよう（Windows）,https://vimeo.com/433871215,"Windows対象に、Windows Terminal をインストールします。
 https://www.microsoft.com/ja-jp/p/windows-terminal/9n0dx20hk701",0,
 25,1,2,13,ターミナルで簡単な操作をしよう,https://vimeo.com/433871337,"ターミナルで簡単な操作をしてみましょう。
 これから講義を進めていく上で必須となるコマンドを紹介します。",0,
@@ -237,24 +232,21 @@ https://www.microsoft.com/ja-jp/p/windows-terminal/9n0dx20hk701",0,
 
 Git：コードのバージョン管理システム
 GitHub：コードのホスティングサービス",0,
-27,1,2,15,GitHubに登録しよう,https://vimeo.com/433900272,"GitHub の登録をしましょう。
-
+27,1,2,15,GitHubに登録しよう,https://vimeo.com/433900272,"GitHub に登録しましょう。
 https://github.com/",0,
-28,1,2,16,Gitをインストールしよう（Mac）,https://vimeo.com/433900505,"Mac の方対象に、Git をインストールします。
+28,1,2,16,Gitをインストールしよう（Mac）,https://vimeo.com/433900505,"Mac 対象に、Git をインストールします。
 
 Git の公式ドキュメントからインストールしましょう。
-
 https://git-scm.com/",0,
-29,1,2,17,Gitをインストールしよう（Windows）,https://vimeo.com/433900792,"Windows の方対象に、Git をインストールします。
+29,1,2,17,Gitをインストールしよう（Windows）,https://vimeo.com/433900792,"Windows 対象に、Git をインストールします。
 
 Git の公式ドキュメントからインストールしましょう。
-
 https://git-scm.com/",0,
 30,1,2,18,Gitの初期設定をしよう,https://vimeo.com/433901029,"Git の初期設定をします。
 
 今回した使用したコマンドです。
 
-```
+```bash
 # ユーザー名を設定
 $ git config --global user.name ""github user name""
 
@@ -283,11 +275,9 @@ Docker の公式ドキュメント
 https://www.docker.com/",0,
 34,1,2,22,Dockerをインストールしよう（Windows①）,https://vimeo.com/433902169,"Windows 対象に、Docker のインストールをしましょう。
 
-[Install Docker Desktop on Windows Home](https://docs.docker.com/docker-for-windows/install-windows-home/)
-
-[Windows Subsystem for Linux Installation Guide for Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)",0,
+* [Install Docker Desktop on Windows Home](https://docs.docker.com/docker-for-windows/install-windows-home/)
+* [Windows Subsystem for Linux Installation Guide for Windows 10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)",0,
 35,1,2,23,Dockerをインストールしよう（Windows②）,https://vimeo.com/433902454,"Windows 対象に、Docker のインストールの続きをしましょう。
-
 [Install Docker Desktop on Windows Home](https://docs.docker.com/docker-for-windows/install-windows-home/)",0,
 36,1,2,24,コンテナを起動させよう,https://vimeo.com/433902697,"Docker コンテナの起動をしていきましょう。
 
@@ -316,12 +306,10 @@ docker image rm hello-world
 Docker の公式ドキュメントの [Quickstart Part 2](https://docs.docker.com/get-started/part2/) をやってみましょう。
 こちらでは自分でイメージをビルドして、コンテナを起動させます。
 Docker の理解を深めるのが狙いです。
-
 https://docs.docker.com/get-started/part2/",0,
 38,1,2,26,DockerでPHP環境を作ろう,https://vimeo.com/433903285,"このパートで使用する Docker 環境を構築します。
 
 git clone したリポジトリは以下のものを使用しています。
-
 [dokugaku-engineer/server-side](https://github.com/dokugaku-engineer/server-side)",0,
 39,1,2,27,Dockerでトラブルが起きたら,https://vimeo.com/433904011,"Docker を使っててトラブルが起きた時の対処方法を記載します。エラー等が起きたら参考にしてみてください。
 
@@ -379,7 +367,7 @@ cp -r sever-side/part2 -t ~/Documents/code
 cd  ~/Documents/code/part2
 ```
 
-Docker 関連のファイルを初期状態に戻した上で、src ディレクトリに設置していたファイルを、 ~/Documents/code/part2/src にコピーして持ってきます。
+Docker 関連のファイルを初期状態に戻した上で、src ディレクトリに設置していたファイルを、 `~/Documents/code/part2/src` にコピーして持ってきます。
 
 #### それでも起動しない場合
 
