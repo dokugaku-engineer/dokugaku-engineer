@@ -239,6 +239,14 @@
     padding: 0 0 0 2rem;
   }
 
+  ul {
+    list-style: disc;
+  }
+
+  li {
+    padding: 0.6rem 0;
+  }
+
   ol {
     counter-reset: count;
     list-style: decimal;
@@ -248,14 +256,6 @@
     &:before {
       counter-increment: count;
     }
-  }
-
-  ul {
-    list-style: disc;
-  }
-
-  li {
-    padding: 0.6rem 0;
   }
 }
 </style>
