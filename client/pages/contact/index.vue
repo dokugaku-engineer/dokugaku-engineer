@@ -237,30 +237,8 @@ export default {
       submitStatus: null,
     }
   },
-  head () {
-    return {
-      title: 'お問い合わせ',
-    }
-  },
   beforeCreate() {
     this.$store.dispatch('setTitle', 'お問い合わせ')
-  },
-  validations: {
-    about: {
-      required,
-    },
-    name: {
-      required,
-      maxLength: maxLength(50),
-    },
-    email: {
-      required,
-      email,
-    },
-    detail: {
-      required,
-      maxLength: maxLength(10000),
-    },
   },
   methods: {
     delayTouch($v) {
@@ -279,6 +257,28 @@ export default {
     },
     redirectTop() {
       this.$router.push('/')
+    },
+  },
+  head() {
+    return {
+      title: 'お問い合わせ',
+    }
+  },
+  validations: {
+    about: {
+      required,
+    },
+    name: {
+      required,
+      maxLength: maxLength(50),
+    },
+    email: {
+      required,
+      email,
+    },
+    detail: {
+      required,
+      maxLength: maxLength(10000),
     },
   },
 }

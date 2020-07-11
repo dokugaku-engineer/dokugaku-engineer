@@ -110,11 +110,6 @@ export default {
     ...mapState('auth0', ['auth0User']),
     ...mapGetters('auth0', ['providers', 'isAuth0Provider']),
   },
-  head () {
-    return {
-      title: 'パスワードの設定',
-    }
-  },
   beforeCreate() {
     this.$store.dispatch('setTitle', 'パスワード')
   },
@@ -146,6 +141,11 @@ export default {
           this.$sentry.captureException(err)
         })
     },
+  },
+  head() {
+    return {
+      title: 'パスワードの設定',
+    }
   },
 }
 </script>

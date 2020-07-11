@@ -517,13 +517,13 @@ export default {
   components: {
     StaticPage,
   },
-  head () {
+  beforeCreate() {
+    this.$store.dispatch('setTitle', '利用規約')
+  },
+  head() {
     return {
       title: '利用規約',
     }
-  },
-  beforeCreate() {
-    this.$store.dispatch('setTitle', '利用規約')
   },
 }
 </script>

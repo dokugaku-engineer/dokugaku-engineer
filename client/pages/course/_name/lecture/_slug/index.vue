@@ -281,12 +281,6 @@ export default {
       error: null,
     }
   },
-  head () {
-    return {
-      title: `独学エンジニア - ${this.title}`,
-      titleTemplate: '',
-    }
-  },
   computed: {
     ...mapState(['title']),
     ...mapState('auth0', ['auth0User']),
@@ -389,6 +383,12 @@ export default {
           this.$sentry.captureException(err)
         })
     },
+  },
+  head() {
+    return {
+      title: `独学エンジニア - ${this.title}`,
+      titleTemplate: '',
+    }
   },
 }
 </script>

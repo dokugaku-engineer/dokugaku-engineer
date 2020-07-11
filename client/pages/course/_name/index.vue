@@ -156,12 +156,6 @@ export default {
       auth0Error: null,
     }
   },
-  head () {
-    return {
-      title: '独学エンジニア - ホーム',
-      titleTemplate: '',
-    }
-  },
   computed: {
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'learnedLectureIds']),
@@ -201,6 +195,12 @@ export default {
         this.error = err
         this.$sentry.captureException(err)
       })
+  },
+  head() {
+    return {
+      title: '独学エンジニア - ホーム',
+      titleTemplate: '',
+    }
   },
 }
 </script>

@@ -212,11 +212,6 @@ export default {
       state: this.$route.query.state,
     }
   },
-  head () {
-    return {
-      title: '会員情報入力',
-    }
-  },
   computed: {
     ...mapState('auth0', ['auth0User', 'isAuthenticated']),
     submitError() {
@@ -226,7 +221,6 @@ export default {
       return this.submitStatus === 'PENDING'
     },
   },
-  middleware: auth0Middleware.protectRegistration(),
   methods: {
     async createUser() {
       if (this.auth0User.email) {
@@ -277,6 +271,12 @@ export default {
       window.location.assign('/course/serverside')
     },
   },
+  head() {
+    return {
+      title: '会員情報入力',
+    }
+  },
+  middleware: auth0Middleware.protectRegistration(),
   validations: {
     user: {
       username: {

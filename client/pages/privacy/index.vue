@@ -174,13 +174,13 @@ export default {
   components: {
     StaticPage,
   },
-  head () {
+  beforeCreate() {
+    this.$store.dispatch('setTitle', 'プライバシーポリシー')
+  },
+  head() {
     return {
       title: 'プライバシーポリシー',
     }
-  },
-  beforeCreate() {
-    this.$store.dispatch('setTitle', 'プライバシーポリシー')
   },
 }
 </script>

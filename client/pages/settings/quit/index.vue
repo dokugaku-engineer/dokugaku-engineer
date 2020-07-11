@@ -106,11 +106,6 @@ export default {
       error: null,
     }
   },
-  head () {
-    return {
-      title: 'アカウント削除',
-    }
-  },
   computed: {
     ...mapState('auth0', ['auth0User']),
     ...mapGetters('auth0', ['userId', 'isAuth0Provider']),
@@ -153,6 +148,11 @@ export default {
         },
       }
     },
+  },
+  head() {
+    return {
+      title: 'アカウント削除',
+    }
   },
 }
 </script>

@@ -190,11 +190,6 @@ export default {
       error: null,
     }
   },
-  head () {
-    return {
-      title: 'プロフィール',
-    }
-  },
   computed: {
     ...mapState('auth0', ['auth0User']),
     ...mapGetters('auth0', ['userId', 'isAuth0Provider']),
@@ -253,6 +248,11 @@ export default {
         },
       }
     },
+  },
+  head() {
+    return {
+      title: 'プロフィール',
+    }
   },
   validations: {
     user: {
