@@ -177,5 +177,10 @@ export default {
   beforeCreate() {
     this.$store.dispatch('setTitle', 'プライバシーポリシー')
   },
+  head() {
+    return {
+      title: 'プライバシーポリシー',
+    }
+  },
 }
 </script>

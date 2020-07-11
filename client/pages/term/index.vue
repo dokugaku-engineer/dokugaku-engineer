@@ -520,5 +520,10 @@ export default {
   beforeCreate() {
     this.$store.dispatch('setTitle', '利用規約')
   },
+  head() {
+    return {
+      title: '利用規約',
+    }
+  },
 }
 </script>

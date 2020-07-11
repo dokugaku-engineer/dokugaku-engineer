@@ -249,6 +249,11 @@ export default {
       }
     },
   },
+  head() {
+    return {
+      title: 'プロフィール',
+    }
+  },
   validations: {
     user: {
       username: {

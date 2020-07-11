@@ -196,5 +196,11 @@ export default {
         this.$sentry.captureException(err)
       })
   },
+  head() {
+    return {
+      title: '独学エンジニア - ホーム',
+      titleTemplate: '',
+    }
+  },
 }
 </script>

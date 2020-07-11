@@ -9,7 +9,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s - 独学エンジニア',
     meta: [
       {
         charset: 'utf-8',
@@ -17,11 +17,6 @@ export default {
       {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1, minimum-scale=1',
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || '',
       },
       {
         'http-equiv': 'X-UA-Compatible',
@@ -36,12 +31,6 @@ export default {
       {
         src: 'https://kit.fontawesome.com/381734123f.js',
         crossorigin: 'anonymous',
-      },
-    ],
-    link: [
-      {
-        href: 'https://myCDN.com/prism@v1.x/themes/prism.css',
-        rel: 'stylesheet',
       },
     ],
   },

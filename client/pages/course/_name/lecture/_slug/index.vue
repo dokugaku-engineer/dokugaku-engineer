@@ -282,6 +282,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['title']),
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'lessons', 'lectures']),
     ...mapGetters('auth0', ['isAuth0Provider']),
@@ -382,6 +383,12 @@ export default {
           this.$sentry.captureException(err)
         })
     },
+  },
+  head() {
+    return {
+      title: `独学エンジニア - ${this.title}`,
+      titleTemplate: '',
+    }
   },
 }
 </script>

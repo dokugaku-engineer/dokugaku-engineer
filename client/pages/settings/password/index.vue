@@ -142,5 +142,10 @@ export default {
         })
     },
   },
+  head() {
+    return {
+      title: 'パスワードの設定',
+    }
+  },
 }
 </script>
