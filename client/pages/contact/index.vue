@@ -237,6 +237,11 @@ export default {
       submitStatus: null,
     }
   },
+  head () {
+    return {
+      title: 'お問い合わせ',
+    }
+  },
   beforeCreate() {
     this.$store.dispatch('setTitle', 'お問い合わせ')
   },

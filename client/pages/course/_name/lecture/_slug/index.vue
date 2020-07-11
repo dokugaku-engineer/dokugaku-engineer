@@ -281,7 +281,14 @@ export default {
       error: null,
     }
   },
+  head () {
+    return {
+      title: `独学エンジニア - ${this.title}`,
+      titleTemplate: '',
+    }
+  },
   computed: {
+    ...mapState(['title']),
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'lessons', 'lectures']),
     ...mapGetters('auth0', ['isAuth0Provider']),

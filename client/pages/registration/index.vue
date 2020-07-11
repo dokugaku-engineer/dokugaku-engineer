@@ -212,6 +212,11 @@ export default {
       state: this.$route.query.state,
     }
   },
+  head () {
+    return {
+      title: '会員情報入力',
+    }
+  },
   computed: {
     ...mapState('auth0', ['auth0User', 'isAuthenticated']),
     submitError() {

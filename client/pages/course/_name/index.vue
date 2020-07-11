@@ -156,6 +156,12 @@ export default {
       auth0Error: null,
     }
   },
+  head () {
+    return {
+      title: '独学エンジニア - ホーム',
+      titleTemplate: '',
+    }
+  },
   computed: {
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'learnedLectureIds']),

@@ -517,6 +517,11 @@ export default {
   components: {
     StaticPage,
   },
+  head () {
+    return {
+      title: '利用規約',
+    }
+  },
   beforeCreate() {
     this.$store.dispatch('setTitle', '利用規約')
   },
