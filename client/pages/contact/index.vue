@@ -215,6 +215,7 @@ hr {
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import StaticPage from '@/components/partials/static/StaticPage.vue'
 import NuiButton from '@/components/commons/Button.vue'
 import NuiForm from '@/components/commons/Form.vue'
@@ -228,6 +229,7 @@ export default {
     NuiButton,
     NuiForm,
   },
+  mixins: [Meta],
   data() {
     return {
       about: '',
@@ -235,6 +237,9 @@ export default {
       email: '',
       detail: '',
       submitStatus: null,
+      meta: {
+        title: 'お問い合わせ',
+      },
     }
   },
   beforeCreate() {
@@ -258,11 +263,6 @@ export default {
     redirectTop() {
       this.$router.push('/')
     },
-  },
-  head() {
-    return {
-      title: 'お問い合わせ',
-    }
   },
   validations: {
     about: {

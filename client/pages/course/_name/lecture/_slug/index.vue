@@ -264,6 +264,7 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
 import { mapState, mapGetters } from 'vuex'
@@ -274,15 +275,19 @@ export default {
     ErrorBox,
     VerificationEmailBox,
   },
+  mixins: [Meta],
   data() {
     return {
       lecture: {},
       loading: true,
       error: null,
+      meta: {
+        title: '独学エンジニア',
+        baseTitle: '',
+      },
     }
   },
   computed: {
-    ...mapState(['title']),
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'lessons', 'lectures']),
     ...mapGetters('auth0', ['isAuth0Provider']),
@@ -309,6 +314,7 @@ export default {
         this.lecture = res
         this.$store.dispatch('course/setLecture', res)
         this.$store.dispatch('setTitle', res.name)
+        this.meta.title = `独学エンジニア - ${res.name}`
       })
       .catch((err) => {
         this.loading = false
@@ -383,12 +389,6 @@ export default {
           this.$sentry.captureException(err)
         })
     },
-  },
-  head() {
-    return {
-      title: `独学エンジニア - ${this.title}`,
-      titleTemplate: '',
-    }
   },
 }
 </script>

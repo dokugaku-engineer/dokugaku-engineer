@@ -102,19 +102,23 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import StaticPage from '@/components/partials/static/StaticPage.vue'
 
 export default {
   components: {
     StaticPage,
   },
+  mixins: [Meta],
+  data() {
+    return {
+      meta: {
+        title: '特定商取引に関する表記',
+      },
+    }
+  },
   beforeCreate() {
     this.$store.dispatch('setTitle', '特定商取引に関する表記')
-  },
-  head() {
-    return {
-      title: '特定商取引に関する表記',
-    }
   },
 }
 </script>

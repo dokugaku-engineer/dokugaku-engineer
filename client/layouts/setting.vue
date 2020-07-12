@@ -126,7 +126,7 @@
 <script>
 import LoggedInHeader from '@/components/layouts/LoggedInHeader.vue'
 import NuiFooter from '@/components/layouts/Footer.vue'
-import auth0Middleware from '~/middleware/auth0'
+import auth0Middleware from '@/middleware/auth0'
 import { mapState } from 'vuex'
 import debounce from 'lodash/debounce'
 

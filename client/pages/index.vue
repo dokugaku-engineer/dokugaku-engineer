@@ -766,16 +766,24 @@
 
 <script>
 import NuiButton from '@/components/commons/Button.vue'
-import auth0Middleware from '~/middleware/auth0'
+import auth0Middleware from '@/middleware/auth0'
 import { mapState } from 'vuex'
+import Meta from '@/assets/mixins/meta'
 
 export default {
   components: {
     NuiButton,
   },
+  mixins: [Meta],
   data() {
     return {
       showModal: false,
+      meta: {
+        title: '独学エンジニア - 大丈夫、独学でもエンジニアになれる',
+        baseTitle: '',
+        description:
+          '「技術をちゃんと理解して、実務で自走できるエンジニアになる」ための本格プログラミング講座です。基礎から実務で必要なスキルを網羅。未知の課題に出会っても自分で解決できる実践的スキルが身につきます。',
+      },
     }
   },
   computed: {
@@ -795,20 +803,6 @@ export default {
       }
       await this.$auth0.loginWithRedirect(options)
     },
-  },
-  head() {
-    return {
-      title: '独学エンジニア - 大丈夫、独学でもエンジニアになれる',
-      titleTemplate: '',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content:
-            '「技術をちゃんと理解して、実務で自走できるエンジニアになる」ための本格プログラミング講座です。基礎から実務で必要なスキルを網羅。未知の課題に出会っても自分で解決できる実践的スキルが身につきます。',
-        },
-      ],
-    }
   },
   middleware: auth0Middleware.protect({
     loginRequired: false,

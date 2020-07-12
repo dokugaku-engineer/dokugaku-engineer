@@ -91,6 +91,7 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
 import NuiButton from '@/components/commons/Button.vue'
 import { mapState, mapGetters } from 'vuex'
@@ -101,9 +102,13 @@ export default {
     ErrorBox,
     NuiButton,
   },
+  mixins: [Meta],
   data() {
     return {
       error: null,
+      meta: {
+        title: 'パスワードの設定',
+      },
     }
   },
   computed: {
@@ -141,11 +146,6 @@ export default {
           this.$sentry.captureException(err)
         })
     },
-  },
-  head() {
-    return {
-      title: 'パスワードの設定',
-    }
   },
 }
 </script>

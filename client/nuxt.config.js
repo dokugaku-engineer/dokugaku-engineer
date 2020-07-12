@@ -9,7 +9,9 @@ export default {
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - 独学エンジニア',
+    htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#',
+    },
     meta: [
       {
         charset: 'utf-8',
@@ -25,6 +27,35 @@ export default {
       {
         name: 'twitter:card',
         content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:site',
+        content: '@kiyotoyamaura',
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: '独学エンジニア',
+      },
+      {
+        hid: 'og:type',
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: process.env.ORIGIN || 'http://localhost:3333',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: '独学エンジニア',
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: `${process.env.ORIGIN || 'http://localhost:3333'}/og_top.png`,
       },
     ],
     script: [
