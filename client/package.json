@@ -30,6 +30,7 @@
     "nuxt": "^2.13.3",
     "prismjs": "^1.20.0",
     "ress": "^2.0.4",
+    "vue-social-sharing": "^3.0.0-beta.11",
     "vuelidate": "^0.7.5"
   },
   "license": "ISC",

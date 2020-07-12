@@ -97,6 +97,7 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/sentry',
     '@nuxtjs/markdownit',
+    'vue-social-sharing/nuxt',
   ],
   /*
    ** Build configuration

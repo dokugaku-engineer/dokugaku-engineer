@@ -305,6 +305,7 @@
         </div>
       </div>
     </div>
+    <share-network />
   </div>
 </template>
 
@@ -765,14 +766,16 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import NuiButton from '@/components/commons/Button.vue'
+import ShareNetwork from '@/components/commons/ShareNetwork.vue'
 import auth0Middleware from '@/middleware/auth0'
 import { mapState } from 'vuex'
-import Meta from '@/assets/mixins/meta'
 
 export default {
   components: {
     NuiButton,
+    ShareNetwork,
   },
   mixins: [Meta],
   data() {
