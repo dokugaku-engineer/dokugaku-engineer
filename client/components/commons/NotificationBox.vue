@@ -1,0 +1,21 @@
+<template>
+  <div class="notification-box">
+    <slot />
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.notification-box {
+  background-color: $color-teal4;
+  border-radius: 0.4rem;
+  color: $color-red1;
+  font-size: $font-size-sm;
+  font-weight: 700;
+  margin-bottom: 3.5rem;
+  padding: 1.5rem 3rem;
+}
+</style>
+
+<script>
+export default {}
+</script>

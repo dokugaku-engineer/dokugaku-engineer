@@ -29,6 +29,11 @@
       <div v-if="loading" class="loading">
         <i class="fad fa-spinner fa-spin fa-lg" />
       </div>
+      <notification-box>
+        <p class="header-text">
+          ※現在講義はレッスン2まで公開中です。それ以降は鋭意作成しております...！順次公開しますので何卒お待ちください。
+        </p>
+      </notification-box>
       <div v-for="(part, index) in parts" :key="index" class="part">
         <div class="part-inner">
           <h3 class="part-subtitle">PART{{ part.order }}</h3>
@@ -139,6 +144,7 @@
 <script>
 import Meta from '@/assets/mixins/meta'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
+import NotificationBox from '@/components/commons/NotificationBox.vue'
 import LectureList from '@/components/partials/course/LectureList.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
 import { mapState, mapGetters } from 'vuex'
@@ -147,6 +153,7 @@ export default {
   layout: 'course',
   components: {
     ErrorBox,
+    NotificationBox,
     LectureList,
     VerificationEmailBox,
   },
