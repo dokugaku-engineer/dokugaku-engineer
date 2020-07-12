@@ -9,7 +9,7 @@
         レッスン{{ lesson.order }}：
         <span class="lesson-title-detail">{{ lesson.name }}</span>
       </h2>
-      <i :class="cheveron" />
+      <i v-if="lectures.length" :class="cheveron" />
     </div>
     <ol v-if="showLecture" class="lecture">
       <li v-for="(lec, index) in lectures" :key="index">
