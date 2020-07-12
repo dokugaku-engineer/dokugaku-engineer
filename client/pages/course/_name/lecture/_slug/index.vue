@@ -283,7 +283,7 @@ export default {
       error: null,
       meta: {
         title: '独学エンジニア',
-        baseTitle: ''
+        baseTitle: '',
       },
     }
   },

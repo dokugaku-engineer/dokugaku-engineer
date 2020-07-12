@@ -7,11 +7,11 @@ export default {
         baseUrl: process.env.ORIGIN || 'http://localhost:3333',
         description: '',
         type: 'website',
-        image: ''
-      }
+        image: '',
+      },
     }
   },
-  head () {
+  head() {
     const head = { meta: [] }
 
     // タイトル
@@ -23,13 +23,25 @@ export default {
 
     // ディスクリプション
     if (this.meta.description) {
-      head.meta.push({ hid: 'description', name: 'description', content: this.meta.description })
-      head.meta.push({ hid: 'og:description', property: 'og:description', content: this.meta.description })
+      head.meta.push({
+        hid: 'description',
+        name: 'description',
+        content: this.meta.description,
+      })
+      head.meta.push({
+        hid: 'og:description',
+        property: 'og:description',
+        content: this.meta.description,
+      })
     }
 
     // ページタイプ
     if (this.meta.type) {
-      head.meta.push({ hid: 'og:type', property: 'og:type', content: this.meta.type })
+      head.meta.push({
+        hid: 'og:type',
+        property: 'og:type',
+        content: this.meta.type,
+      })
     }
 
     // ページURL
@@ -38,10 +50,16 @@ export default {
 
     // OGP画像URL
     if (this.meta.image) {
-      const imageUrl = `${process.env.ORIGIN || 'http://localhost:3333'}${this.meta.image}`
-      head.meta.push({ hid: 'og:image', property: 'og:image', content: imageUrl })
+      const imageUrl = `${process.env.ORIGIN || 'http://localhost:3333'}${
+        this.meta.image
+      }`
+      head.meta.push({
+        hid: 'og:image',
+        property: 'og:image',
+        content: imageUrl,
+      })
     }
 
     return head
-  }
+  },
 }

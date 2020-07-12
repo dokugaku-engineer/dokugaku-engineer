@@ -10,7 +10,7 @@ export default {
    */
   head: {
     htmlAttrs: {
-      prefix: 'og: http://ogp.me/ns#'
+      prefix: 'og: http://ogp.me/ns#',
     },
     meta: [
       {
@@ -30,32 +30,32 @@ export default {
       },
       {
         name: 'twitter:site',
-        content: '@kiyotoyamaura'
+        content: '@kiyotoyamaura',
       },
       {
         hid: 'og:site_name',
         property: 'og:site_name',
-        content: '独学エンジニア'
+        content: '独学エンジニア',
       },
       {
         hid: 'og:type',
         property: 'og:type',
-        content: 'website'
+        content: 'website',
       },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: process.env.ORIGIN || 'http://localhost:3333'
+        content: process.env.ORIGIN || 'http://localhost:3333',
       },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: '独学エンジニア'
+        content: '独学エンジニア',
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: `${process.env.ORIGIN || 'http://localhost:3333'}/og_top.png`
+        content: `${process.env.ORIGIN || 'http://localhost:3333'}/og_top.png`,
       },
     ],
     script: [

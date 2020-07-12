@@ -158,7 +158,7 @@ export default {
       auth0Error: null,
       meta: {
         title: '独学エンジニア - ホーム',
-        baseTitle: ''
+        baseTitle: '',
       },
     }
   },
