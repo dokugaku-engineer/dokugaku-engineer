@@ -176,13 +176,14 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import NuiButton from '@/components/commons/Button.vue'
 import NuiForm from '@/components/commons/Form.vue'
 import LoadingModal from '@/components/commons/LoadingModal.vue'
 import Logo from '@/components/svg/Logo.vue'
 import SimpleFooter from '@/components/layouts/SimpleFooter.vue'
 import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
-import auth0Middleware from '~/middleware/auth0'
+import auth0Middleware from '@/middleware/auth0'
 import { mapState } from 'vuex'
 
 const alphaNumName = (name) => {
@@ -201,6 +202,7 @@ export default {
     Logo,
     SimpleFooter,
   },
+  mixins: [Meta],
   data() {
     return {
       user: {
@@ -210,6 +212,9 @@ export default {
       },
       submitStatus: 'OK',
       state: this.$route.query.state,
+      meta: {
+        title: '会員情報入力',
+      },
     }
   },
   computed: {
@@ -270,11 +275,6 @@ export default {
       this.submitStatus = 'OK'
       window.location.assign('/course/serverside')
     },
-  },
-  head() {
-    return {
-      title: '会員情報入力',
-    }
   },
   middleware: auth0Middleware.protectRegistration(),
   validations: {

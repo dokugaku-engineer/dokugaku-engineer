@@ -86,6 +86,7 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import NuiButton from '@/components/commons/Button.vue'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
 import LinkButton from '@/components/commons/LinkButton.vue'
@@ -100,10 +101,14 @@ export default {
     LinkButton,
     VerificationEmailBox,
   },
+  mixins: [Meta],
   data() {
     return {
       submitStatus: 'OK',
       error: null,
+      meta: {
+        title: 'アカウント削除',
+      },
     }
   },
   computed: {
@@ -148,11 +153,6 @@ export default {
         },
       }
     },
-  },
-  head() {
-    return {
-      title: 'アカウント削除',
-    }
   },
 }
 </script>

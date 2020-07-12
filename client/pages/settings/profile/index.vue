@@ -157,6 +157,7 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import NuiButton from '@/components/commons/Button.vue'
 import NuiForm from '@/components/commons/Form.vue'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
@@ -179,6 +180,7 @@ export default {
     ErrorBox,
     VerificationEmailBox,
   },
+  mixins: [Meta],
   data() {
     return {
       user: {
@@ -188,6 +190,9 @@ export default {
       submitStatus: 'OK',
       loadingUser: false,
       error: null,
+      meta: {
+        title: 'プロフィール',
+      },
     }
   },
   computed: {
@@ -248,11 +253,6 @@ export default {
         },
       }
     },
-  },
-  head() {
-    return {
-      title: 'プロフィール',
-    }
   },
   validations: {
     user: {

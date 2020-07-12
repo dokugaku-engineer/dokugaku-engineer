@@ -168,19 +168,23 @@
 </template>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import StaticPage from '@/components/partials/static/StaticPage.vue'
 
 export default {
   components: {
     StaticPage,
   },
+  mixins: [Meta],
+  data() {
+    return {
+      meta: {
+        title: 'プライバシーポリシー',
+      },
+    }
+  },
   beforeCreate() {
     this.$store.dispatch('setTitle', 'プライバシーポリシー')
-  },
-  head() {
-    return {
-      title: 'プライバシーポリシー',
-    }
   },
 }
 </script>

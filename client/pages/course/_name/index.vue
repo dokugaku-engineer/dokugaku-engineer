@@ -137,6 +137,7 @@
 </style>
 
 <script>
+import Meta from '@/assets/mixins/meta'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
 import LectureList from '@/components/partials/course/LectureList.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
@@ -149,11 +150,16 @@ export default {
     LectureList,
     VerificationEmailBox,
   },
+  mixins: [Meta],
   data() {
     return {
       loading: true,
       error: null,
       auth0Error: null,
+      meta: {
+        title: '独学エンジニア - ホーム',
+        baseTitle: ''
+      },
     }
   },
   computed: {
@@ -195,12 +201,6 @@ export default {
         this.error = err
         this.$sentry.captureException(err)
       })
-  },
-  head() {
-    return {
-      title: '独学エンジニア - ホーム',
-      titleTemplate: '',
-    }
   },
 }
 </script>
