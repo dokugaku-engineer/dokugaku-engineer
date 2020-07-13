@@ -262,8 +262,8 @@
     }
   }
 
-  code[class*="language-"],
-  pre[class*="language-"] {
+  code[class*='language-'],
+  pre[class*='language-'] {
     white-space: pre-wrap;
   }
 }
