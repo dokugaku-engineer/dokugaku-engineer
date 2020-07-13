@@ -235,6 +235,7 @@
 
   a {
     color: $color-blue;
+    word-break: break-all;
   }
 
   ol,
@@ -259,6 +260,11 @@
     &:before {
       counter-increment: count;
     }
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    white-space: pre-wrap;
   }
 }
 </style>
