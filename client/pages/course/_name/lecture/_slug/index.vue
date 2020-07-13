@@ -261,6 +261,11 @@
       counter-increment: count;
     }
   }
+
+  code[class*="language-"],
+  pre[class*="language-"] {
+    white-space: pre-wrap;
+  }
 }
 </style>
 
