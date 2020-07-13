@@ -235,6 +235,7 @@
 
   a {
     color: $color-blue;
+    word-break: break-all;
   }
 
   ol,
