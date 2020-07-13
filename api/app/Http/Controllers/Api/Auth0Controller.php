@@ -21,6 +21,7 @@ class Auth0Controller extends ApiController
         $auth0Client = new Auth0Service();
         $response = $auth0Client->sendVerificationEmail(json_encode(['user_id' => $userSub]));
         $statusCode = array_key_exists('statusCode', $response) ? (int) $response['statusCode'] : 201;
+
         return $this->setHTTPStatusCode($statusCode)->respond($response);
     }
 }
