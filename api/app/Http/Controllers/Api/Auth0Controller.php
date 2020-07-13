@@ -17,11 +17,10 @@ class Auth0Controller extends ApiController
      */
     public function sendVerificationEmail(Request $request)
     {
-        $userId = $request->input('user_id');
+        $userSub = $request->input('user_sub');
         $auth0Client = new Auth0Service();
-        $response = $auth0Client->sendVerificationEmail(json_encode(['user_id' => $userId]));
+        $response = $auth0Client->sendVerificationEmail(json_encode(['user_id' => $userSub]));
         $statusCode = array_key_exists('statusCode', $response) ? (int) $response['statusCode'] : 201;
-
         return $this->setHTTPStatusCode($statusCode)->respond($response);
     }
 }

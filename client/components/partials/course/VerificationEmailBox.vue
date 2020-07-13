@@ -28,12 +28,12 @@ export default {
     ErrorBox,
   },
   computed: {
-    ...mapState('auth0', ['user']),
+    ...mapState('auth0', ['auth0User']),
   },
   methods: {
     async sendVerificationEmail() {
       const data = {
-        user_id: this.user.sub,
+        user_sub: this.auth0User.sub,
       }
       const token = await this.$auth0.getTokenSilently()
       const options = {
@@ -43,8 +43,14 @@ export default {
       }
       await this.$axios
         .$post('/auth0/send_verification_email', data, options)
-        .catch((error) => {
-          this.auth0Error = error.response
+        .then(() => {
+          this.$toast.global.instant_success({
+            message: 'メールを送信しました',
+          })
+        })
+        .catch((err) => {
+          this.auth0Error = err.response
+          this.$sentry.captureException(err)
         })
     },
   },
