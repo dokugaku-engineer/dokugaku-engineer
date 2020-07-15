@@ -37,6 +37,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.4",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/google-analytics": "^2.3.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@vue/test-utils": "^1.0.3",
     "aws-sdk": "^2.711.0",
