@@ -90,7 +90,7 @@ export default {
   buildModules: [
     '@nuxtjs/dotenv',
     '@nuxtjs/stylelint-module',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
   ],
   /*
    ** Nuxt.js modules
@@ -249,5 +249,5 @@ export default {
    */
   googleAnalytics: {
     id: process.env.GA_TRACKING_ID,
-  }
+  },
 }
