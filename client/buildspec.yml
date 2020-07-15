@@ -18,6 +18,7 @@ env:
     AWS_SECRET_ACCESS_KEY: "/Prod/DokugakuEngineer/Client/AWS_SECRET_ACCESS_KEY"
     ORIGIN: "/Prod/DokugakuEngineer/Client/ORIGIN"
     SENTRY_DSN: "/Prod/DokugakuEngineer/Client/SENTRY_DSN"
+    GA_TRACKING_ID: "/Prod/DokugakuEngineer/Client/GA_TRACKING_ID"
 
 phases:
   install:
