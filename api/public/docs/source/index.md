@@ -58,14 +58,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=reprehenderit" 
+curl -X GET -G "http://localhost:8080/api/categories?except=quia" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "reprehenderit",
+            "except": "quia",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -309,14 +309,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=natus" 
+curl -X GET -G "http://localhost:8080/api/posts?except=et" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "natus",
+            "except": "et",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1007,14 +1007,14 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/parts?course=nemo" 
+curl -X GET -G "http://localhost:8080/api/parts?course=tempore" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/parts");
 
     let params = {
-            "course": "nemo",
+            "course": "tempore",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1063,14 +1063,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lessons?course=earum" 
+curl -X GET -G "http://localhost:8080/api/lessons?course=velit" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lessons");
 
     let params = {
-            "course": "earum",
+            "course": "velit",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1118,14 +1118,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lectures?course=delectus" 
+curl -X GET -G "http://localhost:8080/api/lectures?course=molestiae" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lectures");
 
     let params = {
-            "course": "delectus",
+            "course": "molestiae",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1216,8 +1216,6 @@ fetch(url, {
     "slug": "bN5sY6",
     "prev_lecture_slug": "rQI62",
     "next_lecture_slug": "ToeOO",
-    "public": 1,
-    "locked": 0,
     "premium": 0,
     "created_at": "2019-10-17T13:28:08Z",
     "updated_at": "2019-10-17T13:28:08Z",
@@ -1453,39 +1451,59 @@ Parameter | Type | Status | Description
 <!-- END_9a8b7bd348230c65efa299e8c5ee8330 -->
 
 <!-- START_a00d2732637251264272d45b473d0ab3 -->
-## api/learning_histories/{course_name}/lecture_ids
+## レクチャーIDを取得
+
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/learning_histories/1/lecture_ids" 
+curl -X GET -G "http://localhost:8080/api/learning_histories/1/lecture_ids" \
+    -H "Content-Type: application/json" \
+    -d '{"course_name":"serverside"}'
+
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/learning_histories/1/lecture_ids");
 
 let headers = {
-    "Accept": "application/json",
     "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "course_name": "serverside"
 }
 
 fetch(url, {
     method: "GET",
     headers: headers,
+    body: body
 })
     .then(response => response.json())
     .then(json => console.log(json));
 ```
 
 
-> Example response:
+> Example response (200):
 
 ```json
-null
+{
+    "id": 13,
+    "user_id": 10,
+    "lecture_id": 1,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
 ```
 
 ### HTTP Request
 `GET api/learning_histories/{course_name}/lecture_ids`
 
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    course_name | string |  required  | Course name.
 
 <!-- END_a00d2732637251264272d45b473d0ab3 -->
 
@@ -1650,7 +1668,8 @@ fetch(url, {
 
 
 <!-- START_46abdb365a7dca172c3257c85dbbdbe0 -->
-## api/health
+## レスポンス200を返す
+
 > Example request:
 
 ```bash
