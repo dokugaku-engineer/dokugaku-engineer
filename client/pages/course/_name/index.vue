@@ -31,7 +31,9 @@
       </div>
       <notification-box v-if="Object.keys(lastLecture()).length">
         <p class="header-text">
-          ※現在講義はレッスン{{ lastLecture().lesson_id }}の{{ lastLecture().order }}まで公開中です。それ以降は鋭意作成しております...！毎週火曜夜に公開しますので何卒お待ちください。
+          ※現在講義はレッスン{{ lastLecture().lesson_id }}の{{
+            lastLecture().order
+          }}まで公開中です。それ以降は鋭意作成しております...！毎週火曜夜に公開しますので何卒お待ちください。
         </p>
       </notification-box>
       <div v-for="(part, index) in parts" :key="index" class="part">
@@ -173,7 +175,11 @@ export default {
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'learnedLectureIds']),
     ...mapGetters('auth0', ['isAuth0Provider']),
-    ...mapGetters('course', ['filteredLessons', 'filteredLectures', 'lastLecture']),
+    ...mapGetters('course', [
+      'filteredLessons',
+      'filteredLectures',
+      'lastLecture',
+    ]),
   },
   async created() {
     this.$store.dispatch('course/setLecture', {})
