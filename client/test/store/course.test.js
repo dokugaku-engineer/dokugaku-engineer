@@ -74,5 +74,14 @@ describe('store/course.js', () => {
       ])
       expect(store.getters.filteredLectures(1).length).toBe(2)
     })
+
+    test('lastLecture　ゲッターで、最後の Lecture が返される', async () => {
+      await store.dispatch('setLectures', [
+        { id: 1, lesson_id: 1, order: 1 },
+        { id: 2, lesson_id: 1, order: 2 },
+        { id: 3, lesson_id: 2, order: 3 },
+      ])
+      expect(store.getters.lastLecture().order).toBe(3)
+    })
   })
 })

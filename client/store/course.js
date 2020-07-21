@@ -80,4 +80,8 @@ export const getters = {
       return lecture.lesson_id === lessonId
     })
   },
+
+  lastLecture: (state) => () => {
+    return state.lectures.slice(-1)[0] || {}
+  },
 }
