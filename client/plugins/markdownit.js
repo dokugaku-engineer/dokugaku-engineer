@@ -26,26 +26,26 @@ export default (context, inject) => {
       return `<pre class="language-${lang}"><code class="language-${lang}">${hl}</code></pre>`
     },
   })
-  .use(Sanitizer)
-  .use(Container, 'spoiler', {
+    .use(Sanitizer)
+    .use(Container, 'spoiler', {
+      validate: function (params) {
+        return params.trim().match(/^spoiler\s+(.*)$/)
+      },
 
-    validate: function(params) {
-      return params.trim().match(/^spoiler\s+(.*)$/);
-    },
+      render: function (tokens, idx) {
+        var m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/)
 
-    render: function (tokens, idx) {
-      var m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/);
-
-      if (tokens[idx].nesting === 1) {
-        // opening tag
-        return '<details><summary>' + md.utils.escapeHtml(m[1]) + '</summary>\n';
-
-      } else {
-        // closing tag
-        return '</details>\n';
-      }
-    }
-  })
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          return (
+            '<details><summary>' + md.utils.escapeHtml(m[1]) + '</summary>\n'
+          )
+        } else {
+          // closing tag
+          return '</details>\n'
+        }
+      },
+    })
 
   const linkRender =
     md.renderer.rules.link_open ||
