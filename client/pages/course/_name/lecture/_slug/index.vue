@@ -221,10 +221,8 @@
 .error-box-wrap {
   margin: 4rem;
 }
-</style>
 
-<style lang="scss">
-.detail-body {
+.detail-body /deep/ {
   h4 {
     margin-bottom: 3rem;
   }
