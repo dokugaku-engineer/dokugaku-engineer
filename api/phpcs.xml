@@ -3,7 +3,7 @@
     <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
     <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
     <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
-    <rule ref="PSR2">
+    <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength"/>
     </rule>
     <rule ref="PEAR.Commenting.FunctionComment">

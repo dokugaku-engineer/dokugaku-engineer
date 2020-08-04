@@ -37,7 +37,7 @@ return [
      |   'Auth0\Login\Auth0Controller@callback'
      |
      */
-    'redirect_uri'  => env('APP_URL').'/auth0/callback',
+    'redirect_uri'  => env('APP_URL') . '/auth0/callback',
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ return [
     |   This is used to verify the decoded tokens when using RS256
     |
     */
-    'authorized_issuers'  => ['https://'.env('AUTH0_DOMAIN').'/'],
+    'authorized_issuers'  => ['https://' . env('AUTH0_DOMAIN') . '/'],
 
     /*
     |--------------------------------------------------------------------------
