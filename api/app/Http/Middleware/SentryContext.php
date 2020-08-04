@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Sentry\State\Scope;
 
 use function Sentry\configureScope;
-
-use Sentry\State\Scope;
 
 class SentryContext
 {

@@ -16,7 +16,7 @@ class ImportLectureCSV extends Command
      *
      * @var int
      */
-    const PAD_UP = 5;
+    private const PAD_UP = 5;
 
     /**
      * The name and signature of the console command.

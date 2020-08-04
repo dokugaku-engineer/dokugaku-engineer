@@ -13,7 +13,7 @@ class CheckJWT
     use JsonRespondController;
 
     // キャッシュの有効期限。Auth0のIDトークンの有効期限と合わせる
-    const EXPIRE_SECONDS = 36000;
+    private const EXPIRE_SECONDS = 36000;
 
     /**
      * JWTアクセストークンを検証する
@@ -47,7 +47,7 @@ class CheckJWT
             return $this->respondUnauthorized($e->getMessage());
         }
 
-        if ($scopeRequired && ! $this->tokenHasScope($decodedToken, $scopeRequired)) {
+        if ($scopeRequired && !$this->tokenHasScope($decodedToken, $scopeRequired)) {
             return $this->respondInsufficientScope('Insufficient scope');
         }
 

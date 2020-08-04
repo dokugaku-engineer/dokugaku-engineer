@@ -18,6 +18,7 @@
     <exclude-pattern>resources</exclude-pattern>
     <exclude-pattern>database/</exclude-pattern>
     <exclude-pattern>storage/</exclude-pattern>
+    <exclude-pattern>public/docs/source/_tmp/</exclude-pattern>
     <exclude-pattern>public/index.php</exclude-pattern>
     <exclude-pattern>public/apcu.php</exclude-pattern>
     <exclude-pattern>public/ocp.php</exclude-pattern>
