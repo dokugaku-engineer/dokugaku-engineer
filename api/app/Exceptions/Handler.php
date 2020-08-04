@@ -54,14 +54,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if (! config('app.debug') && ($request->ajax() || $request->is('api/*'))) {
+        if (!config('app.debug') && ($request->ajax() || $request->is('api/*'))) {
             $status = 400;
             if ($this->isHttpException($exception)) {
                 $status = $exception->getStatusCode();
             }
 
             // 非HTTPアクセスの場合は500エラーにする
-            if ($this->shouldReport($exception) && ! $this->isHttpException($exception)) {
+            if ($this->shouldReport($exception) && !$this->isHttpException($exception)) {
                 $status = 500;
             }
 

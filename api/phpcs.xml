@@ -3,8 +3,10 @@
     <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
     <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
     <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
-    <rule ref="PSR2">
+    <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength"/>
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+        <exclude name="PSR12.Files.FileHeader.IncorrectGrouping"/>
     </rule>
     <rule ref="PEAR.Commenting.FunctionComment">
         <exclude name="PEAR.Commenting.FunctionComment.MissingReturn"/>
@@ -18,6 +20,7 @@
     <exclude-pattern>resources</exclude-pattern>
     <exclude-pattern>database/</exclude-pattern>
     <exclude-pattern>storage/</exclude-pattern>
+    <exclude-pattern>public/docs/source/_tmp/</exclude-pattern>
     <exclude-pattern>public/index.php</exclude-pattern>
     <exclude-pattern>public/apcu.php</exclude-pattern>
     <exclude-pattern>public/ocp.php</exclude-pattern>

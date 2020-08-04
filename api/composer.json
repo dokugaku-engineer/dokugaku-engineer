@@ -71,7 +71,7 @@
             "./vendor/bin/phpstan analyse"
         ],
         "phpcs": [
-            "./vendor/bin/phpcs --standard=phpcs.xml --extensions=php ./"
+            "./vendor/bin/phpcs -p -s --standard=phpcs.xml --extensions=php ./"
         ],
         "phpcbf": [
             "./vendor/bin/phpcbf --standard=phpcs.xml --extensions=php ./"

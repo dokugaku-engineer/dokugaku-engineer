@@ -18,14 +18,14 @@ class ImportTestUserData extends Command
      *
      * @var int
      */
-    const ONCE_INSERT_NUM = 10;
+    private const ONCE_INSERT_NUM = 10;
 
     /**
      * INSERTを行う回数
      *
      * @var int
      */
-    const INSERT_LOOP_NUM = 10;
+    private const INSERT_LOOP_NUM = 10;
 
     /**
      * The name and signature of the console command.

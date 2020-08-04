@@ -128,7 +128,7 @@ trait JsonRespondController
     {
         return $this->respond([
             'error' => [
-                'message' => $message ?? config('api.error_codes.'.$this->getErrorCode()),
+                'message' => $message ?? config('api.error_codes.' . $this->getErrorCode()),
                 'code' => $this->getErrorCode(),
             ],
         ]);

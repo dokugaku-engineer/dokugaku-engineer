@@ -19,7 +19,7 @@ return [
 
         'branch' => 'gh-pages',
 
-        'message' => 'Site updated: '.strftime('%YYYY-%MM-%DD %HH:%mm:%ss'),
+        'message' => 'Site updated: ' . strftime('%YYYY-%MM-%DD %HH:%mm:%ss'),
 
     ],
 ];

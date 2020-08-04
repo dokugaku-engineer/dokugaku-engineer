@@ -18,7 +18,6 @@ class Bootstrap implements BeforeFirstTestHook, AfterLastTestHook
     | this file as needed in order to help your test suite run quicker.
     |
     */
-
     use CreatesApplication;
 
     public function executeBeforeFirstTest(): void
