@@ -26,7 +26,7 @@ class LectureWithLearned extends JsonResource
             'next_lecture_slug' => $this->next_lecture_slug,
             'locked' => $this->locked,
             'premium' => $this->premium,
-            'learned' => ! $this->learningHistories->isEmpty(),
+            'learned' => !$this->learningHistories->isEmpty(),
         ];
     }
 }
