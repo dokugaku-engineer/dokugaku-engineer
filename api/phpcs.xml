@@ -5,6 +5,8 @@
     <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
     <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength"/>
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+        <exclude name="PSR12.Files.FileHeader.IncorrectGrouping"/>
     </rule>
     <rule ref="PEAR.Commenting.FunctionComment">
         <exclude name="PEAR.Commenting.FunctionComment.MissingReturn"/>
