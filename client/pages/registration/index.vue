@@ -93,6 +93,11 @@
               </div>
             </form>
           </nui-form>
+          <div class="register-note-wrap">
+            <button class="register-note" @click="logout">
+              ログインし直したい方はこちら
+            </button>
+          </div>
         </main>
       </div>
     </div>
@@ -144,7 +149,7 @@
 }
 
 .register-form {
-  padding: 0 4rem 9.2rem;
+  padding: 0 4rem 4rem;
 }
 
 @media screen and (min-width: 481px) {
@@ -168,6 +173,15 @@
   .btn {
     width: 100%;
   }
+}
+
+.register-note-wrap {
+  text-align: center;
+  padding-bottom: 4rem;
+}
+
+.register-note {
+  font-size: $font-size-xs;
 }
 
 .footer_wrap {
@@ -274,6 +288,9 @@ export default {
       this.$store.commit('auth0/SET_AUTH0_USER', await this.$auth0.getUser())
       this.submitStatus = 'OK'
       window.location.assign('/course/serverside')
+    },
+    async logout() {
+      await this.$auth0.logout({ returnTo: window.location.origin })
     },
   },
   middleware: auth0Middleware.protectRegistration(),
