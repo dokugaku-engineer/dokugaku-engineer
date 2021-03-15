@@ -5,5 +5,5 @@ parameters:
     paths:
         - app
     ignoreErrors:
-        - '#Call to an undefined method Exception::getStatusCode().#'
+        - '#Call to an undefined method Exception::getStatusCode\(\).#'
     checkMissingIterableValueType: false

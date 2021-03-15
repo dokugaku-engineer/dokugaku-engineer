@@ -5,6 +5,8 @@ env:
     AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Api/AWS_DEFAULT_REGION"
     AWS_NGINX_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_NGINX_REPOSITORY_URI"
     AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_API_REPOSITORY_URI"
+    DOCKERHUB_USERNAME: "/Prod/DokugakuEngineer/Api/DOCKERHUB_USERNAME"
+    DOCKERHUB_PASSWORD: "/Prod/DokugakuEngineer/Api/DOCKERHUB_PASSWORD"
 
 phases:
   install:
@@ -16,6 +18,8 @@ phases:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - echo Logging in to Docker...
+      - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
   build:
     commands:
       - echo API Build started on `date`

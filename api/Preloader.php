@@ -19,7 +19,7 @@ class Preloader
     {
         $this->paths = $paths;
 
-        // ファイル名でクラスをautoloadできるよう、composerのclassmapを使う
+        // ファイル名でクラスをautoloadできるようcomposerのclassmapを使う
         $classMap = require __DIR__ . '/vendor/composer/autoload_classmap.php';
 
         $this->fileMap = array_flip($classMap);
