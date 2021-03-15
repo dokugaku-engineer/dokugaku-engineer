@@ -17,6 +17,7 @@ phases:
       - echo Setting .env...
       - cp api/.env.testing api/.env
       - cp docker/db/db-variables.development.env docker/db/db-variables.env
+      - echo Logging in to Docker...
       - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
   build:
     commands:
