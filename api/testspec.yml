@@ -5,6 +5,8 @@ env:
     AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Api/AWS_DEFAULT_REGION"
     AWS_NGINX_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_NGINX_REPOSITORY_URI"
     AWS_API_REPOSITORY_URI: "/Prod/DokugakuEngineer/Api/AWS_API_REPOSITORY_URI"
+    DOCKERHUB_USERNAME: "/Prod/DokugakuEngineer/Api/DOCKERHUB_USERNAME"
+    DOCKERHUB_PASSWORD: "/Prod/DokugakuEngineer/Api/DOCKERHUB_PASSWORD"
 
 phases:
   install:
@@ -15,6 +17,7 @@ phases:
       - echo Setting .env...
       - cp api/.env.testing api/.env
       - cp docker/db/db-variables.development.env docker/db/db-variables.env
+      - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
   build:
     commands:
       - echo Building the Docker images...
