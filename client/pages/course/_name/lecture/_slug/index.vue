@@ -11,6 +11,12 @@
       <div v-if="isAuth0Provider && !auth0User.email_verified">
         <verification-email-box />
       </div>
+      <!-- TODO: 条件分岐、文言、デザインを実装する -->
+      <div v-if="true">
+        <nuxt-link to="">
+          このレクチャーは有料会員限定です。全てのレッスンを受講するには、有料プランへの登録が必要です。
+        </nuxt-link>
+      </div>
       <div v-if="!isAuth0Provider || auth0User.email_verified" class="video">
         <iframe
           v-if="lecture.video_url"
