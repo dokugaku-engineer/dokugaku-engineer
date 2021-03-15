@@ -5,7 +5,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-class Preloader
+class preload
 {
     private $ignores = [];
 
