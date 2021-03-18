@@ -29,7 +29,7 @@ Route::group(['namespace' => 'Api'], function () {
         ]);
 
         // Course-related routes
-        Route::get('courses/{name}', 'CourseController@show');
+        Route::get('courses/{name}', 'CourseController@show')->name('course');
         Route::resource('parts', 'PartController')->only([
             'index',
         ]);
@@ -49,6 +49,13 @@ Route::group(['namespace' => 'Api'], function () {
 
         // Auth0 routes
         Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
+
+        // Subscription routes
+        Route::post('subscriptions/create_checkout_sessions', 'SubscriptionController@createCheckoutSession');
+        Route::post('subscriptions/subscribe', 'SubscriptionController@subscribe');
+        Route::post('subscriptions/cancel', 'SubscriptionController@cancel');
+        Route::post('subscriptions/resume', 'SubscriptionController@resume');
+        Route::post('subscriptions/update_card', 'SubscriptionController@update_card');
     });
 
     // Health routes
