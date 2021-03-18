@@ -13,8 +13,9 @@
       </div>
       <!-- TODO: 条件分岐、文言、デザインを実装する -->
       <div v-if="true">
+        このレクチャーは有料会員限定です。全てのレッスンを受講するには、有料プランへの登録が必要です。
         <nuxt-link to="">
-          このレクチャーは有料会員限定です。全てのレッスンを受講するには、有料プランへの登録が必要です。
+          登録する
         </nuxt-link>
       </div>
       <div v-if="!isAuth0Provider || auth0User.email_verified" class="video">
