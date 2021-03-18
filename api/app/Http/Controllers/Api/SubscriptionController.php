@@ -38,8 +38,8 @@ class SubscriptionController extends ApiController
         try {
             $user = User::find($userId);
             $checkout = $user->newSubscription('serverside', $priceId)->checkout([
-                'success_url' => route('course', ['name' => 'serverside']),
-                'cancel_url' => route('course', ['name' => 'serverside']),
+                'success_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside',
+                'cancel_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside',
             ]);
         } catch (\Exception $e) {
             return $this->respondBadRequest($e->getError()->message);
