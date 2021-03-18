@@ -12,12 +12,12 @@
         "auth0/login": "^5.3",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
+        "laravel/cashier": "^12.10",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.0",
         "league/csv": "^9.6",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "sentry/sentry-laravel": "1.7.0",
-        "stripe/stripe-php": "^7.75"
+        "sentry/sentry-laravel": "1.7.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
