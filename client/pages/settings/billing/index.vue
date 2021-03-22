@@ -26,11 +26,10 @@ export default {
           Authorization: `Bearer ${token}`,
         },
       }
-
       const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY)
       await this.$axios
         .$post('/subscriptions/create_checkout_sessions', {
-          price_id: 'price_1IVrXqFtloVF6oouUvTWJIdk'
+          price_id: process.env.STRIPE_PRICE_ID
         }, options)
         .then((res) => {
           stripe.redirectToCheckout({

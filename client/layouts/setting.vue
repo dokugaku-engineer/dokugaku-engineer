@@ -24,6 +24,14 @@
                 パスワード
               </nuxt-link>
             </li>
+            <li>
+              <nuxt-link
+                to="/settings/billing"
+                :class="sidebarLinkClass('お支払い情報')"
+              >
+                お支払い情報
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
         <div class="content">

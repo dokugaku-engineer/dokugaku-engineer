@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\Subscription\Subscription as SubscriptionResource;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,35 +12,18 @@ use Illuminate\Http\Request;
  */
 class SubscriptionController extends ApiController
 {
-
-    public function subscribe(Request $request)
-    {
-        $user = $request->user();
-        // $userId = $request['user_id'];
-
-        if (!$user->subscribed('serverside')) {
-            $payment_method = $request->payment_method;
-            $plan = $request->plan;
-            $user->newSubscription('serverside', $plan)->create($payment_method);
-            $user->load('subscriptions');
-        }
-
-        return $this->status();
-    }
-
     /**
      * チェックアウトセッションを作成
      *
      */
     public function createCheckoutSession(Request $request)
     {
-        $userId = $request['user_id'];
-        $priceId = $request['price_id'];
 
         try {
-            $user = User::find($userId);
+            $user = User::find($request['user_id']);
+            $priceId = $request['price_id'];
             $checkout = $user->newSubscription('serverside', $priceId)->checkout([
-                'success_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside',
+                'success_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside',
             ]);
         } catch (\Exception $e) {
@@ -46,5 +31,29 @@ class SubscriptionController extends ApiController
         }
 
         return $this->respondWithOK(['sessionId' => $checkout->id]);
+    }
+
+    public function store(Request $request)
+    {
+        $sessionId = $request['session_id'];
+        $userId = $request['user_id'];
+
+        try {
+            $subscription = Subscription::saveWithUser($userId, $sessionId);
+            return new SubscriptionResource($subscription);
+        } catch (\Exception $e) {
+            return $this->respondBadRequest($e->getError()->message);
+        }
+    }
+
+    public function customerPortal(Request $request)
+    {
+        $user = User::find($request['user_id']);
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        $session = \Stripe\BillingPortal\Session::create([
+            'customer' => $user->stripe_id,
+            'return_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside',
+        ]);
+        return $this->respondWithOK(['url' => $session->url]);
     }
 }

@@ -51,11 +51,11 @@ Route::group(['namespace' => 'Api'], function () {
         Route::post('auth0/send_verification_email', 'Auth0Controller@sendVerificationEmail');
 
         // Subscription routes
+        Route::resource('subscriptions', 'SubscriptionController')->only([
+            'store',
+        ]);
         Route::post('subscriptions/create_checkout_sessions', 'SubscriptionController@createCheckoutSession');
-        Route::post('subscriptions/subscribe', 'SubscriptionController@subscribe');
-        Route::post('subscriptions/cancel', 'SubscriptionController@cancel');
-        Route::post('subscriptions/resume', 'SubscriptionController@resume');
-        Route::post('subscriptions/update_card', 'SubscriptionController@update_card');
+        Route::get('subscriptions/customer_portal', 'SubscriptionController@customerPortal');
     });
 
     // Health routes
