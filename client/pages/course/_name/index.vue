@@ -212,13 +212,18 @@ export default {
 
     const sessionId = this.$route.query.session_id
     if (sessionId) {
-      this.$axios.post('/subscriptions', {
-        session_id: sessionId
-      }, options)
+      this.$axios
+        .post(
+          '/subscriptions',
+          {
+            session_id: sessionId,
+          },
+          options
+        )
         .catch((err) => {
           this.$sentry.captureException(err)
-        });
-      }
+        })
+    }
   },
   methods: {
     async getOptions() {

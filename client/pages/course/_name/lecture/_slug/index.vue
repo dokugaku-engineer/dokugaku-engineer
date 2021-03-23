@@ -22,11 +22,13 @@
             <div class="subscribe-wrap">
               <div class="subscribe">
                 <h4 class="subscribe-title">月額料金</h4>
-                <p>{{ this.price }}円（税込）</p>
+                <p>{{ price }}円（税込）</p>
               </div>
               <div class="subscribe">
                 <h4 class="subscribe-title">利用可能期間</h4>
-                <p>登録日から1ヶ月間ご利用いただけます。正確には、登録日の翌月同日同時間までとなります。翌月に同日がない場合は、翌月末日の同時間までとなります。1ヶ月が経つと、自動的に更新されます。</p>
+                <p>
+                  登録日から1ヶ月間ご利用いただけます。正確には、登録日の翌月同日同時間までとなります。翌月に同日がない場合は、翌月末日の同時間までとなります。1ヶ月が経つと、自動的に更新されます。
+                </p>
               </div>
             </div>
             <subscribe-button />
@@ -48,8 +50,8 @@
             "
             @load="createLearningHistory()"
           />
-                </div>
         </div>
+      </div>
       <div v-if="auth0User.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
           <nuxt-link
@@ -119,7 +121,7 @@
 .video-msg {
   background-color: $color-white2;
   margin: 4%;
-  padding: 5% ;
+  padding: 5%;
   border-radius: 0.8rem;
 }
 
@@ -453,10 +455,15 @@ export default {
     },
     needsSubscribing() {
       // TODO: キャンセルされた時の条件を追加
-      if (this.lecture.premium
-        && !(this.subscription.name === 'serverside' && this.subscription.stripe_status === 'paid')) {
-          return true
-        }
+      if (
+        this.lecture.premium &&
+        !(
+          this.subscription.name === 'serverside' &&
+          this.subscription.stripe_status === 'paid'
+        )
+      ) {
+        return true
+      }
       return false
     },
   },

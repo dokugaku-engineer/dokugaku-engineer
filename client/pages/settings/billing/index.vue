@@ -25,8 +25,10 @@
 
       <div v-else>
         <div v-if="!loadingUser && !error">
-          <div v-if="this.subscribed" class="setting-form">
-            <p class="setting-title setting-content">サーバーサイドコース（有料）</p>
+          <div v-if="subscribed" class="setting-form">
+            <p class="setting-title setting-content">
+              サーバーサイドコース（有料）
+            </p>
             <customer-portal-button />
           </div>
           <div v-else class="setting-form">
@@ -39,11 +41,13 @@
             <div class="setting-content">
               <div class="subscribe">
                 <h4 class="subscribe-title">月額料金</h4>
-                <p>{{ this.price }}円（税込）</p>
+                <p>{{ price }}円（税込）</p>
               </div>
               <div class="subscribe">
                 <h4 class="subscribe-title">利用可能期間</h4>
-                <p>登録日から1ヶ月間ご利用いただけます。正確には、登録日の翌月同日同時間までとなります。翌月に同日がない場合は、翌月末日の同時間までとなります。1ヶ月が経つと、自動的に更新されます。</p>
+                <p>
+                  登録日から1ヶ月間ご利用いただけます。正確には、登録日の翌月同日同時間までとなります。翌月に同日がない場合は、翌月末日の同時間までとなります。1ヶ月が経つと、自動的に更新されます。
+                </p>
               </div>
             </div>
             <subscribe-button />
@@ -127,8 +131,7 @@ export default {
     SubscribeButton,
     CustomerPortalButton,
   },
-  mixins:
-    CustomerPortalButton[Meta],
+  mixins: CustomerPortalButton[Meta],
   data() {
     return {
       subscribed: false,
@@ -175,11 +178,14 @@ export default {
     },
     isSubscribing(subscription) {
       // TODO: キャンセルされた時の条件を追加
-      if (subscription.name === 'serverside' && subscription.stripe_status === 'paid') {
+      if (
+        subscription.name === 'serverside' &&
+        subscription.stripe_status === 'paid'
+      ) {
         return true
       }
       return false
     },
-  }
+  },
 }
 </script>

@@ -1,9 +1,6 @@
 <template>
   <div>
-    <nui-button
-      class="btn-teal1 btn-shadow content-btn"
-      @click.native="show"
-    >
+    <nui-button class="btn-teal1 btn-shadow content-btn" @click.native="show">
       詳細を確認する
     </nui-button>
   </div>
@@ -22,9 +19,6 @@ export default {
   components: {
     NuiButton,
   },
-  head: {
-    script: [{ src: 'https://js.stripe.com/v3/' }]
-  },
   methods: {
     async getOptions() {
       const token = await this.$auth0.getTokenSilently()
@@ -37,14 +31,18 @@ export default {
     async show(e) {
       e.preventDefault()
       const options = await this.getOptions()
-      this.$axios.$get('/subscriptions/customer_portal', options)
-      .then((res) => {
-        window.location.assign(res.url)
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+      this.$axios
+        .$get('/subscriptions/customer_portal', options)
+        .then((res) => {
+          window.location.assign(res.url)
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
     },
-  }
+  },
+  head: {
+    script: [{ src: 'https://js.stripe.com/v3/' }],
+  },
 }
 </script>

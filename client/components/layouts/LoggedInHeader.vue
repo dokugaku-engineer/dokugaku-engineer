@@ -67,7 +67,6 @@
                 ログアウト
               </button>
             </div>
-
           </div>
         </div>
       </transition>

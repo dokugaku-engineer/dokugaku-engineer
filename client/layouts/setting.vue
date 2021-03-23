@@ -185,14 +185,15 @@ export default {
     async clickBilling(e) {
       e.preventDefault()
       const options = await this.getOptions()
-      this.$axios.$get('/subscriptions/customer_portal', options)
-      .then((response) => {
-        window.location.assign(response.url)
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    }
+      this.$axios
+        .$get('/subscriptions/customer_portal', options)
+        .then((response) => {
+          window.location.assign(response.url)
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    },
   },
 }
 </script>

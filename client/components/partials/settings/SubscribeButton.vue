@@ -22,9 +22,6 @@ export default {
   components: {
     NuiButton,
   },
-  head: {
-    script: [{ src: 'https://js.stripe.com/v3/' }]
-  },
   beforeCreate() {
     this.$store.dispatch('setTitle', 'お支払い情報')
   },
@@ -39,17 +36,24 @@ export default {
     },
     async checkout() {
       const options = await this.getOptions()
-      const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY)
+      const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY) // eslint-disable-line no-undef
       await this.$axios
-        .$post('/subscriptions/create_checkout_sessions', {
-          price_id: process.env.STRIPE_PRICE_ID
-        }, options)
+        .$post(
+          '/subscriptions/create_checkout_sessions',
+          {
+            price_id: process.env.STRIPE_PRICE_ID,
+          },
+          options
+        )
         .then((res) => {
           stripe.redirectToCheckout({
-            sessionId: res['sessionId']
+            sessionId: res['sessionId'],
           })
-        });
+        })
     },
-  }
+  },
+  head: {
+    script: [{ src: 'https://js.stripe.com/v3/' }],
+  },
 }
 </script>
