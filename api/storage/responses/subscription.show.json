@@ -1,0 +1,12 @@
+{
+    "id": 13,
+    "user_id": 10,
+    "name": "serverside",
+    "stripe_id": "sub_J8u7SyW2sqMoGH",
+    "stripe_status": "paid",
+    "stripe_plan": null,
+    "quantity": null,
+    "ends_at": null,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}

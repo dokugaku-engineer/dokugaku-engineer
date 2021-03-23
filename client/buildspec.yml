@@ -19,6 +19,8 @@ env:
     ORIGIN: "/Prod/DokugakuEngineer/Client/ORIGIN"
     SENTRY_DSN: "/Prod/DokugakuEngineer/Client/SENTRY_DSN"
     GA_TRACKING_ID: "/Prod/DokugakuEngineer/Client/GA_TRACKING_ID"
+    DOCKERHUB_USERNAME: "/Prod/DokugakuEngineer/Client/DOCKERHUB_USERNAME"
+    DOCKERHUB_PASSWORD: "/Prod/DokugakuEngineer/Client/DOCKERHUB_PASSWORD"
 
 phases:
   install:
@@ -27,6 +29,8 @@ phases:
   pre_build:
     commands:
       - cd client
+      - echo Logging in to Docker...
+      - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
       - echo 'Start npm install'
       - npm install
   build:

@@ -77,6 +77,20 @@ trait JsonRespondController
     }
 
     /**
+     * リクエストが不正なためエラーを送信
+     * Error Code = 30
+     *
+     * @param string $message
+     * @return JsonResponse
+     */
+    public function respondBadRequest(?string $message = null): JsonResponse
+    {
+        return $this->setHTTPStatusCode(400)
+            ->setErrorCode(30)
+            ->respondWithError($message);
+    }
+
+    /**
      * 不適切な認証に対してエラーを送信
      * Error Code = 31
      *

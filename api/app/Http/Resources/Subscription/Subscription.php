@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\User;
+namespace App\Http\Resources\Subscription;
 
 use App\Helpers\DateHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class User extends JsonResource
+class Subscription extends JsonResource
 {
     /**
      * リソースを配列へ変換
@@ -17,11 +17,15 @@ class User extends JsonResource
     {
         return [
             'id' => $this->id,
-            'username' => $this->username,
-            'email' => $this->email,
+            'user_id' => $this->user_id,
+            'name' => $this->name,
+            'stripe_id' => $this->stripe_id,
+            'stripe_status' => $this->stripe_status,
+            'stripe_plan' => $this->stripe_plan,
+            'quantity' => $this->quantity,
+            'ends_at' => $this->ends_at,
             'created_at' => DateHelper::getTimestamp($this->created_at),
             'updated_at' => DateHelper::getTimestamp($this->updated_at),
-            'stripe_id' => $this->stripe_id,
         ];
     }
 }

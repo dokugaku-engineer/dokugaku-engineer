@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Cashier\Billable;
 
 class User extends Model
 {
     use SoftDeletes;
+    use Billable;
 
     /**
      * 複数代入しない属性

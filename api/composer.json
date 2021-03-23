@@ -12,6 +12,7 @@
         "auth0/login": "^5.3",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
+        "laravel/cashier": "^12.10",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.0",
         "league/csv": "^9.6",

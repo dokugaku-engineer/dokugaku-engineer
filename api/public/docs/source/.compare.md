@@ -58,14 +58,14 @@ APIリクエストに失敗すると、下記の形式のエラーレスポン�
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/categories?except=quia" 
+curl -X GET -G "http://localhost:8080/api/categories?except=beatae" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "quia",
+            "except": "beatae",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -309,14 +309,14 @@ Parameter | Type | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/posts?except=et" 
+curl -X GET -G "http://localhost:8080/api/posts?except=inventore" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "et",
+            "except": "inventore",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1007,14 +1007,14 @@ fetch(url, {
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/parts?course=tempore" 
+curl -X GET -G "http://localhost:8080/api/parts?course=sint" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/parts");
 
     let params = {
-            "course": "tempore",
+            "course": "sint",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1063,14 +1063,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lessons?course=velit" 
+curl -X GET -G "http://localhost:8080/api/lessons?course=natus" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lessons");
 
     let params = {
-            "course": "velit",
+            "course": "natus",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1118,14 +1118,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "http://localhost:8080/api/lectures?course=molestiae" 
+curl -X GET -G "http://localhost:8080/api/lectures?course=sunt" 
 ```
 
 ```javascript
 const url = new URL("http://localhost:8080/api/lectures");
 
     let params = {
-            "course": "molestiae",
+            "course": "sunt",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -1663,6 +1663,223 @@ fetch(url, {
 
 
 <!-- END_987ee5cd51f489c2c32dc75bdbf8bc6f -->
+
+#5. Subscriptions
+
+
+<!-- START_b63bdc84eb438e785c22339e69275df5 -->
+## サブスクリプションを保存
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/subscriptions" \
+    -H "Content-Type: application/json" \
+    -d '{"session_id":"cs_test_a1WlBanMf7"}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/subscriptions");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "session_id": "cs_test_a1WlBanMf7"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "user_id": 10,
+    "name": "serverside",
+    "stripe_id": "sub_J8u7SyW2sqMoGH",
+    "stripe_status": "paid",
+    "stripe_plan": null,
+    "quantity": null,
+    "ends_at": null,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`POST api/subscriptions`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    session_id | string |  required  | Stripe session id.
+
+<!-- END_b63bdc84eb438e785c22339e69275df5 -->
+
+<!-- START_54537cf79da06dce6f916ae42b2fb880 -->
+## カスタマーポータルを作成
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/subscriptions/customer_portal" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/subscriptions/customer_portal");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "url": "https:\/\/billing.stripe.com\/session\/_JANkBAkl6"
+}
+```
+
+### HTTP Request
+`GET api/subscriptions/customer_portal`
+
+
+<!-- END_54537cf79da06dce6f916ae42b2fb880 -->
+
+<!-- START_1463b9e2d65ac7007aead02ed4bf021d -->
+## サブスクリプション情報を取得
+
+> Example request:
+
+```bash
+curl -X GET -G "http://localhost:8080/api/subscriptions/1?user_id=10" 
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/subscriptions/1");
+
+    let params = {
+            "user_id": "10",
+        };
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 13,
+    "user_id": 10,
+    "name": "serverside",
+    "stripe_id": "sub_J8u7SyW2sqMoGH",
+    "stripe_status": "paid",
+    "stripe_plan": null,
+    "quantity": null,
+    "ends_at": null,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}
+```
+
+### HTTP Request
+`GET api/subscriptions/{userId}`
+
+#### Query Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -----------
+    user_id |  optional  | int required User id.
+
+<!-- END_1463b9e2d65ac7007aead02ed4bf021d -->
+
+<!-- START_7f4140edeffc286fbf1c0d57bc09738b -->
+## チェックアウトセッションを作成
+
+> Example request:
+
+```bash
+curl -X POST "http://localhost:8080/api/subscriptions/create_checkout_sessions" \
+    -H "Content-Type: application/json" \
+    -d '{"price_id":"price_1IXhEbFtloVF6oou"}'
+
+```
+
+```javascript
+const url = new URL("http://localhost:8080/api/subscriptions/create_checkout_sessions");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "price_id": "price_1IXhEbFtloVF6oou"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "sessionId": "cs_test_a1WlBanMf7"
+}
+```
+
+### HTTP Request
+`POST api/subscriptions/create_checkout_sessions`
+
+#### Body Parameters
+
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    price_id | string |  required  | Stripe Price id.
+
+<!-- END_7f4140edeffc286fbf1c0d57bc09738b -->
 
 #general
 

@@ -122,6 +122,10 @@ export default {
     AUTH0_NAMESPACE: process.env.AUTH0_NAMESPACE,
     ORIGIN: process.env.ORIGIN,
     SENTRY_DSN: process.env.SENTRY_DSN,
+    STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
+    STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
+    LOCALE: process.env.LOCALE,
+    PRICE: process.env.PRICE,
   },
   /*
    ** Generate configuration

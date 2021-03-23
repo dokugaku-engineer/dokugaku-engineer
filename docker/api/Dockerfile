@@ -8,7 +8,7 @@ RUN amazon-linux-extras enable epel \
   && yum install -y epel-release \
   && yum install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && sed -i 's/priority=10/priority=99/' /etc/yum.repos.d/amzn2-core.repo \
-  && yum install -y --enablerepo=remi-php74 php php-mbstring php-xml php-pecl-zip php-fpm php-soap php-bcmath php-opcache php-pecl-apcu php-pear php-devel php-pdo php-mysqlnd
+  && yum install -y --enablerepo=remi-php74 php php-mbstring php-xml php-pecl-zip php-fpm php-soap php-bcmath php-opcache php-pecl-apcu php-pear php-devel php-pdo php-mysqlnd php-intl.x86_64
 RUN yum install -y git vim sudo procps pcre-devel gcc make nodejs unzip
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 
