@@ -47,7 +47,6 @@ class SubscriptionController extends ApiController
      */
     public function createCheckoutSession(Request $request)
     {
-
         try {
             $user = User::find($request['user_id']);
             $priceId = $request['price_id'];
