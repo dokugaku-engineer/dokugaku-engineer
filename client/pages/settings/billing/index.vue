@@ -118,7 +118,6 @@ import VerificationEmailBox from '@/components/partials/course/VerificationEmail
 import SubscribeButton from '@/components/partials/settings/SubscribeButton.vue'
 import CustomerPortalButton from '@/components/partials/settings/CustomerPortalButton.vue'
 import { mapState, mapGetters } from 'vuex'
-import CustomerPortalButton from '../../../components/partials/settings/CustomerPortalButton.vue'
 
 export default {
   layout: 'setting',

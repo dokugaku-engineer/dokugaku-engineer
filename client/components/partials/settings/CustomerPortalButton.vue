@@ -25,9 +25,6 @@ export default {
   head: {
     script: [{ src: 'https://js.stripe.com/v3/' }]
   },
-  beforeCreate() {
-    this.$store.dispatch('setTitle', 'お支払い情報')
-  },
   methods: {
     async getOptions() {
       const token = await this.$auth0.getTokenSilently()
@@ -41,8 +38,8 @@ export default {
       e.preventDefault()
       const options = await this.getOptions()
       this.$axios.$get('/subscriptions/customer_portal', options)
-      .then((response) => {
-        window.location.assign(response.url)
+      .then((res) => {
+        window.location.assign(res.url)
       })
       .catch((error) => {
         console.error('Error:', error);
