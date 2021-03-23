@@ -15,7 +15,13 @@ class Subscription extends Model
      */
     protected $guarded = [];
 
-    public static function saveWithUser($userId, $sessionId)
+    /**
+     * サブスクリプションとユーザーを保存
+     *
+     * @param int    $userId    ユーザーID
+     * @param string $sessionId StripeのセッションID
+     */
+    public static function saveWithUser(int $userId, string $sessionId)
     {
         DB::beginTransaction();
 
@@ -27,7 +33,7 @@ class Subscription extends Model
             $user->stripe_id = $checkoutSession->customer;
             $user->save();
 
-            $subscription = Subscription::firstOrNew(['stripe_id' => $checkoutSession->subscription]);
+            $subscription = self::firstOrNew(['stripe_id' => $checkoutSession->subscription]);
             $subscription->fill([
                 'user_id' => $user->id,
                 'name' => 'serverside',

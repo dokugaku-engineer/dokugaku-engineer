@@ -12,6 +12,16 @@ use Illuminate\Http\Request;
  */
 class SubscriptionController extends ApiController
 {
+    /**
+     * サブスクリプション情報を取得
+     *
+     * @queryParam user_id int required User id. Example: 10
+     *
+     * @responsefile responses/subscription.show.json
+     *
+     * @param Request $request
+     * @return SubscriptionResource|\Illuminate\Http\JsonResponse
+     */
     public function show(Request $request, string $userId)
     {
         if ($request['user_id'] !== (int) $userId) {
@@ -26,6 +36,14 @@ class SubscriptionController extends ApiController
     /**
      * チェックアウトセッションを作成
      *
+     * @bodyParam price_id string required Stripe Price id. Example: price_1IXhEbFtloVF6oou
+     *
+     * @response {
+     *   "sessionId": "cs_test_a1WlBanMf7"
+     * }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function createCheckoutSession(Request $request)
     {
@@ -44,6 +62,16 @@ class SubscriptionController extends ApiController
         return $this->respondWithOK(['sessionId' => $checkout->id]);
     }
 
+    /**
+     * サブスクリプションを保存
+     *
+     * @bodyParam session_id string required Stripe session id. Example: cs_test_a1WlBanMf7
+     *
+     * @responsefile responses/subscription.show.json
+     *
+     * @param Request $request
+     * @return SubscriptionResource|\Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $sessionId = $request['session_id'];
@@ -57,6 +85,16 @@ class SubscriptionController extends ApiController
         }
     }
 
+    /**
+     * カスタマーポータルを作成
+     *
+     * @response {
+     *   "url": "https://billing.stripe.com/session/_JANkBAkl6"
+     * }
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function customerPortal(Request $request)
     {
         $user = User::find($request['user_id']);
