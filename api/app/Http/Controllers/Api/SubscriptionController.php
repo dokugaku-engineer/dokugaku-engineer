@@ -12,6 +12,17 @@ use Illuminate\Http\Request;
  */
 class SubscriptionController extends ApiController
 {
+    public function show(Request $request, string $userId)
+    {
+        if ($request['user_id'] !== (int) $userId) {
+            return $this->respondInvalidQuery('Invalid user');
+        }
+        $subscription = Subscription::where(['user_id' => $userId])->first();
+        if ($subscription) {
+            return new SubscriptionResource($subscription);
+        }
+    }
+
     /**
      * チェックアウトセッションを作成
      *
@@ -52,7 +63,7 @@ class SubscriptionController extends ApiController
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         $session = \Stripe\BillingPortal\Session::create([
             'customer' => $user->stripe_id,
-            'return_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside',
+            'return_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/settings/billing',
         ]);
         return $this->respondWithOK(['url' => $session->url]);
     }

@@ -55,10 +55,19 @@
             </div>
 
             <div class="menu-item">
+              <nuxt-link to="/settings/billing" @click.native="toggleMenu">
+                <h2 class="menu-item-title">
+                  お支払い情報
+                </h2>
+              </nuxt-link>
+            </div>
+
+            <div class="menu-item">
               <button class="menu-item-title" @click="logout">
                 ログアウト
               </button>
             </div>
+
           </div>
         </div>
       </transition>
@@ -79,6 +88,7 @@
       >
         プロフィール
       </nuxt-link>
+
       <nuxt-link
         to="/settings/password"
         class="setting-link"
@@ -86,6 +96,15 @@
       >
         パスワード
       </nuxt-link>
+
+      <nuxt-link
+        to="/settings/billing"
+        class="setting-link"
+        @click.native="closeSetting"
+      >
+        お支払い情報
+      </nuxt-link>
+
       <button class="setting-link" @click="logout">
         ログアウト
       </button>

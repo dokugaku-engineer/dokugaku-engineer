@@ -1,8 +1,5 @@
 <template>
   <div>
-    <form id="manage-billing-form">
-      <button @click="submit">Manage Billing</button>
-    </form>
     <div class="header">
       <div v-if="isAuth0Provider && !auth0User.email_verified">
         <verification-email-box />
@@ -188,12 +185,7 @@ export default {
     this.$store.dispatch('course/setLecture', {})
     this.$store.dispatch('setTitle', 'ホーム')
     this.$store.dispatch('course/setCourseTop', true)
-    const token = await this.$auth0.getTokenSilently()
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    let options = await this.getOptions()
     await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}`, options),
       this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
@@ -229,22 +221,14 @@ export default {
       }
   },
   methods: {
-    async submit(e) {
-      e.preventDefault()
+    async getOptions() {
       const token = await this.$auth0.getTokenSilently()
-      const options = {
+      return {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
-      this.$axios.$get('/subscriptions/customer_portal', options)
-      .then((response) => {
-        window.location.assign(response.url)
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    }
-  }
+    },
+  },
 }
 </script>

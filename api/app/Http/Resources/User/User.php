@@ -21,6 +21,7 @@ class User extends JsonResource
             'email' => $this->email,
             'created_at' => DateHelper::getTimestamp($this->created_at),
             'updated_at' => DateHelper::getTimestamp($this->updated_at),
+            'stripe_id' => $this->stripe_id,
         ];
     }
 }

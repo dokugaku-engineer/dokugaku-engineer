@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::resource('subscriptions', 'SubscriptionController')->only([
             'store',
         ]);
+        Route::get('subscriptions/{userId}', 'SubscriptionController@show');
         Route::post('subscriptions/create_checkout_sessions', 'SubscriptionController@createCheckoutSession');
         Route::get('subscriptions/customer_portal', 'SubscriptionController@customerPortal');
     });

@@ -135,7 +135,7 @@
 import LoggedInHeader from '@/components/layouts/LoggedInHeader.vue'
 import NuiFooter from '@/components/layouts/Footer.vue'
 import auth0Middleware from '@/middleware/auth0'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import debounce from 'lodash/debounce'
 
 export default {
@@ -151,6 +151,7 @@ export default {
   middleware: auth0Middleware.protect(),
   computed: {
     ...mapState(['title']),
+    ...mapGetters('auth0', ['userId']),
     marginTop() {
       return `margin-top: ${this.headerHeight}px;`
     },
@@ -173,6 +174,25 @@ export default {
     handleResize: debounce(function () {
       this.headerHeight = this.$refs.header.$el.clientHeight
     }, 300),
+    async getOptions() {
+      const token = await this.$auth0.getTokenSilently()
+      return {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    },
+    async clickBilling(e) {
+      e.preventDefault()
+      const options = await this.getOptions()
+      this.$axios.$get('/subscriptions/customer_portal', options)
+      .then((response) => {
+        window.location.assign(response.url)
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
   },
 }
 </script>
