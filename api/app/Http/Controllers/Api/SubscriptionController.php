@@ -31,6 +31,8 @@ class SubscriptionController extends ApiController
         if ($subscription) {
             return new SubscriptionResource($subscription);
         }
+
+        return $this->respondWithOK([]);
     }
 
     /**
@@ -54,10 +56,13 @@ class SubscriptionController extends ApiController
                 'success_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/course/serverside',
             ]);
-        } catch (\Exception $e) {
+        } catch (\Stripe\Exception\InvalidRequestException $e) {
             return $this->respondBadRequest($e->getError()->message);
+        } catch (\Exception $e) {
+            return $this->respondBadRequest($e->getMessage());
         }
 
+        /** @phpstan-ignore-next-line */
         return $this->respondWithOK(['sessionId' => $checkout->id]);
     }
 
@@ -81,7 +86,7 @@ class SubscriptionController extends ApiController
 
             return new SubscriptionResource($subscription);
         } catch (\Exception $e) {
-            return $this->respondBadRequest($e->getError()->message);
+            return $this->respondBadRequest($e->getMessage());
         }
     }
 

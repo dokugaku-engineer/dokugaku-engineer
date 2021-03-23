@@ -19,6 +19,7 @@ class Subscription extends Model
      *
      * @param int    $userId    ユーザーID
      * @param string $sessionId StripeのセッションID
+     * @return Subscription
      */
     public static function saveWithUser(int $userId, string $sessionId)
     {
