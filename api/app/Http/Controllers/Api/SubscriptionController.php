@@ -78,6 +78,7 @@ class SubscriptionController extends ApiController
 
         try {
             $subscription = Subscription::saveWithUser($userId, $sessionId);
+
             return new SubscriptionResource($subscription);
         } catch (\Exception $e) {
             return $this->respondBadRequest($e->getError()->message);
@@ -102,6 +103,7 @@ class SubscriptionController extends ApiController
             'customer' => $user->stripe_id,
             'return_url' => env('CLIENT_SCHEME', 'http') . '://' . env('CLIENT_URL', 'localhost:3333') . '/settings/billing',
         ]);
+
         return $this->respondWithOK(['url' => $session->url]);
     }
 }
