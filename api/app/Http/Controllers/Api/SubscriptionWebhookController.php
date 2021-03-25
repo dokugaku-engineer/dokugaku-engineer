@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Log;
@@ -13,17 +14,17 @@ use Log;
 class SubscriptionWebhookController extends ApiController
 {
     /**
-     * @var Stripe\Subscription
+     * @var \Stripe\Subscription
      */
     private $stripeSubscription;
 
     /**
-     * @var App\Models\User
+     * @var User
      */
     private $user;
 
     /**
-     * @var App\Models\Subscription
+     * @var Subscription
      */
     private $subscription;
 
@@ -32,7 +33,7 @@ class SubscriptionWebhookController extends ApiController
      *
      * @response {}
      *
-     * @param  array  $payload
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handleWebhook(Request $request)
@@ -54,7 +55,7 @@ class SubscriptionWebhookController extends ApiController
             case 'customer.subscription.created':
                 $this->setEventData($event);
 
-                if (!($this->user && $this->subscription)) {
+                if (empty($this->user) || empty($this->subscription)) {
                     return $this->respondWithOK([]);
                 }
 
@@ -64,7 +65,7 @@ class SubscriptionWebhookController extends ApiController
             case 'customer.subscription.deleted':
                 $this->setEventData($event);
 
-                if (!($this->user && $this->subscription)) {
+                if (empty($this->user) || empty($this->subscription)) {
                     return $this->respondWithOK([]);
                 }
 
@@ -74,7 +75,7 @@ class SubscriptionWebhookController extends ApiController
             case 'customer.subscription.updated':
                 $this->setEventData($event);
 
-                if (!($this->user && $this->subscription)) {
+                if (empty($this->user) || empty($this->subscription)) {
                     return $this->respondWithOK([]);
                 }
 
@@ -94,15 +95,14 @@ class SubscriptionWebhookController extends ApiController
     /**
      * イベントデータからユーザーとサブスクリプションを格納
      *
-     * @response {}
-     *
-     * @param  Stripe\Event  $event
+     * @param \Stripe\Event $event
      * @return void
      */
     private function setEventData($event)
     {
+        /** @phpstan-ignore-next-line */
         $this->stripeSubscription = $event->data->object;
-        Log::info($this->stripeSubscription); # Webhookで渡される実データが不明なので一時的にログに吐いておく
+        Log::info($this->stripeSubscription); // Webhookで渡される実データが不明なので一時的にログに吐いておく
 
         $this->user = User::firstWhere('stripe_id', $this->stripeSubscription->customer);
         if (!$this->user) {

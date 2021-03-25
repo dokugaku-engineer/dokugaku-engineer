@@ -103,7 +103,7 @@ class UserController extends ApiController
      *
      * @responsefile responses/user.store.json
      *
-     * @param UserRequest $request
+     * @param Request $request
      * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request, User $user)
