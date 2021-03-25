@@ -454,12 +454,15 @@ export default {
         })
     },
     needsSubscribing() {
-      // TODO: キャンセルされた時の条件を追加
       if (
         this.lecture.premium &&
         !(
           this.subscription.name === 'serverside' &&
-          this.subscription.stripe_status === 'paid'
+          this.subscription.stripe_status === 'paid' &&
+          (this.subscription.ends_at === null ||
+            this.$dayjs(this.subscription.ends_at).isAfter(
+              this.$dayjs().format()
+            ))
         )
       ) {
         return true

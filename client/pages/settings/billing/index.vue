@@ -177,10 +177,11 @@ export default {
       }
     },
     isSubscribing(subscription) {
-      // TODO: キャンセルされた時の条件を追加
       if (
         subscription.name === 'serverside' &&
-        subscription.stripe_status === 'paid'
+        subscription.stripe_status === 'paid' &&
+        (subscription.ends_at === null ||
+          this.$dayjs(subscription.ends_at).isAfter(this.$dayjs().format()))
       ) {
         return true
       }
