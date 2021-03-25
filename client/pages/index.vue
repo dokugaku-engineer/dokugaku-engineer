@@ -251,6 +251,33 @@
       </div>
     </div>
 
+    <div class="price">
+      <div class="price-card">
+        <div class="price-content">
+          <h6 class="price-title">
+            月額料金
+          </h6>
+          <span class="price-payable">
+            ¥480
+          </span>
+          <span class="price-label">
+            （税込）
+          </span>
+          <div class="price-btn">
+            <nui-button
+              class="btn-teal1 btn-shadow content-btn"
+              @click.native="signup"
+            >
+              無料で受講する
+            </nui-button>
+          </div>
+          <div class="price-notice">
+            前半の動画は無料で視聴できます。まずは無料でお試しください！
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="qa bg-white2">
       <div class="qa-container">
         <div class="qa-content">
@@ -298,10 +325,26 @@
           </ul>
           <ul>
             <li class="qa-question">
-              料金はかかりますか？
+              無料でも利用できますか？
             </li>
             <li class="qa-answer">
-              現在はβ版としてリリースしているため、期間限定で無料となっております。将来的には有料化する予定ですので、早めの受講をお勧めします。
+              前半部分の動画は無料で視聴できます。まずは無料登録でお試しください。
+            </li>
+          </ul>
+          <ul>
+            <li class="qa-question">
+              有料プランを利用できるのは登録日から1ヶ月間ですか？
+            </li>
+            <li class="qa-answer">
+              登録日の翌月同日同時間までご利用いただけます。翌月に同日がない場合は、翌月末日の同時間までとなります。
+            </li>
+          </ul>
+          <ul>
+            <li class="qa-question">
+              有料プランは自動的に更新されますか？
+            </li>
+            <li class="qa-answer">
+              はい。1ヶ月が経つと自動的に更新されます。
             </li>
           </ul>
           <div class="content-single-btn">
@@ -572,6 +615,7 @@
 }
 
 .philosophy,
+.price,
 .qa {
   padding: 6.4rem 2.4rem;
 
@@ -689,6 +733,60 @@
   list-style: disc;
   padding-left: 1.8rem;
 }
+
+.price {
+  background-image: url("~assets/images/pc-coffee.jpeg");
+  background-size: cover;
+}
+
+.price-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+  margin: 0 auto;
+  padding: 4rem 2rem 3rem;
+  min-width: 230px;
+  width: 80%;
+}
+
+@media screen and (min-width: 769px) {
+  .price-card {
+    min-width: 300px;
+    width: 30%;
+  }
+}
+
+.price-content {
+  text-align: center;
+}
+
+.price-title {
+  font-size: $font-size-xxl;
+  line-height: 2.4rem;
+  margin-bottom: 3rem;
+}
+
+.price-payable {
+  font-size: $font-size-xl;
+  color: $color-teal2;
+  font-weight: 300;
+}
+
+.price-label {
+  font-size: $font-size-sm;
+  font-weight: 600;
+}
+
+.price-btn {
+  margin: 2rem 0;
+}
+
+.price-notice {
+  font-size: $font-size-xs;
+  margin: 1rem 0 0;
+  line-height: 2.4rem;
+}
+
 
 .qa-content {
   flex: 0 0 100%;
