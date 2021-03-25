@@ -55,8 +55,8 @@ Route::group(['namespace' => 'Api'], function () {
             'store',
         ]);
         Route::get('subscriptions/customer_portal', 'SubscriptionController@customerPortal');
-        Route::get('subscriptions/{userId}', 'SubscriptionController@show');
         Route::post('subscriptions/create_checkout_sessions', 'SubscriptionController@createCheckoutSession');
+        Route::get('subscriptions/{userId}', 'SubscriptionController@show');
     });
 
     // Health routes
@@ -71,6 +71,9 @@ Route::group(['namespace' => 'Api'], function () {
     Route::resource('taking_courses', 'TakingCourseController')->only([
         'store',
     ]);
+
+    // Subscription Webhook routes
+    Route::post('subscription_webhook', 'SubscriptionWebhookController@handleWebhook');
 
     // Post-related routes
     Route::resource('categories', 'CategoryController')->only([

@@ -15,6 +15,16 @@ class Subscription extends Model
     protected $guarded = [];
 
     /**
+     * サブスクリプションに紐付いたユーザーを取得
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    /**
      * サブスクリプションとユーザーを保存
      *
      * @param int    $userId    ユーザーID
