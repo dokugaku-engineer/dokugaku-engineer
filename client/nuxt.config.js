@@ -101,6 +101,7 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/sentry',
     '@nuxtjs/markdownit',
+    '@nuxtjs/dayjs',
     'vue-social-sharing/nuxt',
   ],
   /*
@@ -253,5 +254,16 @@ export default {
    */
   googleAnalytics: {
     id: process.env.GA_TRACKING_ID,
+  },
+  /*
+   * Day.js settings
+   */
+  dayjs: {
+    locales: ['ja'],
+    defaultTimeZone: 'Asia/Tokyo',
+    plugins: [
+      'utc', // import 'dayjs/plugin/utc'
+      'timezone' // import 'dayjs/plugin/timezone'
+    ],
   },
 }
