@@ -735,7 +735,7 @@
 }
 
 .price {
-  background-image: url("~assets/images/pc-coffee.jpeg");
+  background-image: url('~assets/images/pc-coffee.jpeg');
   background-size: cover;
 }
 
@@ -786,7 +786,6 @@
   margin: 1rem 0 0;
   line-height: 2.4rem;
 }
-
 
 .qa-content {
   flex: 0 0 100%;
