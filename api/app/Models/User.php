@@ -37,4 +37,14 @@ class User extends Model
     {
         return $this->hasMany('App\Models\LearningHistory');
     }
+
+    /**
+     * ユーザーのサブスクリプションを取得
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany('App\Models\Subscription');
+    }
 }
