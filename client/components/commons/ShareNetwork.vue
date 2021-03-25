@@ -44,8 +44,9 @@ a[class^='share-network-'] {
 
 a[class^='share-network-'] .fah {
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 10px;
   flex: 0 1 auto;
+  padding: 10px;
+  vertical-align: middle;
 }
 
 a[class^='share-network-'] span {
