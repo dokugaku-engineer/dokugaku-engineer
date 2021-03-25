@@ -459,10 +459,10 @@ export default {
         !(
           this.subscription.name === 'serverside' &&
           this.subscription.stripe_status === 'paid' &&
-          (
-            this.subscription.ends_at === null ||
-            this.$dayjs(this.subscription.ends_at).isAfter(this.$dayjs().format())
-          )
+          (this.subscription.ends_at === null ||
+            this.$dayjs(this.subscription.ends_at).isAfter(
+              this.$dayjs().format()
+            ))
         )
       ) {
         return true
