@@ -185,12 +185,7 @@ export default {
     this.$store.dispatch('course/setLecture', {})
     this.$store.dispatch('setTitle', 'ホーム')
     this.$store.dispatch('course/setCourseTop', true)
-    const token = await this.$auth0.getTokenSilently()
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    let options = await this.getOptions()
     await Promise.all([
       this.$axios.$get(`/courses/${this.$route.params.name}`, options),
       this.$axios.$get(`/parts?course=${this.$route.params.name}`, options),
@@ -214,6 +209,31 @@ export default {
         this.error = err
         this.$sentry.captureException(err)
       })
+
+    const sessionId = this.$route.query.session_id
+    if (sessionId) {
+      this.$axios
+        .post(
+          '/subscriptions',
+          {
+            session_id: sessionId,
+          },
+          options
+        )
+        .catch((err) => {
+          this.$sentry.captureException(err)
+        })
+    }
+  },
+  methods: {
+    async getOptions() {
+      const token = await this.$auth0.getTokenSilently()
+      return {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    },
   },
 }
 </script>

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Cashier\Billable;
 
 class User extends Model
 {
     use SoftDeletes;
+    use Billable;
 
     /**
      * 複数代入しない属性
@@ -34,5 +36,15 @@ class User extends Model
     public function learningHistories()
     {
         return $this->hasMany('App\Models\LearningHistory');
+    }
+
+    /**
+     * ユーザーのサブスクリプションを取得
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany('App\Models\Subscription');
     }
 }

@@ -11,22 +11,46 @@
       <div v-if="isAuth0Provider && !auth0User.email_verified">
         <verification-email-box />
       </div>
-      <div v-if="!isAuth0Provider || auth0User.email_verified" class="video">
-        <iframe
-          v-if="lecture.video_url"
-          :src="`${lecture.video_url}?autoplay=1&color=26a69a`"
-          frameborder="0"
-          allow="autoplay; fullscreen"
-          allowfullscreen
-          style="
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-          "
-          @load="createLearningHistory()"
-        />
+      <div v-else>
+        <div v-if="needsSubscribing()" class="video-mosaic">
+          <div class="video-msg">
+            <div class="subscribe-wrap">
+              このレクチャーは有料会員限定です。
+              <br />
+              有料登録すれば、公開中の全レッスンを学習できるようになります。
+            </div>
+            <div class="subscribe-wrap">
+              <div class="subscribe">
+                <h4 class="subscribe-title">月額料金</h4>
+                <p>{{ price }}円（税込）</p>
+              </div>
+              <div class="subscribe">
+                <h4 class="subscribe-title">利用可能期間</h4>
+                <p>
+                  登録日から1ヶ月間ご利用いただけます。正確には、登録日の翌月同日同時間までとなります。翌月に同日がない場合は、翌月末日の同時間までとなります。1ヶ月が経つと、自動的に更新されます。
+                </p>
+              </div>
+            </div>
+            <subscribe-button />
+          </div>
+        </div>
+        <div v-else class="video">
+          <iframe
+            v-if="lecture.video_url"
+            :src="`${lecture.video_url}?autoplay=1&color=26a69a`"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            "
+            @load="createLearningHistory()"
+          />
+        </div>
       </div>
       <div v-if="auth0User.email_verified" class="video-btns">
         <div v-if="lecture.prev_lecture_slug" class="video-btn video-btn-prev">
@@ -88,6 +112,19 @@
   position: relative;
 }
 
+.video-mosaic {
+  padding: 5% 0 5%;
+  position: relative;
+  background: url('~assets/images/lecture-mosaic.png');
+}
+
+.video-msg {
+  background-color: $color-white2;
+  margin: 4%;
+  padding: 5%;
+  border-radius: 0.8rem;
+}
+
 .video-btns {
   display: none;
 }
@@ -138,6 +175,21 @@
       opacity: 1;
     }
   }
+}
+
+.subscribe-wrap {
+  margin-bottom: 1.2rem;
+}
+
+.subscribe {
+  margin-bottom: 1rem;
+}
+
+.subscribe-title {
+  color: $color-gray2;
+  font-size: $font-size-sm;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.7rem;
 }
 
 .detail {
@@ -271,6 +323,7 @@
 import Meta from '@/assets/mixins/meta'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
+import SubscribeButton from '@/components/partials/settings/SubscribeButton.vue'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
@@ -278,13 +331,16 @@ export default {
   components: {
     ErrorBox,
     VerificationEmailBox,
+    SubscribeButton,
   },
   mixins: [Meta],
   data() {
     return {
       lecture: {},
+      subscription: {},
       loading: true,
       error: null,
+      price: process.env.PRICE,
       meta: {
         title: '独学エンジニア',
         baseTitle: '',
@@ -294,7 +350,7 @@ export default {
   computed: {
     ...mapState('auth0', ['auth0User']),
     ...mapState('course', ['course', 'parts', 'lessons', 'lectures']),
-    ...mapGetters('auth0', ['isAuth0Provider']),
+    ...mapGetters('auth0', ['userId', 'isAuth0Provider']),
     lectureDescription() {
       return this.$md.render(this.lecture.description)
     },
@@ -310,15 +366,19 @@ export default {
       },
     }
 
-    // レクチャーを取得
-    this.$axios
-      .$get(`/lectures/${this.$route.params.slug}`, options)
+    // レクチャーとユーザー情報を取得
+    Promise.all([
+      this.$axios.$get(`/lectures/${this.$route.params.slug}`, options),
+      this.$axios.$get(`/subscriptions/${this.userId}`, options),
+    ])
       .then((res) => {
+        const lecture = res[0]
+        this.lecture = lecture
+        this.subscription = res[1]
         this.loading = false
-        this.lecture = res
-        this.$store.dispatch('course/setLecture', res)
-        this.$store.dispatch('setTitle', res.name)
-        this.meta.title = `独学エンジニア - ${res.name}`
+        this.$store.dispatch('course/setLecture', lecture)
+        this.$store.dispatch('setTitle', lecture.name)
+        this.meta.title = `独学エンジニア - ${lecture.name}`
       })
       .catch((err) => {
         this.loading = false
@@ -392,6 +452,22 @@ export default {
         .catch((err) => {
           this.$sentry.captureException(err)
         })
+    },
+    needsSubscribing() {
+      if (
+        this.lecture.premium &&
+        !(
+          this.subscription.name === 'serverside' &&
+          this.subscription.stripe_status === 'paid' &&
+          (this.subscription.ends_at === null ||
+            this.$dayjs(this.subscription.ends_at).isAfter(
+              this.$dayjs().format()
+            ))
+        )
+      ) {
+        return true
+      }
+      return false
     },
   },
 }

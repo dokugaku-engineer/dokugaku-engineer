@@ -100,11 +100,11 @@
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=quia" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/categories?except=beatae" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/categories");
 
     let params = {
-            "except": "quia",
+            "except": "beatae",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -381,11 +381,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=et" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/posts?except=inventore" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/posts");
 
     let params = {
-            "except": "et",
+            "except": "inventore",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -1097,11 +1097,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/parts?course=tempore" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/parts?course=sint" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/parts");
 
     let params = {
-            "course": "tempore",
+            "course": "sint",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -1153,11 +1153,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/lessons?course=velit" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/lessons?course=natus" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/lessons");
 
     let params = {
-            "course": "velit",
+            "course": "natus",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -1208,11 +1208,11 @@ fetch(url, {
 <blockquote>
 <p>Example request:</p>
 </blockquote>
-<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/lectures?course=molestiae" </code></pre>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/lectures?course=sunt" </code></pre>
 <pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/lectures");
 
     let params = {
-            "course": "molestiae",
+            "course": "sunt",
         };
     Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
 
@@ -1747,6 +1747,213 @@ fetch(url, {
 <h3>HTTP Request</h3>
 <p><code>POST api/auth0/send_verification_email</code></p>
 <!-- END_987ee5cd51f489c2c32dc75bdbf8bc6f -->
+<h1>5. Subscriptions</h1>
+<!-- START_b63bdc84eb438e785c22339e69275df5 -->
+<h2>サブスクリプションを保存</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost:8080/api/subscriptions" \
+    -H "Content-Type: application/json" \
+    -d '{"session_id":"cs_test_a1WlBanMf7"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/subscriptions");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "session_id": "cs_test_a1WlBanMf7"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 13,
+    "user_id": 10,
+    "name": "serverside",
+    "stripe_id": "sub_J8u7SyW2sqMoGH",
+    "stripe_status": "paid",
+    "stripe_plan": null,
+    "quantity": null,
+    "ends_at": null,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/subscriptions</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>session_id</td>
+<td>string</td>
+<td>required</td>
+<td>Stripe session id.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_b63bdc84eb438e785c22339e69275df5 -->
+<!-- START_54537cf79da06dce6f916ae42b2fb880 -->
+<h2>カスタマーポータルを作成</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/subscriptions/customer_portal" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/subscriptions/customer_portal");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "url": "https:\/\/billing.stripe.com\/session\/_JANkBAkl6"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/subscriptions/customer_portal</code></p>
+<!-- END_54537cf79da06dce6f916ae42b2fb880 -->
+<!-- START_1463b9e2d65ac7007aead02ed4bf021d -->
+<h2>サブスクリプション情報を取得</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "http://localhost:8080/api/subscriptions/1?user_id=10" </code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/subscriptions/1");
+
+    let params = {
+            "user_id": "10",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 13,
+    "user_id": 10,
+    "name": "serverside",
+    "stripe_id": "sub_J8u7SyW2sqMoGH",
+    "stripe_status": "paid",
+    "stripe_plan": null,
+    "quantity": null,
+    "ends_at": null,
+    "created_at": "2019-10-17T13:28:08Z",
+    "updated_at": "2019-10-17T13:28:08Z"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/subscriptions/{userId}</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>optional</td>
+<td>int required User id.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_1463b9e2d65ac7007aead02ed4bf021d -->
+<!-- START_7f4140edeffc286fbf1c0d57bc09738b -->
+<h2>チェックアウトセッションを作成</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "http://localhost:8080/api/subscriptions/create_checkout_sessions" \
+    -H "Content-Type: application/json" \
+    -d '{"price_id":"price_1IXhEbFtloVF6oou"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("http://localhost:8080/api/subscriptions/create_checkout_sessions");
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "price_id": "price_1IXhEbFtloVF6oou"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "sessionId": "cs_test_a1WlBanMf7"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/subscriptions/create_checkout_sessions</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>price_id</td>
+<td>string</td>
+<td>required</td>
+<td>Stripe Price id.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_7f4140edeffc286fbf1c0d57bc09738b -->
 <h1>general</h1>
 <!-- START_46abdb365a7dca172c3257c85dbbdbe0 -->
 <h2>レスポンス200を返す</h2>
