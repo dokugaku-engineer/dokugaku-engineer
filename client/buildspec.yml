@@ -21,6 +21,10 @@ env:
     GA_TRACKING_ID: "/Prod/DokugakuEngineer/Client/GA_TRACKING_ID"
     DOCKERHUB_USERNAME: "/Prod/DokugakuEngineer/Client/DOCKERHUB_USERNAME"
     DOCKERHUB_PASSWORD: "/Prod/DokugakuEngineer/Client/DOCKERHUB_PASSWORD"
+    STRIPE_PUBLISHABLE_KEY: "/Prod/DokugakuEngineer/Client/STRIPE_PUBLISHABLE_KEY"
+    STRIPE_PRICE_ID: "/Prod/DokugakuEngineer/Client/STRIPE_PRICE_ID"
+    LOCALE: "/Prod/DokugakuEngineer/Client/LOCALE"
+    PRICE: "/Prod/DokugakuEngineer/Client/PRICE"
 
 phases:
   install:
