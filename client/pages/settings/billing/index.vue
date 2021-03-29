@@ -119,7 +119,7 @@
 import Meta from '@/assets/mixins/meta'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
-import SubscribeButton from '@/components/partials/settings/SubscribeButton.vue'
+import SubscribeButton from '@/components/commons/SubscribeButton.vue'
 import CustomerPortalButton from '@/components/partials/settings/CustomerPortalButton.vue'
 import { mapState, mapGetters } from 'vuex'
 
