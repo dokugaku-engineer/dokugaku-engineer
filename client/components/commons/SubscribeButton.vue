@@ -22,9 +22,6 @@ export default {
   components: {
     NuiButton,
   },
-  beforeCreate() {
-    this.$store.dispatch('setTitle', 'お支払い情報')
-  },
   methods: {
     async getOptions() {
       const token = await this.$auth0.getTokenSilently()
