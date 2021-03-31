@@ -30,7 +30,7 @@ class SubscriptionWebhookController extends ApiController
     /**
      * @var int
      */
-    const ADD_END_DAYS = 2;
+    private const ADD_END_DAYS = 2;
 
     /**
      * Webhookの処理
