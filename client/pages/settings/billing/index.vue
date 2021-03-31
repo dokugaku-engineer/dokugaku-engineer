@@ -25,7 +25,7 @@
 
       <div v-else>
         <div v-if="!loadingUser && !error">
-          <div v-if="subscribed" class="setting-form">
+          <div v-if="subscriptionStatus == 'subscribing'" class="setting-form">
             <p class="setting-title setting-content">
               サーバーサイドコース（有料）
             </p>
@@ -51,6 +51,9 @@
               </div>
             </div>
             <subscribe-button />
+            <div v-if="subscriptionStatus == 'canceled'" class="setting-link">
+                <customer-portal-link />
+              </div>
           </div>
         </div>
       </div>
@@ -97,6 +100,10 @@
   margin-bottom: 2.4rem;
 }
 
+.setting-link {
+  margin: 5rem 0 4rem;
+}
+
 .loading {
   color: $color-teal1;
   left: 47%;
@@ -121,6 +128,7 @@ import ErrorBox from '@/components/commons/ErrorBox.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
 import SubscribeButton from '@/components/commons/SubscribeButton.vue'
 import CustomerPortalButton from '@/components/partials/settings/CustomerPortalButton.vue'
+import CustomerPortalLink from '@/components/partials/settings/CustomerPortalLink.vue'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
@@ -130,11 +138,12 @@ export default {
     VerificationEmailBox,
     SubscribeButton,
     CustomerPortalButton,
+    CustomerPortalLink,
   },
   mixins: CustomerPortalButton[Meta],
   data() {
     return {
-      subscribed: false,
+      subscriptionStatus: 'free',
       loadingUser: false,
       error: null,
       price: process.env.PRICE,
@@ -157,7 +166,11 @@ export default {
       .$get(`/subscriptions/${this.userId}`, options)
       .then((res) => {
         if (this.isSubscribing(res)) {
-          this.subscribed = true
+          this.subscriptionStatus = 'subscribing'
+        }
+
+        if (this.hasCanceled(res)) {
+          this.subscriptionStatus = 'canceled'
         }
       })
       .catch((err) => {
@@ -187,6 +200,16 @@ export default {
       }
       return false
     },
+    hasCanceled(subscription) {
+      if (
+        subscription.name === 'serverside' &&
+        subscription.stripe_status === 'paid' &&
+        this.$dayjs(subscription.ends_at).isBefore(this.$dayjs().format())
+      ) {
+        return true
+      }
+      return false
+    }
   },
 }
 </script>
