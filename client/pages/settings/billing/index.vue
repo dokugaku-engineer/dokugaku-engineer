@@ -52,8 +52,8 @@
             </div>
             <subscribe-button />
             <div v-if="subscriptionStatus == 'canceled'" class="setting-link">
-                <customer-portal-link />
-              </div>
+              <customer-portal-link />
+            </div>
           </div>
         </div>
       </div>
@@ -209,7 +209,7 @@ export default {
         return true
       }
       return false
-    }
+    },
   },
 }
 </script>

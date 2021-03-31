@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-link to='' class="confirm-link" @click.native="show">
+    <nuxt-link to="" class="confirm-link" @click.native="show">
       お支払い履歴の確認はこちら
     </nuxt-link>
   </div>
