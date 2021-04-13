@@ -59,8 +59,6 @@ class SubscriptionWebhookController extends ApiController
             case 'invoice.payment_succeeded': // 支払い成功時
                 $this->setEventData($event);
 
-                info($this->stripeSubscription->lines->data[0]);
-
                 if (empty($this->user)) {
                     return $this->respondWithOK([]);
                 }
