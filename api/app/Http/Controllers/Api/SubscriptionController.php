@@ -6,6 +6,7 @@ use App\Http\Resources\Subscription\Subscription as SubscriptionResource;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 /**
  * @group 5. Subscriptions
@@ -27,7 +28,19 @@ class SubscriptionController extends ApiController
         if ($request['user_id'] !== (int) $userId) {
             return $this->respondInvalidQuery('Invalid user');
         }
-        $subscription = Subscription::where(['user_id' => $userId])->first();
+        $subscriptions = Subscription::where(['user_id' => $userId])->get();
+        $subscription = $subscriptions->sortByDesc('updated_at')->first();
+        // 購読中のものに絞る
+        $subscribingSubs = $subscriptions->filter(function ($v) {
+            return $v['status'] === 'paid' &&
+                ($v['ends_at'] === null ||
+                    Carbon::now()->lt(new Carbon($v['ends_at'])));
+        });
+
+        if ($subscribingSubs->isNotEmpty()) {
+            $subscription = $subscribingSubs->sortByDesc('updated_at')->first();
+        }
+
         if ($subscription) {
             return new SubscriptionResource($subscription);
         }
