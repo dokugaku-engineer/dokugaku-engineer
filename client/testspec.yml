@@ -16,6 +16,8 @@ env:
     AWS_CLOUDFRONT: "/Prod/DokugakuEngineer/Client/AWS_CLOUDFRONT"
     AWS_DEFAULT_REGION: "/Prod/DokugakuEngineer/Client/AWS_DEFAULT_REGION"
     AWS_SECRET_ACCESS_KEY: "/Prod/DokugakuEngineer/Client/AWS_SECRET_ACCESS_KEY"
+    DOCKERHUB_USERNAME: "/Prod/DokugakuEngineer/Client/DOCKERHUB_USERNAME"
+    DOCKERHUB_PASSWORD: "/Prod/DokugakuEngineer/Client/DOCKERHUB_PASSWORD"
     ORIGIN: "/Prod/DokugakuEngineer/Client/ORIGIN"
     SENTRY_DSN: "/Prod/DokugakuEngineer/Client/SENTRY_DSN"
     GA_TRACKING_ID: "/Prod/DokugakuEngineer/Client/GA_TRACKING_ID"
@@ -26,6 +28,9 @@ phases:
       nodejs: 10
   build:
     commands:
+      - cd client
+      - echo Logging in to Docker...
+      - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
       - echo 'Build docker image'
       - docker image build -t dokugaku_engineer_client:latest -f docker/client/Dockerfile . --build-arg env=testing
       - echo 'Start docker container'
