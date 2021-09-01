@@ -80,6 +80,7 @@ export default {
     './plugins/vuelidate.js',
     './plugins/auth0.js',
     './plugins/click-outside.js',
+    './plugins/localprice.js',
     './plugins/sentry.js',
     './plugins/markdownit',
     './plugins/prism',
