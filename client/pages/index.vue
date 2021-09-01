@@ -258,7 +258,7 @@
             月額料金
           </h6>
           <span class="price-payable">
-            ¥480
+            ¥{{ price | local-price }}
           </span>
           <span class="price-label">
             （税込）
@@ -894,6 +894,7 @@ export default {
         description:
           '「技術をちゃんと理解して、実務で自走できるエンジニアになる」ための本格プログラミング講座です。基礎から実務で必要なスキルを網羅。未知の課題に出会っても自分で解決できる実践的スキルが身につきます。',
       },
+      price: process.env.PRICE,
     }
   },
   computed: {
