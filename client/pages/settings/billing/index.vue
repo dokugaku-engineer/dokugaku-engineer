@@ -41,7 +41,7 @@
             <div class="setting-content">
               <div class="subscribe">
                 <h4 class="subscribe-title">月額料金</h4>
-                <p>{{ price | local-price }}円（税込）</p>
+                <p>{{ price | localprice }}円（税込）</p>
               </div>
               <div class="subscribe">
                 <h4 class="subscribe-title">利用可能期間</h4>

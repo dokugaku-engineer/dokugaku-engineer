@@ -257,9 +257,7 @@
           <h6 class="price-title">
             月額料金
           </h6>
-          <span class="price-payable">
-            ¥{{ price | local-price }}
-          </span>
+          <span class="price-payable"> ¥{{ price | localprice }} </span>
           <span class="price-label">
             （税込）
           </span>
