@@ -32,7 +32,7 @@ phases:
       - echo Logging in to Docker...
       - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
       - echo 'Build docker image'
-      - docker image build -t dokugaku_engineer_client:latest -f docker/client/Dockerfile . --build-arg env=testing
+      - docker image build -t dokugaku_engineer_client:latest -f ../docker/client/Dockerfile . --build-arg env=testing
       - echo 'Start docker container'
       - docker container run --name dokugaku_engineer_client -d dokugaku_engineer_client:latest
   post_build:
