@@ -5,8 +5,8 @@ WORKDIR /var/www
 # パッケージのインストール
 RUN amazon-linux-extras enable epel \
   && yum clean metadata \
-  && yum install -y epel-release \
-  && yum install -y https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+  && amazon-linux-extras install -y epel \
+  && yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && sed -i 's/priority=10/priority=99/' /etc/yum.repos.d/amzn2-core.repo \
   && yum install -y --enablerepo=remi-php74 php php-mbstring php-xml php-pecl-zip php-fpm php-soap php-bcmath php-opcache php-pecl-apcu php-pear php-devel php-pdo php-mysqlnd php-intl.x86_64
 RUN yum install -y git vim sudo procps pcre-devel gcc make nodejs unzip
