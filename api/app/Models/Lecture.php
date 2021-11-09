@@ -48,8 +48,8 @@ class Lecture extends Model
     /**
      * レクチャーに紐づく受講履歴をロードする
      *
-     * @param  int $userId
-     * @param  int $courseId
+     * @param  int  $userId
+     * @param  int  $courseId
      * @return $this
      */
     public function loadLearningHistories(int $userId, int $courseId)

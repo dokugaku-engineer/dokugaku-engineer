@@ -20,7 +20,7 @@ class SubscriptionController extends ApiController
      *
      * @responsefile responses/subscription.show.json
      *
-     * @param  Request $request
+     * @param  Request  $request
      * @return SubscriptionResource|\Illuminate\Http\JsonResponse
      */
     public function show(Request $request, string $userId)
@@ -57,7 +57,7 @@ class SubscriptionController extends ApiController
      *   "sessionId": "cs_test_a1WlBanMf7"
      * }
      *
-     * @param  Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function createCheckoutSession(Request $request)
@@ -86,7 +86,7 @@ class SubscriptionController extends ApiController
      *
      * @responsefile responses/subscription.show.json
      *
-     * @param  Request $request
+     * @param  Request  $request
      * @return SubscriptionResource|\Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -110,7 +110,7 @@ class SubscriptionController extends ApiController
      *   "url": "https://billing.stripe.com/session/_JANkBAkl6"
      * }
      *
-     * @param  Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function customerPortal(Request $request)

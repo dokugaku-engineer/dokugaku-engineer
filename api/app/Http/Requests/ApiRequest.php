@@ -12,7 +12,7 @@ abstract class ApiRequest extends FormRequest
      * バリデーション失敗時のハンドリング
      * Error Code = 30
      *
-     * @param  Validator $validator
+     * @param  Validator  $validator
      * @return void
      * @throw HttpResponseException
      */

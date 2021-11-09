@@ -60,7 +60,7 @@ class ImportLectureCSV extends Command
     /**
      * CSVデータを保存する
      *
-     * @param  string $name
+     * @param  string  $name
      * @return void
      */
     private function insert(string $name): void
@@ -84,7 +84,7 @@ class ImportLectureCSV extends Command
     /**
      * コースのCSVデータを取得する
      *
-     * @param  string $name
+     * @param  string  $name
      * @return array
      */
     private function getCsv(string $name): array
@@ -116,7 +116,7 @@ class ImportLectureCSV extends Command
     /**
      * CSVデータにslug, prev_lecture_slug, next_lecture_slugカラムを追加する
      *
-     * @param  array $csv
+     * @param  array  $csv
      * @return array
      */
     private function addSlugs(array $csv): array
@@ -187,8 +187,8 @@ class ImportLectureCSV extends Command
      * 3文字以上のalphaIDが必要な場合は、下記を使用する
      * $padUp = 3 argument
      *
-     * @param  int   $in
-     * @param  mixed $padUp Number or boolean padds the result up to a specified length
+     * @param  int  $in
+     * @param  mixed  $padUp  Number or boolean padds the result up to a specified length
      * @return mixed string or long
      */
     private function alphaID(int $in, $padUp = false)

@@ -37,7 +37,7 @@ class SubscriptionWebhookController extends ApiController
      *
      * @response {}
      *
-     * @param  Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function handleWebhook(Request $request)
@@ -115,7 +115,7 @@ class SubscriptionWebhookController extends ApiController
     /**
      * イベントデータからユーザーとサブスクリプションを格納
      *
-     * @param  \Stripe\Event $event
+     * @param  \Stripe\Event  $event
      * @return void
      */
     private function setEventData($event)

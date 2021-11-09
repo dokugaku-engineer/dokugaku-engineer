@@ -17,8 +17,8 @@ class CheckM2MJWT
     /**
      * JWTアクセストークンを検証する
      *
-     * @param  \Illuminate\Http\Request $request - Illuminate HTTP Request object.
-     * @param  \Closure                 $next    - Function to call when middleware is complete.
+     * @param  \Illuminate\Http\Request  $request  - Illuminate HTTP Request object.
+     * @param  \Closure  $next  - Function to call when middleware is complete.
      * @return mixed
      */
     public function handle($request, Closure $next)
