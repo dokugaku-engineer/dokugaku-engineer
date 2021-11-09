@@ -36,8 +36,8 @@ class TakingCourse extends Model
     /**
      * パートの親のコースを取得
      *
-     * @param int $userId
-     * @param int $courseId
+     * @param  int  $userId
+     * @param  int  $courseId
      * @return bool
      */
     public static function doesntExist(int $userId, int $courseId): bool

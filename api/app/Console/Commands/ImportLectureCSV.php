@@ -60,7 +60,7 @@ class ImportLectureCSV extends Command
     /**
      * CSVデータを保存する
      *
-     * @param string $name
+     * @param  string  $name
      * @return void
      */
     private function insert(string $name): void
@@ -84,7 +84,7 @@ class ImportLectureCSV extends Command
     /**
      * コースのCSVデータを取得する
      *
-     * @param string $name
+     * @param  string  $name
      * @return array
      */
     private function getCsv(string $name): array
@@ -116,7 +116,7 @@ class ImportLectureCSV extends Command
     /**
      * CSVデータにslug, prev_lecture_slug, next_lecture_slugカラムを追加する
      *
-     * @param array $csv
+     * @param  array  $csv
      * @return array
      */
     private function addSlugs(array $csv): array
@@ -187,20 +187,20 @@ class ImportLectureCSV extends Command
      * 3文字以上のalphaIDが必要な場合は、下記を使用する
      * $padUp = 3 argument
      *
-     * @param int   $in
-     * @param mixed $padUp Number or boolean padds the result up to a specified length
+     * @param  int  $in
+     * @param  mixed  $padUp  Number or boolean padds the result up to a specified length
      * @return mixed string or long
      */
     private function alphaID(int $in, $padUp = false)
     {
         // 数値をスクランブルする
-        $in *= 0x1ca7bc5b; // 奇数その1の乗算
+        $in *= 0x1CA7BC5B; // 奇数その1の乗算
         $in &= 0x7FFFFFFF; // 下位31ビットだけ残して正の数であることを保つ
         $in = ($in >> 15) | (($in & 0x7FFF) << 16); // ビット上下逆転
-        $in *= 0x6b5f13d3; // 奇数その2（奇数その1の逆数）の乗算
+        $in *= 0x6B5F13D3; // 奇数その2（奇数その1の逆数）の乗算
         $in &= 0x7FFFFFFF;
         $in = ($in >> 15) | (($in & 0x7FFF) << 16); // ビット上下逆転
-        $in *= 0x1ca7bc5b; // 奇数その1の乗算
+        $in *= 0x1CA7BC5B; // 奇数その1の乗算
         $in &= 0x7FFFFFFF;
 
         // 数値から英数字のIDを生成する

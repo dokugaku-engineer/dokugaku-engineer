@@ -12,7 +12,7 @@ class CreatePost
     /**
      * Create an post.
      *
-     * @param array $inputs
+     * @param  array  $inputs
      * @return Post|\Illuminate\Http\RedirectResponse
      */
     public function execute(array $inputs)
