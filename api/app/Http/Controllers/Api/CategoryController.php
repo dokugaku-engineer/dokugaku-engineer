@@ -52,7 +52,7 @@ class CategoryController extends ApiController
      *   "updated_at": "2019-10-17T13:28:08Z"
      * }
      *
-     * @param  CategoryRequest  $request
+     * @param  CategoryRequest $request
      * @return CategoryResource|\Illuminate\Http\JsonResponse
      */
     public function store(CategoryRequest $request)
@@ -82,7 +82,7 @@ class CategoryController extends ApiController
      *   "updated_at": "2019-10-20T13:28:08Z"
      * }
      *
-     * @param  Category  $category
+     * @param  Category $category
      * @return CategoryResource
      */
     public function show(Category $category)
@@ -107,8 +107,8 @@ class CategoryController extends ApiController
      *   "updated_at": "2019-10-17T13:28:08Z"
      * }
      *
-     * @param  CategoryRequest  $request
-     * @param  Category  $category
+     * @param  CategoryRequest $request
+     * @param  Category        $category
      * @return CategoryResource|\Illuminate\Http\JsonResponse
      */
     public function update(CategoryRequest $request, Category $category)

@@ -21,8 +21,8 @@ class Auth0Service
     /**
      * ユーザー情報を更新する
      *
-     * @param  string  $userId  Auth0のユーザーID
-     * @param  string  $data  JSON形式の文字列
+     * @param  string $userId Auth0のユーザーID
+     * @param  string $data   JSON形式の文字列
      * @return string
      */
     public function updateUser(string $userId, string $data): string
@@ -56,7 +56,7 @@ class Auth0Service
     /**
      * ユーザーを削除する
      *
-     * @param  string  $userId  Auth0のユーザーID
+     * @param  string $userId Auth0のユーザーID
      * @return bool|string
      */
     public function deleteUser(string $userId)
@@ -88,7 +88,7 @@ class Auth0Service
     /**
      * 認証用メールを送信する
      *
-     * @param  string  $data  JSON形式の文字列
+     * @param  string $data JSON形式の文字列
      * @return array
      */
     public function sendVerificationEmail(string $data): array

@@ -20,7 +20,7 @@ class TakingCourseController extends ApiController
      *
      * @responsefile responses/taking_course.store.json
      *
-     * @param  TakingCourseRequest  $request
+     * @param  TakingCourseRequest $request
      * @return TakingCourseResource|\Illuminate\Http\JsonResponse
      */
     public function store(TakingCourseRequest $request)

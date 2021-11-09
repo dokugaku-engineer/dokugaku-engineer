@@ -99,7 +99,7 @@ class ImportTestUserData extends Command
     /**
      * 受講コースを登録する
      *
-     * @param  array  $users
+     * @param  array $users
      * @return array
      */
     private function insertTakingCourses(array $users): array
@@ -128,7 +128,7 @@ class ImportTestUserData extends Command
     /**
      * 受講履歴を登録する
      *
-     * @param  array  $users
+     * @param  array $users
      * @return void
      */
     private function insertLearningHistories($users): void

@@ -49,7 +49,7 @@ class PostController extends ApiController
      *
      * @responsefile responses/post.store.json
      *
-     * @param  PostRequest  $request
+     * @param  PostRequest $request
      * @return PostResource|\Illuminate\Http\JsonResponse
      */
     public function store(PostRequest $request)
@@ -71,7 +71,7 @@ class PostController extends ApiController
      *
      * @responsefile responses/post.store.json
      *
-     * @param  int  $id
+     * @param  int $id
      * @return PostResource
      */
     public function show(int $id)
@@ -93,8 +93,8 @@ class PostController extends ApiController
      *
      * @responsefile responses/post.store.json
      *
-     * @param  PostRequest  $request
-     * @param  Post  $post
+     * @param  PostRequest $request
+     * @param  Post        $post
      * @return PostResource|\Illuminate\Http\JsonResponse
      */
     public function update(PostRequest $request, Post $post)
@@ -116,7 +116,7 @@ class PostController extends ApiController
      *
      * @responsefile responses/post.store.json
      *
-     * @param  Post  $post
+     * @param  Post $post
      * @return PostResource
      */
     public function destroy(Post $post)
@@ -133,7 +133,7 @@ class PostController extends ApiController
      *
      * @responsefile responses/post.store.json
      *
-     * @param  Post  $post
+     * @param  Post $post
      * @return PostResource
      */
     public function publish(Post $post)
@@ -150,7 +150,7 @@ class PostController extends ApiController
      *
      * @responsefile responses/post.store.json
      *
-     * @param  Post  $post
+     * @param  Post $post
      * @return PostResource
      */
     public function unpublish(Post $post)
