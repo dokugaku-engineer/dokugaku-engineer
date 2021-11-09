@@ -29,7 +29,7 @@ trait JsonRespondController
     /**
      * レスポンスのHTTPステータスコードを設定
      *
-     * @param int $statusCode
+     * @param  int $statusCode
      * @return self
      */
     public function setHTTPStatusCode(int $statusCode): self
@@ -52,7 +52,7 @@ trait JsonRespondController
     /**
      * レスポンスのエラーコードを設定
      *
-     * @param int $errorCode
+     * @param  int $errorCode
      * @return self
      */
     public function setErrorCode(int $errorCode): self
@@ -66,7 +66,7 @@ trait JsonRespondController
      * 無効なクエリに対してエラーを送信
      * Error Code = 40
      *
-     * @param string $message
+     * @param  string $message
      * @return JsonResponse
      */
     public function respondInvalidQuery(?string $message = null): JsonResponse
@@ -80,7 +80,7 @@ trait JsonRespondController
      * リクエストが不正なためエラーを送信
      * Error Code = 30
      *
-     * @param string $message
+     * @param  string $message
      * @return JsonResponse
      */
     public function respondBadRequest(?string $message = null): JsonResponse
@@ -94,7 +94,7 @@ trait JsonRespondController
      * 不適切な認証に対してエラーを送信
      * Error Code = 31
      *
-     * @param string $message
+     * @param  string $message
      * @return JsonResponse
      */
     public function respondUnauthorized(?string $message = null): JsonResponse
@@ -108,7 +108,7 @@ trait JsonRespondController
      * 権限不足に対してエラーを送信
      * Error Code = 32
      *
-     * @param string $message
+     * @param  string $message
      * @return JsonResponse
      */
     public function respondInsufficientScope(?string $message = null): JsonResponse
@@ -122,7 +122,7 @@ trait JsonRespondController
      * 対象が見つからないためエラーを送信
      * Error Code = 33
      *
-     * @param string $message
+     * @param  string $message
      * @return JsonResponse
      */
     public function respondNotFound(?string $message = null): JsonResponse
@@ -135,7 +135,7 @@ trait JsonRespondController
     /**
      * エラー時にレスポンスを送信
      *
-     * @param string $message
+     * @param  string $message
      * @return JsonResponse
      */
     public function respondWithError(?string $message = null): JsonResponse
@@ -151,7 +151,7 @@ trait JsonRespondController
     /**
      * JSONを送信
      *
-     * @param array $data
+     * @param  array $data
      * @return JsonResponse
      */
     public function respondWithOK(array $data)
@@ -163,8 +163,8 @@ trait JsonRespondController
     /**
      * JSONを送信
      *
-     * @param array $data
-     * @param array $headers
+     * @param  array $data
+     * @param  array $headers
      * @return JsonResponse
      */
     public function respond(array $data, array $headers = []): JsonResponse

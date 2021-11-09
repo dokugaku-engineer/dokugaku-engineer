@@ -22,7 +22,7 @@ class LearningHistoryController extends ApiController
      *
      * @responsefile responses/learning_history.store.json
      *
-     * @param LearningHistoryRequest $request
+     * @param  LearningHistoryRequest $request
      * @return LearningHistoryResource|\Illuminate\Http\JsonResponse
      */
     public function store(LearningHistoryRequest $request)
@@ -45,8 +45,8 @@ class LearningHistoryController extends ApiController
      *
      * @responsefile responses/learning_history.store.json
      *
-     * @param Request $request
-     * @param string  $course_name
+     * @param  Request $request
+     * @param  string  $course_name
      * @return LearningHistoryResource|\Illuminate\Http\JsonResponse
      */
     public function getLectureIds(Request $request, string $course_name)

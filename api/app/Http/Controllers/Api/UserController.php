@@ -22,7 +22,7 @@ class UserController extends ApiController
      *
      * @responsefile responses/user.store.json
      *
-     * @param UserRequest $request
+     * @param  UserRequest $request
      * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function store(UserRequest $request)
@@ -48,7 +48,7 @@ class UserController extends ApiController
      *
      * @responsefile responses/user.store.json
      *
-     * @param UserRequest $request
+     * @param  UserRequest $request
      * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function show(Request $request, User $user)
@@ -68,7 +68,7 @@ class UserController extends ApiController
      *
      * @responsefile responses/user.store.json
      *
-     * @param UserRequest $request
+     * @param  UserRequest $request
      * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function update(UserRequest $request, User $user)
@@ -103,7 +103,7 @@ class UserController extends ApiController
      *
      * @responsefile responses/user.store.json
      *
-     * @param Request $request
+     * @param  Request $request
      * @return UserResource|\Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request, User $user)

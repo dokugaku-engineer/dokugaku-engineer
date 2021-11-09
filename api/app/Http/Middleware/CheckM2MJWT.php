@@ -19,7 +19,6 @@ class CheckM2MJWT
      *
      * @param  \Illuminate\Http\Request $request - Illuminate HTTP Request object.
      * @param  \Closure                 $next    - Function to call when middleware is complete.
-     *
      * @return mixed
      */
     public function handle($request, Closure $next)

@@ -32,8 +32,8 @@ class CourseController extends ApiController
      *
      * @responsefile responses/course.show.json
      *
-     * @param Request $request
-     * @param string  $name
+     * @param  Request $request
+     * @param  string  $name
      * @return CourseResource|\Illuminate\Http\JsonResponse
      */
     public function show(Request $request, string $name)

@@ -9,7 +9,7 @@ class DateHelper
     /**
      * タイムスタンプを返す
      *
-     * @param Carbon|null $date
+     * @param  Carbon|null $date
      * @return string|null
      */
     public static function getTimestamp($date): ?string
