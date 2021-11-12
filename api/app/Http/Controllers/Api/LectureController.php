@@ -58,8 +58,8 @@ class LectureController extends ApiController
     {
         $userId = $request['user_id'];
         $lecture = Lecture::whereSlug($slug)->withTrashed()->whereExistence(true)->first();
-        $courseId = $lecture->course_id;
-        $lecture->loadLearningHistories($userId, $courseId);
+        $courseId = $lecture->course_id; /* @phpstan-ignore-line */
+        $lecture->loadLearningHistories($userId, $courseId); /* @phpstan-ignore-line */
         if (TakingCourse::doesntExist($userId, $courseId)) {
             return $this->respondNotFound('Taking course not found');
         }

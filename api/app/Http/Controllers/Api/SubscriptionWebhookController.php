@@ -135,6 +135,7 @@ class SubscriptionWebhookController extends ApiController
             $stripeSubscriptionId = $this->stripeSubscription->lines->data[0]->subscription;
         }
 
+        /** @phpstan-ignore-next-line */
         $this->subscription = $this->user->subscriptions()->firstWhere('stripe_id', $stripeSubscriptionId);
     }
 }
