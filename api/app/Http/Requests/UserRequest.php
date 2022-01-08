@@ -50,7 +50,7 @@ class UserRequest extends ApiRequest
     public function messages()
     {
         return [
-            'username.requiered' => 'ユーザー名は必須です',
+            'username.required' => 'ユーザー名は必須です',
             'username.min' => 'ユーザー名は3文字以上で入力してください',
             'username.max' => 'ユーザー名は50文字以内で入力してください',
             'username.unique' => 'ユーザー名はすでに登録されています',
