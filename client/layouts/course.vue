@@ -28,6 +28,21 @@
             :learned-lecture-ids="learnedLectureIds"
           />
         </div>
+
+        <div v-if="course.id" class="ad">
+          <a
+            href="https://corp.smaregi.jp/recruit/job/techfarm-engineer.php"
+            target="_blank"
+            rel="nofollow noopener"
+          >
+            <img
+              class="ad-img"
+              src="@/assets/images/smaregi.jpeg"
+              alt="株式会社スマレジ"
+            />
+          </a>
+          <div class="ad-text">広告</div>
+        </div>
       </nav>
       <div class="content">
         <nuxt />
@@ -230,6 +245,16 @@
   margin-left: auto;
   margin-right: auto;
   max-width: 1024px;
+}
+
+.ad-img {
+  margin-top: 1rem;
+}
+
+.ad-text {
+  font-size: $font-size-xs;
+  margin-top: 0.3rem;
+  text-align: right;
 }
 
 .footer_wrap {
