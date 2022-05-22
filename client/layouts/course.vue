@@ -31,7 +31,7 @@
 
         <div v-if="course.id" class="ad">
           <a
-            href="https://corp.smaregi.jp/recruit/job/techfarm-engineer.php"
+            href="https://corp.smaregi.jp/recruit/teams/techfarm.php"
             target="_blank"
             rel="nofollow noopener"
           >
