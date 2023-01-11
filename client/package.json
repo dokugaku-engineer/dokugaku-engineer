@@ -25,7 +25,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/toast": "^3.3.0",
     "core-js": "^2.6.11",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.15",
     "markdown-it-container": "^3.0.0",
     "markdown-it-sanitizer": "^0.4.3",
