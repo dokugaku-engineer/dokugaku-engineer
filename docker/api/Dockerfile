@@ -21,7 +21,7 @@ RUN composer global require laravel/installer
 ENV PATH $PATH:/root/.composer/vendor/bin
 
 # xdebugのインストール
-RUN pecl install xdebug
+RUN pecl install xdebug-3.1.6
 
 ## New Relicの設定
 RUN sudo rpm -Uvh http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm \
