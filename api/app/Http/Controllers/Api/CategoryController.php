@@ -17,6 +17,7 @@ class CategoryController extends ApiController
      * カテゴリー一覧を取得
      *
      * @queryParam except Category id to except
+     *
      * @responsefile responses/category.index.json
      *
      * @return \Illuminate\Http\Resources\Json\ResourceCollection

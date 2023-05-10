@@ -19,6 +19,7 @@ class PostController extends ApiController
      * 記事一覧を取得
      *
      * @queryParam except Category id to except
+     *
      * @responsefile responses/post.index.json
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
