@@ -18,6 +18,7 @@ class LectureController extends ApiController
      * コース一覧を取得
      *
      * @queryParam course Course name
+     *
      * @responsefile responses/lecture.index.json
      *
      * @param  Request $request

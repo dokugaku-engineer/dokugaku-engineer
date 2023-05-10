@@ -17,6 +17,7 @@ class PartController extends ApiController
      * パート一覧を取得
      *
      * @queryParam course Course name
+     *
      * @responsefile responses/part.index.json
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
