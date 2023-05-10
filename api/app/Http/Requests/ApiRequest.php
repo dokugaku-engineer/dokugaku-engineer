@@ -14,6 +14,7 @@ abstract class ApiRequest extends FormRequest
      *
      * @param  Validator $validator
      * @return void
+     *
      * @throw HttpResponseException
      */
     protected function failedValidation(Validator $validator): void

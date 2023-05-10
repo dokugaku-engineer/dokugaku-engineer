@@ -17,6 +17,7 @@ class LessonController extends ApiController
      * レッスン一覧を取得
      *
      * @queryParam course Course name
+     *
      * @responsefile responses/lesson.index.json
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Illuminate\Http\JsonResponse
