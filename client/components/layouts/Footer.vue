@@ -17,13 +17,13 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/contact">
+        <a href="https://forms.gle/bxxmZpgXSP77vWNSA" target="_blank">
           お問い合わせ
-        </nuxt-link>
+        </a>
       </li>
     </ul>
     <p class="copyright">
-      © 2020 独学エンジニア
+      © 2023 独学エンジニア
     </p>
   </footer>
 </template>

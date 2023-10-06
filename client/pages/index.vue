@@ -212,41 +212,6 @@
               </ul>
             </div>
           </li>
-          <li class="roadmap-content">
-            <div class="roadmap-part">
-              <h4>フレームワーク「Laravel」を学ぼう</h4>
-              <p>
-                PHPフレームワークのLaravelを利用して、求人サービスを作成します。現場で実際に使われるような細かい機能が実装できるようになります。また、テストについても学びます。
-              </p>
-              <ul class="roadmap-project">
-                <li>プロジェクト：Laravelでブログサービス</li>
-              </ul>
-            </div>
-          </li>
-          <li class="roadmap-content">
-            <div class="roadmap-part">
-              <h4>インフラを構築しよう</h4>
-              <p>
-                AWSでネットワーク・サーバーを構築します。また、監視やアラートの設定といった、インフラの運用に関する知識も学びます。
-              </p>
-            </div>
-          </li>
-          <li class="roadmap-content">
-            <div class="roadmap-part">
-              <h4>認定試験を受けよう</h4>
-              <p>
-                実務レベルのサービスを構築し、リリースまで行います。実務水準の技術力の取得を目指すとともに、就職・転職時に活用できるポートフォリオができます。
-              </p>
-            </div>
-          </li>
-          <li class="roadmap-content">
-            <div class="roadmap-part">
-              <h4>Appendix</h4>
-              <p>
-                セキュリティとアルゴリズム・データ構造について学びます。セキュリティでは主要な脆弱性に対して対策できるようになります。アルゴリズム・データ構造では基本をおさえ、計算量を意識して実装できるようになります。
-              </p>
-            </div>
-          </li>
         </ul>
       </div>
     </div>
