@@ -29,13 +29,6 @@
       <div v-if="loading" class="loading">
         <i class="fad fa-spinner fa-spin fa-lg" />
       </div>
-      <notification-box v-if="Object.keys(lastLecture()).length">
-        <p class="header-text">
-          ※現在講義はレッスン{{ lastLecture().lesson_id }}の{{
-            lastLecture().order
-          }}まで公開中です。それ以降は鋭意作成しております...！毎週火曜夜に公開しますので何卒お待ちください。
-        </p>
-      </notification-box>
       <div v-for="(part, index) in parts" :key="index" class="part">
         <div class="part-inner">
           <h3 class="part-subtitle">PART{{ part.order }}</h3>
