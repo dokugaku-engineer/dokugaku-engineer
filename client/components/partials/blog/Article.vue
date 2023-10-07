@@ -11,9 +11,7 @@
           <h2 class="p-blog-article-list__article-title">
             WEBサイトの仕組みを丁寧に基礎から学ぼう
           </h2>
-          <time class="p-blog-article-list__article-date">
-            2019-09-22
-          </time>
+          <time class="p-blog-article-list__article-date"> 2019-09-22 </time>
         </div>
       </article>
     </a>
@@ -29,9 +27,7 @@
           <h2 class="p-blog-article-list__article-title">
             WEBサイトの仕組みを丁寧に基礎から学ぼう
           </h2>
-          <time class="p-blog-article-list__article-date">
-            2019-09-22
-          </time>
+          <time class="p-blog-article-list__article-date"> 2019-09-22 </time>
         </div>
       </article>
     </a>
@@ -46,9 +42,7 @@
           <h2 class="p-blog-article-list__article-title">
             WEBサイトの仕組みを丁寧に基礎から学ぼう
           </h2>
-          <time class="p-blog-article-list__article-date">
-            2019-09-22
-          </time>
+          <time class="p-blog-article-list__article-date"> 2019-09-22 </time>
         </div>
       </article>
     </a>

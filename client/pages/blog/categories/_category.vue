@@ -3,9 +3,7 @@
     <breadcrumb />
     <main class="p-blog__main">
       <section class="p-blog-category">
-        <h1 class="p-blog-category__title">
-          web
-        </h1>
+        <h1 class="p-blog-category__title">web</h1>
       </section>
       <Article />
     </main>

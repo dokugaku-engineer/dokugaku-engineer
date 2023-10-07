@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <div class="heading">
-      <h1 class="heading-title">
-        プロフィール
-      </h1>
+      <h1 class="heading-title">プロフィール</h1>
     </div>
     <main class="main">
       <div v-if="loadingUser" class="loading">

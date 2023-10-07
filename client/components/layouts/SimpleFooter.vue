@@ -1,8 +1,6 @@
 <template>
   <footer class="footer">
-    <p class="copyright">
-      © 2020 独学エンジニア
-    </p>
+    <p class="copyright">© 2020 独学エンジニア</p>
   </footer>
 </template>
 

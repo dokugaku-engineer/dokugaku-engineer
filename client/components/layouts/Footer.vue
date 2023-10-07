@@ -2,19 +2,13 @@
   <footer class="footer">
     <ul class="footer-list">
       <li>
-        <nuxt-link to="/term">
-          利用規約
-        </nuxt-link>
+        <nuxt-link to="/term"> 利用規約 </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/privacy">
-          プライバシーポリシー
-        </nuxt-link>
+        <nuxt-link to="/privacy"> プライバシーポリシー </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/tokutei">
-          特定商取引に関する表記
-        </nuxt-link>
+        <nuxt-link to="/tokutei"> 特定商取引に関する表記 </nuxt-link>
       </li>
       <li>
         <a href="https://forms.gle/bxxmZpgXSP77vWNSA" target="_blank">
@@ -22,9 +16,7 @@
         </a>
       </li>
     </ul>
-    <p class="copyright">
-      © 2023 独学エンジニア
-    </p>
+    <p class="copyright">© 2023 独学エンジニア</p>
   </footer>
 </template>
 

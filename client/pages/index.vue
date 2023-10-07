@@ -219,13 +219,9 @@
     <div class="price">
       <div class="price-card">
         <div class="price-content">
-          <h6 class="price-title">
-            月額料金
-          </h6>
+          <h6 class="price-title">月額料金</h6>
           <span class="price-payable"> ¥{{ price | localprice }} </span>
-          <span class="price-label">
-            （税込）
-          </span>
+          <span class="price-label"> （税込） </span>
           <div class="price-btn">
             <nui-button
               class="btn-teal1 btn-shadow content-btn"
@@ -246,9 +242,7 @@
         <div class="qa-content">
           <h2>よくある質問</h2>
           <ul>
-            <li class="qa-question">
-              受講における必要条件はありますか？
-            </li>
+            <li class="qa-question">受講における必要条件はありますか？</li>
             <li class="qa-answer">
               何らかのプログラミング言語の経験と、HTML・CSSの基礎的な知識があると講座をスムーズに受講できます。まだ学習されていない場合は、HTML・CSSについて、入門書かドットインストールやProgateといったプログラミング入門サービスをご覧になった上で受講ください。
             </li>
@@ -271,9 +265,7 @@
             </li>
           </ul>
           <ul>
-            <li class="qa-question">
-              なぜプログラミング言語はPHPなのですか？
-            </li>
+            <li class="qa-question">なぜプログラミング言語はPHPなのですか？</li>
             <li class="qa-answer">
               初学者がエンジニアとして独り立ちするには、まずはエンジニアとして企業で働く経験を積むのが一番だと考えています。Web系のサーバーサイドエンジニアとしての就職を目下の目標とした場合、求人数で多いのがPHPになります。他の人気言語であるJavaはSIer系の求人が中心で、RubyはPHPと比較すると求人数が少なく、Pythonはデータ分析系の求人が中心です。
             </li>
@@ -287,9 +279,7 @@
             </li>
           </ul>
           <ul>
-            <li class="qa-question">
-              無料でも利用できますか？
-            </li>
+            <li class="qa-question">無料でも利用できますか？</li>
             <li class="qa-answer">
               前半部分の動画は無料で視聴できます。まずは無料登録でお試しください。
             </li>
@@ -303,12 +293,8 @@
             </li>
           </ul>
           <ul>
-            <li class="qa-question">
-              有料プランは自動的に更新されますか？
-            </li>
-            <li class="qa-answer">
-              はい。1ヶ月が経つと自動的に更新されます。
-            </li>
+            <li class="qa-question">有料プランは自動的に更新されますか？</li>
+            <li class="qa-answer">はい。1ヶ月が経つと自動的に更新されます。</li>
           </ul>
           <div class="content-single-btn">
             <nui-button

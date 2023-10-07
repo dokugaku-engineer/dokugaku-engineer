@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <div class="heading">
-      <h1 class="heading-title">
-        パスワードの設定
-      </h1>
+      <h1 class="heading-title">パスワードの設定</h1>
     </div>
     <main>
       <div v-if="isAuth0Provider" class="profile">

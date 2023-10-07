@@ -1,26 +1,16 @@
 <template>
   <div class="container">
     <div v-if="[403, 404].indexOf(error.statusCode) >= 0" class="error">
-      <h2 class="error-title">
-        Page Not Found
-      </h2>
-      <p class="error-code">
-        404
-      </p>
-      <p class="error-message">
-        お探しのページは見つかりませんでした。
-      </p>
+      <h2 class="error-title">Page Not Found</h2>
+      <p class="error-code">404</p>
+      <p class="error-message">お探しのページは見つかりませんでした。</p>
     </div>
     <div v-else class="error">
-      <h2 class="error-title">
-        Error Found
-      </h2>
+      <h2 class="error-title">Error Found</h2>
       <p class="error-code">
         {{ error.statusCode }}
       </p>
-      <p class="error-message">
-        エラーが発生しました。
-      </p>
+      <p class="error-message">エラーが発生しました。</p>
     </div>
   </div>
 </template>

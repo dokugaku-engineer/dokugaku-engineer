@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <div class="heading">
-      <h1 class="heading-title">
-        アカウント削除
-      </h1>
+      <h1 class="heading-title">アカウント削除</h1>
     </div>
     <main class="main">
       <div v-if="isAuth0Provider && !auth0User.email_verified" class="setting">

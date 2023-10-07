@@ -93,9 +93,7 @@
         </nuxt-link>
       </div>
       <div class="detail-content">
-        <h3 class="detail-header">
-          このレクチャーの内容・補足
-        </h3>
+        <h3 class="detail-header">このレクチャーの内容・補足</h3>
         <div class="detail-body">
           <!-- eslint-disable vue/no-v-html -->
           <div v-if="lecture.description" v-html="lectureDescription" />
