@@ -14,9 +14,7 @@
             <div class="menu-boarder">
               <div class="menu-item">
                 <nuxt-link to="/course/serverside" @click.native="toggleMenu">
-                  <h2 class="menu-item-title">
-                    ホーム
-                  </h2>
+                  <h2 class="menu-item-title">ホーム</h2>
                 </nuxt-link>
               </div>
             </div>
@@ -40,25 +38,19 @@
 
             <div class="menu-item">
               <nuxt-link to="/settings/profile" @click.native="toggleMenu">
-                <h2 class="menu-item-title">
-                  プロフィール
-                </h2>
+                <h2 class="menu-item-title">プロフィール</h2>
               </nuxt-link>
             </div>
 
             <div class="menu-item">
               <nuxt-link to="/settings/password" @click.native="toggleMenu">
-                <h2 class="menu-item-title">
-                  パスワード
-                </h2>
+                <h2 class="menu-item-title">パスワード</h2>
               </nuxt-link>
             </div>
 
             <div class="menu-item">
               <nuxt-link to="/settings/billing" @click.native="toggleMenu">
-                <h2 class="menu-item-title">
-                  お支払い情報
-                </h2>
+                <h2 class="menu-item-title">お支払い情報</h2>
               </nuxt-link>
             </div>
 
@@ -104,9 +96,7 @@
         お支払い情報
       </nuxt-link>
 
-      <button class="setting-link" @click="logout">
-        ログアウト
-      </button>
+      <button class="setting-link" @click="logout">ログアウト</button>
     </div>
   </header>
 </template>

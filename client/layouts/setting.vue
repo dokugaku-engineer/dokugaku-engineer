@@ -4,9 +4,7 @@
     <div class="main" :style="marginTop">
       <div class="main-inner">
         <nav class="sidebar">
-          <h4 class="sidebar-header-text">
-            設定
-          </h4>
+          <h4 class="sidebar-header-text">設定</h4>
           <ul>
             <li>
               <nuxt-link

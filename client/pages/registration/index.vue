@@ -4,9 +4,7 @@
       <div class="box-inner">
         <header class="header">
           <logo />
-          <h1 class="header-title">
-            会員情報入力
-          </h1>
+          <h1 class="header-title">会員情報入力</h1>
         </header>
 
         <main class="register">
@@ -79,9 +77,7 @@
               <div class="form-group">
                 <p class="single-text">
                   「登録する」のボタンを押すことにより、
-                  <nuxt-link to="/term" target="_blank">
-                    利用規約
-                  </nuxt-link>
+                  <nuxt-link to="/term" target="_blank"> 利用規約 </nuxt-link>
                   に同意したものとみなします。
                 </p>
               </div>

@@ -59,9 +59,7 @@
       <label for="parent">親カテゴリー</label>
       <div class="form-select">
         <select v-model="$v.category.parent.$model" name="parent">
-          <option :value="0">
-            親なし
-          </option>
+          <option :value="0">親なし</option>
           <option v-for="c in categories" :key="c.id" :value="c.id">
             {{ c.name }}
           </option>
@@ -73,9 +71,7 @@
     </div>
 
     <div class="form-btn">
-      <nui-button class="btn-red1" submit="true">
-        登録する
-      </nui-button>
+      <nui-button class="btn-red1" submit="true"> 登録する </nui-button>
     </div>
   </form>
 </template>

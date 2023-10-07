@@ -78,7 +78,7 @@
         <div class="form-group">
           <label for="entry.2074169978">
             <div class="asterix">*</div>
-            <span style="font-size: 1.6rem;">お名前</span>
+            <span style="font-size: 1.6rem">お名前</span>
           </label>
           <input
             v-model.trim="$v.name.$model"
@@ -100,7 +100,7 @@
         <div class="form-group">
           <label for="entry.844108524">
             <div class="asterix">*</div>
-            <span style="font-size: 1.6rem;">
+            <span style="font-size: 1.6rem">
               メールアドレス（ご登録されている方はご登録のメールアドレス）
             </span>
           </label>
@@ -124,9 +124,7 @@
         <div class="form-group">
           <label for="entry.75968316">
             <div class="asterix">*</div>
-            <span style="font-size: 1.6rem;">
-              お問い合わせ内容（詳細）
-            </span>
+            <span style="font-size: 1.6rem"> お問い合わせ内容（詳細） </span>
           </label>
           <textarea
             v-model.trim="$v.detail.$model"
@@ -145,9 +143,7 @@
           </div>
         </div>
 
-        <div class="consent">
-          プライバシーポリシーに同意して送信する
-        </div>
+        <div class="consent">プライバシーポリシーに同意して送信する</div>
         <div class="contact-btn">
           <nui-button
             class="btn-red1"
@@ -160,7 +156,7 @@
         </div>
       </form>
     </nui-form>
-    <iframe name="submitComplate" style="display: none;" />
+    <iframe name="submitComplate" style="display: none" />
   </static-page>
 </template>
 

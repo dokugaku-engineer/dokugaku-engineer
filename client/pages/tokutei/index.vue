@@ -43,15 +43,11 @@
       </section>
       <section>
         <h3>サービス提供の時期</h3>
-        <p>
-          代金決済手続きの完了確認後直ぐにご利用頂けます。
-        </p>
+        <p>代金決済手続きの完了確認後直ぐにご利用頂けます。</p>
       </section>
       <section>
         <h3>返金・キャンセルについて</h3>
-        <p>
-          サービスの特性上、返金・キャンセルは受け付けておりません。
-        </p>
+        <p>サービスの特性上、返金・キャンセルは受け付けておりません。</p>
       </section>
       <section>
         <h3>不良品の取扱条件</h3>
@@ -65,18 +61,10 @@
           <li>
             OS：Microsoft Windows 10 ビルド 19041 以降、Mac OS X 10.13 以降
           </li>
-          <li>
-            Webブラウザ：GoogleChrome（最新版）
-          </li>
-          <li>
-            CPU：上記OSが推奨する稼働環境に準じます。
-          </li>
-          <li>
-            メモリ：8GB以上
-          </li>
-          <li>
-            ハードディスクの空き容量：10GB以上
-          </li>
+          <li>Webブラウザ：GoogleChrome（最新版）</li>
+          <li>CPU：上記OSが推奨する稼働環境に準じます。</li>
+          <li>メモリ：8GB以上</li>
+          <li>ハードディスクの空き容量：10GB以上</li>
         </ul>
       </section>
       <section class="note">

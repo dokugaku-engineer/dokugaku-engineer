@@ -11,9 +11,7 @@
           </error-box>
         </div>
       </div>
-      <h3 class="header-title">
-        カリキュラム
-      </h3>
+      <h3 class="header-title">カリキュラム</h3>
       <p class="header-text">
         {{ course.description }}
       </p>
@@ -139,7 +137,6 @@
 <script>
 import Meta from '@/assets/mixins/meta'
 import ErrorBox from '@/components/commons/ErrorBox.vue'
-import NotificationBox from '@/components/commons/NotificationBox.vue'
 import LectureList from '@/components/partials/course/LectureList.vue'
 import VerificationEmailBox from '@/components/partials/course/VerificationEmailBox.vue'
 import { mapState, mapGetters } from 'vuex'
@@ -148,7 +145,6 @@ export default {
   layout: 'course',
   components: {
     ErrorBox,
-    NotificationBox,
     LectureList,
     VerificationEmailBox,
   },

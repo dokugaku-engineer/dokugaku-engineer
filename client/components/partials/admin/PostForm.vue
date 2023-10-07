@@ -72,9 +72,7 @@
       <label for="posts[parent]">親記事</label>
       <div class="form-select">
         <select v-model="$v.post.parent.$model" name="posts[parent]">
-          <option :value="0">
-            親なし
-          </option>
+          <option :value="0">親なし</option>
           <option v-for="p in posts" :key="p.id" :value="p.id">
             {{ p.id }}
           </option>
@@ -103,9 +101,7 @@
     </div>
 
     <div class="form-btn">
-      <nui-button class="btn-red1" submit="true">
-        登録する
-      </nui-button>
+      <nui-button class="btn-red1" submit="true"> 登録する </nui-button>
     </div>
   </form>
 </template>

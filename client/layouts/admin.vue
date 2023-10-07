@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <div class="sidebar">
-      <h1 class="sidebar-header">
-        管理画面
-      </h1>
+      <h1 class="sidebar-header">管理画面</h1>
       <div>
         <ul class="sidebar-content">
           <li>

@@ -4,7 +4,7 @@ import axios from 'axios'
 import qs from 'qs'
 
 export default {
-  mode: 'spa',
+  ssr: false,
   /*
    ** Headers of the page
    */
@@ -267,4 +267,8 @@ export default {
       'timezone', // import 'dayjs/plugin/timezone'
     ],
   },
+  /*
+   * For debug
+   */
+  // serverMiddleware: ['~/server-middleware/logger.js'],
 }

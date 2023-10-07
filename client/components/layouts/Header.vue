@@ -8,9 +8,7 @@
     </nuxt-link>
     <div class="header-item">
       <div class="header-menu">
-        <button class="header-link" @click="login">
-          ログイン
-        </button>
+        <button class="header-link" @click="login">ログイン</button>
         <nui-button
           class="btn-teal1 btn-xs btn-shadow-all header-link header-btn"
           @click.native="signup"

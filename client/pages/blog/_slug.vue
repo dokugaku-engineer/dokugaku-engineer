@@ -5,9 +5,7 @@
       <header class="p-post__header">
         <div class="p-post__metadata">
           <i class="fas fa-clock fa-lg" />
-          <time>
-            2019-09-22
-          </time>
+          <time> 2019-09-22 </time>
         </div>
         <h1 class="p-post__title">
           おしゃれなアイキャッチ画像の作り方＆デザインのコツ8つ
