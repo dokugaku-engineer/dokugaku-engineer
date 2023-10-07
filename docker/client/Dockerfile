@@ -4,11 +4,13 @@ WORKDIR /var/www
 
 # install package
 RUN yum update -y
-RUN yum install -y git vim sudo procps
-RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
-RUN yum install -y nodejs npm
-RUN npm install -g npm
-RUN npm install -g gulp
+RUN yum groupinstall -y "Development Tools"
+RUN yum install -y git vim sudo procps make
+RUN yum update glibc -y
+RUN yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y \
+  && yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
+RUN npm install -g npm@8.19.4
+RUN npm install -g gulp node-gyp
 COPY client/ /var/www/
 RUN npm install --no-optional
 
