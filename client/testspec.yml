@@ -25,10 +25,10 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+      nodejs: 18
   pre_build:
     commands:
-      - echo Logging in to Docker...
+      - echo 'Logging in to Docker...'
       - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
   build:
     commands:
