@@ -30,7 +30,7 @@
     "markdown-it-container": "^3.0.0",
     "markdown-it-sanitizer": "^0.4.3",
     "nuxt": "^2.15.3",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.25.0",
     "ress": "^2.0.4",
     "vue-social-sharing": "^3.0.0-beta.11",
     "vuelidate": "^0.7.5"
@@ -58,7 +58,7 @@
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
     "http-server": "^0.12.3",
     "jest": "^26.1.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prettier": "^2.0.5",
     "sass-loader": "^8.0.2",
     "stylelint": "^13.6.1",
