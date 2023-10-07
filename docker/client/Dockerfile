@@ -1,16 +1,13 @@
-FROM amazonlinux:2.0.20190823.1
+FROM amazonlinux:2023
 
 WORKDIR /var/www
 
-# install package
-RUN yum update -y
-RUN yum groupinstall -y "Development Tools"
-RUN yum install -y git vim sudo procps make
-RUN yum update glibc -y
-RUN yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y \
-  && yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
-RUN npm install -g npm@8.19.4
-RUN npm install -g gulp node-gyp
+RUN dnf update -y
+RUN dnf groupinstall -y "Development Tools"
+RUN dnf install -y git vim sudo procps make
+RUN dnf install https://rpm.nodesource.com/pub_18.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y \
+  && dnf install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
+RUN npm install -g npm
 COPY client/ /var/www/
 RUN npm install --no-optional
 
