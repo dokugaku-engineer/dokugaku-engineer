@@ -272,7 +272,7 @@
   margin: 4rem;
 }
 
-.detail-body /deep/ {
+.detail-body >>> {
   h4 {
     margin-bottom: 3rem;
   }
