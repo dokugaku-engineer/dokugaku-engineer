@@ -68,6 +68,6 @@
     "stylelint-prettier": "^1.1.2",
     "stylelint-scss": "^3.18.0",
     "through2": "^3.0.2",
-    "vue-jest": "^3.0.6"
+    "vue-jest": "^4.0.1"
   }
 }
