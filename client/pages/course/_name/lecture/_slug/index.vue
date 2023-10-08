@@ -272,7 +272,7 @@
   margin: 4rem;
 }
 
-.detail-body /deep/ {
+.detail-body >>> { // >>>: deep セレクタ
   h4 {
     margin-bottom: 3rem;
   }

@@ -58,7 +58,7 @@
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
     "http-server": "^0.12.3",
     "jest": "^26.1.0",
-    "node-sass": "^6.0.0",
+    "sass": "^1.69.0",
     "prettier": "^2.0.5",
     "sass-loader": "^10.0.0",
     "stylelint": "^13.6.1",

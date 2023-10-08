@@ -22,7 +22,9 @@
 }
 
 @media screen and (min-width: 769px) {
-  padding: 9.6rem 4rem 12rem;
+  .container {
+    padding: 9.6rem 4rem 12rem;
+  }
 }
 
 .error {
