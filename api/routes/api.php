@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Api'], function () {
     });
 
     // These endpoints require a valid id token for user
-    Route::middleware(['jwt', 'sentry.context'])->group(function () {
+    Route::middleware(['auth', 'sentry.context'])->group(function () {
         // User routes
         Route::resource('users', 'UserController')->only([
             'show', 'update', 'destroy',
