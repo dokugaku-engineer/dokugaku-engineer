@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Cashier\Cashier;
 
@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // リソースレスポンスがJSONに変換されるときに data キーでラッピングしない
-        Resource::withoutWrapping();
+        JsonResource::withoutWrapping();
     }
 }

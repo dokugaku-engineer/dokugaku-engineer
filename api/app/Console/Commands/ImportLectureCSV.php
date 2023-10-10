@@ -55,6 +55,8 @@ class ImportLectureCSV extends Command
             $this->insert($table);
         }
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        return 0;
     }
 
     /**
@@ -65,7 +67,7 @@ class ImportLectureCSV extends Command
      */
     private function insert(string $name): void
     {
-        DB::table("${name}s_olds")->truncate();
+        DB::table("{$name}s_olds")->truncate();
         $csv = $this->getCsv($name);
 
         if ($name == 'lecture') {
@@ -73,10 +75,10 @@ class ImportLectureCSV extends Command
         }
 
         // TODO: データのバリデーションを行う
-        DB::table("${name}s_olds")->insert($csv);
-        Schema::rename("${name}s", "${name}s_tmp");
-        Schema::rename("${name}s_olds", "${name}s");
-        Schema::rename("${name}s_tmp", "${name}s_olds");
+        DB::table("{$name}s_olds")->insert($csv);
+        Schema::rename("{$name}s", "{$name}s_tmp");
+        Schema::rename("{$name}s_olds", "{$name}s");
+        Schema::rename("{$name}s_tmp", "{$name}s_olds");
 
         Storage::deleteDirectory('tmp');
     }
@@ -90,7 +92,7 @@ class ImportLectureCSV extends Command
     private function getCsv(string $name): array
     {
         // CSVファイルをローカルに保存する
-        $csvData = Storage::disk(env('FILE_DISK', 'public'))->get("lecture/${name}.csv");
+        $csvData = Storage::disk(env('FILE_DISK', 'public'))->get("lecture/{$name}.csv");
         $local = Storage::disk('local');
         $local->put("./tmp/{$name}.csv", $csvData);
 

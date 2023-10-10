@@ -141,7 +141,6 @@ AUTH0_DOMAIN=${テナント名}.auth0.com
 AUTH0_MANAGEMENT_API_AUDIENCE=${Auth0 Management APIのIdentifier}
 AUTH0_MANAGEMENT_API_CLIENT_ID=${Auth0 Management APIがAUTHORIZEDしているApplicationのClient ID}
 AUTH0_MANAGEMENT_API_CLIENT_SECRET=${Auth0 Management APIがAUTHORIZEDしているApplicationのClient Secret}
-}
 AUTH0_NAMESPACE=https://dokugaku-engineer.com/
 ```
 

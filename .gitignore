@@ -17,6 +17,7 @@ api/public/ocp.php
 api/storage/*.key
 api/yarn-error.log
 api/vendor
+api/.auth0.*.json
 
 client/.awspublish
 client/.awspublish-dokugaku-engineer-client
@@ -27,4 +28,3 @@ client/.vscode
 client/coverage
 client/dist
 client/node_modules
-

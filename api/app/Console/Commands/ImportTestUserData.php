@@ -66,6 +66,8 @@ class ImportTestUserData extends Command
                 $this->insertLearningHistories($users);
             }
         }
+
+        return 0;
     }
 
     /**

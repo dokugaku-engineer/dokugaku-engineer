@@ -8,6 +8,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
+use Auth0\SDK\Token\Verifier;
+
 class CheckJWT
 {
     use JsonRespondController;
@@ -36,6 +38,19 @@ class CheckJWT
             'valid_audiences' => [$laravelConfig['api_identifier']],
             'supported_algs' => $laravelConfig['supported_algs'],
         ];
+
+        if (!auth()->check()) {
+            return response()->json([
+                'message' => 'You did not provide a valid token.',
+            ]);
+        }
+
+        $jwksFetcher = new JWKFetcher($this->cacheHandler, $this->guzzleOptions);
+        $jwks        = $jwksFetcher->getKeys(JWKS_URL_HERE);
+        $sigVerifier = new AsymmetricVerifier($jwks);
+
+        $idTokenVerifier = new IdTokenVerifier(TOKEN_ISSUER_HERE, $this->clientId, $sigVerifier);
+        $decodedToken = $idTokenVerifier->verify($idToken, ['nonce' => NONCE_VALUE_HERE]);
 
         try {
             $jwtVerifier = new JWTVerifier($jwtConfig);
