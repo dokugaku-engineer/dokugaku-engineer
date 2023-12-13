@@ -17,7 +17,6 @@
         "laravel/tinker": "^2.0",
         "league/csv": "^9.6",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "php-http/message-factory": "^1.1",
         "sentry/sentry-laravel": "1.7.0"
     },
     "require-dev": {
@@ -34,10 +33,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "php-http/discovery": true
-        }
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
