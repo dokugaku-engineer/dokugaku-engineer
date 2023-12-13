@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "league/csv": "^9.6",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "php-http/message-factory": "^1.1",
         "sentry/sentry-laravel": "1.7.0"
     },
     "require-dev": {
