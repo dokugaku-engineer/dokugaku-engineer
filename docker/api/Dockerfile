@@ -8,11 +8,9 @@ RUN amazon-linux-extras enable epel \
   && amazon-linux-extras install -y epel \
   && yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
   && sed -i 's/priority=10/priority=99/' /etc/yum.repos.d/amzn2-core.repo \
-  && yum install -y --enablerepo=remi-php74 php php-mbstring php-xml php-pecl-zip php-fpm php-soap php-bcmath php-opcache php-pecl-apcu php-pear php-devel php-pdo php-mysqlnd php-intl.x86_64
-RUN yum install -y git vim sudo procps pcre-devel gcc make unzip
-RUN yum update glibc -y
-RUN yum install https://rpm.nodesource.com/pub_16.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm -y \
-  && yum install nodejs -y --setopt=nodesource-nodejs.module_hotfixes=1
+  && yum install -y --enablerepo=remi-php74 php php-mbstring php-xml php-pecl-zip php-fp  m php-soap php-bcmath php-opcache php-pecl-apcu php-pear php-devel php-pdo php-mysqlnd php-intl.x86_64
+RUN yum install -y git vim sudo procps pcre-devel gcc make nodejs unzip
+RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash -
 
 # composerのインストール
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
