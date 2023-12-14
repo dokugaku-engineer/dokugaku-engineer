@@ -1,4 +1,4 @@
-FROM nginx:1.17.10
+FROM nginx:1.25.3
 
 WORKDIR /var/www/public
 
