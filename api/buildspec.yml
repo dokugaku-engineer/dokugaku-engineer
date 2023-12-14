@@ -9,9 +9,6 @@ env:
     DOCKERHUB_PASSWORD: "/Prod/DokugakuEngineer/Api/DOCKERHUB_PASSWORD"
 
 phases:
-  install:
-    runtime-versions:
-      docker: 18
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
